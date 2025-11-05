@@ -13,7 +13,8 @@ import {
   Menu,
   X,
   Settings,
-  Ruler
+  Ruler,
+  ShoppingBag
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -56,6 +57,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const navigation = [
     { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
     { name: 'Customers', href: '/dashboard/customers', icon: Users },
+    { name: 'Orders', href: '/dashboard/orders', icon: ShoppingBag },
     { name: 'Measurements', href: '/dashboard/measurements', icon: Ruler },
     { name: 'Events', href: '/dashboard/events', icon: Calendar },
     { name: 'Communications', href: '/dashboard/communications', icon: MessageSquare },

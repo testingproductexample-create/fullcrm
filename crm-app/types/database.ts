@@ -139,3 +139,90 @@ export interface LoyaltyTransaction {
   created_by?: string;
   created_at: string;
 }
+
+
+export interface Order {
+  id: string;
+  organization_id: string;
+  customer_id: string;
+  order_number: string;
+  order_type: 'bespoke' | 'casual' | 'alteration' | 'repair' | 'special_occasion';
+  status: 'new' | 'confirmed' | 'in_progress' | 'quality_check' | 'ready' | 'delivered' | 'cancelled';
+  sub_status?: string;
+  priority_level: 'rush' | 'normal' | 'low';
+  garment_details: Record<string, any>;
+  design_notes?: string;
+  special_instructions?: string;
+  estimated_completion?: string;
+  delivery_date?: string;
+  total_amount: number;
+  advance_payment: number;
+  vat_amount: number;
+  final_amount: number;
+  assigned_to?: string;
+  progress_percentage: number;
+  created_at: string;
+  updated_at: string;
+  completed_at?: string;
+}
+
+export interface OrderItem {
+  id: string;
+  organization_id: string;
+  order_id: string;
+  item_type: string;
+  item_name?: string;
+  specifications: Record<string, any>;
+  fabric_details?: string;
+  color?: string;
+  style_options: Record<string, any>;
+  measurements_reference?: string;
+  special_requirements?: string;
+  estimated_time_hours?: number;
+  item_amount: number;
+  quantity: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface OrderStatusHistory {
+  id: string;
+  organization_id: string;
+  order_id: string;
+  status: string;
+  sub_status?: string;
+  previous_status?: string;
+  changed_by?: string;
+  changed_at: string;
+  notes?: string;
+  percentage_completion?: number;
+}
+
+export interface OrderApproval {
+  id: string;
+  organization_id: string;
+  order_id: string;
+  approval_type: 'design' | 'measurement' | 'final' | 'price';
+  status: 'pending' | 'approved' | 'rejected' | 'revision_requested';
+  customer_id: string;
+  approved_by?: string;
+  approval_date?: string;
+  feedback?: string;
+  revision_requests?: string;
+  created_at: string;
+}
+
+export interface OrderTemplate {
+  id: string;
+  organization_id: string;
+  template_name: string;
+  template_type?: string;
+  description?: string;
+  default_specifications: Record<string, any>;
+  template_settings: Record<string, any>;
+  usage_count: number;
+  is_active: boolean;
+  created_by?: string;
+  created_at: string;
+  updated_at: string;
+}
