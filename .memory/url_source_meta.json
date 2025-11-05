@@ -1,0 +1,105 @@
+{
+  "_source_id": 14,
+  "sources": {
+    "Mobile and Offline Functionality Requirements for Tailoring Businesses": {
+      "https://roapp.io/tailoring-software/": {
+        "id": 1,
+        "publisher": "RO App",
+        "url": "https://roapp.io/tailoring-software/",
+        "title": "Clothing Alterations Software - RO App",
+        "info": "Comprehensive tailoring software features including mobile apps for staff and owners, order management, customer database, e-signatures, inventory tracking, payment integration with Stripe, and employee management. Mobile app capabilities for managing orders from estimation to payment completion."
+      },
+      "https://orderry.com/tailor-shop-software/": {
+        "id": 2,
+        "publisher": "Orderry",
+        "url": "https://orderry.com/tailor-shop-software/",
+        "title": "Tailor Shop Management Software - Orderry",
+        "info": "Tailor shop management software with mobile applications, customer database, e-signatures, order tracking, inventory management, scheduling, payments with Stripe integration, analytics, and real-time order status updates. Includes Orderry App for staff and Orderry Dashboard for business insights."
+      },
+      "https://3dlook.ai/mobile-tailor/": {
+        "id": 3,
+        "publisher": "3DLOOK",
+        "url": "https://3dlook.ai/mobile-tailor/",
+        "title": "Mobile Tailor - AI-Powered Body Measuring Solution",
+        "info": "AI-powered body measuring solution using mobile 3D scanning technology. Provides 80+ body measurements in under 60 seconds from 2 photos. Offers mobile 3D scanning, e-commerce integration, in-store QR codes, remote measurement links via SMS/email, and claims up to 20% decrease in returns."
+      },
+      "https://www.sizestream.com/": {
+        "id": 4,
+        "publisher": "Size Stream",
+        "url": "https://www.sizestream.com/",
+        "title": "Size Stream | 3D Body Scanning, Measurements and Analysis",
+        "info": "Platform for 3D body scanning with over 240 body measurements and 290,000+ avatar data points. Mobile-compatible solutions for iOS and Android, including MeThreeSixty app for health tracking, Formcut for apparel brands (scan-to-factory, size recommendation), and Mobile Fit for B2B research."
+      },
+      "https://www.mtailor.com/how-it-works": {
+        "id": 5,
+        "publisher": "MTailor",
+        "url": "https://www.mtailor.com/how-it-works",
+        "title": "How It Works - MTailor Custom Clothes",
+        "info": "Custom clothing technology using video-based body scanning (under 15 seconds, 360-degree turn) to capture 60 measurements with 20% greater accuracy than professional tailors. Digital pattern creation for bespoke tailoring with 90-day fit guarantee and custom fabric selection options."
+      },
+      "https://www.north.com/blog/how-mobile-payments-are-transforming-transactions-and-payment-security": {
+        "id": 6,
+        "publisher": "North",
+        "url": "https://www.north.com/blog/how-mobile-payments-are-transforming-transactions-and-payment-security",
+        "title": "How Mobile Payments Are Transforming Transactions and Payment Security",
+        "info": "Comprehensive guide to mobile payment security, NFC technology, transaction processing, and digital wallet integration. Covers mobile payment benefits, security concerns, and transformation of business payments. Notes 70% consumer adoption rate."
+      },
+      "https://sensepass.com/understanding-mobile-payment-best-practices/": {
+        "id": 7,
+        "publisher": "SensePass",
+        "url": "https://sensepass.com/understanding-mobile-payment-best-practices/",
+        "title": "Understanding Mobile Payment Best Practices for Businesses",
+        "info": "Mobile payment best practices covering security mechanisms (encryption, tokenization, multifactor authentication), efficiency optimization, personalization, and omnichannel integration. Notes 67% global mobile payment surge in past three years."
+      },
+      "https://stripe.com/resources/more/mobile-payments-explained-a-guide-for-businesses": {
+        "id": 8,
+        "publisher": "Stripe",
+        "url": "https://stripe.com/resources/more/mobile-payments-explained-a-guide-for-businesses",
+        "title": "Mobile Payments Explained: A Guide for Businesses",
+        "info": "Comprehensive guide to mobile payments including NFC technology, QR codes, digital wallets, biometric verification, and various payment systems. Covers benefits, challenges, and Stripe's support for mobile payments with $6.11 trillion market projection by 2028."
+      },
+      "https://blog.logrocket.com/ux-design/app-designers-guide-responsive-mobile-ux/": {
+        "id": 9,
+        "publisher": "LogRocket",
+        "url": "https://blog.logrocket.com/ux-design/app-designers-guide-responsive-mobile-ux/",
+        "title": "An App Designer's Guide to Responsive Mobile UX",
+        "info": "Responsive mobile UX design guide covering adaptive vs responsive design, touch interface requirements, accessibility guidelines (WCAG 2.2), performance optimization, and cross-platform compatibility. Includes typography, contrast, touch target size requirements."
+      },
+      "https://www.tekrevol.com/blogs/designing-an-app-user-interface-ui-for-a-seamless-user-experience-ux/": {
+        "id": 10,
+        "publisher": "TekRevol",
+        "url": "https://www.tekrevol.com/blogs/designing-an-app-user-interface-ui-for-a-seamless-user-experience-ux/",
+        "title": "Designing App UI for Seamless UX Experience",
+        "info": "App UI design principles for seamless UX including structure, simplicity, visibility, feedback, tolerance, and reuse principles. Covers mobile-specific considerations, touch usability, and user experience optimization with ROI data ($2-100 return on $1 invested)."
+      },
+      "https://dreamertechnoland.com/handling-offline-functionality-in-mobile-apps/": {
+        "id": 11,
+        "publisher": "Dreamer Technoland",
+        "url": "https://dreamertechnoland.com/handling-offline-functionality-in-mobile-apps/",
+        "title": "How to Handle Offline Functionality in Mobile Apps?",
+        "info": "Comprehensive guide to handling offline functionality in mobile apps including data storage solutions, synchronization logic, conflict resolution, data security, and implementation strategies (caching, local databases, service workers, queueing, delta syncing)."
+      },
+      "https://www.handifox.com/handifox-blog/mobile-inventory-management": {
+        "id": 12,
+        "publisher": "HandiFox",
+        "url": "https://www.handifox.com/handifox-blog/mobile-inventory-management",
+        "title": "The Ultimate Beginner's Guide to Mobile Inventory Management",
+        "info": "Mobile inventory management system with offline capabilities, barcode scanning, real-time synchronization, and field operations support. Includes purchase order management, order fulfillment with barcode verification, and mobile sales features."
+      },
+      "https://appexchange.salesforce.com/appxListingDetail?listingId=a0N3000000B5WuTEAV": {
+        "id": 13,
+        "publisher": "Salesforce AppExchange",
+        "url": "https://appexchange.salesforce.com/appxListingDetail?listingId=a0N3000000B5WuTEAV",
+        "title": "Pappsales - Native Offline App for Field Reps",
+        "info": "Native offline application for field representatives supporting sales order entry, catalog access, and visit management without internet connectivity. Demonstrates practical offline order taking capabilities for field operations."
+      },
+      "https://sewfullife.com/2017/03/30/theres-a-sewing-app-for-that/": {
+        "id": 14,
+        "publisher": "The Sewful Life",
+        "url": "https://sewfullife.com/2017/03/30/theres-a-sewing-app-for-that/",
+        "title": "There's a Sewing App For That",
+        "info": "Digital fabric organization and catalog management tools including pattern tracking apps (Pattern Box, Stash Star, My Sewing Patterns), Pantone Color app for color matching, and fabric information resources. Focuses on mobile tools for fabric selection and organization."
+      }
+    }
+  }
+}
