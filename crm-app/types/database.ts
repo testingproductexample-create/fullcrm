@@ -938,3 +938,195 @@ export interface SkillRequirement {
   created_at: string;
   updated_at: string;
 }
+
+// Work Schedule & Attendance Management System Types
+
+export interface WorkShift {
+  id: string;
+  organization_id: string;
+  shift_name: string;
+  shift_code: string;
+  shift_type: 'morning' | 'afternoon' | 'evening' | 'night' | 'flexible' | 'part_time';
+  start_time: string; // TIME format
+  end_time: string; // TIME format
+  break_duration_minutes: number;
+  total_work_hours: number;
+  days_of_week: number[]; // 0=Sunday, 1=Monday, etc.
+  is_active: boolean;
+  is_template: boolean;
+  overtime_threshold_hours: number;
+  minimum_break_hours: number;
+  grace_period_minutes: number;
+  description?: string;
+  created_by?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ShiftAssignment {
+  id: string;
+  organization_id: string;
+  employee_id: string;
+  shift_id: string;
+  assignment_date: string; // DATE format
+  assignment_status: 'scheduled' | 'confirmed' | 'completed' | 'absent' | 'cancelled';
+  is_mandatory: boolean;
+  can_swap: boolean;
+  swap_deadline?: string;
+  coverage_required: boolean;
+  coverage_employee_id?: string;
+  assigned_by_id?: string;
+  confirmed_at?: string;
+  notes?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface AttendanceRecord {
+  id: string;
+  organization_id: string;
+  employee_id: string;
+  shift_assignment_id?: string;
+  attendance_date: string; // DATE format
+  check_in_time?: string;
+  check_out_time?: string;
+  break_start_time?: string;
+  break_end_time?: string;
+  total_work_hours?: number;
+  total_break_hours?: number;
+  overtime_hours: number;
+  late_arrival_minutes: number;
+  early_departure_minutes: number;
+  attendance_status: 'present' | 'absent' | 'late' | 'half_day' | 'on_leave';
+  check_in_location?: Record<string, any>; // JSONB for GPS coordinates
+  check_out_location?: Record<string, any>; // JSONB for GPS coordinates
+  check_in_device_id?: string;
+  check_out_device_id?: string;
+  is_manual_entry: boolean;
+  manual_entry_reason?: string;
+  approved_by?: string;
+  approval_notes?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface LeaveRequest {
+  id: string;
+  organization_id: string;
+  employee_id: string;
+  leave_type: 'annual' | 'sick' | 'maternity' | 'paternity' | 'emergency' | 'unpaid' | 'hajj';
+  start_date: string; // DATE format
+  end_date: string; // DATE format
+  total_days: number;
+  working_days: number;
+  reason: string;
+  supporting_documents?: Record<string, any>; // JSONB for file URLs, certificates
+  request_status: 'pending' | 'approved' | 'rejected' | 'cancelled';
+  requested_at: string;
+  reviewed_by?: string;
+  reviewed_at?: string;
+  review_comments?: string;
+  hr_notes?: string;
+  is_emergency_leave: boolean;
+  pay_status: 'full_pay' | 'half_pay' | 'no_pay';
+  created_at: string;
+  updated_at: string;
+}
+
+export interface LeaveBalance {
+  id: string;
+  organization_id: string;
+  employee_id: string;
+  leave_year: number;
+  annual_leave_entitled: number; // UAE: 30 days after 1 year
+  annual_leave_used: number;
+  annual_leave_balance: number;
+  sick_leave_entitled: number; // UAE: 90 days per year
+  sick_leave_used: number;
+  sick_leave_balance: number;
+  maternity_leave_entitled: number; // UAE: 60 days
+  maternity_leave_used: number;
+  maternity_leave_balance: number;
+  emergency_leave_used: number;
+  unpaid_leave_used: number;
+  leave_accrual_rate: number; // Days per month
+  carry_forward_days: number;
+  max_carry_forward: number;
+  balance_as_of: string; // DATE format
+  last_updated_by?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface OvertimeRecord {
+  id: string;
+  organization_id: string;
+  employee_id: string;
+  attendance_record_id?: string;
+  overtime_date: string; // DATE format
+  regular_hours: number;
+  overtime_hours: number;
+  overtime_rate: number; // UAE: 1.25x regular rate
+  overtime_type: 'daily' | 'weekly' | 'holiday' | 'emergency';
+  reason: string;
+  pre_approved: boolean;
+  approval_status: 'pending' | 'approved' | 'rejected';
+  requested_by?: string;
+  approved_by?: string;
+  approved_at?: string;
+  project_code?: string;
+  client_billable: boolean;
+  overtime_cost_aed?: number;
+  manager_notes?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface AttendanceDevice {
+  id: string;
+  organization_id: string;
+  device_name: string;
+  device_type: 'biometric' | 'rfid' | 'mobile_gps' | 'web_portal' | 'manual';
+  device_serial?: string;
+  device_location?: string;
+  device_coordinates?: Record<string, any>; // JSONB for GPS location
+  is_active: boolean;
+  requires_gps: boolean;
+  gps_radius_meters: number;
+  allowed_employee_ids?: string[]; // UUID array
+  department_restrictions?: string[]; // UUID array
+  device_settings?: Record<string, any>; // JSONB for device configuration
+  last_sync_at?: string;
+  installation_date?: string;
+  maintenance_schedule?: string;
+  created_by?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface AttendanceReport {
+  id: string;
+  organization_id: string;
+  report_name: string;
+  report_type: 'monthly' | 'weekly' | 'daily' | 'custom' | 'overtime' | 'leave_summary' | 'compliance';
+  report_period_start: string; // DATE format
+  report_period_end: string; // DATE format
+  employee_ids?: string[]; // UUID array
+  department_ids?: string[]; // UUID array
+  report_data: Record<string, any>; // JSONB for generated report data
+  report_summary?: Record<string, any>; // JSONB for summary statistics
+  total_employees?: number;
+  total_working_days?: number;
+  total_attendance_percentage?: number;
+  total_overtime_hours?: number;
+  total_leave_days?: number;
+  uae_compliance_score?: number; // Compliance with UAE labor law
+  generated_by?: string;
+  generated_at: string;
+  report_format: 'json' | 'pdf' | 'excel';
+  file_path?: string;
+  is_automated: boolean;
+  schedule_frequency?: 'daily' | 'weekly' | 'monthly' | 'quarterly';
+  created_at: string;
+  updated_at: string;
+}
