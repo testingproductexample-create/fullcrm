@@ -59,6 +59,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const navigation = [
     { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
     { name: 'Customers', href: '/dashboard/customers', icon: Users },
+    { name: 'Employees', href: '/dashboard/employees', icon: Users },
     { name: 'Orders', href: '/dashboard/orders', icon: ShoppingBag },
     { name: 'Workflow', href: '/dashboard/workflow', icon: GitBranch },
     { name: 'Measurements', href: '/dashboard/measurements', icon: Ruler },
