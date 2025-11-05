@@ -4,13 +4,16 @@ import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/contexts/AuthContext';
+import { useToast } from '@/contexts/ToastContext';
 import { 
   Order,
   OrderItem,
   OrderStatusHistory,
   OrderApproval,
   Customer,
-  CustomerCommunication
+  CustomerCommunication,
+  OrderWorkflowStatus,
+  WorkflowMilestone
 } from '@/types/database';
 import { 
   ArrowLeft,
@@ -27,7 +30,8 @@ import {
   MessageSquare,
   FileText,
   Ruler,
-  CheckSquare
+  CheckSquare,
+  GitBranch
 } from 'lucide-react';
 import Link from 'next/link';
 import { format } from 'date-fns';
@@ -36,6 +40,7 @@ export default function OrderDetailPage() {
   const params = useParams();
   const router = useRouter();
   const { profile } = useAuth();
+  const toast = useToast();
   const orderId = params.id as string;
 
   const [order, setOrder] = useState<Order | null>(null);
@@ -44,8 +49,10 @@ export default function OrderDetailPage() {
   const [statusHistory, setStatusHistory] = useState<OrderStatusHistory[]>([]);
   const [approvals, setApprovals] = useState<OrderApproval[]>([]);
   const [communications, setCommunications] = useState<CustomerCommunication[]>([]);
+  const [workflowStatus, setWorkflowStatus] = useState<OrderWorkflowStatus | null>(null);
+  const [milestones, setMilestones] = useState<WorkflowMilestone[]>([]);
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState<'overview' | 'items' | 'history' | 'approvals' | 'communications'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'items' | 'history' | 'approvals' | 'communications' | 'workflow'>('overview');
   const [showStatusModal, setShowStatusModal] = useState(false);
   const [newStatus, setNewStatus] = useState('');
   const [statusNotes, setStatusNotes] = useState('');
@@ -53,6 +60,45 @@ export default function OrderDetailPage() {
 
   useEffect(() => {
     fetchOrderData();
+    
+    // Set up real-time subscription for order changes
+    if (orderId && profile?.organization_id) {
+      const subscription = supabase
+        .channel(`order-${orderId}`)
+        .on(
+          'postgres_changes',
+          {
+            event: '*',
+            schema: 'public',
+            table: 'orders',
+            filter: `id=eq.${orderId}`
+          },
+          (payload) => {
+            console.log('Order change detected:', payload);
+            toast.info('Order updated');
+            fetchOrderData();
+          }
+        )
+        .on(
+          'postgres_changes',
+          {
+            event: '*',
+            schema: 'public',
+            table: 'order_workflow_statuses',
+            filter: `order_id=eq.${orderId}`
+          },
+          (payload) => {
+            console.log('Workflow status change detected:', payload);
+            toast.info('Workflow status updated');
+            fetchOrderData();
+          }
+        )
+        .subscribe();
+
+      return () => {
+        subscription.unsubscribe();
+      };
+    }
   }, [orderId, profile]);
 
   async function fetchOrderData() {
@@ -120,8 +166,25 @@ export default function OrderDetailPage() {
         setCommunications(commsData || []);
       }
 
+      // Fetch workflow status
+      const { data: workflowStatusData } = await supabase
+        .from('order_workflow_statuses')
+        .select('*')
+        .eq('order_id', orderId)
+        .maybeSingle();
+      setWorkflowStatus(workflowStatusData);
+
+      // Fetch workflow milestones
+      const { data: milestonesData } = await supabase
+        .from('workflow_milestones')
+        .select('*')
+        .eq('order_id', orderId)
+        .order('order_index', { ascending: true });
+      setMilestones(milestonesData || []);
+
     } catch (error) {
       console.error('Error fetching order data:', error);
+      toast.error('Failed to load order data. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -170,11 +233,13 @@ export default function OrderDetailPage() {
         });
 
       setShowStatusModal(false);
+      setNewStatus('');
       setStatusNotes('');
       fetchOrderData();
+      toast.success(`Order status updated to ${status.replace('_', ' ')}`);
     } catch (error) {
       console.error('Error updating status:', error);
-      alert('Failed to update status. Please try again.');
+      toast.error('Failed to update order status. Please try again.');
     } finally {
       setUpdatingStatus(false);
     }
@@ -201,15 +266,16 @@ export default function OrderDetailPage() {
           metadata: {}
         });
 
-      alert('Update sent successfully!');
+      toast.success('Update sent successfully to customer');
       fetchOrderData();
     } catch (error) {
       console.error('Error sending update:', error);
-      alert('Failed to send update. Please try again.');
+      toast.error('Failed to send update. Please try again.');
     }
   }
 
   function handlePrint() {
+    toast.info('Print functionality will open print dialog');
     window.print();
   }
 
@@ -315,6 +381,13 @@ export default function OrderDetailPage() {
             <CheckCircle2 className="w-5 h-5" />
             Change Status
           </button>
+          <Link 
+            href={`/dashboard/orders/${orderId}/edit`}
+            className="btn-primary flex items-center gap-2"
+          >
+            <Edit className="w-5 h-5" />
+            Edit Order
+          </Link>
         </div>
       </div>
 
@@ -485,6 +558,7 @@ export default function OrderDetailPage() {
             {[
               { key: 'overview', label: 'Overview', icon: FileText },
               { key: 'items', label: 'Order Items', icon: Package },
+              { key: 'workflow', label: 'Workflow', icon: GitBranch },
               { key: 'history', label: 'Status History', icon: Clock },
               { key: 'approvals', label: 'Approvals', icon: CheckSquare },
               { key: 'communications', label: 'Communications', icon: MessageSquare },
@@ -794,6 +868,149 @@ export default function OrderDetailPage() {
                       )}
                     </div>
                   ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {activeTab === 'workflow' && (
+            <div>
+              <h3 className="text-h3 font-semibold text-neutral-900 mb-4">Workflow Progress</h3>
+              
+              {workflowStatus ? (
+                <div className="space-y-6">
+                  {/* Current Workflow Status */}
+                  <div className="glass-card p-4 bg-primary-50 border border-primary-200">
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <p className="text-small text-neutral-700 mb-1">Current Stage</p>
+                        <p className="text-large font-bold text-neutral-900 capitalize">
+                          {workflowStatus.current_status.replace('_', ' ')}
+                        </p>
+                        {workflowStatus.sub_status && (
+                          <p className="text-body text-neutral-700 mt-1 capitalize">
+                            Sub-status: {workflowStatus.sub_status.replace('_', ' ')}
+                          </p>
+                        )}
+                      </div>
+                      <div className="text-right">
+                        <p className="text-small text-neutral-700 mb-1">Progress</p>
+                        <p className="text-h3 font-bold text-primary-600">
+                          {workflowStatus.progress_percentage}%
+                        </p>
+                      </div>
+                    </div>
+                    {workflowStatus.status_notes && (
+                      <div className="mt-4 p-3 bg-white rounded border border-primary-200">
+                        <p className="text-small font-medium text-neutral-900 mb-1">Notes:</p>
+                        <p className="text-small text-neutral-700">{workflowStatus.status_notes}</p>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Workflow Milestones */}
+                  {milestones.length > 0 && (
+                    <div>
+                      <h4 className="font-semibold text-neutral-900 mb-4">Milestones</h4>
+                      <div className="space-y-3">
+                        {milestones.map((milestone, index) => {
+                          const isCompleted = milestone.status === 'completed';
+                          const isInProgress = milestone.status === 'in_progress';
+                          const isPending = milestone.status === 'pending';
+
+                          return (
+                            <div key={milestone.id} className="flex items-start gap-4">
+                              {/* Timeline Connector */}
+                              <div className="flex flex-col items-center">
+                                <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                                  isCompleted ? 'bg-green-600' :
+                                  isInProgress ? 'bg-yellow-600' :
+                                  'bg-neutral-300'
+                                }`}>
+                                  {isCompleted ? (
+                                    <CheckCircle2 className="w-5 h-5 text-white" />
+                                  ) : isInProgress ? (
+                                    <Clock className="w-5 h-5 text-white" />
+                                  ) : (
+                                    <span className="text-white text-tiny font-bold">{index + 1}</span>
+                                  )}
+                                </div>
+                                {index < milestones.length - 1 && (
+                                  <div className={`w-0.5 h-16 ${
+                                    isCompleted ? 'bg-green-600' : 'bg-neutral-300'
+                                  }`} />
+                                )}
+                              </div>
+
+                              {/* Milestone Content */}
+                              <div className="flex-1 pb-4">
+                                <div className="glass-card p-4">
+                                  <div className="flex justify-between items-start mb-2">
+                                    <div>
+                                      <p className="font-medium text-neutral-900">{milestone.milestone_name}</p>
+                                      {milestone.milestone_type && (
+                                        <p className="text-tiny text-neutral-600 capitalize">
+                                          {milestone.milestone_type.replace('_', ' ')}
+                                        </p>
+                                      )}
+                                    </div>
+                                    <span className={`px-3 py-1 rounded-full text-tiny font-medium ${
+                                      isCompleted ? 'bg-green-100 text-green-900' :
+                                      isInProgress ? 'bg-yellow-100 text-yellow-900' :
+                                      'bg-neutral-100 text-neutral-700'
+                                    }`}>
+                                      {milestone.status}
+                                    </span>
+                                  </div>
+
+                                  {milestone.completed_at && (
+                                    <p className="text-small text-neutral-700 mt-2">
+                                      Completed: {format(new Date(milestone.completed_at), 'MMM dd, yyyy HH:mm')}
+                                      {milestone.completed_by && ` by ${milestone.completed_by}`}
+                                    </p>
+                                  )}
+
+                                  {milestone.due_date && !milestone.completed_at && (
+                                    <p className="text-small text-neutral-700 mt-2">
+                                      Due: {format(new Date(milestone.due_date), 'MMM dd, yyyy')}
+                                    </p>
+                                  )}
+
+                                  {milestone.notes && (
+                                    <p className="text-small text-neutral-700 mt-2 bg-neutral-50 p-2 rounded">
+                                      {milestone.notes}
+                                    </p>
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Workflow Info */}
+                  <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <div className="flex items-start gap-3">
+                      <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                      <div>
+                        <p className="text-small font-medium text-neutral-900 mb-1">Workflow System</p>
+                        <p className="text-small text-neutral-700">
+                          This order is being tracked through our automated workflow system. 
+                          Milestones are automatically updated as the order progresses through each stage.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="text-center py-12">
+                  <GitBranch className="w-16 h-16 text-neutral-400 mx-auto mb-4" />
+                  <p className="text-body text-neutral-700 mb-2">No workflow data available</p>
+                  <p className="text-small text-neutral-600">
+                    This order hasn't been assigned to a workflow yet
+                  </p>
                 </div>
               )}
             </div>

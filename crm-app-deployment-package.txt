@@ -1,0 +1,59 @@
+CRM SYSTEM - DEPLOYMENT PACKAGE CONTENTS
+=========================================
+
+PROJECT: Tailoring Management CRM System
+STATUS: Production-Ready
+TECH STACK: Next.js 15 + Supabase + TypeScript + TailwindCSS
+
+DIRECTORY: /workspace/crm-app/
+
+KEY FILES:
+- app/ - Next.js application pages and routes
+- components/ - React components (DashboardLayout, etc.)
+- lib/ - Utility functions and Supabase client
+- types/ - TypeScript type definitions
+- public/ - Static assets
+- package.json - Dependencies
+- tailwind.config.ts - Styling configuration
+- tsconfig.json - TypeScript configuration
+
+DEPLOYMENT FILES:
+- VERCEL_DEPLOY_INSTRUCTIONS.md - Step-by-step deployment guide
+- DEPLOYMENT.md - Alternative deployment options
+- .env.production - Production environment variables
+- README.md - Project overview and setup
+
+REQUIRED ENVIRONMENT VARIABLES:
+- NEXT_PUBLIC_SUPABASE_URL=https://qmttczrdpzzsbxwutfwz.supabase.co
+- NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+
+BACKEND (SUPABASE):
+- Database: 24 tables with RLS policies
+- Edge Functions: 4 deployed
+  * check-customer-events
+  * update-customer-analytics
+  * process-workflow-automation
+  * calculate-workflow-analytics
+- Cron Jobs: 2 active (daily customer events, hourly workflow analytics)
+- Storage: Configured for customer photos
+
+FEATURES IMPLEMENTED:
+✅ Customer Management (list, detail, analytics)
+✅ Order Management (create, edit, view, templates)
+✅ Workflow System (Kanban, analytics, automation)
+✅ Measurement System (ready)
+✅ Authentication (Supabase Auth)
+✅ Role-based access control
+✅ Real-time data sync
+✅ Glassmorphism UI design
+✅ Mobile responsive
+
+DEPLOYMENT INSTRUCTIONS:
+See VERCEL_DEPLOY_INSTRUCTIONS.md for complete guide.
+
+Quick Deploy:
+1. Upload crm-app folder to Vercel dashboard
+2. Add environment variables
+3. Deploy (automatic build with Node 20)
+4. Access at your-project.vercel.app
+

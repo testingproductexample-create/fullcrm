@@ -226,3 +226,90 @@ export interface OrderTemplate {
   created_at: string;
   updated_at: string;
 }
+
+
+export interface OrderWorkflow {
+  id: string;
+  organization_id: string;
+  workflow_name: string;
+  workflow_type: string;
+  description?: string;
+  status_definitions: Record<string, any>;
+  automation_rules: Record<string, any>;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface OrderWorkflowStatus {
+  id: string;
+  organization_id: string;
+  order_id: string;
+  workflow_id?: string;
+  current_status: string;
+  sub_status?: string;
+  status_order: number;
+  entered_at: string;
+  completed_at?: string;
+  assigned_employee_id?: string;
+  status_notes?: string;
+  progress_percentage: number;
+  automatic_transition: boolean;
+  approval_required: boolean;
+  created_at: string;
+}
+
+export interface WorkflowTransition {
+  id: string;
+  organization_id: string;
+  workflow_id: string;
+  from_status?: string;
+  to_status: string;
+  transition_type: string;
+  transition_rules: Record<string, any>;
+  trigger_conditions: Record<string, any>;
+  approval_requirements: Record<string, any>;
+  notification_settings: Record<string, any>;
+  created_at: string;
+}
+
+export interface WorkflowAnalytics {
+  id: string;
+  organization_id: string;
+  workflow_id?: string;
+  status: string;
+  average_completion_time?: number;
+  bottleneck_score?: number;
+  efficiency_rating?: number;
+  last_calculated: string;
+  performance_metrics: Record<string, any>;
+  created_at: string;
+}
+
+export interface AutomationRule {
+  id: string;
+  organization_id: string;
+  rule_name: string;
+  rule_type: string;
+  trigger_conditions: Record<string, any>;
+  action_type: string;
+  rule_configuration: Record<string, any>;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface WorkflowMilestone {
+  id: string;
+  organization_id: string;
+  order_id: string;
+  milestone_name: string;
+  milestone_type?: string;
+  status: string;
+  due_date?: string;
+  completed_at?: string;
+  completed_by?: string;
+  notes?: string;
+  order_index: number;
+  created_at: string;
+}
