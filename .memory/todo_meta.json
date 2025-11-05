@@ -1,0 +1,41 @@
+{
+  "todos": {
+    "Coordinator": {
+      "1": {
+        "id": "1",
+        "content": "Research tailoring business requirements and feature analysis",
+        "details": "Research comprehensive features needed for tailoring/boutique business: customer management, measurement tracking, order management, inventory, scheduling, accounting, reminder systems, trial scheduling, payment processing, etc. Analyze competitor solutions and industry best practices.",
+        "status": "pending",
+        "priority": "high"
+      },
+      "2": {
+        "id": "2",
+        "content": "Get Supabase authentication credentials",
+        "details": "Request Supabase project credentials from user to set up backend database, authentication, and storage for the scalable application.",
+        "status": "pending",
+        "priority": "high"
+      },
+      "3": {
+        "id": "3",
+        "content": "Design comprehensive UI/UX system",
+        "details": "Create modern, professional design system for tailoring business app with responsive layouts for desktop, tablet, mobile. Include color schemes, typography, components for customer management, order tracking, scheduling interfaces.",
+        "status": "pending",
+        "priority": "high"
+      },
+      "4": {
+        "id": "4",
+        "content": "Build full-stack Next.js application with all core features",
+        "details": "Develop comprehensive tailoring management system including: Customer Management, Measurement Profiles, Order Tracking, Inventory Management, Scheduling System (trials, fittings, deliveries), Accounting & Billing, Reminder System, Payment Integration, Reporting Dashboard, Multi-tenant Architecture for scalability, PWA capabilities for offline functionality.",
+        "status": "pending",
+        "priority": "high"
+      },
+      "5": {
+        "id": "5",
+        "content": "Deploy and provide scalability guidelines",
+        "details": "Deploy the application and provide documentation for scaling to thousands of users, adding new features, and maintaining the system.",
+        "status": "pending",
+        "priority": "medium"
+      }
+    }
+  }
+}
