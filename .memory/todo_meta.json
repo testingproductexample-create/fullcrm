@@ -17,8 +17,8 @@
       },
       "3": {
         "id": "3",
-        "content": "Customer Management System",
-        "details": "Build comprehensive CRM: Customer profiles, contact management, measurement history, customer preferences, customer communication history, loyalty programs, customer notes, customer segmentation, birthday/anniversary tracking.",
+        "content": "Customer Management System (CRM)",
+        "details": "Build comprehensive CRM: Customer profiles, contact management, measurement history, customer preferences, customer communication history, loyalty programs, customer notes, customer segmentation, birthday/anniversary tracking, UAE customer data compliance (PDPL).",
         "status": "pending",
         "priority": "high"
       },
@@ -31,113 +31,218 @@
       },
       "5": {
         "id": "5",
-        "content": "Order Management Workflow",
-        "details": "Complete order lifecycle: Order creation, status tracking (consultation, measurement, cutting, sewing, fitting, completion), order timeline, quality control checkpoints, delivery management, order notes, customer approvals, revision tracking.",
+        "content": "Order Management System",
+        "details": "Complete order lifecycle: Order creation, order workflow management, specialized order types (Bespoke Suits, Casual Wear, Alterations, Repairs), order status tracking, order timeline, customer approvals, revision tracking, order templates.",
         "status": "pending",
         "priority": "high"
       },
       "6": {
         "id": "6",
-        "content": "Scheduling & Appointment System",
-        "details": "Advanced scheduling: Trial appointments, fitting sessions, delivery dates, staff scheduling, calendar management, automated reminders (SMS/Email/WhatsApp), rescheduling capabilities, no-show tracking, appointment types and duration management.",
+        "content": "Order Workflow & Status Tracking System",
+        "details": "Advanced order workflow: Status transitions (Consultation → Measurement → Design → Cutting → Sewing → Quality Check → Fitting → Completion → Delivery), automated notifications, progress tracking, workflow automation, bottleneck identification.",
         "status": "pending",
         "priority": "high"
       },
       "7": {
         "id": "7",
-        "content": "Inventory & Fabric Management",
-        "details": "Complete inventory system: Fabric stock tracking, supplier management, material ordering, cost calculation, fabric categorization (wool, cotton, silk, etc.), color matching, pattern management, low stock alerts, supplier relationship management, fabric quality tracking.",
+        "content": "Design Catalog & Media Management",
+        "details": "Digital catalog system: Design library, fabric patterns, style templates, image management, color variants, media storage, customer design approval, catalog search and filtering, design versioning.",
         "status": "pending",
         "priority": "high"
       },
       "8": {
         "id": "8",
-        "content": "Accounting & Financial System",
-        "details": "Comprehensive accounting: Invoice generation, payment tracking, deposit management, installment payments, tax calculations (UAE VAT), financial reporting, cost estimation, pricing models, payment processor integration (Stripe, local UAE processors), bookkeeping, profit/loss reports.",
+        "content": "Employee Management System",
+        "details": "Complete HR management: Employee profiles, skills tracking, certification management, performance reviews, training records, employee hierarchy, department management, UAE labor contract management.",
         "status": "pending",
         "priority": "high"
       },
       "9": {
         "id": "9",
-        "content": "UAE Payroll Management System",
-        "details": "UAE-compliant payroll: Employee salary calculations, overtime tracking, end-of-service calculation, gratuity calculations, UAE labor law compliance, multiple salary structures, bonus management, salary deductions, bank transfer integration with UAE banks.",
+        "content": "Task Assignment & Workload Management",
+        "details": "Workforce optimization: Task assignment to employees, workload balancing, skill-based matching, progress tracking, deadline management, productivity metrics, team collaboration tools.",
         "status": "pending",
         "priority": "high"
       },
       "10": {
         "id": "10",
-        "content": "UAE Attendance & Time Tracking",
+        "content": "Work Schedule & Attendance Management",
         "details": "UAE-compliant attendance: Employee check-in/out, shift management, overtime calculation, leave management (annual, sick, maternity), UAE labor law compliance, biometric integration support, GPS-based attendance for field workers, attendance reports.",
         "status": "pending",
         "priority": "high"
       },
       "11": {
         "id": "11",
-        "content": "UAE Payslip Generation System",
-        "details": "UAE-compliant payslips: Automated payslip generation, salary breakdowns, overtime details, deductions, allowances, end-of-service calculations, gratuity calculations, tax calculations, digital signatures, email distribution, historical payslip access.",
+        "content": "Commission & Salary Calculation Engine",
+        "details": "UAE salary system: Commission calculations, performance-based pay, overtime calculations, bonus management, deductions, allowances, UAE labor law compliance, salary structure templates, automated calculations.",
         "status": "pending",
         "priority": "high"
       },
       "12": {
         "id": "12",
-        "content": "Waste Management System",
-        "details": "Fabric waste tracking: Material waste calculation, cost impact analysis, waste reduction strategies, recycling tracking, sustainability reporting, waste disposal tracking, supplier feedback on fabric efficiency, waste optimization recommendations.",
+        "content": "Payroll Processing & Employee Financial Report",
+        "details": "UAE-compliant payroll: Automated payroll processing, end-of-service calculation, gratuity calculations, UAE labor law compliance, employee financial reports, salary statements, tax calculations, bank transfer integration with UAE banks.",
         "status": "pending",
-        "priority": "medium"
+        "priority": "high"
       },
       "13": {
         "id": "13",
-        "content": "Complaints & Feedback System",
-        "details": "Customer satisfaction: Complaint tracking, feedback management, resolution workflows, customer satisfaction surveys, review management, complaint escalation, follow-up systems, service quality tracking.",
+        "content": "UAE Payslip Generation System",
+        "details": "UAE-compliant payslips: Automated payslip generation, salary breakdowns, overtime details, deductions, allowances, end-of-service calculations, gratuity calculations, tax calculations, digital signatures, email distribution, historical payslip access.",
         "status": "pending",
-        "priority": "medium"
+        "priority": "high"
       },
       "14": {
         "id": "14",
-        "content": "Efficiency & Performance Analytics",
-        "details": "Business intelligence: Order completion time analysis, employee productivity metrics, resource utilization, customer satisfaction scores, financial performance dashboards, efficiency benchmarking, performance trends, predictive analytics.",
+        "content": "Inventory Management - Core Material Tracking",
+        "details": "Complete inventory system: Fabric stock tracking, supplier management, material ordering, cost calculation, fabric categorization (wool, cotton, silk, etc.), color matching, pattern management, low stock alerts, supplier relationship management, fabric quality tracking, material cost optimization.",
         "status": "pending",
-        "priority": "medium"
+        "priority": "high"
       },
       "15": {
         "id": "15",
-        "content": "UAE Compliance & Legal Management",
-        "details": "UAE regulatory compliance: VAT compliance reporting, labor law compliance, UAE business regulations, contract management, legal document storage, compliance alerts, audit trail, regulatory reporting.",
+        "content": "Scheduling & Appointment System",
+        "details": "Advanced scheduling: Trial appointments, fitting sessions, delivery dates, staff scheduling, calendar management, automated reminders (SMS/Email/WhatsApp), rescheduling capabilities, no-show tracking, appointment types and duration management.",
         "status": "pending",
         "priority": "high"
       },
       "16": {
         "id": "16",
-        "content": "Mobile PWA Application",
-        "details": "Progressive Web App: Offline functionality, mobile-responsive design, push notifications, mobile payments, field measurement tools, customer mobile access, offline data synchronization, app-like experience on mobile devices.",
+        "content": "Financial Management - Revenue & Expense Tracking (AED)",
+        "details": "UAE-compliant financial management: Revenue tracking in AED, expense categorization, cost analysis, profit/loss calculations, budget management, financial forecasting, UAE business expense categories, currency conversion, financial compliance.",
         "status": "pending",
         "priority": "high"
       },
       "17": {
         "id": "17",
-        "content": "Multi-tenant Architecture & Scalability",
-        "details": "Scalable infrastructure: Multi-tenant data isolation, role-based access control, white-label capabilities, thousands of users support, performance optimization, database sharding, CDN integration, backup systems, disaster recovery.",
+        "content": "Invoice & Billing System (AED)",
+        "details": "UAE-compliant invoicing: Invoice generation in AED, UAE VAT calculations (5%), invoice templates, payment tracking, deposit management, installment payments, tax compliance, electronic invoicing, payment processor integration, invoice history.",
         "status": "pending",
         "priority": "high"
       },
       "18": {
         "id": "18",
-        "content": "Integration & API Management",
-        "details": "Third-party integrations: Payment gateways (UAE banks, Stripe), SMS/Email services, accounting software integration, government portal integration, courier services, fabric suppliers, banking APIs, tax filing systems.",
+        "content": "Advanced Financial Features & Compliance (AED)",
+        "details": "UAE financial compliance: VAT reporting, audit trails, financial reports, tax compliance, regulatory reporting, financial reconciliation, bank reconciliation, cash flow management, financial dashboards, UAE Central Bank compliance.",
         "status": "pending",
-        "priority": "medium"
+        "priority": "high"
       },
       "19": {
         "id": "19",
-        "content": "Build full-stack Next.js application",
-        "details": "Develop comprehensive tailoring management system with all features listed above. Implement using Next.js, TypeScript, Supabase backend, responsive design, PWA capabilities, and all UAE-specific requirements.",
+        "content": "Multi-Channel Communication System",
+        "details": "Customer communication: SMS, Email, WhatsApp integration, automated notifications, customer portals, chat support, video consultations, communication templates, multi-language support (Arabic/English), UAE telecom compliance.",
         "status": "pending",
         "priority": "high"
       },
       "20": {
         "id": "20",
+        "content": "Appointment & Calendar Management",
+        "details": "Comprehensive scheduling: Multi-location calendars, staff availability, resource scheduling (machines, rooms), appointment types, automated confirmations, calendar sync with external systems, mobile calendar access.",
+        "status": "pending",
+        "priority": "high"
+      },
+      "21": {
+        "id": "21",
+        "content": "Document Management System",
+        "details": "Document storage and management: Order documents, customer contracts, measurement sheets, design approvals, legal documents, document versioning, secure storage, access controls, document templates, digital signatures.",
+        "status": "pending",
+        "priority": "high"
+      },
+      "22": {
+        "id": "22",
+        "content": "Visa & Compliance Management",
+        "details": "UAE visa and legal compliance: Employee visa tracking, work permit management, residency visa renewal alerts, compliance calendar, regulatory updates, legal document management, audit preparation, UAE government portal integration.",
+        "status": "pending",
+        "priority": "high"
+      },
+      "23": {
+        "id": "23",
+        "content": "Analytics & Reporting Dashboard",
+        "details": "Business intelligence: Real-time dashboards, KPI tracking, financial reports, operational analytics, customer analytics, employee performance, order analytics, profit analysis, predictive analytics, custom reports, data visualization.",
+        "status": "pending",
+        "priority": "medium"
+      },
+      "24": {
+        "id": "24",
+        "content": "Multi-Location Management",
+        "details": "Multi-branch operations: Location-based data separation, cross-location reporting, staff mobility, inventory sharing, consolidated reporting, location-specific settings, branch performance comparison.",
+        "status": "pending",
+        "priority": "medium"
+      },
+      "25": {
+        "id": "25",
+        "content": "Mobile Optimization & Progressive Web App",
+        "details": "Progressive Web App: Offline functionality, mobile-responsive design, push notifications, mobile payments, field measurement tools, customer mobile access, offline data synchronization, app-like experience on mobile devices, mobile UI optimization.",
+        "status": "pending",
+        "priority": "high"
+      },
+      "26": {
+        "id": "26",
+        "content": "External Integration & API Development",
+        "details": "Third-party integrations: Payment gateways (UAE banks, Stripe, Payfort), SMS/Email services, accounting software integration, government portal integration, courier services, fabric suppliers, banking APIs, tax filing systems, UAE Central Bank APIs.",
+        "status": "pending",
+        "priority": "medium"
+      },
+      "27": {
+        "id": "27",
+        "content": "Advanced Automation & Intelligence",
+        "details": "AI-powered features: Automated workflow optimization, intelligent scheduling, predictive analytics, automated quality control, smart inventory management, customer behavior analysis, demand forecasting, automated reporting.",
+        "status": "pending",
+        "priority": "medium"
+      },
+      "28": {
+        "id": "28",
+        "content": "Security & Compliance Hardening",
+        "details": "UAE security compliance: Data encryption, access controls, audit logging, GDPR/PDPL compliance, UAE data protection laws, secure communications, backup systems, disaster recovery, security monitoring, penetration testing.",
+        "status": "pending",
+        "priority": "high"
+      },
+      "29": {
+        "id": "29",
+        "content": "Performance Optimization & Scalability",
+        "details": "Scalable infrastructure: Multi-tenant data isolation, role-based access control, white-label capabilities, thousands of users support, performance optimization, database sharding, CDN integration, backup systems, disaster recovery, load balancing.",
+        "status": "pending",
+        "priority": "high"
+      },
+      "30": {
+        "id": "30",
+        "content": "Waste Management System",
+        "details": "Fabric waste tracking: Material waste calculation, cost impact analysis, waste reduction strategies, recycling tracking, sustainability reporting, waste disposal tracking, supplier feedback on fabric efficiency, waste optimization recommendations.",
+        "status": "pending",
+        "priority": "medium"
+      },
+      "31": {
+        "id": "31",
+        "content": "Complaints & Feedback System",
+        "details": "Customer satisfaction: Complaint tracking, feedback management, resolution workflows, customer satisfaction surveys, review management, complaint escalation, follow-up systems, service quality tracking.",
+        "status": "pending",
+        "priority": "medium"
+      },
+      "32": {
+        "id": "32",
+        "content": "Efficiency & Performance Analytics",
+        "details": "Business intelligence: Order completion time analysis, employee productivity metrics, resource utilization, customer satisfaction scores, financial performance dashboards, efficiency benchmarking, performance trends, predictive analytics.",
+        "status": "pending",
+        "priority": "medium"
+      },
+      "33": {
+        "id": "33",
+        "content": "Testing, Documentation & Quality Assurance",
+        "details": "Quality assurance: Comprehensive testing suite, user acceptance testing, performance testing, security testing, API testing, mobile testing, accessibility testing, user documentation, admin guides, training materials.",
+        "status": "pending",
+        "priority": "medium"
+      },
+      "34": {
+        "id": "34",
+        "content": "Build full-stack Next.js application",
+        "details": "Develop comprehensive tailoring management system with all 32 features listed above. Implement using Next.js, TypeScript, Supabase backend, responsive design, PWA capabilities, and all UAE/AED compliance requirements.",
+        "status": "pending",
+        "priority": "high"
+      },
+      "35": {
+        "id": "35",
         "content": "Deploy and provide scalability guidelines",
-        "details": "Deploy the application and provide comprehensive documentation for scaling to thousands of users, adding new features, maintaining the system, and UAE regulatory compliance.",
+        "details": "Deploy the application and provide comprehensive documentation for scaling to thousands of users, adding new features, maintaining the system, and UAE regulatory compliance. Include performance monitoring and maintenance procedures.",
         "status": "pending",
         "priority": "medium"
       }
