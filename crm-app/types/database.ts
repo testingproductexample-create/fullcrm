@@ -1130,3 +1130,262 @@ export interface AttendanceReport {
   created_at: string;
   updated_at: string;
 }
+
+// =============================================================================
+// PAYROLL SYSTEM INTERFACES
+// =============================================================================
+
+export interface SalaryStructure {
+  id: string;
+  organization_id: string;
+  structure_name: string;
+  structure_code: string;
+  job_title: string;
+  department_id?: string;
+  experience_level: string;
+  base_salary_aed: number;
+  min_salary_aed: number;
+  max_salary_aed: number;
+  salary_currency?: string;
+  hourly_rate_aed?: number;
+  overtime_rate_multiplier?: number;
+  commission_eligible?: boolean;
+  commission_base_percentage?: number;
+  bonus_eligible?: boolean;
+  transportation_allowance_aed?: number;
+  meal_allowance_aed?: number;
+  accommodation_allowance_aed?: number;
+  skills_allowance_aed?: number;
+  effective_date: string; // DATE format
+  expiry_date?: string; // DATE format
+  is_active?: boolean;
+  annual_review_month?: number;
+  grade_level?: number;
+  performance_band?: string;
+  notes?: string;
+  created_by?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface CommissionRate {
+  id: string;
+  organization_id: string;
+  commission_name: string;
+  commission_type: string;
+  employee_id?: string;
+  job_title?: string;
+  department_id?: string;
+  task_type?: string;
+  min_order_value_aed?: number;
+  max_order_value_aed?: number;
+  commission_percentage: number;
+  flat_amount_aed?: number;
+  performance_threshold?: number;
+  quality_threshold?: number;
+  customer_satisfaction_threshold?: number;
+  calculation_frequency?: string;
+  is_cumulative?: boolean;
+  cap_amount_aed?: number;
+  effective_date: string; // DATE format
+  expiry_date?: string; // DATE format
+  is_active?: boolean;
+  created_by?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface SalaryCalculation {
+  id: string;
+  organization_id: string;
+  employee_id: string;
+  calculation_period_month: number;
+  calculation_period_year: number;
+  salary_structure_id?: string;
+  base_salary_aed: number;
+  hourly_rate_aed: number;
+  total_work_hours?: number;
+  regular_hours?: number;
+  overtime_hours?: number;
+  overtime_amount_aed?: number;
+  commission_amount_aed?: number;
+  bonus_amount_aed?: number;
+  allowances_amount_aed?: number;
+  gross_salary_aed: number;
+  deductions_amount_aed?: number;
+  tax_amount_aed?: number;
+  insurance_deduction_aed?: number;
+  advance_deduction_aed?: number;
+  leave_deduction_aed?: number;
+  other_deductions_aed?: number;
+  net_salary_aed: number;
+  calculation_status?: string;
+  calculation_date?: string;
+  approved_by?: string;
+  approved_at?: string;
+  paid_at?: string;
+  payment_reference?: string;
+  notes?: string;
+  calculation_details?: Record<string, any>; // JSONB for detailed breakdown
+  is_final?: boolean;
+  adjustment_reason?: string;
+  created_by?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface OvertimeCalculation {
+  id: string;
+  organization_id: string;
+  employee_id: string;
+  salary_calculation_id?: string;
+  calculation_period_month: number;
+  calculation_period_year: number;
+  regular_hourly_rate_aed: number;
+  overtime_multiplier?: number; // Default 1.25 for UAE
+  overtime_hourly_rate_aed: number;
+  total_overtime_hours: number;
+  daily_overtime_hours?: number;
+  weekly_overtime_hours?: number;
+  holiday_overtime_hours?: number;
+  emergency_overtime_hours?: number;
+  total_overtime_amount_aed: number;
+  uae_compliance_check?: boolean;
+  max_daily_limit_exceeded?: boolean;
+  max_annual_limit_exceeded?: boolean;
+  overtime_source_data?: Record<string, any>; // JSONB for attendance integration
+  calculation_method?: string;
+  is_manual_adjustment?: boolean;
+  adjustment_reason?: string;
+  created_by?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Allowance {
+  id: string;
+  organization_id: string;
+  employee_id: string;
+  salary_calculation_id?: string;
+  allowance_type: string;
+  allowance_name: string;
+  calculation_method?: string;
+  base_amount_aed: number;
+  calculation_rate?: number;
+  eligible_days?: number;
+  eligible_hours?: number;
+  percentage_base?: number;
+  calculated_amount_aed: number;
+  is_taxable?: boolean;
+  is_recurring?: boolean;
+  effective_date: string; // DATE format
+  expiry_date?: string; // DATE format
+  calculation_period_month: number;
+  calculation_period_year: number;
+  approval_required?: boolean;
+  approved_by?: string;
+  approved_at?: string;
+  notes?: string;
+  supporting_documents?: Record<string, any>; // JSONB for document metadata
+  created_by?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Deduction {
+  id: string;
+  organization_id: string;
+  employee_id: string;
+  salary_calculation_id?: string;
+  deduction_type: string;
+  deduction_name: string;
+  calculation_method?: string;
+  base_amount_aed?: number;
+  deduction_rate?: number;
+  calculated_amount_aed: number;
+  is_mandatory?: boolean;
+  is_statutory?: boolean;
+  deduction_period_start?: string; // DATE format
+  deduction_period_end?: string; // DATE format
+  calculation_period_month: number;
+  calculation_period_year: number;
+  remaining_amount_aed?: number;
+  installment_number?: number;
+  total_installments?: number;
+  uae_compliance_verified?: boolean;
+  approval_required?: boolean;
+  approved_by?: string;
+  approved_at?: string;
+  reference_number?: string;
+  notes?: string;
+  supporting_documents?: Record<string, any>; // JSONB for document metadata
+  created_by?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface BonusRecord {
+  id: string;
+  organization_id: string;
+  employee_id: string;
+  salary_calculation_id?: string;
+  bonus_type: string;
+  bonus_name: string;
+  calculation_method?: string;
+  base_amount_aed?: number;
+  bonus_percentage?: number;
+  target_value?: number;
+  actual_value?: number;
+  achievement_percentage?: number;
+  calculated_amount_aed: number;
+  performance_period_start?: string; // DATE format
+  performance_period_end?: string; // DATE format
+  calculation_period_month: number;
+  calculation_period_year: number;
+  eligibility_criteria?: Record<string, any>; // JSONB for bonus criteria
+  performance_metrics?: Record<string, any>; // JSONB for performance data
+  is_taxable?: boolean;
+  is_recurring?: boolean;
+  approval_level?: number;
+  approved_by?: string;
+  approved_at?: string;
+  payout_date?: string; // DATE format
+  is_paid?: boolean;
+  notes?: string;
+  created_by?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface SalaryReport {
+  id: string;
+  organization_id: string;
+  report_name: string;
+  report_type: string;
+  report_period_month: number;
+  report_period_year: number;
+  employee_ids?: string[]; // UUID array
+  department_ids?: string[]; // UUID array
+  report_data: Record<string, any>; // JSONB for generated report data
+  summary_statistics?: Record<string, any>; // JSONB for summary data
+  total_employees?: number;
+  total_gross_salary_aed?: number;
+  total_net_salary_aed?: number;
+  total_deductions_aed?: number;
+  total_overtime_aed?: number;
+  total_commissions_aed?: number;
+  total_bonuses_aed?: number;
+  uae_compliance_score?: number;
+  generated_by?: string;
+  generated_at?: string;
+  report_format?: string;
+  file_path?: string;
+  is_confidential?: boolean;
+  access_level?: number;
+  retention_period_months?: number;
+  is_automated?: boolean;
+  schedule_frequency?: string;
+  next_generation_date?: string; // DATE format
+  created_at: string;
+  updated_at: string;
+}
