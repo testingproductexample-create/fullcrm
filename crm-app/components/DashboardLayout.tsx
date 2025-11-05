@@ -15,7 +15,8 @@ import {
   Settings,
   Ruler,
   ShoppingBag,
-  GitBranch
+  GitBranch,
+  Palette
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -61,6 +62,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
     { name: 'Orders', href: '/dashboard/orders', icon: ShoppingBag },
     { name: 'Workflow', href: '/dashboard/workflow', icon: GitBranch },
     { name: 'Measurements', href: '/dashboard/measurements', icon: Ruler },
+    { name: 'Design Catalog', href: '/dashboard/designs', icon: Palette },
     { name: 'Events', href: '/dashboard/events', icon: Calendar },
     { name: 'Communications', href: '/dashboard/communications', icon: MessageSquare },
     { name: 'Loyalty', href: '/dashboard/loyalty', icon: Award },
