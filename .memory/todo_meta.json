@@ -3,36 +3,141 @@
     "Coordinator": {
       "1": {
         "id": "1",
-        "content": "Research tailoring business requirements and feature analysis",
-        "details": "Research comprehensive features needed for tailoring/boutique business: customer management, measurement tracking, order management, inventory, scheduling, accounting, reminder systems, trial scheduling, payment processing, etc. Analyze competitor solutions and industry best practices.",
-        "status": "completed",
-        "priority": "high"
-      },
-      "2": {
-        "id": "2",
         "content": "Get Supabase authentication credentials",
         "details": "Request Supabase project credentials from user to set up backend database, authentication, and storage for the scalable application.",
         "status": "pending",
         "priority": "high"
       },
+      "2": {
+        "id": "2",
+        "content": "Design comprehensive UI/UX system",
+        "details": "Create modern, professional design system with responsive layouts for desktop, tablet, mobile. Include PWA capabilities for offline functionality. Design components for all core features.",
+        "status": "pending",
+        "priority": "high"
+      },
       "3": {
         "id": "3",
-        "content": "Design comprehensive UI/UX system",
-        "details": "Create modern, professional design system for tailoring business app with responsive layouts for desktop, tablet, mobile. Include color schemes, typography, components for customer management, order tracking, scheduling interfaces.",
+        "content": "Customer Management System",
+        "details": "Build comprehensive CRM: Customer profiles, contact management, measurement history, customer preferences, customer communication history, loyalty programs, customer notes, customer segmentation, birthday/anniversary tracking.",
         "status": "pending",
         "priority": "high"
       },
       "4": {
         "id": "4",
-        "content": "Build full-stack Next.js application with all core features",
-        "details": "Develop comprehensive tailoring management system including: Customer Management, Measurement Profiles, Order Tracking, Inventory Management, Scheduling System (trials, fittings, deliveries), Accounting & Billing, Reminder System, Payment Integration, Reporting Dashboard, Multi-tenant Architecture for scalability, PWA capabilities for offline functionality.",
+        "content": "Digital Measurement & Fitting System",
+        "details": "Implement measurement tracking: Digital measurement forms, 3D measurement integration, body type categorization, size standardization, fitting progress tracking, alteration notes, measurement history, custom measurement templates for different garment types (suits, shirts, dresses, etc.).",
         "status": "pending",
         "priority": "high"
       },
       "5": {
         "id": "5",
+        "content": "Order Management Workflow",
+        "details": "Complete order lifecycle: Order creation, status tracking (consultation, measurement, cutting, sewing, fitting, completion), order timeline, quality control checkpoints, delivery management, order notes, customer approvals, revision tracking.",
+        "status": "pending",
+        "priority": "high"
+      },
+      "6": {
+        "id": "6",
+        "content": "Scheduling & Appointment System",
+        "details": "Advanced scheduling: Trial appointments, fitting sessions, delivery dates, staff scheduling, calendar management, automated reminders (SMS/Email/WhatsApp), rescheduling capabilities, no-show tracking, appointment types and duration management.",
+        "status": "pending",
+        "priority": "high"
+      },
+      "7": {
+        "id": "7",
+        "content": "Inventory & Fabric Management",
+        "details": "Complete inventory system: Fabric stock tracking, supplier management, material ordering, cost calculation, fabric categorization (wool, cotton, silk, etc.), color matching, pattern management, low stock alerts, supplier relationship management, fabric quality tracking.",
+        "status": "pending",
+        "priority": "high"
+      },
+      "8": {
+        "id": "8",
+        "content": "Accounting & Financial System",
+        "details": "Comprehensive accounting: Invoice generation, payment tracking, deposit management, installment payments, tax calculations (UAE VAT), financial reporting, cost estimation, pricing models, payment processor integration (Stripe, local UAE processors), bookkeeping, profit/loss reports.",
+        "status": "pending",
+        "priority": "high"
+      },
+      "9": {
+        "id": "9",
+        "content": "UAE Payroll Management System",
+        "details": "UAE-compliant payroll: Employee salary calculations, overtime tracking, end-of-service calculation, gratuity calculations, UAE labor law compliance, multiple salary structures, bonus management, salary deductions, bank transfer integration with UAE banks.",
+        "status": "pending",
+        "priority": "high"
+      },
+      "10": {
+        "id": "10",
+        "content": "UAE Attendance & Time Tracking",
+        "details": "UAE-compliant attendance: Employee check-in/out, shift management, overtime calculation, leave management (annual, sick, maternity), UAE labor law compliance, biometric integration support, GPS-based attendance for field workers, attendance reports.",
+        "status": "pending",
+        "priority": "high"
+      },
+      "11": {
+        "id": "11",
+        "content": "UAE Payslip Generation System",
+        "details": "UAE-compliant payslips: Automated payslip generation, salary breakdowns, overtime details, deductions, allowances, end-of-service calculations, gratuity calculations, tax calculations, digital signatures, email distribution, historical payslip access.",
+        "status": "pending",
+        "priority": "high"
+      },
+      "12": {
+        "id": "12",
+        "content": "Waste Management System",
+        "details": "Fabric waste tracking: Material waste calculation, cost impact analysis, waste reduction strategies, recycling tracking, sustainability reporting, waste disposal tracking, supplier feedback on fabric efficiency, waste optimization recommendations.",
+        "status": "pending",
+        "priority": "medium"
+      },
+      "13": {
+        "id": "13",
+        "content": "Complaints & Feedback System",
+        "details": "Customer satisfaction: Complaint tracking, feedback management, resolution workflows, customer satisfaction surveys, review management, complaint escalation, follow-up systems, service quality tracking.",
+        "status": "pending",
+        "priority": "medium"
+      },
+      "14": {
+        "id": "14",
+        "content": "Efficiency & Performance Analytics",
+        "details": "Business intelligence: Order completion time analysis, employee productivity metrics, resource utilization, customer satisfaction scores, financial performance dashboards, efficiency benchmarking, performance trends, predictive analytics.",
+        "status": "pending",
+        "priority": "medium"
+      },
+      "15": {
+        "id": "15",
+        "content": "UAE Compliance & Legal Management",
+        "details": "UAE regulatory compliance: VAT compliance reporting, labor law compliance, UAE business regulations, contract management, legal document storage, compliance alerts, audit trail, regulatory reporting.",
+        "status": "pending",
+        "priority": "high"
+      },
+      "16": {
+        "id": "16",
+        "content": "Mobile PWA Application",
+        "details": "Progressive Web App: Offline functionality, mobile-responsive design, push notifications, mobile payments, field measurement tools, customer mobile access, offline data synchronization, app-like experience on mobile devices.",
+        "status": "pending",
+        "priority": "high"
+      },
+      "17": {
+        "id": "17",
+        "content": "Multi-tenant Architecture & Scalability",
+        "details": "Scalable infrastructure: Multi-tenant data isolation, role-based access control, white-label capabilities, thousands of users support, performance optimization, database sharding, CDN integration, backup systems, disaster recovery.",
+        "status": "pending",
+        "priority": "high"
+      },
+      "18": {
+        "id": "18",
+        "content": "Integration & API Management",
+        "details": "Third-party integrations: Payment gateways (UAE banks, Stripe), SMS/Email services, accounting software integration, government portal integration, courier services, fabric suppliers, banking APIs, tax filing systems.",
+        "status": "pending",
+        "priority": "medium"
+      },
+      "19": {
+        "id": "19",
+        "content": "Build full-stack Next.js application",
+        "details": "Develop comprehensive tailoring management system with all features listed above. Implement using Next.js, TypeScript, Supabase backend, responsive design, PWA capabilities, and all UAE-specific requirements.",
+        "status": "pending",
+        "priority": "high"
+      },
+      "20": {
+        "id": "20",
         "content": "Deploy and provide scalability guidelines",
-        "details": "Deploy the application and provide documentation for scaling to thousands of users, adding new features, and maintaining the system.",
+        "details": "Deploy the application and provide comprehensive documentation for scaling to thousands of users, adding new features, maintaining the system, and UAE regulatory compliance.",
         "status": "pending",
         "priority": "medium"
       }
