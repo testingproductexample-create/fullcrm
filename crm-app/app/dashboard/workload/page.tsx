@@ -33,7 +33,7 @@ interface WorkloadStats {
   alertsCount: number;
 }
 
-interface WorkloadAlert extends WorkloadAlert {
+interface WorkloadAlertWithEmployee extends WorkloadAlert {
   employee?: {
     first_name: string;
     last_name: string;
@@ -52,7 +52,7 @@ export default function WorkloadDashboard() {
     completionRate: 0,
     alertsCount: 0
   });
-  const [alerts, setAlerts] = useState<WorkloadAlert[]>([]);
+  const [alerts, setAlerts] = useState<WorkloadAlertWithEmployee[]>([]);
   const [recentTasks, setRecentTasks] = useState<TaskAssignment[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

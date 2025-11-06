@@ -106,7 +106,7 @@ export default function TrainingDevelopment() {
       // Load employees
       const { data: employeesData } = await supabase
         .from('employees')
-        .select('id, first_name, last_name, job_title')
+        .select('id, organization_id, employee_id, first_name, last_name, email, job_title, department_id, employment_type, employment_status, hire_date, created_at, updated_at')
         .eq('employment_status', 'Active')
         .order('first_name');
 

@@ -432,7 +432,7 @@ export default function AttendanceDashboard() {
                 <div className="flex items-center gap-2 mb-1">
                   <Clock className="w-4 h-4 text-neutral-600" />
                   <span className="text-small font-medium">
-                    {formatTime(record.check_in_time)} - {formatTime(record.check_out_time)}
+                    {record.check_in_time ? formatTime(record.check_in_time) : 'N/A'} - {record.check_out_time ? formatTime(record.check_out_time) : 'N/A'}
                   </span>
                 </div>
                 <p className="text-tiny text-neutral-600">

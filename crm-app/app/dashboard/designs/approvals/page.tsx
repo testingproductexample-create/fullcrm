@@ -40,7 +40,7 @@ interface ApprovalRequest {
     first_name: string;
     last_name: string;
     email: string;
-  };
+  }[];
   customer_design_selections: {
     id: string;
     total_price_aed: number;
@@ -49,20 +49,20 @@ interface ApprovalRequest {
       design_name: string;
       garment_category: string;
       design_code: string;
-    };
+    }[];
     fabric_library: {
       fabric_name: string;
       fabric_type: string;
-    } | null;
-  };
+    }[] | null;
+  }[];
   requested_from: {
     full_name: string;
     role: string;
-  } | null;
+  }[] | null;
   approved_by_profile: {
     full_name: string;
     role: string;
-  } | null;
+  }[] | null;
 }
 
 export default function ApprovalWorkflowPage() {
@@ -190,8 +190,8 @@ export default function ApprovalWorkflowPage() {
         const query = searchQuery.toLowerCase();
         filteredData = filteredData.filter(approval => 
           approval.request_number.toLowerCase().includes(query) ||
-          `${approval.customers?.first_name} ${approval.customers?.last_name}`.toLowerCase().includes(query) ||
-          approval.customer_design_selections?.designs?.design_name.toLowerCase().includes(query)
+          `${approval.customers?.[0]?.first_name} ${approval.customers?.[0]?.last_name}`.toLowerCase().includes(query) ||
+          approval.customer_design_selections?.[0]?.designs?.[0]?.design_name.toLowerCase().includes(query)
         );
       }
 
@@ -232,11 +232,11 @@ export default function ApprovalWorkflowPage() {
       // If approved, also update the selection status
       if (action === 'approve') {
         const approval = approvals.find(a => a.id === approvalId);
-        if (approval?.customer_design_selections?.id) {
+        if (approval?.customer_design_selections?.[0]?.id) {
           await supabase
             .from('customer_design_selections')
             .update({ status: 'approved' })
-            .eq('id', approval.customer_design_selections.id);
+            .eq('id', approval.customer_design_selections[0]?.id);
         }
       }
 
@@ -463,10 +463,10 @@ export default function ApprovalWorkflowPage() {
                           {approval.request_number}
                         </h3>
                         <p className="text-small text-neutral-600 mb-1">
-                          {approval.customers?.first_name} {approval.customers?.last_name}
+                          {approval.customers?.[0]?.first_name} {approval.customers?.[0]?.last_name}
                         </p>
                         <p className="text-small text-neutral-600">
-                          {approval.customer_design_selections?.designs?.design_name}
+                          {approval.customer_design_selections?.[0]?.designs?.[0]?.design_name || 'N/A'}
                         </p>
                         <p className="text-tiny text-neutral-500">
                           v{approval.version_number} • Sequence {approval.approval_sequence}
@@ -493,18 +493,18 @@ export default function ApprovalWorkflowPage() {
                       <h4 className="font-medium text-neutral-900">Design Details</h4>
                       <div className="text-small text-neutral-600 space-y-1">
                         <p>
-                          <span className="font-medium">Code:</span> {approval.customer_design_selections?.designs?.design_code}
+                          <span className="font-medium">Code:</span> {approval.customer_design_selections?.[0]?.designs?.[0]?.design_code || 'N/A'}
                         </p>
                         <p>
-                          <span className="font-medium">Category:</span> {approval.customer_design_selections?.designs?.garment_category}
+                          <span className="font-medium">Category:</span> {approval.customer_design_selections?.[0]?.designs?.[0]?.garment_category || 'N/A'}
                         </p>
-                        {approval.customer_design_selections?.fabric_library && (
+                        {approval.customer_design_selections?.[0]?.fabric_library?.[0] && (
                           <p>
-                            <span className="font-medium">Fabric:</span> {approval.customer_design_selections.fabric_library.fabric_name}
+                            <span className="font-medium">Fabric:</span> {approval.customer_design_selections[0]?.fabric_library?.[0]?.fabric_name || 'N/A'}
                           </p>
                         )}
                         <p>
-                          <span className="font-medium">Total:</span> AED {approval.customer_design_selections?.total_price_aed?.toLocaleString()}
+                          <span className="font-medium">Total:</span> AED {approval.customer_design_selections?.[0]?.total_price_aed?.toLocaleString()}
                         </p>
                       </div>
                     </div>
@@ -520,7 +520,7 @@ export default function ApprovalWorkflowPage() {
                         
                         {approval.requested_from && (
                           <p>
-                            <span className="font-medium">Requested by:</span> {approval.requested_from.full_name} ({approval.requested_from.role})
+                            <span className="font-medium">Requested by:</span> {approval.requested_from?.[0]?.full_name || 'N/A'} ({approval.requested_from?.[0]?.role || 'N/A'})
                           </p>
                         )}
                         
@@ -533,7 +533,7 @@ export default function ApprovalWorkflowPage() {
                         
                         {approval.approved_by_profile && (
                           <p>
-                            <span className="font-medium">Approved by:</span> {approval.approved_by_profile.full_name} ({approval.approved_by_profile.role})
+                            <span className="font-medium">Approved by:</span> {approval.approved_by_profile?.[0]?.full_name || 'N/A'} ({approval.approved_by_profile?.[0]?.role || 'N/A'})
                           </p>
                         )}
                         
@@ -642,27 +642,27 @@ export default function ApprovalWorkflowPage() {
                 <div>
                   <h4 className="font-semibold text-neutral-900 mb-3">Customer Information</h4>
                   <div className="space-y-2 text-small">
-                    <p><span className="font-medium">Name:</span> {selectedApproval.customers?.first_name} {selectedApproval.customers?.last_name}</p>
-                    <p><span className="font-medium">Email:</span> {selectedApproval.customers?.email}</p>
+                    <p><span className="font-medium">Name:</span> {selectedApproval.customers?.[0]?.first_name} {selectedApproval.customers?.[0]?.last_name}</p>
+                    <p><span className="font-medium">Email:</span> {selectedApproval.customers?.[0]?.email}</p>
                   </div>
                 </div>
                 
                 <div>
                   <h4 className="font-semibold text-neutral-900 mb-3">Design Information</h4>
                   <div className="space-y-2 text-small">
-                    <p><span className="font-medium">Design:</span> {selectedApproval.customer_design_selections?.designs?.design_name}</p>
-                    <p><span className="font-medium">Category:</span> {selectedApproval.customer_design_selections?.designs?.garment_category}</p>
-                    <p><span className="font-medium">Total:</span> AED {selectedApproval.customer_design_selections?.total_price_aed?.toLocaleString()}</p>
+                    <p><span className="font-medium">Design:</span> {selectedApproval.customer_design_selections?.[0]?.designs?.[0]?.design_name || 'N/A'}</p>
+                    <p><span className="font-medium">Category:</span> {selectedApproval.customer_design_selections?.[0]?.designs?.[0]?.garment_category || 'N/A'}</p>
+                    <p><span className="font-medium">Total:</span> AED {selectedApproval.customer_design_selections?.[0]?.total_price_aed?.toLocaleString()}</p>
                   </div>
                 </div>
               </div>
 
               {/* Customization Notes */}
-              {selectedApproval.customer_design_selections?.customization_notes && (
+              {selectedApproval.customer_design_selections?.[0]?.customization_notes && (
                 <div>
                   <h4 className="font-semibold text-neutral-900 mb-3">Customization Notes</h4>
                   <p className="text-small text-neutral-700 bg-gray-50 p-3 rounded-lg">
-                    {selectedApproval.customer_design_selections.customization_notes}
+                    {selectedApproval.customer_design_selections[0]?.customization_notes || 'No notes'}
                   </p>
                 </div>
               )}

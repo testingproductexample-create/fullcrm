@@ -2221,3 +2221,193 @@ export interface PayslipArchive {
   created_at: string;
   updated_at: string;
 }
+
+
+// =====================================================
+// APPOINTMENT & SCHEDULING SYSTEM TYPES
+// =====================================================
+
+export interface AppointmentSettings {
+  id: string;
+  organization_id: string;
+  working_days: string[];
+  working_hours_start: string; // TIME format
+  working_hours_end: string; // TIME format
+  slot_duration_minutes: number;
+  buffer_time_minutes: number;
+  advance_booking_days: number;
+  min_booking_notice_hours: number;
+  max_appointments_per_slot: number;
+  allow_customer_booking: boolean;
+  require_deposit: boolean;
+  deposit_percentage?: number;
+  cancellation_hours_notice: number;
+  reminder_settings: {
+    sms?: { enabled: boolean; hours_before: number[] };
+    email?: { enabled: boolean; hours_before: number[] };
+    whatsapp?: { enabled: boolean; hours_before: number[] };
+  };
+  timezone: string;
+  currency: string;
+  metadata: Record<string, any>;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface AppointmentType {
+  id: string;
+  organization_id: string;
+  type_name: string;
+  description?: string;
+  duration_minutes: number;
+  color_code: string;
+  icon: string;
+  price: number;
+  deposit_required: boolean;
+  requires_customer: boolean;
+  requires_staff: boolean;
+  requires_resources: string[];
+  skill_requirements: string[];
+  is_active: boolean;
+  sort_order: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface AppointmentResource {
+  id: string;
+  organization_id: string;
+  resource_name: string;
+  resource_type: 'fitting_room' | 'sewing_machine' | 'embroidery_machine' | 
+                  'consultation_room' | 'cutting_table' | 'pressing_equipment' | 
+                  'measurement_area' | 'equipment' | 'other';
+  description?: string;
+  location?: string;
+  capacity: number;
+  is_available: boolean;
+  maintenance_schedule: Record<string, any>;
+  status: 'available' | 'in_use' | 'maintenance' | 'out_of_service';
+  booking_priority: number;
+  metadata: Record<string, any>;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Appointment {
+  id: string;
+  organization_id: string;
+  appointment_number: string;
+  appointment_type_id: string;
+  customer_id?: string;
+  customer_name?: string;
+  customer_phone?: string;
+  customer_email?: string;
+  appointment_date: string; // DATE format
+  start_time: string; // TIME format
+  end_time: string; // TIME format
+  duration_minutes: number;
+  status: 'scheduled' | 'confirmed' | 'in_progress' | 'completed' | 
+          'cancelled' | 'no_show' | 'rescheduled';
+  priority: 'normal' | 'high' | 'urgent';
+  notes?: string;
+  internal_notes?: string;
+  related_order_id?: string;
+  related_measurement_id?: string;
+  booking_source: 'online' | 'phone' | 'walk_in' | 'staff' | 'mobile_app';
+  confirmation_status: 'pending' | 'confirmed' | 'auto_confirmed';
+  confirmed_at?: string;
+  confirmed_by?: string;
+  deposit_amount: number;
+  deposit_paid: boolean;
+  deposit_payment_method?: string;
+  cancellation_reason?: string;
+  cancelled_at?: string;
+  cancelled_by?: string;
+  no_show_reason?: string;
+  check_in_time?: string;
+  check_out_time?: string;
+  actual_duration_minutes?: number;
+  reminder_sent_count: number;
+  last_reminder_sent?: string;
+  customer_rating?: number;
+  customer_feedback?: string;
+  created_by?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface AppointmentStaffAssignment {
+  id: string;
+  organization_id: string;
+  appointment_id: string;
+  employee_id: string;
+  role: 'primary' | 'assistant' | 'consultant' | 'specialist';
+  is_confirmed: boolean;
+  notes?: string;
+  assigned_at: string;
+  assigned_by?: string;
+}
+
+export interface AppointmentResourceBooking {
+  id: string;
+  organization_id: string;
+  appointment_id: string;
+  resource_id: string;
+  start_time: string;
+  end_time: string;
+  booking_status: 'reserved' | 'confirmed' | 'in_use' | 'released' | 'cancelled';
+  created_at: string;
+}
+
+export interface AppointmentReminder {
+  id: string;
+  organization_id: string;
+  appointment_id: string;
+  reminder_type: 'sms' | 'email' | 'whatsapp';
+  scheduled_time: string;
+  sent_at?: string;
+  status: 'pending' | 'sent' | 'failed' | 'cancelled';
+  recipient: string;
+  message_content: string;
+  delivery_status?: 'queued' | 'delivered' | 'failed' | 'read';
+  error_message?: string;
+  retry_count: number;
+  created_at: string;
+}
+
+export interface AppointmentAvailabilityOverride {
+  id: string;
+  organization_id: string;
+  override_date: string; // DATE format
+  is_available: boolean;
+  reason: string;
+  custom_hours_start?: string; // TIME format
+  custom_hours_end?: string; // TIME format
+  created_by?: string;
+  created_at: string;
+}
+
+export interface AppointmentBlackoutPeriod {
+  id: string;
+  organization_id: string;
+  start_datetime: string;
+  end_datetime: string;
+  reason: string;
+  affects_all_staff: boolean;
+  affected_employee_ids: string[];
+  created_by?: string;
+  created_at: string;
+}
+
+// Extended types with related data for UI
+export interface AppointmentWithDetails extends Appointment {
+  appointment_type?: AppointmentType;
+  customer?: Customer;
+  staff_assignments?: (AppointmentStaffAssignment & {
+    employee?: Employee;
+  })[];
+  resource_bookings?: (AppointmentResourceBooking & {
+    resource?: AppointmentResource;
+  })[];
+  reminders?: AppointmentReminder[];
+}

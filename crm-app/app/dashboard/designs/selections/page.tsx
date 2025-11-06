@@ -39,26 +39,26 @@ interface CustomerSelection {
     last_name: string;
     email: string;
     phone: string;
-  };
+  }[];
   designs: {
     id: string;
     design_name: string;
     garment_category: string;
     design_code: string;
     base_price_aed: number;
-  };
+  }[];
   fabric_library: {
     id: string;
     fabric_name: string;
     fabric_type: string;
     selling_price_per_meter_aed: number;
-  } | null;
+  }[] | null;
   fabric_patterns: {
     id: string;
     pattern_name: string;
     color_name: string;
     color_hex: string;
-  } | null;
+  }[] | null;
   measurement_id: string;
 }
 
@@ -194,24 +194,24 @@ export default function CustomerSelectionsPage() {
       // Client-side filtering for garment category and search
       if (filters.garment_category) {
         filteredData = filteredData.filter(selection => 
-          selection.designs?.garment_category === filters.garment_category
+          selection.designs?.[0]?.garment_category === filters.garment_category
         );
       }
 
       if (searchQuery) {
         const query = searchQuery.toLowerCase();
         filteredData = filteredData.filter(selection => 
-          `${selection.customers?.first_name} ${selection.customers?.last_name}`.toLowerCase().includes(query) ||
-          selection.designs?.design_name.toLowerCase().includes(query) ||
-          selection.designs?.design_code.toLowerCase().includes(query)
+          `${selection.customers?.[0]?.first_name || ''} ${selection.customers?.[0]?.last_name || ''}`.toLowerCase().includes(query) ||
+          selection.designs?.[0]?.design_name.toLowerCase().includes(query) ||
+          selection.designs?.[0]?.design_code.toLowerCase().includes(query)
         );
       }
 
       // Client-side sorting for customer name
       if (sortBy === 'customer') {
         filteredData.sort((a, b) => {
-          const nameA = `${a.customers?.first_name} ${a.customers?.last_name}`.toLowerCase();
-          const nameB = `${b.customers?.first_name} ${b.customers?.last_name}`.toLowerCase();
+          const nameA = `${a.customers?.[0]?.first_name || ''} ${a.customers?.[0]?.last_name || ''}`.toLowerCase();
+          const nameB = `${b.customers?.[0]?.first_name || ''} ${b.customers?.[0]?.last_name || ''}`.toLowerCase();
           return nameA.localeCompare(nameB);
         });
       }
@@ -444,18 +444,18 @@ export default function CustomerSelectionsPage() {
                     <div className="flex items-start gap-4">
                       {/* Customer Info */}
                       <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-lg flex items-center justify-center text-white font-semibold">
-                        {selection.customers?.first_name?.[0]}{selection.customers?.last_name?.[0]}
+                        {selection.customers?.[0]?.first_name?.charAt(0) || ''}{selection.customers?.[0]?.last_name?.charAt(0) || ''}
                       </div>
                       
                       <div>
                         <h3 className="font-semibold text-neutral-900 mb-1">
-                          {selection.customers?.first_name} {selection.customers?.last_name}
+                          {selection.customers?.[0]?.first_name || 'N/A'} {selection.customers?.[0]?.last_name || 'N/A'}
                         </h3>
                         <p className="text-small text-neutral-600 mb-1">
-                          {selection.customers?.email}
+                          {selection.customers?.[0]?.email || 'N/A'}
                         </p>
                         <p className="text-small text-neutral-600">
-                          {selection.customers?.phone}
+                          {selection.customers?.[0]?.phone || 'N/A'}
                         </p>
                       </div>
                     </div>
@@ -497,9 +497,9 @@ export default function CustomerSelectionsPage() {
                           <Shirt className="w-5 h-5 text-white" />
                         </div>
                         <div>
-                          <p className="font-medium text-neutral-900">{selection.designs?.design_name}</p>
+                          <p className="font-medium text-neutral-900">{selection.designs?.[0]?.design_name || 'N/A'}</p>
                           <p className="text-small text-neutral-600">
-                            {selection.designs?.design_code} • {selection.designs?.garment_category}
+                            {selection.designs?.[0]?.design_code || 'N/A'} • {selection.designs?.[0]?.garment_category || 'N/A'}
                           </p>
                         </div>
                       </div>
@@ -510,17 +510,17 @@ export default function CustomerSelectionsPage() {
                             <Palette className="w-5 h-5 text-white" />
                           </div>
                           <div>
-                            <p className="font-medium text-neutral-900">{selection.fabric_library.fabric_name}</p>
+                            <p className="font-medium text-neutral-900">{selection.fabric_library?.[0]?.fabric_name || 'N/A'}</p>
                             <p className="text-small text-neutral-600">
-                              {selection.fabric_library.fabric_type}
-                              {selection.fabric_patterns && ` • ${selection.fabric_patterns.color_name}`}
+                              {selection.fabric_library?.[0]?.fabric_type || 'N/A'}
+                              {selection.fabric_patterns?.[0] && ` • ${selection.fabric_patterns[0]?.color_name || ''}`}
                             </p>
                           </div>
-                          {selection.fabric_patterns?.color_hex && (
+                          {selection.fabric_patterns?.[0]?.color_hex && (
                             <div
                               className="w-6 h-6 rounded-full border-2 border-white shadow-sm"
-                              style={{ backgroundColor: selection.fabric_patterns.color_hex }}
-                              title={selection.fabric_patterns.color_name}
+                              style={{ backgroundColor: selection.fabric_patterns?.[0]?.color_hex || '#ccc' }}
+                              title={selection.fabric_patterns?.[0]?.color_name || 'N/A'}
                             />
                           )}
                         </div>
@@ -546,7 +546,7 @@ export default function CustomerSelectionsPage() {
                       <div className="flex items-center justify-between text-small">
                         <span className="text-neutral-600">Base Design:</span>
                         <span className="font-medium">
-                          AED {selection.designs?.base_price_aed?.toLocaleString() || '0'}
+                          AED {selection.designs?.[0]?.base_price_aed?.toLocaleString() || '0'}
                         </span>
                       </div>
 
@@ -554,7 +554,7 @@ export default function CustomerSelectionsPage() {
                         <div className="flex items-center justify-between text-small">
                           <span className="text-neutral-600">Fabric Cost:</span>
                           <span className="font-medium">
-                            AED {selection.fabric_library.selling_price_per_meter_aed}/m
+                            AED {selection.fabric_library?.[0]?.selling_price_per_meter_aed?.toLocaleString() || '0'}/m
                           </span>
                         </div>
                       )}

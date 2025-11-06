@@ -209,18 +209,22 @@ export default function NewOrderPage() {
         });
 
       // Update customer total orders
-      await supabase.rpc('increment_customer_orders', {
-        customer_id: selectedCustomerId
-      }).catch(() => {
+      try {
+        await supabase.rpc('increment_customer_orders', {
+          customer_id: selectedCustomerId
+        });
+      } catch (error) {
         // Fallback if function doesn't exist
-        supabase
+        const customer = customers.find(c => c.id === selectedCustomerId);
+        const currentOrders = customer?.total_orders || 0;
+        await supabase
           .from('customers')
           .update({ 
-            total_orders: customers.find(c => c.id === selectedCustomerId)?.total_orders + 1 || 1,
+            total_orders: currentOrders + 1,
             last_order_date: new Date().toISOString()
           })
           .eq('id', selectedCustomerId);
-      });
+      }
 
       router.push(`/dashboard/orders/${orderData.id}`);
     } catch (error) {

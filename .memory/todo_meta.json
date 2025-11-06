@@ -103,7 +103,7 @@
         "id": "15",
         "content": "Scheduling & Appointment System",
         "details": "Advanced scheduling: Trial appointments, fitting sessions, delivery dates, staff scheduling, calendar management, automated reminders (SMS/Email/WhatsApp), rescheduling capabilities, no-show tracking, appointment types and duration management.",
-        "status": "pending",
+        "status": "completed",
         "priority": "high"
       },
       "16": {

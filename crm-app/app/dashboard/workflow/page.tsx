@@ -432,7 +432,7 @@ export default function WorkflowDashboardPage() {
                 const orderCount = stageData?.orders.length || 0;
                 const analytics = stageData?.analytics;
                 const isBottleneck = analytics && analytics.bottleneck_score && 
-                  parseFloat(analytics.bottleneck_score.toString()) > 50;
+                  parseFloat(analytics.bottleneck_score.toString()) > 50 || false;
 
                 return (
                   <DroppableColumn

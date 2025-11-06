@@ -22,6 +22,7 @@ interface MeasurementTemplate {
   id: string;
   garment_type: string;
   template_name: string;
+  is_default: boolean;
   measurement_fields: {
     fields: MeasurementField[];
   };

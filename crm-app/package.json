@@ -16,6 +16,7 @@
     "date-fns": "^4.1.0",
     "lucide-react": "^0.451.0",
     "next": "15.0.0",
+    "pnpm-store": "link:/tmp/pnpm-store",
     "react": "19.2.0",
     "react-dom": "19.2.0"
   },
