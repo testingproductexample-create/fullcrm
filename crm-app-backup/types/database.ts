@@ -731,3 +731,257 @@ export interface StaffUtilizationLog {
   revenue_generated_aed: number;
   created_at: string;
 }
+
+
+// =======================================================================================
+// DOCUMENT MANAGEMENT SYSTEM TYPES
+// =======================================================================================
+
+export interface DocumentCategory {
+  id: string;
+  organization_id: string;
+  category_code: string;
+  category_name: string;
+  parent_category_id: string | null;
+  description: string | null;
+  icon: string | null;
+  color: string | null;
+  sort_order: number;
+  retention_period_years: number;
+  is_system_category: boolean;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+  created_by: string | null;
+}
+
+export interface Document {
+  id: string;
+  organization_id: string;
+  document_number: string;
+  title: string;
+  description: string | null;
+  category_id: string | null;
+  document_type: string;
+  file_name: string;
+  file_size: number;
+  file_type: string;
+  mime_type: string;
+  storage_path: string;
+  storage_bucket: string;
+  file_hash: string | null;
+  version_number: number;
+  is_latest_version: boolean;
+  parent_document_id: string | null;
+  customer_id: string | null;
+  employee_id: string | null;
+  order_id: string | null;
+  appointment_id: string | null;
+  invoice_id: string | null;
+  supplier_id: string | null;
+  status: 'draft' | 'pending_approval' | 'approved' | 'rejected' | 'archived' | 'deleted';
+  approval_status: 'pending' | 'approved' | 'rejected' | 'revision_required';
+  retention_date: string | null;
+  is_confidential: boolean;
+  is_encrypted: boolean;
+  encryption_algorithm: string | null;
+  compliance_flags: string[];
+  access_level: 'private' | 'internal' | 'public' | 'restricted';
+  allowed_roles: string[];
+  tags: string[];
+  metadata: Record<string, any>;
+  uploaded_by: string;
+  last_accessed_at: string | null;
+  last_accessed_by: string | null;
+  download_count: number;
+  view_count: number;
+  created_at: string;
+  updated_at: string;
+  archived_at: string | null;
+  deleted_at: string | null;
+  notes: string | null;
+  is_active: boolean;
+}
+
+export interface DocumentVersion {
+  id: string;
+  organization_id: string;
+  document_id: string;
+  version_number: number;
+  version_label: string | null;
+  file_name: string;
+  file_size: number;
+  file_type: string;
+  mime_type: string;
+  storage_path: string;
+  storage_bucket: string;
+  file_hash: string | null;
+  change_summary: string | null;
+  change_type: string | null;
+  previous_version_id: string | null;
+  is_current: boolean;
+  uploaded_by: string;
+  created_at: string;
+}
+
+export interface DocumentPermission {
+  id: string;
+  organization_id: string;
+  document_id: string;
+  permission_type: 'user' | 'role' | 'department' | 'team';
+  target_user_id: string | null;
+  target_role: string | null;
+  target_department_id: string | null;
+  can_view: boolean;
+  can_download: boolean;
+  can_edit: boolean;
+  can_delete: boolean;
+  can_share: boolean;
+  can_approve: boolean;
+  can_comment: boolean;
+  valid_from: string;
+  valid_until: string | null;
+  is_active: boolean;
+  granted_by: string;
+  granted_at: string;
+  revoked_at: string | null;
+  revoked_by: string | null;
+  revocation_reason: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface DocumentTemplate {
+  id: string;
+  organization_id: string;
+  template_code: string;
+  template_name: string;
+  description: string | null;
+  category_id: string | null;
+  template_type: string;
+  file_name: string;
+  file_size: number;
+  file_type: string;
+  storage_path: string;
+  storage_bucket: string;
+  template_fields: any[];
+  default_values: Record<string, any>;
+  is_system_template: boolean;
+  is_active: boolean;
+  usage_count: number;
+  tags: string[];
+  metadata: Record<string, any>;
+  created_at: string;
+  updated_at: string;
+  created_by: string;
+}
+
+export interface DocumentApproval {
+  id: string;
+  organization_id: string;
+  document_id: string;
+  approval_step: number;
+  total_steps: number;
+  approval_level: string | null;
+  approver_id: string;
+  approver_role: string | null;
+  status: 'pending' | 'approved' | 'rejected' | 'revision_required';
+  decision: string | null;
+  comments: string | null;
+  conditions: string | null;
+  requested_at: string;
+  responded_at: string | null;
+  due_date: string | null;
+  notification_sent: boolean;
+  reminder_sent_count: number;
+  last_reminder_at: string | null;
+  created_at: string;
+  updated_at: string;
+  created_by: string;
+}
+
+export interface DocumentAuditLog {
+  id: string;
+  organization_id: string;
+  document_id: string;
+  action: string;
+  action_category: string | null;
+  action_details: Record<string, any>;
+  user_id: string | null;
+  user_name: string | null;
+  user_role: string | null;
+  user_email: string | null;
+  ip_address: string | null;
+  user_agent: string | null;
+  device_info: Record<string, any>;
+  geo_location: Record<string, any>;
+  document_version: number | null;
+  document_status: string | null;
+  before_state: Record<string, any>;
+  after_state: Record<string, any>;
+  compliance_event: boolean;
+  retention_required: boolean;
+  action_timestamp: string;
+  created_at: string;
+}
+
+export interface DocumentShare {
+  id: string;
+  organization_id: string;
+  document_id: string;
+  share_token: string;
+  share_type: 'link' | 'email' | 'external';
+  recipient_email: string | null;
+  recipient_name: string | null;
+  can_view: boolean;
+  can_download: boolean;
+  can_comment: boolean;
+  requires_password: boolean;
+  password_hash: string | null;
+  expires_at: string | null;
+  max_access_count: number | null;
+  access_count: number;
+  is_active: boolean;
+  revoked_at: string | null;
+  revoked_by: string | null;
+  revocation_reason: string | null;
+  last_accessed_at: string | null;
+  last_accessed_from: string | null;
+  created_at: string;
+  created_by: string;
+  notification_sent: boolean;
+}
+
+export interface DocumentComment {
+  id: string;
+  organization_id: string;
+  document_id: string;
+  parent_comment_id: string | null;
+  comment_text: string;
+  comment_type: 'general' | 'review' | 'approval' | 'question' | 'suggestion';
+  page_number: number | null;
+  position_data: Record<string, any>;
+  is_resolved: boolean;
+  resolved_at: string | null;
+  resolved_by: string | null;
+  mentions: string[];
+  attachments: any[];
+  created_at: string;
+  updated_at: string;
+  created_by: string;
+  edited_at: string | null;
+  deleted_at: string | null;
+  deleted_by: string | null;
+}
+
+export interface DocumentTag {
+  id: string;
+  organization_id: string;
+  tag_name: string;
+  tag_color: string | null;
+  tag_description: string | null;
+  usage_count: number;
+  is_active: boolean;
+  created_at: string;
+  created_by: string;
+}

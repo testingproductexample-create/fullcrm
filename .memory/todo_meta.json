@@ -145,7 +145,7 @@
         "id": "21",
         "content": "Document Management System",
         "details": "Document storage and management: Order documents, customer contracts, measurement sheets, design approvals, legal documents, document versioning, secure storage, access controls, document templates, digital signatures.",
-        "status": "pending",
+        "status": "completed",
         "priority": "high"
       },
       "22": {
