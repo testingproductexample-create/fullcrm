@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { SecurityProvider } from "@/contexts/SecurityContext";
 import { ToastProvider } from "@/contexts/ToastContext";
 import PWAProvider from "@/components/PWAProvider";
 
@@ -108,11 +109,13 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <AuthProvider>
-          <ToastProvider>
-            <PWAProvider>
-              {children}
-            </PWAProvider>
-          </ToastProvider>
+          <SecurityProvider>
+            <ToastProvider>
+              <PWAProvider>
+                {children}
+              </PWAProvider>
+            </ToastProvider>
+          </SecurityProvider>
         </AuthProvider>
       </body>
     </html>

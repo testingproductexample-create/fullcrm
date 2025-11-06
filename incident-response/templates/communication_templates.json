@@ -1,0 +1,426 @@
+{
+  "communication_templates": {
+    "incident_notification": {
+      "title": "Security Incident Notification",
+      "description": "Initial incident notification template",
+      "channels": ["email", "slack", "teams", "sms"],
+      "templates": {
+        "email": {
+          "subject": "[URGENT] Security Incident: {incident_id} - {severity}",
+          "body": {
+            "header": "SECURITY INCIDENT ALERT",
+            "content": "A security incident has been detected and requires immediate attention.",
+            "details": {
+              "incident_id": "Incident ID: {incident_id}",
+              "severity": "Severity Level: {severity}",
+              "type": "Incident Type: {incident_type}",
+              "detection_time": "Detection Time: {detection_time}",
+              "affected_systems": "Affected Systems: {affected_systems}",
+              "status": "Current Status: {status}"
+            },
+            "immediate_actions": "The incident response team has been activated. Please monitor for further updates.",
+            "contact": "For questions, contact: {contact_info}",
+            "dashboard_link": "Dashboard: {dashboard_url}"
+          },
+          "footer": "This is an automated notification from the Security Incident Response System."
+        },
+        "slack": {
+          "message": "🚨 *SECURITY INCIDENT ALERT* 🚨\\n\\n*Incident ID:* {incident_id}\\n*Severity:* {severity}\\n*Type:* {incident_type}\\n*Detected:* {detection_time}\\n*Systems:* {affected_systems}\\n\\n@here Immediate attention required\\nView details: {dashboard_url}"
+        },
+        "sms": {
+          "message": "SECURITY INCIDENT: {incident_id} ({severity}) - {incident_type} detected. Check email/dashboard for details."
+        }
+      }
+    },
+    "escalation_alert": {
+      "title": "Incident Escalation Alert",
+      "description": "Escalation notification for high-priority incidents",
+      "channels": ["email", "sms", "phone_call"],
+      "templates": {
+        "email": {
+          "subject": "[ESCALATION] Security Incident {incident_id} - {escalation_reason}",
+          "body": {
+            "header": "INCIDENT ESCALATION REQUIRED",
+            "urgency": "This incident requires immediate escalation and management attention.",
+            "escalation_details": {
+              "incident_id": "Incident ID: {incident_id}",
+              "current_severity": "Current Severity: {current_severity}",
+              "escalation_reason": "Escalation Reason: {escalation_reason}",
+              "time_elapsed": "Time Since Detection: {time_elapsed}",
+              "business_impact": "Business Impact: {business_impact}"
+            },
+            "required_actions": [
+              "Review incident status and approve escalation",
+              "Allocate additional resources if needed",
+              "Consider external communication requirements",
+              "Activate crisis management team if required"
+            ],
+            "next_steps": "Next update will be provided within {update_interval} hours."
+          }
+        },
+        "sms": {
+          "message": "ESCALATION: Incident {incident_id} requires management attention. Impact: {business_impact}. Time: {time_elapsed}."
+        }
+      }
+    },
+    "status_update": {
+      "title": "Incident Status Update",
+      "description": "Regular status update template",
+      "channels": ["email", "slack"],
+      "templates": {
+        "email": {
+          "subject": "Update: Security Incident {incident_id} - {current_status}",
+          "body": {
+            "header": "INCIDENT STATUS UPDATE",
+            "incident_summary": "Incident: {incident_id} | Type: {incident_type} | Severity: {severity}",
+            "timeline": {
+              "detection": "Detected: {detection_time}",
+              "first_response": "First Response: {first_response_time}",
+              "last_update": "Last Update: {last_update_time}",
+              "current_status": "Current Status: {current_status}"
+            },
+            "progress_summary": "{progress_summary}",
+            "actions_completed": [
+              {actions_completed}
+            ],
+            "next_steps": [
+              {next_steps}
+            ],
+            "eta_resolution": "Estimated Resolution: {eta_resolution}",
+            "contact": "Questions: {contact_info}"
+          }
+        },
+        "slack": {
+          "message": "📊 *INCIDENT UPDATE* 📊\\n\\n*Status:* {current_status}\\n*Progress:* {progress_summary}\\n\\n*Next Steps:*\\n{next_steps}\\n\\nETA: {eta_resolution}"
+        }
+      }
+    },
+    "customer_notification": {
+      "title": "Customer Security Notice",
+      "description": "Customer notification for incidents with customer impact",
+      "channels": ["email", "website_post"],
+      "templates": {
+        "email": {
+          "subject": "Important Security Notice - {organization_name}",
+          "body": {
+            "header": "IMPORTANT SECURITY NOTICE",
+            "customer_salutation": "Dear {customer_name},",
+            "incident_summary": "We are writing to inform you of a security incident that may have affected your account or personal information.",
+            "incident_details": {
+              "discovery_date": "Date Discovered: {discovery_date}",
+              "affected_data": "Information Involved: {affected_data_types}",
+              "scope": "Customers Affected: {affected_customers_count}",
+              "investigation": "Investigation Status: {investigation_status}"
+            },
+            "immediate_actions": "We have taken immediate steps to secure our systems and prevent further unauthorized access.",
+            "protective_measures": "Protective measures implemented:",
+            "measures_taken": [
+              "Secured affected systems",
+              "Enhanced monitoring",
+              "Engaged cybersecurity experts",
+              "Law enforcement notification (if applicable)"
+            ],
+            "customer_guidance": {
+              "title": "What You Should Do:",
+              "actions": [
+                "Monitor your account for suspicious activity",
+                "Change your password if prompted",
+                "Review account statements",
+                "Consider credit monitoring services"
+              ]
+            },
+            "contact_information": {
+              "dedicated_hotline": "Dedicated Hotline: {customer_hotline}",
+              "email_support": "Email Support: {customer_email}",
+              "website": "Information: {customer_website}"
+            },
+            "apology": "We sincerely apologize for this incident and any inconvenience it may cause.",
+            "closing": "We will continue to keep you informed of our progress."
+          }
+        }
+      }
+    },
+    "regulatory_notification": {
+      "title": "Regulatory Authority Notification",
+      "description": "Template for regulatory notification requirements",
+      "channels": ["email", "secure_portal"],
+      "templates": {
+        "email": {
+          "subject": "Security Incident Notification - {regulatory_framework} Compliance",
+          "body": {
+            "header": "REGULATORY NOTIFICATION",
+            "regulatory_salutation": "Dear {regulatory_authority},",
+            "compliance_framework": "This notification is made pursuant to {regulatory_framework} requirements.",
+            "incident_classification": {
+              "incident_type": "Incident Type: {incident_type}",
+              "discovery_date": "Date of Discovery: {discovery_date}",
+              "discovery_method": "Method of Discovery: {discovery_method}",
+              "data_affected": "Personal Data Affected: {data_types_affected}"
+            },
+            "impact_assessment": {
+              "affected_individuals": "Number of Individuals: {affected_individuals}",
+              "geographic_scope": "Geographic Scope: {geographic_scope}",
+              "data_sensitivity": "Data Sensitivity Level: {sensitivity_level}",
+              "breach_risk": "Risk of Harm Assessment: {harm_risk_assessment}"
+            },
+            "response_actions": {
+              "immediate_measures": "Immediate Response Measures:",
+              "measures": [
+                "Incident containment actions taken",
+                "Affected systems secured",
+                "Investigation initiated",
+                "Law enforcement notification (if applicable)"
+              ]
+            },
+            "corrective_measures": {
+              "title": "Corrective and Preventive Measures:",
+              "actions": [
+                "Technical security enhancements",
+                "Process improvements",
+                "Staff training and awareness",
+                "Policy updates"
+              ]
+            },
+            "timeline": {
+              "discovery": "Discovery: {discovery_time}",
+              "containment": "Containment: {containment_time}",
+              "notification": "Notification: {notification_time}"
+            },
+            "contact_information": "Primary Contact: {primary_contact} | Legal Counsel: {legal_counsel}",
+            "additional_information": "Additional information will be provided as investigation progresses."
+          }
+        }
+      }
+    },
+    "media_statement": {
+      "title": "Media Statement Template",
+      "description": "Template for media communications",
+      "channels": ["press_release", "social_media"],
+      "templates": {
+        "press_release": {
+          "title": "{organization_name} Issues Statement on Security Incident",
+          "body": {
+            "dateline": "LOCATION, DATE - {organization_name} today issued the following statement regarding a recent security incident:",
+            "statement": "\"{media_statement}\"",
+            "background": {
+              "title": "Background:",
+              "content": "The incident was detected on {detection_date} and immediately contained. We are working with leading cybersecurity experts to investigate the matter and enhance our security measures."
+            },
+            "actions_taken": {
+              "title": "Actions Taken:",
+              "measures": [
+                "Secured affected systems immediately",
+                "Implemented additional security measures",
+                "Notified relevant authorities",
+                "Engaged third-party security experts"
+              ]
+            },
+            "customer_impact": {
+              "title": "Customer Impact:",
+              "content": "We are in the process of notifying affected customers directly. {impact_summary}"
+            },
+            "future_protection": {
+              "title": "Future Protection:",
+              "content": "We are committed to protecting our customers' information and will continue to invest in advanced security technologies and practices."
+            },
+            "contact": "For media inquiries, contact: {media_contact}"
+          }
+        },
+        "social_media": {
+          "twitter": "Security Update: {organization_name} recently experienced a security incident that we have contained. We are investigating and will provide updates. Customer impact: {impact_summary} #cybersecurity",
+          "linkedin": "Security Incident Update: {organization_name} experienced a security incident that we immediately contained. We are working with experts to enhance our security. Customer impact: {impact_summary}"
+        }
+      }
+    },
+    "internal_communication": {
+      "title": "Internal Team Communication",
+      "description": "Internal stakeholder communication template",
+      "channels": ["email", "slack", "teams"],
+      "templates": {
+        "email": {
+          "subject": "All Hands: Security Incident Update - {incident_id}",
+          "body": {
+            "header": "ALL HANDS SECURITY INCIDENT UPDATE",
+            "summary": "Team, I want to provide you with an update on the security incident that occurred {time_ago}.",
+            "incident_overview": {
+              "discovery": "The incident was discovered during routine monitoring on {discovery_time}.",
+              "immediate_response": "Our incident response team was activated immediately and has been working around the clock.",
+              "current_status": "As of this update, the situation is {current_status}."
+            },
+            "what_we_know": {
+              "title": "What We Know:",
+              "facts": [
+                "Incident type: {incident_type}",
+                "Affected systems: {affected_systems}",
+                "No customer data was compromised: {customer_data_status}",
+                "Business operations continue normally: {business_continuity}"
+              ]
+            },
+            "actions_taken": {
+              "title": "Actions Taken:",
+              "measures": [
+                "Affected systems have been isolated and secured",
+                "Enhanced monitoring has been implemented",
+                "External security experts have been engaged",
+                "All relevant stakeholders have been notified"
+              ]
+            },
+            "next_steps": {
+              "title": "Next Steps:",
+              "steps": [
+                "Continue investigation and analysis",
+                "Implement additional security measures",
+                "Conduct comprehensive security review",
+                "Provide regular updates to all stakeholders"
+              ]
+            },
+            "questions": "Please direct any questions to {contact_info} or your team lead.",
+            "appreciation": "Thank you for your continued dedication during this incident."
+          }
+        }
+      }
+    },
+    "resolution_notification": {
+      "title": "Incident Resolution Notification",
+      "description": "Template for incident resolution announcement",
+      "channels": ["email", "slack"],
+      "templates": {
+        "email": {
+          "subject": "RESOLVED: Security Incident {incident_id} - Resolution Confirmed",
+          "body": {
+            "header": "INCIDENT RESOLUTION CONFIRMED",
+            "resolution_summary": "The security incident {incident_id} has been successfully resolved.",
+            "resolution_details": {
+              "incident_id": "Incident ID: {incident_id}",
+              "incident_type": "Type: {incident_type}",
+              "resolution_time": "Resolution Time: {resolution_time}",
+              "total_duration": "Total Duration: {total_duration}",
+              "systems_affected": "Systems Affected: {systems_affected}"
+            },
+            "containment_achieved": "All affected systems have been secured and are operating normally.",
+            "lessons_learned": "Key lessons learned from this incident: {lessons_learned}",
+            "preventive_measures": {
+              "title": "Additional Security Measures Implemented:",
+              "measures": [
+                "Enhanced monitoring and detection capabilities",
+                "Updated security policies and procedures",
+                "Additional security training for staff",
+                "Improved incident response protocols"
+              ]
+            },
+            "post_incident": {
+              "title": "Post-Incident Activities:",
+              "activities": [
+                "Comprehensive security review completed",
+                "All evidence properly documented and secured",
+                "Recovery procedures validated",
+                "Stakeholder notifications completed"
+              ]
+            },
+            "acknowledgment": "We appreciate the quick response and professionalism of all team members involved in resolving this incident.",
+            "contact": "For questions about this incident: {contact_info}"
+          }
+        }
+      }
+    }
+  },
+  "escalation_procedures": {
+    "severity_escalation": {
+      "critical": {
+        "immediate_contacts": [
+          "CISO",
+          "CEO", 
+          "Legal Counsel",
+          "Communications Director"
+        ],
+        "notification_timeframe": "15 minutes",
+        "communication_channels": ["phone", "email", "sms"],
+        "approval_required": ["CEO", "Legal Counsel"]
+      },
+      "high": {
+        "immediate_contacts": [
+          "CISO",
+          "IT Director",
+          "Communications Director"
+        ],
+        "notification_timeframe": "1 hour",
+        "communication_channels": ["email", "slack"],
+        "approval_required": ["CISO"]
+      },
+      "medium": {
+        "immediate_contacts": [
+          "Security Manager",
+          "IT Manager"
+        ],
+        "notification_timeframe": "4 hours",
+        "communication_channels": ["email"],
+        "approval_required": ["Security Manager"]
+      }
+    },
+    "stakeholder_matrix": {
+      "executives": {
+        "notification_threshold": "critical",
+        "preferred_channels": ["phone", "email"],
+        "information_level": "executive_summary"
+      },
+      "it_team": {
+        "notification_threshold": "medium",
+        "preferred_channels": ["slack", "email"],
+        "information_level": "technical_details"
+      },
+      "legal_team": {
+        "notification_threshold": "high",
+        "preferred_channels": ["email", "secure_portal"],
+        "information_level": "regulatory_implications"
+      },
+      "communications": {
+        "notification_threshold": "high",
+        "preferred_channels": ["email", "slack"],
+        "information_level": "communication_ready"
+      },
+      "customers": {
+        "notification_threshold": "customer_impact",
+        "preferred_channels": ["email", "website"],
+        "information_level": "customer_facing"
+      }
+    }
+  },
+  "communication_workflow": {
+    "incident_lifecycle": {
+      "detection": {
+        "initial_notification": "incident_notification",
+        "recipients": ["security_team", "incident_commander"]
+      },
+      "escalation": {
+        "escalation_alert": "escalation_alert",
+        "recipients": ["management", "stakeholders"]
+      },
+      "investigation": {
+        "status_update": "status_update",
+        "frequency": "every_2_hours",
+        "recipients": ["all_stakeholders"]
+      },
+      "resolution": {
+        "resolution_notification": "resolution_notification",
+        "recipients": ["all_stakeholders"]
+      }
+    },
+    "review_approval": {
+      "critical_communications": {
+        "legal_review": true,
+        "executive_approval": true,
+        "timing": "before_send"
+      },
+      "customer_communications": {
+        "legal_review": true,
+        "communications_approval": true,
+        "timing": "before_send"
+      },
+      "regulatory_notifications": {
+        "legal_review": true,
+        "compliance_approval": true,
+        "timing": "before_send"
+      }
+    }
+  }
+}

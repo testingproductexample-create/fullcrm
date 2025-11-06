@@ -1,0 +1,574 @@
+{
+  "security_assessment_questionnaires": {
+    "infrastructure_security": {
+      "title": "Infrastructure Security Assessment",
+      "description": "Comprehensive assessment of IT infrastructure security posture",
+      "sections": [
+        {
+          "id": "network_security",
+          "title": "Network Security",
+          "questions": [
+            {
+              "id": "net_001",
+              "question": "Are all network devices (routers, switches, firewalls) configured with secure default settings?",
+              "type": "boolean",
+              "required": true,
+              "weight": 3,
+              "category": "configuration"
+            },
+            {
+              "id": "net_002",
+              "question": "Is network segmentation implemented to isolate critical systems?",
+              "type": "boolean",
+              "required": true,
+              "weight": 3,
+              "category": "segmentation"
+            },
+            {
+              "id": "net_003",
+              "question": "Are unused network ports and services disabled?",
+              "type": "boolean",
+              "required": true,
+              "weight": 2,
+              "category": "hardening"
+            },
+            {
+              "id": "net_004",
+              "question": "Is there network monitoring and intrusion detection in place?",
+              "type": "boolean",
+              "required": true,
+              "weight": 2,
+              "category": "monitoring"
+            },
+            {
+              "id": "net_005",
+              "question": "Are wireless networks properly secured with WPA3 or equivalent?",
+              "type": "boolean",
+              "required": true,
+              "weight": 2,
+              "category": "wireless"
+            }
+          ]
+        },
+        {
+          "id": "server_security",
+          "title": "Server Security",
+          "questions": [
+            {
+              "id": "srv_001",
+              "question": "Are all servers patched with the latest security updates?",
+              "type": "boolean",
+              "required": true,
+              "weight": 3,
+              "category": "patching"
+            },
+            {
+              "id": "srv_002",
+              "question": "Are unnecessary services and applications removed from servers?",
+              "type": "boolean",
+              "required": true,
+              "weight": 2,
+              "category": "hardening"
+            },
+            {
+              "id": "srv_003",
+              "question": "Are server configurations hardened according to industry standards?",
+              "type": "boolean",
+              "required": true,
+              "weight": 3,
+              "category": "configuration"
+            },
+            {
+              "id": "srv_004",
+              "question": "Is there a system inventory and asset management process?",
+              "type": "boolean",
+              "required": true,
+              "weight": 2,
+              "category": "management"
+            },
+            {
+              "id": "srv_005",
+              "question": "Are server logs centralized and regularly reviewed?",
+              "type": "boolean",
+              "required": true,
+              "weight": 2,
+              "category": "monitoring"
+            }
+          ]
+        },
+        {
+          "id": "endpoint_security",
+          "title": "Endpoint Security",
+          "questions": [
+            {
+              "id": "end_001",
+              "question": "Are all endpoints equipped with endpoint protection software?",
+              "type": "boolean",
+              "required": true,
+              "weight": 3,
+              "category": "protection"
+            },
+            {
+              "id": "end_002",
+              "question": "Is device encryption enabled on all mobile devices and laptops?",
+              "type": "boolean",
+              "required": true,
+              "weight": 3,
+              "category": "encryption"
+            },
+            {
+              "id": "end_003",
+              "question": "Are endpoint devices properly configured and hardened?",
+              "type": "boolean",
+              "required": true,
+              "weight": 2,
+              "category": "configuration"
+            },
+            {
+              "id": "end_004",
+              "question": "Is there a process for remote wipe of lost or stolen devices?",
+              "type": "boolean",
+              "required": true,
+              "weight": 2,
+              "category": "management"
+            }
+          ]
+        }
+      ]
+    },
+    "application_security": {
+      "title": "Application Security Assessment",
+      "description": "Assessment of application security controls and practices",
+      "sections": [
+        {
+          "id": "web_app_security",
+          "title": "Web Application Security",
+          "questions": [
+            {
+              "id": "web_001",
+              "question": "Are web applications regularly tested for security vulnerabilities?",
+              "type": "select",
+              "options": ["Daily", "Weekly", "Monthly", "Quarterly", "Annually", "Never"],
+              "required": true,
+              "weight": 3,
+              "category": "testing"
+            },
+            {
+              "id": "web_002",
+              "question": "Are input validation and output encoding implemented?",
+              "type": "boolean",
+              "required": true,
+              "weight": 3,
+              "category": "coding"
+            },
+            {
+              "id": "web_003",
+              "question": "Is authentication and session management implemented securely?",
+              "type": "boolean",
+              "required": true,
+              "weight": 3,
+              "category": "authentication"
+            },
+            {
+              "id": "web_004",
+              "question": "Are sensitive data transmissions encrypted (HTTPS/TLS)?",
+              "type": "boolean",
+              "required": true,
+              "weight": 3,
+              "category": "encryption"
+            },
+            {
+              "id": "web_005",
+              "question": "Are security headers properly configured (CSP, HSTS, etc.)?",
+              "type": "boolean",
+              "required": true,
+              "weight": 2,
+              "category": "configuration"
+            }
+          ]
+        },
+        {
+          "id": "api_security",
+          "title": "API Security",
+          "questions": [
+            {
+              "id": "api_001",
+              "question": "Are APIs protected with proper authentication and authorization?",
+              "type": "boolean",
+              "required": true,
+              "weight": 3,
+              "category": "authentication"
+            },
+            {
+              "id": "api_002",
+              "question": "Are API rate limiting and throttling implemented?",
+              "type": "boolean",
+              "required": true,
+              "weight": 2,
+              "category": "protection"
+            },
+            {
+              "id": "api_003",
+              "question": "Is API documentation reviewed for security implications?",
+              "type": "boolean",
+              "required": true,
+              "weight": 2,
+              "category": "documentation"
+            }
+          ]
+        }
+      ]
+    },
+    "data_protection": {
+      "title": "Data Protection & Privacy",
+      "description": "Assessment of data protection and privacy controls",
+      "sections": [
+        {
+          "id": "data_classification",
+          "title": "Data Classification",
+          "questions": [
+            {
+              "id": "data_001",
+              "question": "Is there a data classification policy in place?",
+              "type": "boolean",
+              "required": true,
+              "weight": 3,
+              "category": "policy"
+            },
+            {
+              "id": "data_002",
+              "question": "Is sensitive data identified and properly labeled?",
+              "type": "boolean",
+              "required": true,
+              "weight": 3,
+              "category": "classification"
+            },
+            {
+              "id": "data_003",
+              "question": "Are data retention and disposal policies implemented?",
+              "type": "boolean",
+              "required": true,
+              "weight": 2,
+              "category": "policy"
+            }
+          ]
+        },
+        {
+          "id": "encryption",
+          "title": "Encryption",
+          "questions": [
+            {
+              "id": "enc_001",
+              "question": "Is data encrypted at rest using strong encryption algorithms?",
+              "type": "boolean",
+              "required": true,
+              "weight": 3,
+              "category": "encryption"
+            },
+            {
+              "id": "enc_002",
+              "question": "Is data encrypted in transit using TLS 1.2 or higher?",
+              "type": "boolean",
+              "required": true,
+              "weight": 3,
+              "category": "encryption"
+            },
+            {
+              "id": "enc_003",
+              "question": "Are encryption keys properly managed and rotated?",
+              "type": "boolean",
+              "required": true,
+              "weight": 2,
+              "category": "key_management"
+            }
+          ]
+        },
+        {
+          "id": "backup_recovery",
+          "title": "Backup & Recovery",
+          "questions": [
+            {
+              "id": "backup_001",
+              "question": "Are regular data backups performed and tested?",
+              "type": "select",
+              "options": ["Daily", "Weekly", "Monthly", "Quarterly", "Annually", "Never"],
+              "required": true,
+              "weight": 3,
+              "category": "backup"
+            },
+            {
+              "id": "backup_002",
+              "question": "Are backups encrypted and stored securely?",
+              "type": "boolean",
+              "required": true,
+              "weight": 3,
+              "category": "encryption"
+            },
+            {
+              "id": "backup_003",
+              "question": "Is there a disaster recovery plan documented and tested?",
+              "type": "boolean",
+              "required": true,
+              "weight": 3,
+              "category": "recovery"
+            }
+          ]
+        }
+      ]
+    },
+    "access_control": {
+      "title": "Access Control & Identity Management",
+      "description": "Assessment of access control and identity management systems",
+      "sections": [
+        {
+          "id": "authentication",
+          "title": "Authentication",
+          "questions": [
+            {
+              "id": "auth_001",
+              "question": "Is multi-factor authentication implemented for all privileged accounts?",
+              "type": "boolean",
+              "required": true,
+              "weight": 3,
+              "category": "authentication"
+            },
+            {
+              "id": "auth_002",
+              "question": "Are strong password policies enforced?",
+              "type": "boolean",
+              "required": true,
+              "weight": 2,
+              "category": "policy"
+            },
+            {
+              "id": "auth_003",
+              "question": "Is there a centralized identity management system?",
+              "type": "boolean",
+              "required": true,
+              "weight": 2,
+              "category": "management"
+            }
+          ]
+        },
+        {
+          "id": "authorization",
+          "title": "Authorization",
+          "questions": [
+            {
+              "id": "perm_001",
+              "question": "Are user permissions based on the principle of least privilege?",
+              "type": "boolean",
+              "required": true,
+              "weight": 3,
+              "category": "principle"
+            },
+            {
+              "id": "perm_002",
+              "question": "Are privileged accounts regularly reviewed and audited?",
+              "type": "boolean",
+              "required": true,
+              "weight": 2,
+              "category": "review"
+            },
+            {
+              "id": "perm_003",
+              "question": "Is there a process for granting and revoking access?",
+              "type": "boolean",
+              "required": true,
+              "weight": 2,
+              "category": "process"
+            }
+          ]
+        }
+      ]
+    },
+    "incident_response": {
+      "title": "Incident Response & Monitoring",
+      "description": "Assessment of incident response capabilities and security monitoring",
+      "sections": [
+        {
+          "id": "incident_response",
+          "title": "Incident Response",
+          "questions": [
+            {
+              "id": "ir_001",
+              "question": "Is there a documented incident response plan?",
+              "type": "boolean",
+              "required": true,
+              "weight": 3,
+              "category": "planning"
+            },
+            {
+              "id": "ir_002",
+              "question": "Is the incident response team trained and ready?",
+              "type": "boolean",
+              "required": true,
+              "weight": 3,
+              "category": "training"
+            },
+            {
+              "id": "ir_003",
+              "question": "Are incident response procedures regularly tested?",
+              "type": "select",
+              "options": ["Monthly", "Quarterly", "Annually", "Never"],
+              "required": true,
+              "weight": 2,
+              "category": "testing"
+            }
+          ]
+        },
+        {
+          "id": "security_monitoring",
+          "title": "Security Monitoring",
+          "questions": [
+            {
+              "id": "mon_001",
+              "question": "Is there a Security Information and Event Management (SIEM) system?",
+              "type": "boolean",
+              "required": true,
+              "weight": 2,
+              "category": "monitoring"
+            },
+            {
+              "id": "mon_002",
+              "question": "Are security events monitored 24/7?",
+              "type": "boolean",
+              "required": true,
+              "weight": 2,
+              "category": "monitoring"
+            },
+            {
+              "id": "mon_003",
+              "question": "Are there defined security event escalation procedures?",
+              "type": "boolean",
+              "required": true,
+              "weight": 2,
+              "category": "procedure"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "scoring_methodology": {
+    "calculation": {
+      "max_score_per_question": 3,
+      "question_weights": {
+        "critical": 3,
+        "high": 2,
+        "medium": 1,
+        "low": 0.5
+      }
+    },
+    "risk_levels": {
+      "low": {
+        "range": [0, 40],
+        "description": "Low risk - basic security controls in place",
+        "recommendations": [
+          "Continue current security practices",
+          "Implement additional monitoring capabilities",
+          "Regular security awareness training"
+        ]
+      },
+      "medium": {
+        "range": [40, 70],
+        "description": "Medium risk - some gaps in security controls",
+        "recommendations": [
+          "Address identified security gaps",
+          "Enhance security monitoring",
+          "Implement additional access controls"
+        ]
+      },
+      "high": {
+        "range": [70, 85],
+        "description": "High risk - significant security weaknesses",
+        "recommendations": [
+          "Immediate action required to address security gaps",
+          "Implement comprehensive security program",
+          "Consider external security assessment"
+        ]
+      },
+      "critical": {
+        "range": [85, 100],
+        "description": "Critical risk - major security deficiencies",
+        "recommendations": [
+          "Immediate remediation required",
+          "Consider complete security program overhaul",
+          "Engage external security experts"
+        ]
+      }
+    }
+  },
+  "compliance_frameworks": {
+    "nist_cybersecurity_framework": {
+      "functions": ["Identify", "Protect", "Detect", "Respond", "Recover"],
+      "categories": {
+        "Identify": [
+          "Asset Management",
+          "Business Environment",
+          "Governance",
+          "Risk Assessment",
+          "Risk Management Strategy"
+        ],
+        "Protect": [
+          "Access Control",
+          "Awareness and Training",
+          "Data Security",
+          "Information Protection",
+          "Maintenance"
+        ],
+        "Detect": [
+          "Anomalies and Events",
+          "Security Continuous Monitoring",
+          "Detection Processes"
+        ],
+        "Respond": [
+          "Response Planning",
+          "Communications",
+          "Analysis",
+          "Mitigation",
+          "Improvements"
+        ],
+        "Recover": [
+          "Recovery Planning",
+          "Improvements",
+          "Communications"
+        ]
+      }
+    },
+    "iso_27001": {
+      "domains": [
+        "Information Security Policies",
+        "Organization of Information Security",
+        "Human Resource Security",
+        "Asset Management",
+        "Access Control",
+        "Cryptography",
+        "Physical and Environmental Security",
+        "Operations Security",
+        "Communications Security",
+        "System Acquisition, Development and Maintenance",
+        "Supplier Relationships",
+        "Incident Management",
+        "Business Continuity Management",
+        "Compliance"
+      ]
+    },
+    "pci_dss": {
+      "requirements": [
+        "Install and maintain a firewall configuration",
+        "Do not use vendor-supplied defaults for system passwords",
+        "Protect stored cardholder data",
+        "Encrypt transmission of cardholder data",
+        "Use and regularly update anti-virus software",
+        "Develop and maintain secure systems and applications",
+        "Restrict access to cardholder data by business need to know",
+        "Assign a unique ID to each person with computer access",
+        "Restrict physical access to cardholder data",
+        "Track and monitor all access to network resources",
+        "Regularly test security systems and processes",
+        "Maintain a policy that addresses information security"
+      ]
+    }
+  }
+}

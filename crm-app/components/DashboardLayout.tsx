@@ -84,6 +84,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
     { name: 'Finance', href: '/dashboard/finance', icon: BarChart3 },
     { name: 'Documents', href: '/dashboard/documents', icon: FileText },
     { name: 'Communication', href: '/dashboard/communication', icon: MessageSquare },
+    { name: 'Security', href: '/dashboard/security', icon: Shield },
     { name: 'Visa Compliance', href: '/dashboard/visa-compliance', icon: Shield },
     { name: 'Workflow', href: '/dashboard/workflow', icon: GitBranch },
     { name: 'Payroll', href: '/dashboard/payroll', icon: Package },

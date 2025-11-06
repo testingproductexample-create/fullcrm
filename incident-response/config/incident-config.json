@@ -1,0 +1,116 @@
+{
+  "incident_config": {
+    "severity_levels": {
+      "critical": {
+        "level": 1,
+        "description": "Immediate threat to business operations or sensitive data",
+        "response_time": "15 minutes",
+        "escalation_timeout": "30 minutes",
+        "notification_channels": ["email", "sms", "slack", "teams"],
+        "requires_executive_notification": true
+      },
+      "high": {
+        "level": 2,
+        "description": "Significant security breach or system compromise",
+        "response_time": "1 hour",
+        "escalation_timeout": "2 hours",
+        "notification_channels": ["email", "slack", "teams"],
+        "requires_executive_notification": false
+      },
+      "medium": {
+        "level": 3,
+        "description": "Potential security incident requiring investigation",
+        "response_time": "4 hours",
+        "escalation_timeout": "8 hours",
+        "notification_channels": ["email", "slack"],
+        "requires_executive_notification": false
+      },
+      "low": {
+        "level": 4,
+        "description": "Minor security event or policy violation",
+        "response_time": "24 hours",
+        "escalation_timeout": "48 hours",
+        "notification_channels": ["email"],
+        "requires_executive_notification": false
+      }
+    },
+    "incident_types": {
+      "malware": {
+        "category": "Malicious Software",
+        "typical_indicators": ["suspicious file execution", "unauthorized processes", "network anomalies"],
+        "default_severity": "high",
+        "required_actions": ["isolate_system", "collect_evidence", "update_antivirus"]
+      },
+      "phishing": {
+        "category": "Social Engineering",
+        "typical_indicators": ["suspicious emails", "credential harvesting", "social engineering attempts"],
+        "default_severity": "medium",
+        "required_actions": ["block_sender", "notify_users", "update_blocklists"]
+      },
+      "data_breach": {
+        "category": "Data Compromise",
+        "typical_indicators": ["unauthorized access", "data exfiltration", "unusual data access patterns"],
+        "default_severity": "critical",
+        "required_actions": ["contain_breach", "notify_legal", "document_incident"]
+      },
+      "ddos": {
+        "category": "Availability Attack",
+        "typical_indicators": ["traffic spikes", "service unavailability", "resource exhaustion"],
+        "default_severity": "high",
+        "required_actions": ["activate_ddos_protection", "monitor_traffic", "communicate_with_stakeholders"]
+      },
+      "insider_threat": {
+        "category": "Internal Threat",
+        "typical_indicators": ["unauthorized data access", "policy violations", "privilege abuse"],
+        "default_severity": "high",
+        "required_actions": ["investigate_user_activity", "preserve_evidence", "coordinate_with_hr"]
+      },
+      "network_intrusion": {
+        "category": "Network Compromise",
+        "typical_indicators": ["unauthorized network access", "lateral movement", "anomalous connections"],
+        "default_severity": "critical",
+        "required_actions": ["isolate_network", "analyze_timeline", "strengthen_defenses"]
+      }
+    },
+    "team_structure": {
+      "incident_commander": {
+        "role": "Overall incident coordination and decision making",
+        "availability": "24/7"
+      },
+      "security_analyst": {
+        "role": "Technical analysis and investigation",
+        "availability": "24/7"
+      },
+      "forensics_specialist": {
+        "role": "Digital evidence collection and analysis",
+        "availability": "On-call"
+      },
+      "communications_lead": {
+        "role": "Internal and external communications",
+        "availability": "Business hours"
+      },
+      "legal_counsel": {
+        "role": "Legal compliance and regulatory requirements",
+        "availability": "On-call"
+      },
+      "executive_stakeholder": {
+        "role": "Executive decision making and resource allocation",
+        "availability": "Business hours"
+      }
+    },
+    "escalation_matrix": {
+      "level_1": {
+        "trigger": "Initial detection and classification",
+        "action": "Notify incident commander and security team"
+      },
+      "level_2": {
+        "trigger": "Severity confirmation or timeline exceeded",
+        "action": "Escalate to management and relevant stakeholders"
+      },
+      "level_3": {
+        "trigger": "Public impact or regulatory implications",
+        "action": "Activate crisis management team and external communications"
+      }
+    }
+  }
+}

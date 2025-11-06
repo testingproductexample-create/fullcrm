@@ -985,3 +985,455 @@ export interface DocumentTag {
   created_at: string;
   created_by: string;
 }
+
+// ============================================================================
+// SECURITY & COMPLIANCE HARDENING SYSTEM TYPES
+// ============================================================================
+
+// Multi-factor authentication settings
+export interface MFASettings {
+  id: string;
+  user_id: string;
+  organization_id: string;
+  is_enabled: boolean;
+  backup_codes: string[];
+  totp_secret: string | null;
+  sms_enabled: boolean;
+  email_enabled: boolean;
+  biometric_enabled: boolean;
+  last_used_at: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+// Session management and security
+export interface UserSession {
+  id: string;
+  user_id: string;
+  organization_id: string;
+  session_token: string;
+  device_info: Record<string, any> | null;
+  ip_address: string | null;
+  user_agent: string | null;
+  location_info: Record<string, any> | null;
+  is_active: boolean;
+  last_activity: string;
+  expires_at: string | null;
+  created_at: string;
+}
+
+// Failed login attempts tracking
+export interface FailedLoginAttempt {
+  id: string;
+  email: string | null;
+  ip_address: string | null;
+  user_agent: string | null;
+  attempt_count: number;
+  is_blocked: boolean;
+  blocked_until: string | null;
+  last_attempt_at: string;
+  created_at: string;
+}
+
+// Password history to prevent reuse
+export interface PasswordHistory {
+  id: string;
+  user_id: string;
+  password_hash: string;
+  created_at: string;
+}
+
+// Security roles with granular permissions
+export interface SecurityRole {
+  id: string;
+  organization_id: string;
+  role_name: string;
+  role_description: string | null;
+  is_system_role: boolean;
+  permissions: Record<string, any>;
+  is_active: boolean;
+  created_by: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+// User role assignments with time-based access
+export interface UserRoleAssignment {
+  id: string;
+  user_id: string;
+  role_id: string;
+  organization_id: string;
+  assigned_by: string | null;
+  valid_from: string;
+  valid_until: string | null;
+  is_active: boolean;
+  assignment_reason: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+// Resource permissions for fine-grained access control
+export interface ResourcePermission {
+  id: string;
+  organization_id: string;
+  resource_type: string;
+  resource_id: string | null;
+  user_id: string | null;
+  role_id: string | null;
+  permissions: Record<string, any>;
+  granted_by: string | null;
+  expires_at: string | null;
+  created_at: string;
+}
+
+// Enhanced audit trail for all system activities
+export interface SecurityAuditLog {
+  id: string;
+  organization_id: string;
+  user_id: string | null;
+  session_id: string | null;
+  event_type: string;
+  event_category: 'authentication' | 'authorization' | 'data' | 'system';
+  resource_type: string | null;
+  resource_id: string | null;
+  action: 'create' | 'read' | 'update' | 'delete' | 'login' | 'logout';
+  old_values: Record<string, any> | null;
+  new_values: Record<string, any> | null;
+  ip_address: string | null;
+  user_agent: string | null;
+  request_id: string | null;
+  risk_score: number;
+  event_source: 'web' | 'api' | 'mobile' | 'system';
+  additional_context: Record<string, any> | null;
+  created_at: string;
+}
+
+// User behavior analytics for anomaly detection
+export interface UserBehaviorAnalytics {
+  id: string;
+  user_id: string;
+  organization_id: string;
+  session_id: string | null;
+  behavior_type: string;
+  behavior_data: Record<string, any>;
+  anomaly_score: number;
+  is_anomaly: boolean;
+  baseline_data: Record<string, any> | null;
+  detection_rules: string[];
+  analyzed_at: string;
+  created_at: string;
+}
+
+// Security incidents and alerts
+export interface SecurityIncident {
+  id: string;
+  organization_id: string;
+  incident_type: string;
+  severity_level: 'low' | 'medium' | 'high' | 'critical';
+  status: 'open' | 'investigating' | 'resolved' | 'false_positive';
+  title: string;
+  description: string | null;
+  affected_users: string[];
+  affected_resources: Record<string, any> | null;
+  detection_method: 'automated' | 'manual' | 'external';
+  response_actions: Record<string, any> | null;
+  resolved_by: string | null;
+  resolved_at: string | null;
+  assigned_to: string | null;
+  escalated_at: string | null;
+  additional_data: Record<string, any> | null;
+  created_at: string;
+  updated_at: string;
+}
+
+// Encryption keys management
+export interface EncryptionKey {
+  id: string;
+  organization_id: string;
+  key_type: 'field_encryption' | 'file_encryption' | 'backup';
+  key_purpose: 'pii' | 'financial' | 'medical' | 'business';
+  key_algorithm: string;
+  key_version: number;
+  is_active: boolean;
+  created_by: string | null;
+  rotated_at: string | null;
+  expires_at: string | null;
+  created_at: string;
+}
+
+// Sensitive data classification and handling
+export interface DataClassification {
+  id: string;
+  organization_id: string;
+  table_name: string;
+  column_name: string;
+  classification_level: 'public' | 'internal' | 'confidential' | 'restricted';
+  data_type: 'pii' | 'financial' | 'health' | 'business';
+  encryption_required: boolean;
+  retention_period_days: number | null;
+  access_restrictions: Record<string, any> | null;
+  compliance_tags: string[];
+  created_by: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+// Data anonymization and pseudonymization tracking
+export interface DataAnonymizationLog {
+  id: string;
+  organization_id: string;
+  operation_type: 'anonymize' | 'pseudonymize' | 'restore';
+  table_name: string;
+  record_ids: string[];
+  fields_affected: string[];
+  anonymization_method: 'masking' | 'randomization' | 'generalization' | null;
+  request_reason: string | null;
+  performed_by: string | null;
+  is_reversible: boolean;
+  reversal_key: string | null;
+  created_at: string;
+}
+
+// Data consent management (PDPL compliance)
+export interface DataConsent {
+  id: string;
+  organization_id: string;
+  subject_id: string;
+  subject_type: 'customer' | 'employee' | 'vendor';
+  consent_type: 'marketing' | 'processing' | 'sharing' | 'storage';
+  consent_status: 'pending' | 'granted' | 'denied' | 'withdrawn' | 'expired';
+  consent_method: 'website_form' | 'paper_form' | 'verbal' | 'email' | null;
+  purpose: string;
+  data_categories: string[];
+  retention_period_days: number | null;
+  consent_language: string;
+  legal_basis: string | null;
+  granted_at: string | null;
+  withdrawn_at: string | null;
+  expires_at: string | null;
+  evidence_url: string | null;
+  additional_notes: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+// Data subject rights requests (PDPL Article 13)
+export interface DataSubjectRequest {
+  id: string;
+  organization_id: string;
+  subject_id: string;
+  subject_type: string;
+  request_type: 'access' | 'rectification' | 'erasure' | 'portability' | 'restriction';
+  status: 'received' | 'processing' | 'completed' | 'rejected';
+  request_details: string | null;
+  identity_verified: boolean;
+  verification_method: string | null;
+  requested_data: Record<string, any> | null;
+  response_data: Record<string, any> | null;
+  legal_basis_for_processing: string | null;
+  rejection_reason: string | null;
+  requested_by_email: string | null;
+  requested_by_phone: string | null;
+  assigned_to: string | null;
+  due_date: string | null;
+  completed_at: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+// UAE Cybersecurity compliance tracking
+export interface CybersecurityCompliance {
+  id: string;
+  organization_id: string;
+  framework: 'UAE_CSA' | 'NIST' | 'ISO27001';
+  control_id: string;
+  control_name: string;
+  control_description: string | null;
+  implementation_status: 'implemented' | 'partially' | 'not_implemented';
+  compliance_level: 'basic' | 'advanced' | 'critical' | null;
+  evidence_documents: string[];
+  assessment_date: string | null;
+  next_review_date: string | null;
+  responsible_person: string | null;
+  risk_rating: 'low' | 'medium' | 'high' | 'critical';
+  remediation_plan: string | null;
+  implementation_cost: number | null;
+  created_at: string;
+  updated_at: string;
+}
+
+// Real-time security monitoring rules
+export interface SecurityMonitoringRule {
+  id: string;
+  organization_id: string;
+  rule_name: string;
+  rule_type: 'threshold' | 'pattern' | 'anomaly' | 'compliance';
+  rule_category: 'authentication' | 'data_access' | 'system';
+  conditions: Record<string, any>;
+  threshold_values: Record<string, any> | null;
+  is_active: boolean;
+  severity_level: string;
+  alert_channels: string[];
+  auto_response_actions: Record<string, any> | null;
+  created_by: string | null;
+  last_triggered_at: string | null;
+  trigger_count: number;
+  created_at: string;
+  updated_at: string;
+}
+
+// Security alerts and notifications
+export interface SecurityAlert {
+  id: string;
+  organization_id: string;
+  rule_id: string | null;
+  alert_type: string;
+  severity_level: string;
+  title: string;
+  description: string | null;
+  status: 'open' | 'acknowledged' | 'resolved' | 'false_positive';
+  affected_users: string[];
+  event_data: Record<string, any> | null;
+  auto_actions_taken: Record<string, any> | null;
+  acknowledged_by: string | null;
+  acknowledged_at: string | null;
+  resolved_by: string | null;
+  resolved_at: string | null;
+  resolution_notes: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+// API security and rate limiting
+export interface APISecurityLog {
+  id: string;
+  organization_id: string;
+  api_endpoint: string;
+  user_id: string | null;
+  api_key_id: string | null;
+  request_method: string;
+  request_size: number | null;
+  response_status: number | null;
+  response_time_ms: number | null;
+  ip_address: string | null;
+  user_agent: string | null;
+  rate_limit_hit: boolean;
+  rate_limit_window: string | null;
+  rate_limit_count: number | null;
+  authentication_method: string | null;
+  request_headers: Record<string, any> | null;
+  error_details: string | null;
+  created_at: string;
+}
+
+// Data backup tracking and management
+export interface DataBackup {
+  id: string;
+  organization_id: string;
+  backup_type: 'full' | 'incremental' | 'differential';
+  backup_scope: 'database' | 'files' | 'complete';
+  backup_status: 'completed' | 'failed' | 'in_progress';
+  backup_location: string;
+  backup_size_bytes: number | null;
+  encryption_used: boolean;
+  encryption_algorithm: string;
+  checksum: string | null;
+  retention_until: string | null;
+  restore_tested_at: string | null;
+  restore_test_status: 'passed' | 'failed' | 'pending' | null;
+  initiated_by: string | null;
+  error_details: string | null;
+  created_at: string;
+  completed_at: string | null;
+}
+
+// Disaster recovery procedures and testing
+export interface DisasterRecoveryProcedure {
+  id: string;
+  organization_id: string;
+  procedure_name: string;
+  procedure_type: 'data_breach' | 'system_failure' | 'cyber_attack';
+  priority_level: number;
+  steps: Record<string, any>;
+  responsible_roles: string[];
+  estimated_recovery_time: string | null;
+  last_tested_at: string | null;
+  test_results: string | null;
+  next_test_due: string | null;
+  is_active: boolean;
+  created_by: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+// Organization security policies and settings
+export interface SecurityPolicy {
+  id: string;
+  organization_id: string;
+  policy_type: 'password' | 'access' | 'data_handling' | 'incident_response';
+  policy_name: string;
+  policy_content: Record<string, any>;
+  is_active: boolean;
+  enforcement_level: 'advisory' | 'recommended' | 'mandatory';
+  applies_to_roles: string[];
+  effective_from: string;
+  expires_at: string | null;
+  created_by: string | null;
+  approved_by: string | null;
+  approval_date: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+// Security configuration settings
+export interface SecuritySetting {
+  id: string;
+  organization_id: string;
+  setting_category: 'authentication' | 'session' | 'encryption' | 'monitoring';
+  setting_key: string;
+  setting_value: Record<string, any>;
+  setting_type: 'boolean' | 'integer' | 'string' | 'json';
+  is_sensitive: boolean;
+  description: string | null;
+  validation_rules: Record<string, any> | null;
+  modified_by: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+// Combined types for complex queries
+export interface SecurityDashboardData {
+  incidents: SecurityIncident[];
+  alerts: SecurityAlert[];
+  auditLogs: SecurityAuditLog[];
+  compliance: CybersecurityCompliance[];
+  stats: {
+    activeIncidents: number;
+    criticalAlerts: number;
+    complianceScore: number;
+    riskLevel: 'low' | 'medium' | 'high' | 'critical';
+  };
+}
+
+export interface UserSecurityProfile {
+  user: Profile;
+  mfaSettings: MFASettings;
+  roles: (UserRoleAssignment & { role: SecurityRole })[];
+  permissions: ResourcePermission[];
+  sessions: UserSession[];
+  behaviorAnalytics: UserBehaviorAnalytics[];
+  riskScore: number;
+}
+
+export interface ComplianceReport {
+  framework: string;
+  overallScore: number;
+  controls: CybersecurityCompliance[];
+  gaps: CybersecurityCompliance[];
+  recommendations: string[];
+  nextActions: {
+    control: CybersecurityCompliance;
+    priority: 'high' | 'medium' | 'low';
+    dueDate: string;
+  }[];
+}
