@@ -1823,3 +1823,401 @@ export interface EmployeeStatement {
   created_at: string;
   updated_at: string;
 }
+
+// ======================================
+// PAYSLIP GENERATION SYSTEM INTERFACES
+// 6 comprehensive interfaces for UAE-compliant payslip management
+// ======================================
+
+export interface Payslip {
+  id: string;
+  organization_id: string;
+  employee_id: string;
+  payroll_run_id: string;
+  
+  // Payslip identification
+  payslip_number: string;
+  payslip_reference?: string;
+  
+  // Period information
+  pay_period_start: string; // Date
+  pay_period_end: string; // Date
+  issue_date: string; // Date
+  
+  // Salary breakdown (in AED)
+  base_salary_aed: number;
+  commission_amount_aed?: number;
+  bonus_amount_aed?: number;
+  allowances_aed?: number;
+  overtime_amount_aed?: number;
+  gross_salary_aed: number;
+  
+  // Deductions
+  income_tax_aed?: number;
+  social_security_aed?: number;
+  insurance_aed?: number;
+  advance_deduction_aed?: number;
+  other_deductions_aed?: number;
+  total_deductions_aed: number;
+  
+  // Final amounts
+  net_salary_aed: number;
+  
+  // PDF and template information
+  template_id?: string;
+  pdf_storage_path?: string;
+  pdf_file_size?: number;
+  pdf_generated_at?: string;
+  
+  // Digital signature
+  digital_signature_id?: string;
+  is_digitally_signed?: boolean;
+  signature_timestamp?: string;
+  
+  // UAE compliance
+  emirates_id?: string;
+  visa_number?: string;
+  bank_account_number?: string;
+  bank_name?: string;
+  
+  // Status and validation
+  generation_status?: 'draft' | 'generated' | 'signed' | 'distributed' | 'archived';
+  validation_status?: 'pending' | 'validated' | 'error' | 'compliance_verified';
+  compliance_verified?: boolean;
+  
+  // Metadata
+  generated_by?: string;
+  approved_by?: string;
+  approved_at?: string;
+  notes?: string;
+  
+  // Timestamps
+  created_at: string;
+  updated_at: string;
+}
+
+export interface PayslipTemplate {
+  id: string;
+  organization_id: string;
+  
+  // Template identification
+  template_name: string;
+  template_code: string;
+  template_type?: 'standard' | 'premium' | 'government_compliant' | 'executive' | 'contractor';
+  
+  // Template configuration
+  template_version?: string;
+  template_description?: string;
+  
+  // Design settings
+  logo_url?: string;
+  company_header_text?: string;
+  primary_color?: string;
+  secondary_color?: string;
+  font_family?: string;
+  font_size?: number;
+  
+  // Layout configuration
+  layout_style?: 'professional' | 'modern' | 'classic' | 'minimal' | 'government';
+  include_logo?: boolean;
+  include_company_address?: boolean;
+  include_employee_photo?: boolean;
+  include_qr_code?: boolean;
+  include_signature_line?: boolean;
+  
+  // Content settings
+  show_detailed_breakdown?: boolean;
+  show_year_to_date?: boolean;
+  show_leave_balance?: boolean;
+  show_tax_details?: boolean;
+  show_bank_details?: boolean;
+  
+  // UAE compliance settings
+  uae_ministry_compliant?: boolean;
+  include_arabic_translation?: boolean;
+  include_emirates_id?: boolean;
+  include_visa_details?: boolean;
+  include_wps_reference?: boolean;
+  
+  // Usage and status
+  is_active?: boolean;
+  is_default?: boolean;
+  usage_count?: number;
+  last_used_at?: string;
+  
+  // Approval and validation
+  approved_by?: string;
+  approved_at?: string;
+  approval_status?: 'pending' | 'approved' | 'rejected' | 'under_review';
+  
+  // Metadata
+  created_by: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface DigitalSignature {
+  id: string;
+  organization_id: string;
+  
+  // Signature identification
+  signature_reference: string;
+  signature_type?: 'payslip' | 'contract' | 'approval' | 'compliance';
+  
+  // Payslip association
+  payslip_id?: string;
+  employee_id: string;
+  
+  // Signer information
+  signer_name: string;
+  signer_title?: string;
+  signer_employee_id?: string;
+  signer_email?: string;
+  
+  // Signature data
+  signature_hash: string;
+  signature_algorithm?: string;
+  certificate_serial?: string;
+  certificate_issuer?: string;
+  
+  // Verification data
+  verification_code: string;
+  verification_url?: string;
+  verification_method?: 'digital_certificate' | 'biometric' | 'two_factor' | 'government_id';
+  
+  // Timestamps and validity
+  signed_at: string;
+  valid_from: string;
+  valid_until?: string;
+  is_valid?: boolean;
+  
+  // Compliance and audit
+  signature_purpose: string;
+  legal_framework?: string;
+  compliance_level?: 'basic' | 'standard' | 'high' | 'government_grade';
+  audit_trail?: Record<string, any>; // JSONB
+  
+  // Status
+  signature_status?: 'active' | 'expired' | 'revoked' | 'suspended';
+  revocation_reason?: string;
+  revoked_at?: string;
+  revoked_by?: string;
+  
+  // Metadata
+  ip_address?: string;
+  user_agent?: string;
+  device_fingerprint?: string;
+  geo_location?: Record<string, any>; // JSONB
+  
+  // Timestamps
+  created_at: string;
+  updated_at: string;
+}
+
+export interface PayslipDistribution {
+  id: string;
+  organization_id: string;
+  
+  // Distribution identification
+  distribution_reference: string;
+  distribution_batch_id?: string;
+  
+  // Payslip and employee association
+  payslip_id: string;
+  employee_id: string;
+  
+  // Distribution method
+  distribution_method: 'email' | 'sms' | 'whatsapp' | 'portal_notification' | 'physical_delivery';
+  
+  // Recipient information
+  recipient_email?: string;
+  recipient_phone?: string;
+  recipient_whatsapp?: string;
+  recipient_name: string;
+  
+  // Distribution content
+  subject_line?: string;
+  message_content?: string;
+  attachment_size?: number;
+  attachment_type?: string;
+  
+  // Delivery tracking
+  sent_at?: string;
+  delivered_at?: string;
+  opened_at?: string;
+  downloaded_at?: string;
+  
+  // Status tracking
+  distribution_status?: 'pending' | 'sent' | 'delivered' | 'failed' | 'bounced' | 'opened' | 'downloaded';
+  delivery_attempts?: number;
+  max_delivery_attempts?: number;
+  
+  // Error handling
+  error_message?: string;
+  error_code?: string;
+  last_error_at?: string;
+  
+  // Provider information
+  service_provider?: string;
+  provider_message_id?: string;
+  provider_status?: string;
+  provider_response?: Record<string, any>; // JSONB
+  
+  // Security and compliance
+  is_secure_delivery?: boolean;
+  encryption_method?: string;
+  access_code?: string;
+  expires_at?: string;
+  
+  // Employee interaction
+  employee_accessed_at?: string;
+  access_count?: number;
+  access_ip_addresses?: Record<string, any>; // JSONB
+  last_access_device?: string;
+  
+  // Retry and scheduling
+  next_retry_at?: string;
+  scheduled_for?: string;
+  priority_level?: 'low' | 'normal' | 'high' | 'urgent';
+  
+  // Metadata
+  initiated_by: string;
+  notes?: string;
+  
+  // Timestamps
+  created_at: string;
+  updated_at: string;
+}
+
+export interface EmployeeAccessLog {
+  id: string;
+  organization_id: string;
+  
+  // Employee and session information
+  employee_id: string;
+  session_id?: string;
+  
+  // Access details
+  access_type: 'login' | 'logout' | 'payslip_view' | 'payslip_download' | 'password_change' | 'profile_update';
+  accessed_resource?: string;
+  payslip_id?: string;
+  
+  // Authentication information
+  authentication_method?: 'password' | 'two_factor' | 'biometric' | 'sso' | 'oauth';
+  login_successful?: boolean;
+  failure_reason?: string;
+  
+  // Device and location information
+  ip_address: string;
+  user_agent?: string;
+  device_type?: string;
+  operating_system?: string;
+  browser_name?: string;
+  browser_version?: string;
+  
+  // Geographic information
+  country_code?: string;
+  city?: string;
+  geo_location?: Record<string, any>; // JSONB
+  timezone?: string;
+  
+  // Security analysis
+  is_suspicious_activity?: boolean;
+  risk_score?: number;
+  security_flags?: Record<string, any>; // JSONB
+  vpn_detected?: boolean;
+  proxy_detected?: boolean;
+  
+  // Session duration and activity
+  session_duration?: number; // in seconds
+  pages_visited?: number;
+  actions_performed?: number;
+  session_end_reason?: 'logout' | 'timeout' | 'forced_logout' | 'system_maintenance';
+  
+  // Compliance and audit
+  compliance_purpose?: string;
+  data_accessed?: Record<string, any>; // JSONB
+  data_downloaded?: Record<string, any>; // JSONB
+  retention_period_days?: number;
+  
+  // Timestamps
+  access_timestamp: string;
+  session_start_time?: string;
+  session_end_time?: string;
+  created_at: string;
+}
+
+export interface PayslipArchive {
+  id: string;
+  organization_id: string;
+  
+  // Archive identification
+  archive_reference: string;
+  archive_batch_id?: string;
+  
+  // Original payslip information
+  original_payslip_id: string;
+  employee_id: string;
+  
+  // Archive timing
+  pay_period_year: number;
+  pay_period_month: number;
+  archived_date: string; // Date
+  
+  // Storage information
+  storage_location: string;
+  storage_type?: 'cloud' | 'local' | 'hybrid' | 'external';
+  storage_provider?: string;
+  storage_region?: string;
+  
+  // File information
+  archived_file_path: string;
+  archived_file_size: number;
+  file_format?: string;
+  compression_method?: string;
+  encrypted?: boolean;
+  encryption_method?: string;
+  
+  // Checksums and integrity
+  file_checksum: string;
+  checksum_algorithm?: string;
+  integrity_verified?: boolean;
+  last_integrity_check?: string;
+  
+  // Legal and compliance
+  retention_period_years?: number;
+  legal_hold?: boolean;
+  legal_hold_reason?: string;
+  legal_hold_until?: string; // Date
+  disposal_eligible_date: string; // Date
+  disposal_status?: 'retained' | 'scheduled_disposal' | 'disposed' | 'permanent_retention';
+  
+  // Access control
+  access_level?: 'public' | 'internal' | 'restricted' | 'confidential';
+  authorized_roles?: Record<string, any>; // JSONB
+  access_log_required?: boolean;
+  
+  // Migration and recovery
+  migration_status?: 'archived' | 'migrating' | 'restored' | 'corrupted';
+  backup_locations?: Record<string, any>; // JSONB
+  recovery_point_objective?: number; // hours
+  last_backup_timestamp?: string;
+  
+  // Metadata and search
+  search_metadata?: Record<string, any>; // JSONB
+  tags?: Record<string, any>; // JSONB
+  employee_name: string;
+  employee_emirates_id?: string;
+  department_name?: string;
+  
+  // Audit trail
+  archived_by: string;
+  archive_reason?: string;
+  archive_method?: string;
+  verified_by?: string;
+  verified_at?: string;
+  
+  // Timestamps
+  created_at: string;
+  updated_at: string;
+}
