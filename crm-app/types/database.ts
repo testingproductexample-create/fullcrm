@@ -1389,3 +1389,437 @@ export interface SalaryReport {
   created_at: string;
   updated_at: string;
 }
+
+// =============================================================================
+// PAYROLL PROCESSING SYSTEM INTERFACES
+// =============================================================================
+
+export interface PayrollRun {
+  id: string;
+  organization_id: string;
+  run_name: string;
+  run_period_month: number;
+  run_period_year: number;
+  run_type?: string;
+  processing_status?: string;
+  total_employees?: number;
+  processed_employees?: number;
+  failed_employees?: number;
+  total_gross_amount_aed?: number;
+  total_net_amount_aed?: number;
+  total_deductions_aed?: number;
+  total_taxes_aed?: number;
+  total_bonuses_aed?: number;
+  total_commissions_aed?: number;
+  total_overtime_aed?: number;
+  uae_compliance_verified?: boolean;
+  wps_file_generated?: boolean;
+  bank_transfer_ready?: boolean;
+  calculation_started_at?: string;
+  calculation_completed_at?: string;
+  approved_at?: string;
+  approved_by?: string;
+  processed_at?: string;
+  processed_by?: string;
+  include_bonuses?: boolean;
+  include_commissions?: boolean;
+  include_overtime?: boolean;
+  auto_approve?: boolean;
+  notes?: string;
+  processing_logs?: Record<string, any>; // JSONB for logs
+  error_details?: Record<string, any>; // JSONB for error details
+  created_by?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface PayrollItem {
+  id: string;
+  organization_id: string;
+  payroll_run_id: string;
+  employee_id: string;
+  salary_calculation_id?: string;
+  employee_number?: string;
+  employee_name: string;
+  job_title?: string;
+  department_name?: string;
+  bank_account_number?: string;
+  bank_name?: string;
+  bank_iban?: string;
+  base_salary_aed: number;
+  overtime_amount_aed?: number;
+  commission_amount_aed?: number;
+  bonus_amount_aed?: number;
+  allowances_amount_aed?: number;
+  gross_salary_aed: number;
+  tax_deduction_aed?: number;
+  insurance_deduction_aed?: number;
+  advance_deduction_aed?: number;
+  leave_deduction_aed?: number;
+  other_deductions_aed?: number;
+  total_deductions_aed?: number;
+  net_salary_aed: number;
+  item_status?: string;
+  processing_order?: number;
+  total_work_hours?: number;
+  overtime_hours?: number;
+  leave_days_taken?: number;
+  minimum_wage_compliance?: boolean;
+  overtime_limit_compliance?: boolean;
+  working_hours_compliance?: boolean;
+  payment_method?: string;
+  payment_reference?: string;
+  payment_date?: string;
+  payment_status?: string;
+  calculation_breakdown?: Record<string, any>; // JSONB for calculation details
+  error_messages?: string[];
+  notes?: string;
+  created_by?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface EndOfService {
+  id: string;
+  organization_id: string;
+  employee_id: string;
+  employee_name: string;
+  employee_number?: string;
+  job_title?: string;
+  hire_date: string; // DATE format
+  termination_date: string; // DATE format
+  termination_reason?: string;
+  termination_type?: string;
+  total_service_years: number;
+  total_service_months: number;
+  total_service_days: number;
+  last_basic_salary_aed: number;
+  average_salary_last_6_months_aed?: number;
+  daily_salary_rate_aed: number;
+  gratuity_years_full?: number;
+  gratuity_months_partial?: number;
+  gratuity_days_calculation: number;
+  gratuity_amount_aed: number;
+  unused_annual_leave_days?: number;
+  leave_compensation_aed?: number;
+  notice_period_required_days?: number;
+  notice_period_paid_days?: number;
+  notice_period_amount_aed?: number;
+  overtime_pending_aed?: number;
+  bonus_pending_aed?: number;
+  commission_pending_aed?: number;
+  allowances_pending_aed?: number;
+  advance_recovery_aed?: number;
+  loan_recovery_aed?: number;
+  insurance_deduction_aed?: number;
+  equipment_charges_aed?: number;
+  other_deductions_aed?: number;
+  total_deductions_aed?: number;
+  gross_settlement_aed: number;
+  net_settlement_aed: number;
+  calculation_status?: string;
+  approval_level?: number;
+  uae_labor_law_compliance?: boolean;
+  ministry_notification_required?: boolean;
+  ministry_notification_sent?: boolean;
+  payment_method?: string;
+  payment_reference?: string;
+  payment_date?: string;
+  calculation_details?: Record<string, any>; // JSONB for calculation breakdown
+  supporting_documents?: Record<string, any>; // JSONB for document metadata
+  legal_requirements?: string;
+  notes?: string;
+  calculated_by?: string;
+  calculated_at?: string;
+  approved_by?: string;
+  approved_at?: string;
+  created_by?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface BankTransfer {
+  id: string;
+  organization_id: string;
+  payroll_run_id?: string;
+  transfer_batch_id: string;
+  transfer_type?: string;
+  transfer_date: string; // DATE format
+  value_date?: string; // DATE format
+  total_amount_aed: number;
+  total_employees: number;
+  successful_transfers?: number;
+  failed_transfers?: number;
+  pending_transfers?: number;
+  originating_bank?: string;
+  originating_account?: string;
+  processing_bank?: string;
+  wps_file_generated?: boolean;
+  wps_file_path?: string;
+  wps_reference_number?: string;
+  wps_submission_status?: string;
+  wps_submission_date?: string;
+  transfer_status?: string;
+  processing_started_at?: string;
+  processing_completed_at?: string;
+  central_bank_reference?: string;
+  central_bank_status?: string;
+  central_bank_response?: Record<string, any>; // JSONB for bank response
+  failed_employee_ids?: string[]; // UUID array
+  error_summary?: Record<string, any>; // JSONB for error details
+  retry_count?: number;
+  max_retries?: number;
+  bank_confirmation_received?: boolean;
+  bank_confirmation_date?: string;
+  bank_reference_number?: string;
+  reconciliation_status?: string;
+  compliance_check_passed?: boolean;
+  audit_trail?: Record<string, any>; // JSONB for audit logs
+  regulatory_notifications?: Record<string, any>; // JSONB for regulatory data
+  notes?: string;
+  created_by?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface TaxReport {
+  id: string;
+  organization_id: string;
+  report_name: string;
+  report_type: string;
+  report_period_start: string; // DATE format
+  report_period_end: string; // DATE format
+  tax_year: number;
+  tax_quarter?: number;
+  tax_month?: number;
+  total_gross_payroll_aed?: number;
+  total_basic_salary_aed?: number;
+  total_allowances_aed?: number;
+  total_overtime_aed?: number;
+  total_bonuses_aed?: number;
+  total_commissions_aed?: number;
+  total_income_tax_aed?: number;
+  total_social_security_aed?: number;
+  total_pension_contributions_aed?: number;
+  total_health_insurance_aed?: number;
+  total_employees?: number;
+  uae_nationals?: number;
+  expatriate_employees?: number;
+  new_hires?: number;
+  terminations?: number;
+  working_hours_compliance_rate?: number;
+  overtime_compliance_rate?: number;
+  minimum_wage_compliance_rate?: number;
+  leave_compliance_rate?: number;
+  wps_submission_count?: number;
+  wps_success_rate?: number;
+  wps_penalty_amount_aed?: number;
+  detailed_calculations?: Record<string, any>; // JSONB for calculations
+  employee_breakdown?: Record<string, any>; // JSONB for employee data
+  compliance_details?: Record<string, any>; // JSONB for compliance info
+  regulatory_requirements?: Record<string, any>; // JSONB for regulatory data
+  report_status?: string;
+  generation_method?: string;
+  submitted_to?: string;
+  submission_reference?: string;
+  submission_date?: string;
+  submission_deadline?: string; // DATE format
+  report_file_path?: string;
+  report_format?: string;
+  file_size_bytes?: number;
+  validation_passed?: boolean;
+  validation_errors?: string[];
+  compliance_score?: number;
+  generated_by?: string;
+  generated_at?: string;
+  reviewed_by?: string;
+  reviewed_at?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface PayrollApproval {
+  id: string;
+  organization_id: string;
+  approval_type: string;
+  reference_id: string;
+  reference_table: string;
+  approval_level?: number;
+  approval_step: string;
+  required_approval_count?: number;
+  current_approval_count?: number;
+  approval_status?: string;
+  is_final_approval?: boolean;
+  requested_by: string;
+  requested_at?: string;
+  assigned_to: string[]; // UUID array
+  department_approvers?: string[]; // UUID array
+  role_approvers?: string[];
+  amount_aed?: number;
+  approval_threshold_aed?: number;
+  requires_ceo_approval?: boolean;
+  requires_hr_approval?: boolean;
+  requires_finance_approval?: boolean;
+  approved_by?: string;
+  approved_at?: string;
+  rejection_reason?: string;
+  approval_notes?: string;
+  approval_deadline?: string;
+  escalation_level?: number;
+  escalated_to?: string;
+  escalated_at?: string;
+  notification_sent?: boolean;
+  reminder_count?: number;
+  last_reminder_sent?: string;
+  approval_criteria?: Record<string, any>; // JSONB for criteria
+  approval_documents?: Record<string, any>; // JSONB for documents
+  system_generated?: boolean;
+  uae_compliance_check?: boolean;
+  ministry_approval_required?: boolean;
+  legal_review_required?: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface PayrollAudit {
+  id: string;
+  organization_id: string;
+  audit_type: string;
+  audit_scope: string;
+  audit_title: string;
+  audit_description?: string;
+  audit_period_start: string; // DATE format
+  audit_period_end: string; // DATE format
+  payroll_run_ids?: string[]; // UUID array
+  employee_ids?: string[]; // UUID array
+  department_ids?: string[]; // UUID array
+  process_areas?: string[];
+  audit_status?: string;
+  priority_level?: string;
+  lead_auditor?: string;
+  audit_team?: string[]; // UUID array
+  external_auditor_firm?: string;
+  external_auditor_contact?: Record<string, any>; // JSONB for contact details
+  total_findings?: number;
+  critical_findings?: number;
+  high_findings?: number;
+  medium_findings?: number;
+  low_findings?: number;
+  financial_discrepancies_aed?: number;
+  overpayments_identified_aed?: number;
+  underpayments_identified_aed?: number;
+  compliance_score?: number;
+  uae_labor_law_compliance?: boolean;
+  wps_compliance?: boolean;
+  tax_compliance?: boolean;
+  evidence_collected?: Record<string, any>; // JSONB for evidence
+  documents_reviewed?: Record<string, any>; // JSONB for documents
+  interviews_conducted?: Record<string, any>; // JSONB for interviews
+  system_tests?: Record<string, any>; // JSONB for tests
+  audit_findings?: Record<string, any>; // JSONB for findings
+  recommendations?: Record<string, any>; // JSONB for recommendations
+  management_responses?: Record<string, any>; // JSONB for responses
+  corrective_actions?: Record<string, any>; // JSONB for actions
+  follow_up_required?: boolean;
+  follow_up_date?: string; // DATE format
+  follow_up_responsible?: string;
+  implementation_deadline?: string; // DATE format
+  regulatory_body?: string;
+  regulatory_reference?: string;
+  regulatory_deadline?: string; // DATE format
+  regulatory_submission_required?: boolean;
+  draft_report_date?: string; // DATE format
+  final_report_date?: string; // DATE format
+  report_file_path?: string;
+  executive_summary?: string;
+  management_sign_off?: boolean;
+  management_sign_off_by?: string;
+  management_sign_off_date?: string;
+  external_sign_off?: boolean;
+  external_sign_off_date?: string;
+  created_by?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface EmployeeStatement {
+  id: string;
+  organization_id: string;
+  employee_id: string;
+  statement_type: string;
+  statement_period_start: string; // DATE format
+  statement_period_end: string; // DATE format
+  statement_year: number;
+  statement_month?: number;
+  employee_number?: string;
+  employee_name: string;
+  employee_name_arabic?: string;
+  job_title?: string;
+  department_name?: string;
+  emirates_id?: string;
+  basic_salary_aed?: number;
+  overtime_earnings_aed?: number;
+  commission_earnings_aed?: number;
+  bonus_earnings_aed?: number;
+  allowances_total_aed?: number;
+  gross_earnings_aed?: number;
+  income_tax_aed?: number;
+  social_security_aed?: number;
+  health_insurance_aed?: number;
+  advance_deductions_aed?: number;
+  loan_deductions_aed?: number;
+  other_deductions_aed?: number;
+  total_deductions_aed?: number;
+  net_pay_aed?: number;
+  ytd_gross_earnings_aed?: number;
+  ytd_total_deductions_aed?: number;
+  ytd_net_pay_aed?: number;
+  ytd_tax_paid_aed?: number;
+  days_worked?: number;
+  overtime_hours?: number;
+  leave_days_taken?: number;
+  leave_balance_remaining?: number;
+  transportation_allowance_aed?: number;
+  meal_allowance_aed?: number;
+  accommodation_allowance_aed?: number;
+  skills_allowance_aed?: number;
+  bank_name?: string;
+  bank_account_number?: string;
+  iban?: string;
+  transfer_reference?: string;
+  transfer_date?: string; // DATE format
+  statement_status?: string;
+  generation_method?: string;
+  statement_file_path?: string;
+  statement_format?: string;
+  file_size_bytes?: number;
+  is_encrypted?: boolean;
+  distributed_via?: string;
+  distribution_date?: string;
+  employee_acknowledged?: boolean;
+  acknowledgment_date?: string;
+  acknowledgment_ip_address?: string;
+  primary_language?: string;
+  include_arabic?: boolean;
+  currency_format?: string;
+  uae_compliant?: boolean;
+  includes_legal_notices?: boolean;
+  privacy_consent?: boolean;
+  data_retention_period_months?: number;
+  detailed_calculations?: Record<string, any>; // JSONB for calculations
+  allowances_breakdown?: Record<string, any>; // JSONB for allowances
+  deductions_breakdown?: Record<string, any>; // JSONB for deductions
+  attendance_details?: Record<string, any>; // JSONB for attendance
+  is_correction?: boolean;
+  original_statement_id?: string;
+  correction_reason?: string;
+  correction_approved_by?: string;
+  access_level?: string;
+  viewing_restrictions?: Record<string, any>; // JSONB for access restrictions
+  generated_by?: string;
+  generated_at?: string;
+  approved_by?: string;
+  approved_at?: string;
+  created_at: string;
+  updated_at: string;
+}
