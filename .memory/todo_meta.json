@@ -96,7 +96,7 @@
         "id": "14",
         "content": "Inventory Management - Core Material Tracking",
         "details": "Complete inventory system: Fabric stock tracking, supplier management, material ordering, cost calculation, fabric categorization (wool, cotton, silk, etc.), color matching, pattern management, low stock alerts, supplier relationship management, fabric quality tracking, material cost optimization.",
-        "status": "pending",
+        "status": "completed",
         "priority": "high"
       },
       "15": {
