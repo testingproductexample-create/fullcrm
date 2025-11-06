@@ -589,7 +589,7 @@ function DraggableOrderCard({
             <Link
               href={`/dashboard/orders/${order.id}`}
               className="text-small font-medium text-neutral-900 hover:text-primary-600"
-              onClick={(e) => e.stopPropagation()}
+              onClick={(e: React.MouseEvent) => e.stopPropagation()}
             >
               {order.order_number}
             </Link>

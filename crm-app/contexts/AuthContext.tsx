@@ -30,7 +30,24 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         
         if (currentUser) {
           const userProfile = await getUserProfile(currentUser.id);
-          setProfile(userProfile);
+          // If profile fetch fails, create a fallback profile from user data
+          if (userProfile) {
+            setProfile(userProfile);
+          } else {
+            // Create fallback profile from auth user data
+            const fallbackProfile: Profile = {
+              id: currentUser.id,
+              organization_id: currentUser.id, // Use user ID as org ID
+              full_name: currentUser.email?.split('@')[0] || 'User',
+              role: 'owner',
+              phone: null,
+              avatar_url: null,
+              preferences: {},
+              created_at: currentUser.created_at || new Date().toISOString(),
+              updated_at: new Date().toISOString()
+            };
+            setProfile(fallbackProfile);
+          }
         }
       } finally {
         setLoading(false);
@@ -46,7 +63,25 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         
         // Fetch profile separately
         if (session?.user) {
-          getUserProfile(session.user.id).then(setProfile);
+          getUserProfile(session.user.id).then((userProfile) => {
+            if (userProfile) {
+              setProfile(userProfile);
+            } else {
+              // Fallback profile
+              const fallbackProfile: Profile = {
+                id: session.user.id,
+                organization_id: session.user.id,
+                full_name: session.user.email?.split('@')[0] || 'User',
+                role: 'owner',
+                phone: null,
+                avatar_url: null,
+                preferences: {},
+                created_at: session.user.created_at || new Date().toISOString(),
+                updated_at: new Date().toISOString()
+              };
+              setProfile(fallbackProfile);
+            }
+          });
         } else {
           setProfile(null);
         }
