@@ -1,0 +1,137 @@
+import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import {
+  Bell,
+  Search,
+  Download,
+  RefreshCw,
+  Filter,
+  Globe,
+  ChevronDown,
+  User,
+  Settings
+} from 'lucide-react';
+
+const Header = () => {
+  const { t, i18n } = useTranslation();
+  const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+
+  const toggleLanguage = () => {
+    const newLang = i18n.language === 'en' ? 'ar' : 'en';
+    i18n.changeLanguage(newLang);
+  };
+
+  return (
+    <header className="glass-dark border-b border-white/10 h-16 flex items-center justify-between px-6">
+      {/* Left side - Search and actions */}
+      <div className="flex items-center space-x-4">
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+          <input
+            type="text"
+            placeholder={t('common.search')}
+            className="glass-input pl-10 pr-4 py-2 w-64 text-sm"
+          />
+        </div>
+        
+        <button className="glass-button p-2">
+          <Filter className="h-4 w-4" />
+        </button>
+        
+        <button className="glass-button p-2">
+          <RefreshCw className="h-4 w-4" />
+        </button>
+      </div>
+
+      {/* Right side - Notifications, language, user */}
+      <div className="flex items-center space-x-4">
+        {/* Export Button */}
+        <button className="glass-button flex items-center space-x-2 px-4 py-2">
+          <Download className="h-4 w-4" />
+          <span className="text-sm">{t('common.export')}</span>
+        </button>
+
+        {/* Notifications */}
+        <div className="relative">
+          <button className="glass-button p-2 relative">
+            <Bell className="h-4 w-4" />
+            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+              3
+            </span>
+          </button>
+        </div>
+
+        {/* Language Switcher */}
+        <div className="relative">
+          <button
+            onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
+            className="glass-button flex items-center space-x-2 px-3 py-2"
+          >
+            <Globe className="h-4 w-4" />
+            <span className="text-sm uppercase">{i18n.language}</span>
+            <ChevronDown className="h-3 w-3" />
+          </button>
+
+          {isLangMenuOpen && (
+            <div className="absolute right-0 mt-2 w-32 glass-dark rounded-lg border border-white/10 py-1 z-50">
+              <button
+                onClick={() => {
+                  i18n.changeLanguage('en');
+                  setIsLangMenuOpen(false);
+                }}
+                className={`block w-full text-left px-4 py-2 text-sm hover:bg-white/10 ${
+                  i18n.language === 'en' ? 'text-blue-400' : 'text-white'
+                }`}
+              >
+                English
+              </button>
+              <button
+                onClick={() => {
+                  i18n.changeLanguage('ar');
+                  setIsLangMenuOpen(false);
+                }}
+                className={`block w-full text-left px-4 py-2 text-sm hover:bg-white/10 ${
+                  i18n.language === 'ar' ? 'text-blue-400' : 'text-white'
+                }`}
+              >
+                العربية
+              </button>
+            </div>
+          )}
+        </div>
+
+        {/* User Menu */}
+        <div className="relative">
+          <button
+            onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+            className="glass-button flex items-center space-x-2 px-3 py-2"
+          >
+            <User className="h-4 w-4" />
+            <span className="text-sm">Admin</span>
+            <ChevronDown className="h-3 w-3" />
+          </button>
+
+          {isUserMenuOpen && (
+            <div className="absolute right-0 mt-2 w-48 glass-dark rounded-lg border border-white/10 py-1 z-50">
+              <button className="flex items-center space-x-2 w-full text-left px-4 py-2 text-sm hover:bg-white/10 text-white">
+                <User className="h-4 w-4" />
+                <span>Profile</span>
+              </button>
+              <button className="flex items-center space-x-2 w-full text-left px-4 py-2 text-sm hover:bg-white/10 text-white">
+                <Settings className="h-4 w-4" />
+                <span>Settings</span>
+              </button>
+              <hr className="border-white/10 my-1" />
+              <button className="w-full text-left px-4 py-2 text-sm hover:bg-white/10 text-white">
+                Sign out
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    </header>
+  );
+};
+
+export default Header;

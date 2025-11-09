@@ -1,0 +1,21 @@
+CREATE TABLE customer_preferences (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    organization_id UUID REFERENCES organizations(id) ON DELETE CASCADE,
+    customer_id UUID REFERENCES customers(id) ON DELETE CASCADE,
+    style_preferences TEXT[],
+    fabric_preferences TEXT[],
+    color_preferences TEXT[],
+    pattern_preferences TEXT[],
+    fit_preference TEXT CHECK (fit_preference IN ('Slim',
+    'Regular',
+    'Relaxed')),
+    special_requirements TEXT,
+    preferred_appointment_time TEXT,
+    preferred_appointment_day TEXT[],
+    delivery_preference TEXT,
+    delivery_instructions TEXT,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW(),
+    UNIQUE(organization_id,
+    customer_id)
+);

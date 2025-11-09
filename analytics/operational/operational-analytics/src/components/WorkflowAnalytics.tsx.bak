@@ -1,0 +1,468 @@
+import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import {
+  LineChart,
+  Line,
+  BarChart,
+  Bar,
+  AreaChart,
+  Area,
+  PieChart,
+  Pie,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer
+} from 'recharts';
+import {
+  GitBranch,
+  Clock,
+  CheckCircle,
+  AlertTriangle,
+  TrendingUp,
+  TrendingDown,
+  Zap,
+  Target,
+  Activity,
+  ArrowRight,
+  Settings,
+  BarChart3
+} from 'lucide-react';
+
+// Mock workflow data
+const workflowMetrics = [
+  {
+    id: 1,
+    name: 'Order Processing',
+    category: 'Sales',
+    completion: 95,
+    sla: 98,
+    avgTime: 24,
+    targetTime: 20,
+    quality: 94,
+    bottleneck: false
+  },
+  {
+    id: 2,
+    name: 'Quality Assurance',
+    category: 'Operations',
+    completion: 88,
+    sla: 92,
+    avgTime: 45,
+    targetTime: 30,
+    quality: 96,
+    bottleneck: true
+  },
+  {
+    id: 3,
+    name: 'Delivery Process',
+    category: 'Logistics',
+    completion: 91,
+    sla: 94,
+    avgTime: 72,
+    targetTime: 60,
+    quality: 89,
+    bottleneck: true
+  },
+  {
+    id: 4,
+    name: 'Customer Support',
+    category: 'Service',
+    completion: 85,
+    sla: 89,
+    avgTime: 18,
+    targetTime: 15,
+    quality: 92,
+    bottleneck: false
+  }
+];
+
+const workflowTrends = [
+  { month: 'Jan', efficiency: 85, completion: 82, quality: 88 },
+  { month: 'Feb', efficiency: 87, completion: 84, quality: 90 },
+  { month: 'Mar', efficiency: 89, completion: 87, quality: 92 },
+  { month: 'Apr', efficiency: 88, completion: 85, quality: 91 },
+  { month: 'May', efficiency: 91, completion: 89, quality: 94 },
+  { month: 'Jun', efficiency: 93, completion: 92, quality: 95 }
+];
+
+const bottleneckAnalysis = [
+  { step: 'Approval Queue', delay: 45, impact: 8, frequency: 24 },
+  { step: 'Quality Check', delay: 32, impact: 7, frequency: 18 },
+  { step: 'Document Review', delay: 28, impact: 6, frequency: 15 },
+  { step: 'System Integration', delay: 25, impact: 9, frequency: 12 }
+];
+
+const slaCompliance = [
+  { category: 'Sales', compliant: 95, nonCompliant: 5 },
+  { category: 'Operations', compliant: 88, nonCompliant: 12 },
+  { category: 'Logistics', compliant: 91, nonCompliant: 9 },
+  { category: 'Service', compliant: 85, nonCompliant: 15 }
+];
+
+const automationLevels = [
+  { process: 'Order Entry', current: 75, target: 90 },
+  { process: 'Invoicing', current: 85, target: 95 },
+  { process: 'Shipping', current: 60, target: 80 },
+  { process: 'Customer Onboarding', current: 45, target: 70 }
+];
+
+const WorkflowAnalytics = () => {
+  const { t } = useTranslation();
+  const [isLoading, setIsLoading] = useState(true);
+  const [selectedWorkflow, setSelectedWorkflow] = useState(null);
+
+  useEffect(() => {
+    setTimeout(() => setIsLoading(false), 1000);
+  }, []);
+
+  const WorkflowCard = ({ workflow }) => (
+    <div
+      className="glass-card p-6 cursor-pointer transition-all hover:scale-105"
+      onClick={() => setSelectedWorkflow(workflow)}
+    >
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center space-x-3">
+          <div className="glass p-2 rounded-lg">
+            <GitBranch className="h-5 w-5 text-blue-400" />
+          </div>
+          <div>
+            <h3 className="text-white font-semibold">{workflow.name}</h3>
+            <p className="text-gray-400 text-sm">{workflow.category}</p>
+          </div>
+        </div>
+        <div className={`flex items-center space-x-1 ${workflow.bottleneck ? 'text-red-400' : 'text-green-400'}`}>
+          {workflow.bottleneck ? (
+            <AlertTriangle className="h-4 w-4" />
+          ) : (
+            <CheckCircle className="h-4 w-4" />
+          )}
+          <span className="text-sm font-medium">
+            {workflow.bottleneck ? 'Bottleneck' : 'Optimal'}
+          </span>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-2 gap-4 mb-4">
+        <div>
+          <p className="text-gray-400 text-sm">Completion Rate</p>
+          <p className="text-white font-semibold">{workflow.completion}%</p>
+        </div>
+        <div>
+          <p className="text-gray-400 text-sm">SLA Compliance</p>
+          <p className="text-white font-semibold">{workflow.sla}%</p>
+        </div>
+      </div>
+
+      <div className="space-y-2">
+        <div>
+          <div className="flex justify-between text-sm mb-1">
+            <span className="text-gray-400">Avg Time</span>
+            <span className="text-white">{workflow.avgTime}min</span>
+          </div>
+          <div className="w-full bg-gray-700 rounded-full h-2">
+            <div
+              className={`h-2 rounded-full ${
+                workflow.avgTime > workflow.targetTime ? 'bg-red-500' : 'bg-green-500'
+              }`}
+              style={{ width: `${Math.min((workflow.avgTime / workflow.targetTime) * 100, 100)}%` }}
+            ></div>
+          </div>
+        </div>
+
+        <div className="flex justify-between text-sm pt-2 border-t border-white/10">
+          <span className="text-gray-400">Target: {workflow.targetTime}min</span>
+          <span className={`font-semibold ${workflow.avgTime <= workflow.targetTime ? 'text-green-400' : 'text-red-400'}`}>
+            {workflow.avgTime <= workflow.targetTime ? 'On Target' : 'Over Time'}
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+
+  if (isLoading) {
+    return (
+      <div className="space-y-6">
+        <div className="skeleton h-8 w-1/3 mb-4"></div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="glass-card p-6">
+              <div className="skeleton h-4 w-3/4 mb-4"></div>
+              <div className="skeleton h-2 w-full mb-2"></div>
+              <div className="skeleton h-4 w-1/2"></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="fade-in">
+        <h1 className="text-3xl font-bold text-white mb-2">
+          {t('workflow.title')}
+        </h1>
+        <p className="text-gray-400">Analyze workflow performance, identify bottlenecks, and optimize processes</p>
+      </div>
+
+      {/* Key Metrics */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="glass-card p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-gray-400 text-sm">Avg Completion</p>
+              <p className="text-2xl font-bold text-blue-400 mt-1">91.3%</p>
+              <div className="flex items-center mt-2">
+                <TrendingUp className="h-4 w-4 text-green-400 mr-1" />
+                <span className="text-sm text-green-400">+2.1%</span>
+              </div>
+            </div>
+            <div className="glass p-3 rounded-lg">
+              <CheckCircle className="h-6 w-6 text-blue-400" />
+            </div>
+          </div>
+        </div>
+
+        <div className="glass-card p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-gray-400 text-sm">SLA Compliance</p>
+              <p className="text-2xl font-bold text-green-400 mt-1">93.2%</p>
+              <div className="flex items-center mt-2">
+                <TrendingUp className="h-4 w-4 text-green-400 mr-1" />
+                <span className="text-sm text-green-400">+1.5%</span>
+              </div>
+            </div>
+            <div className="glass p-3 rounded-lg">
+              <Target className="h-6 w-6 text-green-400" />
+            </div>
+          </div>
+        </div>
+
+        <div className="glass-card p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-gray-400 text-sm">Active Workflows</p>
+              <p className="text-2xl font-bold text-yellow-400 mt-1">24</p>
+              <div className="flex items-center mt-2">
+                <TrendingUp className="h-4 w-4 text-green-400 mr-1" />
+                <span className="text-sm text-green-400">+3</span>
+              </div>
+            </div>
+            <div className="glass p-3 rounded-lg">
+              <Activity className="h-6 w-6 text-yellow-400" />
+            </div>
+          </div>
+        </div>
+
+        <div className="glass-card p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-gray-400 text-sm">Bottlenecks</p>
+              <p className="text-2xl font-bold text-red-400 mt-1">7</p>
+              <div className="flex items-center mt-2">
+                <TrendingDown className="h-4 w-4 text-red-400 mr-1" />
+                <span className="text-sm text-red-400">-2</span>
+              </div>
+            </div>
+            <div className="glass p-3 rounded-lg">
+              <AlertTriangle className="h-6 w-6 text-red-400" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Workflow Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {workflowMetrics.map((workflow) => (
+          <WorkflowCard key={workflow.id} workflow={workflow} />
+        ))}
+      </div>
+
+      {/* Charts Row 1 */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Workflow Trends */}
+        <div className="glass-card p-6">
+          <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+            <TrendingUp className="h-5 w-5 mr-2 text-blue-400" />
+            Workflow Performance Trends
+          </h3>
+          <ResponsiveContainer width="100%" height={300}>
+            {/* @ts-ignore */}<LineChart data={workflowTrends}>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+              {/* @ts-ignore */}<XAxis dataKey="month" stroke="rgba(255,255,255,0.7)" />
+              {/* @ts-ignore */}<YAxis stroke="rgba(255,255,255,0.7)" />
+              {/* @ts-ignore */}<Tooltip
+                contentStyle={{
+                  backgroundColor: 'rgba(0,0,0,0.8)',
+                  border: '1px solid rgba(255,255,255,0.2)',
+                  borderRadius: '8px',
+                  color: 'white'
+                }}
+              />
+              {/* @ts-ignore */}<Legend />
+              {/* @ts-ignore */}<Line type="monotone" dataKey="efficiency" stroke="#3b82f6" strokeWidth={2} />
+              {/* @ts-ignore */}<Line type="monotone" dataKey="completion" stroke="#10b981" strokeWidth={2} />
+              {/* @ts-ignore */}<Line type="monotone" dataKey="quality" stroke="#f59e0b" strokeWidth={2} />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* SLA Compliance */}
+        <div className="glass-card p-6">
+          <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+            <Target className="h-5 w-5 mr-2 text-green-400" />
+            SLA Compliance by Category
+          </h3>
+          <ResponsiveContainer width="100%" height={300}>
+            {/* @ts-ignore */}<BarChart data={slaCompliance}>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+              {/* @ts-ignore */}<XAxis dataKey="category" stroke="rgba(255,255,255,0.7)" />
+              {/* @ts-ignore */}<YAxis stroke="rgba(255,255,255,0.7)" />
+              {/* @ts-ignore */}<Tooltip
+                contentStyle={{
+                  backgroundColor: 'rgba(0,0,0,0.8)',
+                  border: '1px solid rgba(255,255,255,0.2)',
+                  borderRadius: '8px',
+                  color: 'white'
+                }}
+              />
+              {/* @ts-ignore */}<Legend />
+              {/* @ts-ignore */}<Bar dataKey="compliant" stackId="a" fill="#10b981" />
+              {/* @ts-ignore */}<Bar dataKey="nonCompliant" stackId="a" fill="#ef4444" />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      {/* Charts Row 2 */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Bottleneck Analysis */}
+        <div className="glass-card p-6">
+          <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+            <AlertTriangle className="h-5 w-5 mr-2 text-red-400" />
+            Bottleneck Analysis
+          </h3>
+          <div className="space-y-4">
+            {bottleneckAnalysis.map((bottleneck, index) => (
+              <div key={index} className="glass p-4 rounded-lg">
+                <div className="flex justify-between items-center mb-2">
+                  <h4 className="text-white font-medium">{bottleneck.step}</h4>
+                  <span className="text-red-400 font-semibold">{bottleneck.delay}min delay</span>
+                </div>
+                <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <p className="text-gray-400">Impact Score</p>
+                    <p className="text-white font-semibold">{bottleneck.impact}/10</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-400">Frequency (Monthly)</p>
+                    <p className="text-white font-semibold">{bottleneck.frequency}</p>
+                  </div>
+                </div>
+                <div className="w-full bg-gray-700 rounded-full h-2 mt-2">
+                  <div
+                    className="bg-gradient-to-r from-red-500 to-orange-500 h-2 rounded-full"
+                    style={{ width: `${(bottleneck.impact / 10) * 100}%` }}
+                  ></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Automation Levels */}
+        <div className="glass-card p-6">
+          <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+            <Zap className="h-5 w-5 mr-2 text-purple-400" />
+            Automation Levels
+          </h3>
+          <div className="space-y-4">
+            {automationLevels.map((process, index) => (
+              <div key={index} className="glass p-4 rounded-lg">
+                <div className="flex justify-between items-center mb-2">
+                  <h4 className="text-white font-medium">{process.process}</h4>
+                  <span className="text-purple-400 font-semibold">{process.current}%</span>
+                </div>
+                <div className="space-y-2">
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-400">Current</span>
+                    <span className="text-white">{process.current}%</span>
+                  </div>
+                  <div className="w-full bg-gray-700 rounded-full h-2">
+                    <div
+                      className="bg-gradient-to-r from-purple-500 to-blue-500 h-2 rounded-full"
+                      style={{ width: `${process.current}%` }}
+                    ></div>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-400">Target</span>
+                    <span className="text-green-400">{process.target}%</span>
+                  </div>
+                  <div className="w-full bg-gray-700 rounded-full h-1">
+                    <div
+                      className="bg-green-500 h-1 rounded-full"
+                      style={{ width: `${process.target}%` }}
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Optimization Recommendations */}
+      <div className="glass-card p-6">
+        <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+          <Settings className="h-5 w-5 mr-2 text-blue-400" />
+          Process Optimization Recommendations
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="glass p-4 rounded-lg">
+            <div className="flex items-center space-x-2 mb-2">
+              <Zap className="h-5 w-5 text-yellow-400" />
+              <h4 className="text-white font-medium">Increase Automation</h4>
+            </div>
+            <p className="text-gray-400 text-sm mb-3">Automate repetitive tasks in quality assurance and delivery processes</p>
+            <div className="flex justify-between text-sm">
+              <span className="text-green-400">Potential Savings</span>
+              <span className="text-white">15-20% time</span>
+            </div>
+          </div>
+
+          <div className="glass p-4 rounded-lg">
+            <div className="flex items-center space-x-2 mb-2">
+              <Clock className="h-5 w-5 text-blue-400" />
+              <h4 className="text-white font-medium">Optimize Queue Time</h4>
+            </div>
+            <p className="text-gray-400 text-sm mb-3">Implement parallel processing for approval queues</p>
+            <div className="flex justify-between text-sm">
+              <span className="text-green-400">Potential Savings</span>
+              <span className="text-white">25-30min</span>
+            </div>
+          </div>
+
+          <div className="glass p-4 rounded-lg">
+            <div className="flex items-center space-x-2 mb-2">
+              <Target className="h-5 w-5 text-purple-400" />
+              <h4 className="text-white font-medium">Resource Allocation</h4>
+            </div>
+            <p className="text-gray-400 text-sm mb-3">Redistribute resources during peak hours to reduce bottlenecks</p>
+            <div className="flex justify-between text-sm">
+              <span className="text-green-400">Potential Savings</span>
+              <span className="text-white">10-15% efficiency</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default WorkflowAnalytics;

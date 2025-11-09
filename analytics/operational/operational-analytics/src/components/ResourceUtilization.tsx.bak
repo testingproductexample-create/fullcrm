@@ -1,0 +1,408 @@
+import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import {
+  AreaChart,
+  Area,
+  BarChart,
+  Bar,
+  LineChart,
+  Line,
+  PieChart,
+  Pie,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer
+} from 'recharts';
+import {
+  Cpu,
+  HardDrive,
+  Users,
+  DollarSign,
+  TrendingUp,
+  TrendingDown,
+  AlertCircle,
+  CheckCircle,
+  Clock,
+  Settings,
+  Zap,
+  Target
+} from 'lucide-react';
+
+// Mock resource data
+const resourceData = [
+  {
+    id: 1,
+    type: 'Hardware',
+    name: 'Server Farm A',
+    utilization: 78,
+    capacity: 100,
+    cost: 12500,
+    efficiency: 82,
+    status: 'optimal',
+    uptime: 99.2
+  },
+  {
+    id: 2,
+    type: 'Software',
+    name: 'CRM System',
+    utilization: 85,
+    capacity: 100,
+    cost: 8900,
+    efficiency: 88,
+    status: 'optimal',
+    uptime: 99.8
+  },
+  {
+    id: 3,
+    type: 'Personnel',
+    name: 'Engineering Team',
+    utilization: 82,
+    capacity: 100,
+    cost: 45000,
+    efficiency: 89,
+    status: 'optimal',
+    uptime: 100
+  },
+  {
+    id: 4,
+    type: 'Budget',
+    name: 'Q2 Budget',
+    utilization: 75,
+    capacity: 100,
+    cost: 25000,
+    efficiency: 79,
+    status: 'warning',
+    uptime: 100
+  }
+];
+
+const utilizationTrend = [
+  { month: 'Jan', hardware: 72, software: 78, personnel: 80, budget: 70 },
+  { month: 'Feb', hardware: 75, software: 81, personnel: 82, budget: 73 },
+  { month: 'Mar', hardware: 78, software: 83, personnel: 85, budget: 75 },
+  { month: 'Apr', hardware: 76, software: 85, personnel: 83, budget: 74 },
+  { month: 'May', hardware: 80, software: 87, personnel: 87, budget: 77 },
+  { month: 'Jun', hardware: 82, software: 89, personnel: 89, budget: 79 }
+];
+
+const costAnalysis = [
+  { category: 'Hardware', cost: 12500, budget: 15000, variance: -16.7 },
+  { category: 'Software', cost: 8900, budget: 10000, variance: -11.0 },
+  { category: 'Personnel', cost: 45000, budget: 45000, variance: 0 },
+  { category: 'Budget', cost: 25000, budget: 30000, variance: -16.7 }
+];
+
+const resourceEfficiency = [
+  { resource: 'CPU Usage', efficiency: 85, target: 80, status: 'above' },
+  { resource: 'Memory', efficiency: 78, target: 75, status: 'above' },
+  { resource: 'Storage', efficiency: 72, target: 70, status: 'above' },
+  { resource: 'Network', efficiency: 88, target: 85, status: 'above' },
+  { resource: 'Personnel', efficiency: 89, target: 85, status: 'above' }
+];
+
+const optimizationData = [
+  { opportunity: 'Server Optimization', impact: 'High', savings: '$5,200', effort: 'Medium' },
+  { opportunity: 'Software License', impact: 'Medium', savings: '$2,800', effort: 'Low' },
+  { opportunity: 'Energy Efficiency', impact: 'High', savings: '$3,100', effort: 'High' },
+  { opportunity: 'Process Automation', impact: 'Very High', savings: '$7,500', effort: 'High' }
+];
+
+const ResourceUtilization = () => {
+  const { t } = useTranslation();
+  const [isLoading, setIsLoading] = useState(true);
+  const [selectedResource, setSelectedResource] = useState(null);
+
+  useEffect(() => {
+    setTimeout(() => setIsLoading(false), 1000);
+  }, []);
+
+  const ResourceCard = ({ resource }) => {
+    const getStatusColor = (status) => {
+      switch (status) {
+        case 'optimal': return 'text-green-400';
+        case 'warning': return 'text-yellow-400';
+        case 'critical': return 'text-red-400';
+        default: return 'text-gray-400';
+      }
+    };
+
+    const getStatusIcon = (status) => {
+      switch (status) {
+        case 'optimal': return <CheckCircle className="h-4 w-4" />;
+        case 'warning': return <AlertCircle className="h-4 w-4" />;
+        case 'critical': return <AlertCircle className="h-4 w-4" />;
+        default: return <Clock className="h-4 w-4" />;
+      }
+    };
+
+    return (
+      <div
+        className="glass-card p-6 cursor-pointer transition-all hover:scale-105"
+        onClick={() => setSelectedResource(resource)}
+      >
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center space-x-3">
+            <div className="glass p-2 rounded-lg">
+              <Cpu className="h-5 w-5 text-blue-400" />
+            </div>
+            <div>
+              <h3 className="text-white font-semibold">{resource.name}</h3>
+              <p className="text-gray-400 text-sm">{resource.type}</p>
+            </div>
+          </div>
+          <div className={`flex items-center space-x-1 ${getStatusColor(resource.status)}`}>
+            {getStatusIcon(resource.status)}
+            <span className="text-sm font-medium capitalize">{resource.status}</span>
+          </div>
+        </div>
+
+        <div className="space-y-3">
+          <div>
+            <div className="flex justify-between text-sm mb-1">
+              <span className="text-gray-400">Utilization</span>
+              <span className="text-white">{resource.utilization}%</span>
+            </div>
+            <div className="w-full bg-gray-700 rounded-full h-2">
+              <div
+                className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full"
+                style={{ width: `${resource.utilization}%` }}
+              ></div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4 text-sm">
+            <div>
+              <p className="text-gray-400">Efficiency</p>
+              <p className="text-white font-semibold">{resource.efficiency}%</p>
+            </div>
+            <div>
+              <p className="text-gray-400">Cost</p>
+              <p className="text-white font-semibold">${resource.cost.toLocaleString()}</p>
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between pt-2 border-t border-white/10">
+            <span className="text-gray-400 text-sm">Uptime</span>
+            <span className="text-green-400 font-semibold">{resource.uptime}%</span>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  if (isLoading) {
+    return (
+      <div className="space-y-6">
+        <div className="skeleton h-8 w-1/3 mb-4"></div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="glass-card p-6">
+              <div className="skeleton h-4 w-3/4 mb-4"></div>
+              <div className="skeleton h-2 w-full mb-2"></div>
+              <div className="skeleton h-4 w-1/2"></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="fade-in">
+        <h1 className="text-3xl font-bold text-white mb-2">
+          {t('resource.title')}
+        </h1>
+        <p className="text-gray-400">Monitor and optimize resource utilization across your organization</p>
+      </div>
+
+      {/* Key Metrics */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="glass-card p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-gray-400 text-sm">Avg Utilization</p>
+              <p className="text-2xl font-bold text-blue-400 mt-1">80.2%</p>
+              <div className="flex items-center mt-2">
+                <TrendingUp className="h-4 w-4 text-green-400 mr-1" />
+                <span className="text-sm text-green-400">+2.3%</span>
+              </div>
+            </div>
+            <div className="glass p-3 rounded-lg">
+              <Cpu className="h-6 w-6 text-blue-400" />
+            </div>
+          </div>
+        </div>
+
+        <div className="glass-card p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-gray-400 text-sm">Total Resources</p>
+              <p className="text-2xl font-bold text-green-400 mt-1">247</p>
+              <div className="flex items-center mt-2">
+                <TrendingUp className="h-4 w-4 text-green-400 mr-1" />
+                <span className="text-sm text-green-400">+5</span>
+              </div>
+            </div>
+            <div className="glass p-3 rounded-lg">
+              <HardDrive className="h-6 w-6 text-green-400" />
+            </div>
+          </div>
+        </div>
+
+        <div className="glass-card p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-gray-400 text-sm">Monthly Cost</p>
+              <p className="text-2xl font-bold text-yellow-400 mt-1">$91.4K</p>
+              <div className="flex items-center mt-2">
+                <TrendingDown className="h-4 w-4 text-red-400 mr-1" />
+                <span className="text-sm text-red-400">-3.1%</span>
+              </div>
+            </div>
+            <div className="glass p-3 rounded-lg">
+              <DollarSign className="h-6 w-6 text-yellow-400" />
+            </div>
+          </div>
+        </div>
+
+        <div className="glass-card p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-gray-400 text-sm">Efficiency Score</p>
+              <p className="text-2xl font-bold text-purple-400 mt-1">87.5%</p>
+              <div className="flex items-center mt-2">
+                <TrendingUp className="h-4 w-4 text-green-400 mr-1" />
+                <span className="text-sm text-green-400">+1.8%</span>
+              </div>
+            </div>
+            <div className="glass p-3 rounded-lg">
+              <Target className="h-6 w-6 text-purple-400" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Resource Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {resourceData.map((resource) => (
+          <ResourceCard key={resource.id} resource={resource} />
+        ))}
+      </div>
+
+      {/* Charts Row 1 */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Utilization Trends */}
+        <div className="glass-card p-6">
+          <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+            <TrendingUp className="h-5 w-5 mr-2 text-blue-400" />
+            Utilization Trends
+          </h3>
+          <ResponsiveContainer width="100%" height={300}>
+            {/* @ts-ignore */}<AreaChart data={utilizationTrend}>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+              {/* @ts-ignore */}<XAxis dataKey="month" stroke="rgba(255,255,255,0.7)" />
+              {/* @ts-ignore */}<YAxis stroke="rgba(255,255,255,0.7)" />
+              {/* @ts-ignore */}<Tooltip
+                contentStyle={{
+                  backgroundColor: 'rgba(0,0,0,0.8)',
+                  border: '1px solid rgba(255,255,255,0.2)',
+                  borderRadius: '8px',
+                  color: 'white'
+                }}
+              />
+              {/* @ts-ignore */}<Legend />
+              {/* @ts-ignore */}<Area type="monotone" dataKey="hardware" stackId="1" stroke="#3b82f6" fill="#3b82f6" fillOpacity={0.6} />
+              {/* @ts-ignore */}<Area type="monotone" dataKey="software" stackId="1" stroke="#10b981" fill="#10b981" fillOpacity={0.6} />
+              {/* @ts-ignore */}<Area type="monotone" dataKey="personnel" stackId="1" stroke="#f59e0b" fill="#f59e0b" fillOpacity={0.6} />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Cost Analysis */}
+        <div className="glass-card p-6">
+          <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+            <DollarSign className="h-5 w-5 mr-2 text-yellow-400" />
+            Cost vs Budget Analysis
+          </h3>
+          <ResponsiveContainer width="100%" height={300}>
+            {/* @ts-ignore */}<BarChart data={costAnalysis}>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+              {/* @ts-ignore */}<XAxis dataKey="category" stroke="rgba(255,255,255,0.7)" />
+              {/* @ts-ignore */}<YAxis stroke="rgba(255,255,255,0.7)" />
+              {/* @ts-ignore */}<Tooltip
+                contentStyle={{
+                  backgroundColor: 'rgba(0,0,0,0.8)',
+                  border: '1px solid rgba(255,255,255,0.2)',
+                  borderRadius: '8px',
+                  color: 'white'
+                }}
+              />
+              {/* @ts-ignore */}<Legend />
+              {/* @ts-ignore */}<Bar dataKey="cost" fill="#3b82f6" />
+              {/* @ts-ignore */}<Bar dataKey="budget" fill="#10b981" />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      {/* Charts Row 2 */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Resource Efficiency */}
+        <div className="glass-card p-6">
+          <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+            <Zap className="h-5 w-5 mr-2 text-purple-400" />
+            Resource Efficiency vs Target
+          </h3>
+          <ResponsiveContainer width="100%" height={300}>
+            {/* @ts-ignore */}<BarChart data={resourceEfficiency}>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+              {/* @ts-ignore */}<XAxis dataKey="resource" stroke="rgba(255,255,255,0.7)" />
+              {/* @ts-ignore */}<YAxis stroke="rgba(255,255,255,0.7)" />
+              {/* @ts-ignore */}<Tooltip
+                contentStyle={{
+                  backgroundColor: 'rgba(0,0,0,0.8)',
+                  border: '1px solid rgba(255,255,255,0.2)',
+                  borderRadius: '8px',
+                  color: 'white'
+                }}
+              />
+              {/* @ts-ignore */}<Legend />
+              {/* @ts-ignore */}<Bar dataKey="efficiency" fill="#8b5cf6" />
+              {/* @ts-ignore */}<Bar dataKey="target" fill="#6b7280" />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Optimization Opportunities */}
+        <div className="glass-card p-6">
+          <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+            <Settings className="h-5 w-5 mr-2 text-green-400" />
+            Optimization Opportunities
+          </h3>
+          <div className="space-y-4">
+            {optimizationData.map((item, index) => (
+              <div key={index} className="glass p-4 rounded-lg">
+                <div className="flex justify-between items-start mb-2">
+                  <h4 className="text-white font-medium">{item.opportunity}</h4>
+                  <span className="text-green-400 font-semibold">{item.savings}</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-400">Impact: {item.impact}</span>
+                  <span className="text-gray-400">Effort: {item.effort}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ResourceUtilization;

@@ -1,0 +1,6 @@
+
+> crm-app@0.1.0 build /workspace/crm-app
+> next build
+
+You are using Node.js 18.19.0. For Next.js, Node.js version ">=20.9.0" is required.
+ ELIFECYCLE  Command failed with exit code 1.

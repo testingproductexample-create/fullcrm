@@ -1,0 +1,22 @@
+CREATE TABLE customer_communications (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    organization_id UUID REFERENCES organizations(id) ON DELETE CASCADE,
+    customer_id UUID REFERENCES customers(id) ON DELETE CASCADE,
+    communication_type TEXT CHECK (communication_type IN ('SMS',
+    'Email',
+    'WhatsApp',
+    'Phone',
+    'In-Person')) NOT NULL,
+    direction TEXT CHECK (direction IN ('Inbound',
+    'Outbound')) NOT NULL,
+    subject TEXT,
+    message TEXT,
+    status TEXT CHECK (status IN ('Sent',
+    'Delivered',
+    'Failed',
+    'Read')) DEFAULT 'Sent',
+    sent_by UUID REFERENCES profiles(id),
+    related_order_id UUID,
+    metadata JSONB DEFAULT '{}',
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);

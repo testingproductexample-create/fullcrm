@@ -1,0 +1,392 @@
+import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import {
+  LineChart,
+  Line,
+  BarChart,
+  Bar,
+  RadarChart,
+  PolarGrid,
+  PolarAngleAxis,
+  PolarRadiusAxis,
+  Radar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer
+} from 'recharts';
+import {
+  Users,
+  TrendingUp,
+  Target,
+  Award,
+  Clock,
+  CheckCircle,
+  AlertCircle,
+  Star,
+  ArrowUp,
+  ArrowDown
+} from 'lucide-react';
+
+// Mock employee data
+const employeeData = [
+  {
+    id: 1,
+    name: 'Ahmed Hassan',
+    department: 'Engineering',
+    position: 'Senior Developer',
+    performance: 95,
+    productivity: 92,
+    quality: 98,
+    efficiency: 89,
+    goals: 24,
+    goalsAchieved: 22,
+    avatar: '👨‍💻'
+  },
+  {
+    id: 2,
+    name: 'Sarah Johnson',
+    department: 'Sales',
+    position: 'Sales Manager',
+    performance: 88,
+    productivity: 85,
+    quality: 92,
+    efficiency: 87,
+    goals: 20,
+    goalsAchieved: 18,
+    avatar: '👩‍💼'
+  },
+  {
+    id: 3,
+    name: 'Mohammed Ali',
+    department: 'Operations',
+    position: 'Operations Lead',
+    performance: 91,
+    productivity: 89,
+    quality: 94,
+    efficiency: 90,
+    goals: 18,
+    goalsAchieved: 17,
+    avatar: '👨‍💼'
+  },
+  {
+    id: 4,
+    name: 'Emily Chen',
+    department: 'Marketing',
+    position: 'Marketing Specialist',
+    performance: 85,
+    productivity: 88,
+    quality: 82,
+    efficiency: 85,
+    goals: 22,
+    goalsAchieved: 19,
+    avatar: '👩‍🎨'
+  },
+  {
+    id: 5,
+    name: 'David Wilson',
+    department: 'Engineering',
+    position: 'DevOps Engineer',
+    performance: 93,
+    productivity: 91,
+    quality: 96,
+    efficiency: 92,
+    goals: 16,
+    goalsAchieved: 15,
+    avatar: '👨‍💻'
+  }
+];
+
+const departmentPerformance = [
+  { department: 'Engineering', avgPerformance: 94, count: 45 },
+  { department: 'Sales', avgPerformance: 87, count: 32 },
+  { department: 'Marketing', avgPerformance: 83, count: 28 },
+  { department: 'Operations', avgPerformance: 89, count: 35 },
+  { department: 'HR', avgPerformance: 86, count: 15 }
+];
+
+const performanceTrend = [
+  { month: 'Jan', score: 85 },
+  { month: 'Feb', score: 87 },
+  { month: 'Mar', score: 89 },
+  { month: 'Apr', score: 88 },
+  { month: 'May', score: 91 },
+  { month: 'Jun', score: 94 }
+];
+
+const skillRadarData = [
+  { skill: 'Productivity', value: 90 },
+  { skill: 'Quality', value: 95 },
+  { skill: 'Communication', value: 85 },
+  { skill: 'Teamwork', value: 88 },
+  { skill: 'Innovation', value: 82 },
+  { skill: 'Leadership', value: 87 }
+];
+
+const EmployeePerformance = () => {
+  const { t } = useTranslation();
+  const [isLoading, setIsLoading] = useState(true);
+  const [selectedEmployee, setSelectedEmployee] = useState(null);
+
+  useEffect(() => {
+    setTimeout(() => setIsLoading(false), 1000);
+  }, []);
+
+  const MetricCard = ({ title, value, change, icon: Icon, color }) => (
+    <div className="glass-card p-4">
+      <div className="flex items-center justify-between">
+        <div>
+          <p className="text-gray-400 text-sm">{title}</p>
+          <p className={`text-2xl font-bold mt-1 ${color}`}>{value}</p>
+        </div>
+        <div className="glass p-2 rounded-lg">
+          <Icon className={`h-5 w-5 ${color}`} />
+        </div>
+      </div>
+    </div>
+  );
+
+  if (isLoading) {
+    return (
+      <div className="space-y-6">
+        <div className="skeleton h-8 w-1/3 mb-4"></div>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="glass-card p-4">
+              <div className="skeleton h-4 w-3/4 mb-2"></div>
+              <div className="skeleton h-8 w-1/2"></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="fade-in">
+        <h1 className="text-3xl font-bold text-white mb-2">
+          {t('employee.title')}
+        </h1>
+        <p className="text-gray-400">Track and analyze employee performance metrics</p>
+      </div>
+
+      {/* Key Metrics */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <MetricCard
+          title="Total Employees"
+          value="1,247"
+          change="+2.3%"
+          icon={Users}
+          color="text-blue-400"
+        />
+        <MetricCard
+          title="Avg Performance"
+          value="89.2%"
+          change="+1.8%"
+          icon={Target}
+          color="text-green-400"
+        />
+        <MetricCard
+          title="Top Performers"
+          value="156"
+          change="+5.1%"
+          icon={Award}
+          color="text-yellow-400"
+        />
+        <MetricCard
+          title="Goal Achievement"
+          value="87.5%"
+          change="+3.2%"
+          icon={CheckCircle}
+          color="text-purple-400"
+        />
+      </div>
+
+      {/* Employee Leaderboard */}
+      <div className="glass-card p-6">
+        <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+          <Star className="h-5 w-5 mr-2 text-yellow-400" />
+          {t('employee.leaderboard')}
+        </h3>
+        <div className="space-y-3">
+          {employeeData.map((employee, index) => (
+            <div
+              key={employee.id}
+              className="flex items-center justify-between p-4 glass rounded-lg hover:bg-white/5 cursor-pointer transition-all"
+              onClick={() => setSelectedEmployee(employee)}
+            >
+              <div className="flex items-center space-x-4">
+                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold text-sm">
+                  {index + 1}
+                </div>
+                <div className="text-2xl">{employee.avatar}</div>
+                <div>
+                  <h4 className="text-white font-medium">{employee.name}</h4>
+                  <p className="text-gray-400 text-sm">{employee.position}</p>
+                </div>
+              </div>
+              <div className="flex items-center space-x-6">
+                <div className="text-center">
+                  <p className="text-gray-400 text-xs">Performance</p>
+                  <p className="text-white font-semibold">{employee.performance}%</p>
+                </div>
+                <div className="text-center">
+                  <p className="text-gray-400 text-xs">Goals</p>
+                  <p className="text-white font-semibold">{employee.goalsAchieved}/{employee.goals}</p>
+                </div>
+                <div className="flex items-center">
+                  {employee.performance > 90 ? (
+                    <ArrowUp className="h-4 w-4 text-green-400" />
+                  ) : (
+                    <ArrowDown className="h-4 w-4 text-red-400" />
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Charts Row */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Performance Trends */}
+        <div className="glass-card p-6">
+          <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+            <TrendingUp className="h-5 w-5 mr-2 text-blue-400" />
+            Performance Trends
+          </h3>
+          <ResponsiveContainer width="100%" height={300}>
+            {/* @ts-ignore */}<LineChart data={performanceTrend}>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+              {/* @ts-ignore */}<XAxis dataKey="month" stroke="rgba(255,255,255,0.7)" />
+              {/* @ts-ignore */}<YAxis stroke="rgba(255,255,255,0.7)" />
+              {/* @ts-ignore */}<Tooltip
+                contentStyle={{
+                  backgroundColor: 'rgba(0,0,0,0.8)',
+                  border: '1px solid rgba(255,255,255,0.2)',
+                  borderRadius: '8px',
+                  color: 'white'
+                }}
+              />
+              {/* @ts-ignore */}<Line type="monotone" dataKey="score" stroke="#3b82f6" strokeWidth={3} />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Department Performance */}
+        <div className="glass-card p-6">
+          <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+            <Users className="h-5 w-5 mr-2 text-green-400" />
+            Department Performance
+          </h3>
+          <ResponsiveContainer width="100%" height={300}>
+            {/* @ts-ignore */}<BarChart data={departmentPerformance}>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+              {/* @ts-ignore */}<XAxis dataKey="department" stroke="rgba(255,255,255,0.7)" />
+              {/* @ts-ignore */}<YAxis stroke="rgba(255,255,255,0.7)" />
+              {/* @ts-ignore */}<Tooltip
+                contentStyle={{
+                  backgroundColor: 'rgba(0,0,0,0.8)',
+                  border: '1px solid rgba(255,255,255,0.2)',
+                  borderRadius: '8px',
+                  color: 'white'
+                }}
+              />
+              {/* @ts-ignore */}<Bar dataKey="avgPerformance" fill="#10b981" />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      {/* Employee Detail Modal */}
+      {selectedEmployee && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="glass-dark p-6 rounded-lg max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-2xl font-bold text-white">
+                {selectedEmployee.name} - Performance Details
+              </h2>
+              <button
+                onClick={() => setSelectedEmployee(null)}
+                className="glass-button p-2"
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Employee Info */}
+              <div className="glass p-4 rounded-lg">
+                <div className="flex items-center space-x-4 mb-4">
+                  <div className="text-4xl">{selectedEmployee.avatar}</div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-white">{selectedEmployee.name}</h3>
+                    <p className="text-gray-400">{selectedEmployee.position}</p>
+                    <p className="text-gray-400">{selectedEmployee.department}</p>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <div className="flex justify-between">
+                    <span className="text-gray-400">Overall Performance</span>
+                    <span className="text-white font-semibold">{selectedEmployee.performance}%</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-400">Productivity</span>
+                    <span className="text-white font-semibold">{selectedEmployee.productivity}%</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-400">Quality Score</span>
+                    <span className="text-white font-semibold">{selectedEmployee.quality}%</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-400">Efficiency</span>
+                    <span className="text-white font-semibold">{selectedEmployee.efficiency}%</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-400">Goals Achieved</span>
+                    <span className="text-white font-semibold">{selectedEmployee.goalsAchieved}/{selectedEmployee.goals}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Skills Radar Chart */}
+              <div className="glass p-4 rounded-lg">
+                <h4 className="text-lg font-semibold text-white mb-4">Skills Assessment</h4>
+                <ResponsiveContainer width="100%" height={250}>
+                  {/* @ts-ignore */}<RadarChart data={skillRadarData}>
+                    {/* @ts-ignore */}<PolarGrid stroke="rgba(255,255,255,0.2)" />
+                    {/* @ts-ignore */}<PolarAngleAxis dataKey="skill" tick={{ fontSize: 12, fill: 'rgba(255,255,255,0.8)' }} />
+                    {/* @ts-ignore */}<PolarRadiusAxis domain={[0, 100]} tick={false} />
+                    {/* @ts-ignore */}<Radar
+                      name="Skills"
+                      dataKey="value"
+                      stroke="#3b82f6"
+                      fill="#3b82f6"
+                      fillOpacity={0.3}
+                      strokeWidth={2}
+                    />
+                    {/* @ts-ignore */}<Tooltip
+                      contentStyle={{
+                        backgroundColor: 'rgba(0,0,0,0.8)',
+                        border: '1px solid rgba(255,255,255,0.2)',
+                        borderRadius: '8px',
+                        color: 'white'
+                      }}
+                    />
+                  </RadarChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default EmployeePerformance;

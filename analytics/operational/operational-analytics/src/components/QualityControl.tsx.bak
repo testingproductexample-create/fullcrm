@@ -1,0 +1,399 @@
+import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import {
+  LineChart,
+  Line,
+  BarChart,
+  Bar,
+  RadarChart,
+  PolarGrid,
+  PolarAngleAxis,
+  PolarRadiusAxis,
+  Radar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer
+} from 'recharts';
+import {
+  CheckCircle,
+  AlertTriangle,
+  TrendingUp,
+  TrendingDown,
+  Target,
+  Award,
+  Shield,
+  Star,
+  BarChart3,
+  Activity,
+  Zap
+} from 'lucide-react';
+
+// Mock quality control data
+const qualityMetrics = [
+  {
+    id: 1,
+    category: 'Product Quality',
+    score: 94.5,
+    change: +2.1,
+    target: 95,
+    defects: 23,
+    inspections: 450
+  },
+  {
+    id: 2,
+    category: 'Service Quality',
+    score: 91.2,
+    change: +1.8,
+    target: 90,
+    defects: 18,
+    inspections: 380
+  },
+  {
+    id: 3,
+    category: 'Process Quality',
+    score: 88.7,
+    change: -0.5,
+    target: 92,
+    defects: 35,
+    inspections: 520
+  },
+  {
+    id: 4,
+    category: 'Documentation',
+    score: 96.1,
+    change: +3.2,
+    target: 95,
+    defects: 12,
+    inspections: 290
+  }
+];
+
+const qualityTrends = [
+  { month: 'Jan', score: 89, defects: 45, compliance: 92 },
+  { month: 'Feb', score: 91, defects: 42, compliance: 94 },
+  { month: 'Mar', score: 92, defects: 38, compliance: 95 },
+  { month: 'Apr', score: 90, defects: 40, compliance: 93 },
+  { month: 'May', score: 94, defects: 32, compliance: 97 },
+  { month: 'Jun', score: 95, defects: 28, compliance: 98 }
+];
+
+const defectAnalysis = [
+  { type: 'Minor', count: 45, severity: 1, color: '#f59e0b' },
+  { type: 'Major', count: 28, severity: 3, color: '#ef4444' },
+  { type: 'Critical', count: 8, severity: 5, color: '#dc2626' },
+  { type: 'Cosmetic', count: 15, severity: 1, color: '#6b7280' }
+];
+
+const complianceData = [
+  { standard: 'ISO 9001', compliance: 96, status: 'excellent' },
+  { standard: 'ISO 14001', compliance: 89, status: 'good' },
+  { standard: 'OHSAS 18001', compliance: 94, status: 'excellent' },
+  { standard: 'GDPR', compliance: 92, status: 'good' },
+  { standard: 'SOX', compliance: 98, status: 'excellent' }
+];
+
+const qualityImprovement = [
+  { area: 'Defect Reduction', target: 30, achieved: 25, impact: 'High' },
+  { area: 'Process Optimization', target: 25, achieved: 22, impact: 'Medium' },
+  { area: 'Customer Satisfaction', target: 40, achieved: 38, impact: 'High' },
+  { area: 'Training Completion', target: 95, achieved: 92, impact: 'Medium' }
+];
+
+const QualityControl = () => {
+  const { t } = useTranslation();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => setIsLoading(false), 1000);
+  }, []);
+
+  const getStatusColor = (status) => {
+    switch (status) {
+      case 'excellent': return 'text-green-400';
+      case 'good': return 'text-blue-400';
+      case 'average': return 'text-yellow-400';
+      case 'poor': return 'text-red-400';
+      default: return 'text-gray-400';
+    }
+  };
+
+  if (isLoading) {
+    return (
+      <div className="space-y-6">
+        <div className="skeleton h-8 w-1/3 mb-4"></div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="glass-card p-6">
+              <div className="skeleton h-4 w-3/4 mb-4"></div>
+              <div className="skeleton h-8 w-1/2 mb-2"></div>
+              <div className="skeleton h-4 w-1/3"></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="fade-in">
+        <h1 className="text-3xl font-bold text-white mb-2">
+          {t('quality.title')}
+        </h1>
+        <p className="text-gray-400">Monitor quality standards, track defects, and ensure compliance</p>
+      </div>
+
+      {/* Key Metrics */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="glass-card p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-gray-400 text-sm">Overall Quality Score</p>
+              <p className="text-2xl font-bold text-green-400 mt-1">92.6%</p>
+              <div className="flex items-center mt-2">
+                <TrendingUp className="h-4 w-4 text-green-400 mr-1" />
+                <span className="text-sm text-green-400">+1.7%</span>
+              </div>
+            </div>
+            <div className="glass p-3 rounded-lg">
+              <Award className="h-6 w-6 text-green-400" />
+            </div>
+          </div>
+        </div>
+
+        <div className="glass-card p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-gray-400 text-sm">Defect Rate</p>
+              <p className="text-2xl font-bold text-blue-400 mt-1">2.8%</p>
+              <div className="flex items-center mt-2">
+                <TrendingDown className="h-4 w-4 text-green-400 mr-1" />
+                <span className="text-sm text-green-400">-0.5%</span>
+              </div>
+            </div>
+            <div className="glass p-3 rounded-lg">
+              <AlertTriangle className="h-6 w-6 text-blue-400" />
+            </div>
+          </div>
+        </div>
+
+        <div className="glass-card p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-gray-400 text-sm">Compliance Rate</p>
+              <p className="text-2xl font-bold text-purple-400 mt-1">95.8%</p>
+              <div className="flex items-center mt-2">
+                <TrendingUp className="h-4 w-4 text-green-400 mr-1" />
+                <span className="text-sm text-green-400">+2.1%</span>
+              </div>
+            </div>
+            <div className="glass p-3 rounded-lg">
+              <Shield className="h-6 w-6 text-purple-400" />
+            </div>
+          </div>
+        </div>
+
+        <div className="glass-card p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-gray-400 text-sm">Customer Satisfaction</p>
+              <p className="text-2xl font-bold text-yellow-400 mt-1">4.6/5</p>
+              <div className="flex items-center mt-2">
+                <TrendingUp className="h-4 w-4 text-green-400 mr-1" />
+                <span className="text-sm text-green-400">+0.2</span>
+              </div>
+            </div>
+            <div className="glass p-3 rounded-lg">
+              <Star className="h-6 w-6 text-yellow-400" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Quality Score Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {qualityMetrics.map((metric) => (
+          <div key={metric.id} className="glass-card p-6">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-white font-semibold">{metric.category}</h3>
+              <div className={`flex items-center space-x-1 ${
+                metric.change >= 0 ? 'text-green-400' : 'text-red-400'
+              }`}>
+                {metric.change >= 0 ? (
+                  <TrendingUp className="h-4 w-4" />
+                ) : (
+                  <TrendingDown className="h-4 w-4" />
+                )}
+                <span className="text-sm font-medium">{Math.abs(metric.change)}%</span>
+              </div>
+            </div>
+            
+            <div className="space-y-3">
+              <div>
+                <div className="flex justify-between text-sm mb-1">
+                  <span className="text-gray-400">Score</span>
+                  <span className="text-white">{metric.score}%</span>
+                </div>
+                <div className="w-full bg-gray-700 rounded-full h-2">
+                  <div
+                    className="bg-gradient-to-r from-green-500 to-blue-500 h-2 rounded-full"
+                    style={{ width: `${metric.score}%` }}
+                  ></div>
+                </div>
+                <div className="flex justify-between text-xs mt-1">
+                  <span className="text-gray-500">Target: {metric.target}%</span>
+                  <span className={metric.score >= metric.target ? 'text-green-400' : 'text-red-400'}>
+                    {metric.score >= metric.target ? 'On Target' : 'Below Target'}
+                  </span>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4 text-sm">
+                <div>
+                  <p className="text-gray-400">Defects</p>
+                  <p className="text-white font-semibold">{metric.defects}</p>
+                </div>
+                <div>
+                  <p className="text-gray-400">Inspections</p>
+                  <p className="text-white font-semibold">{metric.inspections}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Charts Row 1 */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Quality Trends */}
+        <div className="glass-card p-6">
+          <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+            <TrendingUp className="h-5 w-5 mr-2 text-blue-400" />
+            Quality Performance Trends
+          </h3>
+          <ResponsiveContainer width="100%" height={300}>
+            {/* @ts-ignore */}<LineChart data={qualityTrends}>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+              {/* @ts-ignore */}<XAxis dataKey="month" stroke="rgba(255,255,255,0.7)" />
+              {/* @ts-ignore */}<YAxis stroke="rgba(255,255,255,0.7)" />
+              {/* @ts-ignore */}<Tooltip
+                contentStyle={{
+                  backgroundColor: 'rgba(0,0,0,0.8)',
+                  border: '1px solid rgba(255,255,255,0.2)',
+                  borderRadius: '8px',
+                  color: 'white'
+                }}
+              />
+              {/* @ts-ignore */}<Legend />
+              {/* @ts-ignore */}<Line type="monotone" dataKey="score" stroke="#10b981" strokeWidth={2} />
+              {/* @ts-ignore */}<Line type="monotone" dataKey="compliance" stroke="#3b82f6" strokeWidth={2} />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Defect Analysis */}
+        <div className="glass-card p-6">
+          <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+            <AlertTriangle className="h-5 w-5 mr-2 text-red-400" />
+            Defect Analysis by Type
+          </h3>
+          <ResponsiveContainer width="100%" height={300}>
+            {/* @ts-ignore */}<BarChart data={defectAnalysis}>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+              {/* @ts-ignore */}<XAxis dataKey="type" stroke="rgba(255,255,255,0.7)" />
+              {/* @ts-ignore */}<YAxis stroke="rgba(255,255,255,0.7)" />
+              {/* @ts-ignore */}<Tooltip
+                contentStyle={{
+                  backgroundColor: 'rgba(0,0,0,0.8)',
+                  border: '1px solid rgba(255,255,255,0.2)',
+                  borderRadius: '8px',
+                  color: 'white'
+                }}
+              />
+              {/* @ts-ignore */}<Bar dataKey="count" fill="#ef4444" />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      {/* Charts Row 2 */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Compliance Standards */}
+        <div className="glass-card p-6">
+          <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+            <Shield className="h-5 w-5 mr-2 text-purple-400" />
+            Compliance Standards
+          </h3>
+          <div className="space-y-4">
+            {complianceData.map((standard, index) => (
+              <div key={index} className="glass p-4 rounded-lg">
+                <div className="flex justify-between items-center mb-2">
+                  <h4 className="text-white font-medium">{standard.standard}</h4>
+                  <span className="text-white font-semibold">{standard.compliance}%</span>
+                </div>
+                <div className="w-full bg-gray-700 rounded-full h-2">
+                  <div
+                    className={`h-2 rounded-full ${
+                      standard.compliance >= 95 ? 'bg-green-500' :
+                      standard.compliance >= 90 ? 'bg-blue-500' : 'bg-yellow-500'
+                    }`}
+                    style={{ width: `${standard.compliance}%` }}
+                  ></div>
+                </div>
+                <div className="flex justify-between text-sm mt-1">
+                  <span className={getStatusColor(standard.status)}>
+                    {standard.status.charAt(0).toUpperCase() + standard.status.slice(1)}
+                  </span>
+                  <span className="text-gray-400">Target: 95%</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Quality Improvement */}
+        <div className="glass-card p-6">
+          <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+            <Zap className="h-5 w-5 mr-2 text-green-400" />
+            Quality Improvement Progress
+          </h3>
+          <div className="space-y-4">
+            {qualityImprovement.map((item, index) => (
+              <div key={index} className="glass p-4 rounded-lg">
+                <div className="flex justify-between items-center mb-2">
+                  <h4 className="text-white font-medium">{item.area}</h4>
+                  <span className="text-green-400 font-semibold">
+                    {item.achieved}/{item.target}
+                  </span>
+                </div>
+                <div className="w-full bg-gray-700 rounded-full h-2">
+                  <div
+                    className="bg-gradient-to-r from-green-500 to-blue-500 h-2 rounded-full"
+                    style={{ width: `${(item.achieved / item.target) * 100}%` }}
+                  ></div>
+                </div>
+                <div className="flex justify-between text-sm mt-1">
+                  <span className={`font-medium ${
+                    item.impact === 'High' ? 'text-red-400' :
+                    item.impact === 'Medium' ? 'text-yellow-400' : 'text-green-400'
+                  }`}>
+                    Impact: {item.impact}
+                  </span>
+                  <span className="text-gray-400">
+                    {Math.round((item.achieved / item.target) * 100)}%
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default QualityControl;

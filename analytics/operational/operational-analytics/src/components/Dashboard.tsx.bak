@@ -1,0 +1,333 @@
+import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import {
+  LineChart,
+  Line,
+  AreaChart,
+  Area,
+  BarChart,
+  Bar,
+  PieChart,
+  Pie,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer
+} from 'recharts';
+import {
+  TrendingUp,
+  TrendingDown,
+  Users,
+  Cpu,
+  Clock,
+  CheckCircle,
+  AlertCircle,
+  Target,
+  Zap,
+  Award,
+  Activity,
+  BarChart3
+} from 'lucide-react';
+
+// Mock data for analytics
+const performanceData = [
+  { month: 'Jan', productivity: 85, efficiency: 78, quality: 92 },
+  { month: 'Feb', productivity: 88, efficiency: 82, quality: 89 },
+  { month: 'Mar', productivity: 92, efficiency: 85, quality: 94 },
+  { month: 'Apr', productivity: 87, efficiency: 80, quality: 91 },
+  { month: 'May', productivity: 94, efficiency: 88, quality: 96 },
+  { month: 'Jun', productivity: 96, efficiency: 92, quality: 97 }
+];
+
+const departmentData = [
+  { name: 'Engineering', value: 35, color: '#3b82f6' },
+  { name: 'Sales', value: 25, color: '#10b981' },
+  { name: 'Marketing', value: 20, color: '#f59e0b' },
+  { name: 'Operations', value: 20, color: '#ef4444' }
+];
+
+const resourceUtilizationData = [
+  { name: 'Hardware', utilization: 78, capacity: 100 },
+  { name: 'Software', utilization: 85, capacity: 100 },
+  { name: 'Personnel', utilization: 82, capacity: 100 },
+  { name: 'Budget', utilization: 75, capacity: 100 }
+];
+
+const workflowData = [
+  { workflow: 'Order Processing', completion: 95, sla: 98 },
+  { workflow: 'Quality Check', completion: 88, sla: 92 },
+  { workflow: 'Delivery', completion: 91, sla: 94 },
+  { workflow: 'Customer Support', completion: 85, sla: 89 }
+];
+
+const Dashboard = () => {
+  const { t } = useTranslation();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate data loading
+    setTimeout(() => setIsLoading(false), 1000);
+  }, []);
+
+  const MetricCard = ({ title, value, change, icon: Icon, trend }) => (
+    <div className="glass-card p-6">
+      <div className="flex items-center justify-between">
+        <div>
+          <p className="text-gray-400 text-sm font-medium">{title}</p>
+          <p className="text-2xl font-bold text-white mt-1">{value}</p>
+          <div className="flex items-center mt-2">
+            {trend === 'up' ? (
+              <TrendingUp className="h-4 w-4 text-green-400 mr-1" />
+            ) : (
+              <TrendingDown className="h-4 w-4 text-red-400 mr-1" />
+            )}
+            <span className={`text-sm ${trend === 'up' ? 'text-green-400' : 'text-red-400'}`}>
+              {change}
+            </span>
+          </div>
+        </div>
+        <div className="glass p-3 rounded-lg">
+          <Icon className="h-6 w-6 text-blue-400" />
+        </div>
+      </div>
+    </div>
+  );
+
+  if (isLoading) {
+    return (
+      <div className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="glass-card p-6">
+              <div className="skeleton h-4 w-3/4 mb-2"></div>
+              <div className="skeleton h-8 w-1/2 mb-2"></div>
+              <div className="skeleton h-4 w-1/3"></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="fade-in">
+        <h1 className="text-3xl font-bold text-white mb-2">
+          {t('dashboard.title')}
+        </h1>
+        <p className="text-gray-400">{t('dashboard.subtitle')}</p>
+      </div>
+
+      {/* Key Metrics */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <MetricCard
+          title="Overall Performance"
+          value="94.2%"
+          change="+5.2%"
+          icon={BarChart3}
+          trend="up"
+        />
+        <MetricCard
+          title="Active Employees"
+          value="1,247"
+          change="+12"
+          icon={Users}
+          trend="up"
+        />
+        <MetricCard
+          title="Resource Efficiency"
+          value="87.5%"
+          change="+2.8%"
+          icon={Cpu}
+          trend="up"
+        />
+        <MetricCard
+          title="Workflow Completion"
+          value="92.1%"
+          change="-1.2%"
+          icon={CheckCircle}
+          trend="down"
+        />
+      </div>
+
+      {/* Charts Row 1 */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Performance Trends */}
+        <div className="glass-card p-6">
+          <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+            <Activity className="h-5 w-5 mr-2 text-blue-400" />
+            {t('dashboard.trends')}
+          </h3>
+          <ResponsiveContainer width="100%" height={300}>
+            {/* @ts-ignore */}
+            {/* @ts-ignore */}<LineChart data={performanceData}>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+              {/* @ts-ignore */}
+              {/* @ts-ignore */}<XAxis dataKey="month" stroke="rgba(255,255,255,0.7)" />
+              {/* @ts-ignore */}
+              {/* @ts-ignore */}<YAxis stroke="rgba(255,255,255,0.7)" />
+              {/* @ts-ignore */}
+              {/* @ts-ignore */}<Tooltip
+                contentStyle={{
+                  backgroundColor: 'rgba(0,0,0,0.8)',
+                  border: '1px solid rgba(255,255,255,0.2)',
+                  borderRadius: '8px',
+                  color: 'white'
+                }}
+              />
+              {/* @ts-ignore */}
+              {/* @ts-ignore */}<Legend />
+              {/* @ts-ignore */}
+              {/* @ts-ignore */}<Line type="monotone" dataKey="productivity" stroke="#3b82f6" strokeWidth={2} />
+              {/* @ts-ignore */}
+              {/* @ts-ignore */}<Line type="monotone" dataKey="efficiency" stroke="#10b981" strokeWidth={2} />
+              {/* @ts-ignore */}
+              {/* @ts-ignore */}<Line type="monotone" dataKey="quality" stroke="#f59e0b" strokeWidth={2} />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Department Performance */}
+        <div className="glass-card p-6">
+          <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+            <Target className="h-5 w-5 mr-2 text-green-400" />
+            Department Distribution
+          </h3>
+          <ResponsiveContainer width="100%" height={300}>
+            {/* @ts-ignore */}
+            {/* @ts-ignore */}<PieChart>
+              {/* @ts-ignore */}
+              {/* @ts-ignore */}<Pie
+                data={departmentData}
+                cx="50%"
+                cy="50%"
+                outerRadius={100}
+                fill="#8884d8"
+                dataKey="value"
+                label={({ name, value }) => `${name}: ${value}%`}
+              >
+                {departmentData.map((entry, index) => (
+                  {/* @ts-ignore */}<Cell key={`cell-${index}`} fill={entry.color} />
+                ))}
+              </Pie>
+              {/* @ts-ignore */}
+              {/* @ts-ignore */}<Tooltip
+                contentStyle={{
+                  backgroundColor: 'rgba(0,0,0,0.8)',
+                  border: '1px solid rgba(255,255,255,0.2)',
+                  borderRadius: '8px',
+                  color: 'white'
+                }}
+              />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      {/* Charts Row 2 */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Resource Utilization */}
+        <div className="glass-card p-6">
+          <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+            <Zap className="h-5 w-5 mr-2 text-yellow-400" />
+            Resource Utilization
+          </h3>
+          <ResponsiveContainer width="100%" height={300}>
+            {/* @ts-ignore */}
+            {/* @ts-ignore */}<BarChart data={resourceUtilizationData}>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+              {/* @ts-ignore */}<XAxis dataKey="name" stroke="rgba(255,255,255,0.7)" />
+              {/* @ts-ignore */}
+              {/* @ts-ignore */}<YAxis stroke="rgba(255,255,255,0.7)" />
+              {/* @ts-ignore */}
+              {/* @ts-ignore */}<Tooltip
+                contentStyle={{
+                  backgroundColor: 'rgba(0,0,0,0.8)',
+                  border: '1px solid rgba(255,255,255,0.2)',
+                  borderRadius: '8px',
+                  color: 'white'
+                }}
+              />
+              {/* @ts-ignore */}
+              {/* @ts-ignore */}<Bar dataKey="utilization" fill="#3b82f6" />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Workflow Performance */}
+        <div className="glass-card p-6">
+          <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+            <CheckCircle className="h-5 w-5 mr-2 text-green-400" />
+            Workflow SLA Compliance
+          </h3>
+          <ResponsiveContainer width="100%" height={300}>
+            {/* @ts-ignore */}
+            {/* @ts-ignore */}<AreaChart data={workflowData}>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+              {/* @ts-ignore */}<XAxis dataKey="workflow" stroke="rgba(255,255,255,0.7)" />
+              {/* @ts-ignore */}
+              {/* @ts-ignore */}<YAxis stroke="rgba(255,255,255,0.7)" />
+              {/* @ts-ignore */}
+              {/* @ts-ignore */}<Tooltip
+                contentStyle={{
+                  backgroundColor: 'rgba(0,0,0,0.8)',
+                  border: '1px solid rgba(255,255,255,0.2)',
+                  borderRadius: '8px',
+                  color: 'white'
+                }}
+              />
+              {/* @ts-ignore */}
+              {/* @ts-ignore */}<Area type="monotone" dataKey="completion" stackId="1" stroke="#10b981" fill="#10b981" fillOpacity={0.6} />
+              {/* @ts-ignore */}
+              {/* @ts-ignore */}<Area type="monotone" dataKey="sla" stackId="2" stroke="#3b82f6" fill="#3b82f6" fillOpacity={0.6} />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      {/* Performance Heatmap */}
+      <div className="glass-card p-6">
+        <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+          <Award className="h-5 w-5 mr-2 text-purple-400" />
+          Performance Heatmap
+        </h3>
+        <div className="grid grid-cols-7 gap-2">
+          {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day) => (
+            <div key={day} className="text-center">
+              <p className="text-gray-400 text-sm mb-2">{day}</p>
+              {['Morning', 'Afternoon', 'Evening'].map((period) => (
+                <div
+                  key={period}
+                  className={`w-full h-8 rounded mb-1 heatmap-cell ${
+                    Math.random() > 0.7 ? 'heatmap-high' :
+                    Math.random() > 0.4 ? 'heatmap-medium' : 'heatmap-low'
+                  }`}
+                />
+              ))}
+            </div>
+          ))}
+        </div>
+        <div className="flex justify-center space-x-4 mt-4">
+          <div className="flex items-center">
+            <div className="w-3 h-3 bg-green-400 rounded mr-2"></div>
+            <span className="text-gray-400 text-sm">Low</span>
+          </div>
+          <div className="flex items-center">
+            <div className="w-3 h-3 bg-yellow-400 rounded mr-2"></div>
+            <span className="text-gray-400 text-sm">Medium</span>
+          </div>
+          <div className="flex items-center">
+            <div className="w-3 h-3 bg-red-400 rounded mr-2"></div>
+            <span className="text-gray-400 text-sm">High</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Dashboard;

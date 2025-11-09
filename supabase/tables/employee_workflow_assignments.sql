@@ -1,0 +1,22 @@
+CREATE TABLE employee_workflow_assignments (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    organization_id UUID NOT NULL REFERENCES organizations(id) ON DELETE CASCADE,
+    employee_id UUID NOT NULL REFERENCES employees(id) ON DELETE CASCADE,
+    order_workflow_id UUID REFERENCES order_workflows(id) ON DELETE CASCADE,
+    order_id UUID REFERENCES orders(id),
+    assignment_date TIMESTAMPTZ DEFAULT NOW(),
+    assigned_by UUID REFERENCES employees(id),
+    task_type TEXT,
+    task_priority TEXT DEFAULT 'medium',
+    estimated_hours NUMERIC(5,2),
+    actual_hours NUMERIC(5,2),
+    task_status TEXT DEFAULT 'assigned',
+    start_date TIMESTAMPTZ,
+    completion_date TIMESTAMPTZ,
+    quality_rating NUMERIC(3,2),
+    speed_rating NUMERIC(3,2),
+    customer_satisfaction NUMERIC(3,2),
+    notes TEXT,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW()
+);

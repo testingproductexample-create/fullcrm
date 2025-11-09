@@ -1,0 +1,399 @@
+import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import {
+  LineChart,
+  Line,
+  BarChart,
+  Bar,
+  AreaChart,
+  Area,
+  PieChart,
+  Pie,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer
+} from 'recharts';
+import {
+  Clock,
+  TrendingUp,
+  TrendingDown,
+  Timer,
+  Calendar,
+  Users,
+  Target,
+  Activity,
+  Play,
+  Pause,
+  RotateCcw
+} from 'lucide-react';
+
+// Mock time tracking data
+const timeData = [
+  { day: 'Mon', productive: 7.5, idle: 0.5, overtime: 1.0 },
+  { day: 'Tue', productive: 8.0, idle: 0.3, overtime: 0.5 },
+  { day: 'Wed', productive: 7.8, idle: 0.7, overtime: 0.8 },
+  { day: 'Thu', productive: 8.2, idle: 0.2, overtime: 1.2 },
+  { day: 'Fri', productive: 7.0, idle: 1.0, overtime: 0.5 },
+  { day: 'Sat', productive: 6.5, idle: 0.3, overtime: 0.0 },
+  { day: 'Sun', productive: 0, idle: 0, overtime: 0 }
+];
+
+const timeDistribution = [
+  { name: 'Project Work', hours: 32.5, color: '#3b82f6' },
+  { name: 'Meetings', hours: 8.5, color: '#10b981' },
+  { name: 'Admin Tasks', hours: 4.2, color: '#f59e0b' },
+  { name: 'Training', hours: 2.8, color: '#ef4444' },
+  { name: 'Breaks', hours: 3.0, color: '#8b5cf6' }
+];
+
+const productivityByDepartment = [
+  { department: 'Engineering', productivity: 92, hours: 168 },
+  { department: 'Sales', productivity: 88, hours: 175 },
+  { department: 'Marketing', productivity: 85, hours: 160 },
+  { department: 'Operations', productivity: 90, hours: 172 },
+  { department: 'HR', productivity: 87, hours: 165 }
+];
+
+const timeEfficiency = [
+  { category: 'Task Completion', efficiency: 89, target: 85 },
+  { category: 'Meeting Efficiency', efficiency: 76, target: 80 },
+  { category: 'Project Delivery', efficiency: 94, target: 90 },
+  { category: 'Resource Utilization', efficiency: 82, target: 85 }
+];
+
+const TimeTracking = () => {
+  const { t } = useTranslation();
+  const [isLoading, setIsLoading] = useState(true);
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  useEffect(() => {
+    setTimeout(() => setIsLoading(false), 1000);
+    
+    // Update current time every second
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const formatTime = (date) => {
+    return date.toLocaleTimeString();
+  };
+
+  if (isLoading) {
+    return (
+      <div className="space-y-6">
+        <div className="skeleton h-8 w-1/3 mb-4"></div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="glass-card p-6">
+              <div className="skeleton h-4 w-3/4 mb-4"></div>
+              <div className="skeleton h-8 w-1/2 mb-2"></div>
+              <div className="skeleton h-4 w-1/3"></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="fade-in">
+        <h1 className="text-3xl font-bold text-white mb-2">
+          {t('time.title')}
+        </h1>
+        <p className="text-gray-400">Track time usage, productivity patterns, and efficiency metrics</p>
+      </div>
+
+      {/* Key Metrics */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="glass-card p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-gray-400 text-sm">Today's Productive Time</p>
+              <p className="text-2xl font-bold text-blue-400 mt-1">7.8h</p>
+              <div className="flex items-center mt-2">
+                <TrendingUp className="h-4 w-4 text-green-400 mr-1" />
+                <span className="text-sm text-green-400">+0.3h</span>
+              </div>
+            </div>
+            <div className="glass p-3 rounded-lg">
+              <Timer className="h-6 w-6 text-blue-400" />
+            </div>
+          </div>
+        </div>
+
+        <div className="glass-card p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-gray-400 text-sm">Average Productivity</p>
+              <p className="text-2xl font-bold text-green-400 mt-1">87.5%</p>
+              <div className="flex items-center mt-2">
+                <TrendingUp className="h-4 w-4 text-green-400 mr-1" />
+                <span className="text-sm text-green-400">+2.1%</span>
+              </div>
+            </div>
+            <div className="glass p-3 rounded-lg">
+              <Target className="h-6 w-6 text-green-400" />
+            </div>
+          </div>
+        </div>
+
+        <div className="glass-card p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-gray-400 text-sm">Team Efficiency</p>
+              <p className="text-2xl font-bold text-yellow-400 mt-1">91.2%</p>
+              <div className="flex items-center mt-2">
+                <TrendingUp className="h-4 w-4 text-green-400 mr-1" />
+                <span className="text-sm text-green-400">+1.5%</span>
+              </div>
+            </div>
+            <div className="glass p-3 rounded-lg">
+              <Users className="h-6 w-6 text-yellow-400" />
+            </div>
+          </div>
+        </div>
+
+        <div className="glass-card p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-gray-400 text-sm">Overtime Hours</p>
+              <p className="text-2xl font-bold text-purple-400 mt-1">4.2h</p>
+              <div className="flex items-center mt-2">
+                <TrendingDown className="h-4 w-4 text-green-400 mr-1" />
+                <span className="text-sm text-green-400">-0.8h</span>
+              </div>
+            </div>
+            <div className="glass p-3 rounded-lg">
+              <Clock className="h-6 w-6 text-purple-400" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Live Time Tracker */}
+      <div className="glass-card p-6">
+        <div className="flex items-center justify-between mb-6">
+          <h3 className="text-lg font-semibold text-white flex items-center">
+            <Activity className="h-5 w-5 mr-2 text-blue-400" />
+            Live Time Tracker
+          </h3>
+          <div className="text-2xl font-mono text-white">
+            {formatTime(currentTime)}
+          </div>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="glass p-4 rounded-lg text-center">
+            <div className="text-3xl font-mono text-blue-400 mb-2">08:15:23</div>
+            <p className="text-gray-400 text-sm">Current Session</p>
+            <div className="flex justify-center space-x-2 mt-3">
+              <button className="glass-button p-2">
+                <Pause className="h-4 w-4" />
+              </button>
+              <button className="glass-button p-2">
+                <Play className="h-4 w-4" />
+              </button>
+              <button className="glass-button p-2">
+                <RotateCcw className="h-4 w-4" />
+              </button>
+            </div>
+          </div>
+          
+          <div className="glass p-4 rounded-lg text-center">
+            <div className="text-2xl font-semibold text-white mb-2">37h 45m</div>
+            <p className="text-gray-400 text-sm">This Week</p>
+            <div className="w-full bg-gray-700 rounded-full h-2 mt-3">
+              <div className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full" style={{ width: '75%' }}></div>
+            </div>
+            <p className="text-xs text-gray-400 mt-1">Target: 40h</p>
+          </div>
+          
+          <div className="glass p-4 rounded-lg text-center">
+            <div className="text-2xl font-semibold text-white mb-2">156h 20m</div>
+            <p className="text-gray-400 text-sm">This Month</p>
+            <div className="w-full bg-gray-700 rounded-full h-2 mt-3">
+              <div className="bg-gradient-to-r from-green-500 to-blue-500 h-2 rounded-full" style={{ width: '89%' }}></div>
+            </div>
+            <p className="text-xs text-gray-400 mt-1">Target: 175h</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Charts Row 1 */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Weekly Time Trends */}
+        <div className="glass-card p-6">
+          <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+            <Clock className="h-5 w-5 mr-2 text-blue-400" />
+            Weekly Time Distribution
+          </h3>
+          <ResponsiveContainer width="100%" height={300}>
+            {/* @ts-ignore */}<AreaChart data={timeData}>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+              {/* @ts-ignore */}<XAxis dataKey="day" stroke="rgba(255,255,255,0.7)" />
+              {/* @ts-ignore */}<YAxis stroke="rgba(255,255,255,0.7)" />
+              {/* @ts-ignore */}<Tooltip
+                contentStyle={{
+                  backgroundColor: 'rgba(0,0,0,0.8)',
+                  border: '1px solid rgba(255,255,255,0.2)',
+                  borderRadius: '8px',
+                  color: 'white'
+                }}
+              />
+              {/* @ts-ignore */}<Legend />
+              {/* @ts-ignore */}<Area type="monotone" dataKey="productive" stackId="1" stroke="#3b82f6" fill="#3b82f6" fillOpacity={0.6} />
+              {/* @ts-ignore */}<Area type="monotone" dataKey="overtime" stackId="1" stroke="#f59e0b" fill="#f59e0b" fillOpacity={0.6} />
+              {/* @ts-ignore */}<Area type="monotone" dataKey="idle" stackId="1" stroke="#ef4444" fill="#ef4444" fillOpacity={0.6} />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Time Distribution */}
+        <div className="glass-card p-6">
+          <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+            <Calendar className="h-5 w-5 mr-2 text-green-400" />
+            Time Distribution (This Week)
+          </h3>
+          <ResponsiveContainer width="100%" height={300}>
+            {/* @ts-ignore */}<PieChart>
+              {/* @ts-ignore */}<Pie
+                data={timeDistribution}
+                cx="50%"
+                cy="50%"
+                outerRadius={100}
+                fill="#8884d8"
+                dataKey="hours"
+                label={({ name, hours }) => `${name}: ${hours}h`}
+              >
+                {timeDistribution.map((entry, index) => (
+                  {/* @ts-ignore */}<Cell key={`cell-${index}`} fill={entry.color} />
+                ))}
+              </Pie>
+              {/* @ts-ignore */}<Tooltip
+                contentStyle={{
+                  backgroundColor: 'rgba(0,0,0,0.8)',
+                  border: '1px solid rgba(255,255,255,0.2)',
+                  borderRadius: '8px',
+                  color: 'white'
+                }}
+              />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      {/* Charts Row 2 */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Department Productivity */}
+        <div className="glass-card p-6">
+          <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+            <Users className="h-5 w-5 mr-2 text-purple-400" />
+            Productivity by Department
+          </h3>
+          <ResponsiveContainer width="100%" height={300}>
+            {/* @ts-ignore */}<BarChart data={productivityByDepartment}>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+              {/* @ts-ignore */}<XAxis dataKey="department" stroke="rgba(255,255,255,0.7)" />
+              {/* @ts-ignore */}<YAxis stroke="rgba(255,255,255,0.7)" />
+              {/* @ts-ignore */}<Tooltip
+                contentStyle={{
+                  backgroundColor: 'rgba(0,0,0,0.8)',
+                  border: '1px solid rgba(255,255,255,0.2)',
+                  borderRadius: '8px',
+                  color: 'white'
+                }}
+              />
+              {/* @ts-ignore */}<Bar dataKey="productivity" fill="#8b5cf6" />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Time Efficiency */}
+        <div className="glass-card p-6">
+          <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+            <Target className="h-5 w-5 mr-2 text-yellow-400" />
+            Time Efficiency Metrics
+          </h3>
+          <div className="space-y-4">
+            {timeEfficiency.map((metric, index) => (
+              <div key={index} className="glass p-4 rounded-lg">
+                <div className="flex justify-between items-center mb-2">
+                  <h4 className="text-white font-medium">{metric.category}</h4>
+                  <span className="text-white font-semibold">{metric.efficiency}%</span>
+                </div>
+                <div className="space-y-2">
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-400">Current</span>
+                    <span className="text-white">{metric.efficiency}%</span>
+                  </div>
+                  <div className="w-full bg-gray-700 rounded-full h-2">
+                    <div
+                      className={`h-2 rounded-full ${
+                        metric.efficiency >= metric.target ? 'bg-green-500' : 'bg-yellow-500'
+                      }`}
+                      style={{ width: `${Math.min(metric.efficiency, 100)}%` }}
+                    ></div>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-400">Target</span>
+                    <span className="text-green-400">{metric.target}%</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Time Analytics Insights */}
+      <div className="glass-card p-6">
+        <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+          <Activity className="h-5 w-5 mr-2 text-blue-400" />
+          Time Analytics Insights
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="glass p-4 rounded-lg">
+            <div className="flex items-center space-x-2 mb-2">
+              <TrendingUp className="h-5 w-5 text-green-400" />
+              <h4 className="text-white font-medium">Peak Productivity</h4>
+            </div>
+            <p className="text-gray-400 text-sm mb-2">Most productive hours: 9 AM - 12 PM</p>
+            <div className="text-2xl font-bold text-green-400">92%</div>
+            <p className="text-gray-500 text-xs">Average efficiency during peak hours</p>
+          </div>
+
+          <div className="glass p-4 rounded-lg">
+            <div className="flex items-center space-x-2 mb-2">
+              <Clock className="h-5 w-5 text-blue-400" />
+              <h4 className="text-white font-medium">Meeting Time</h4>
+            </div>
+            <p className="text-gray-400 text-sm mb-2">Average meeting duration: 45 minutes</p>
+            <div className="text-2xl font-bold text-blue-400">12.8h</div>
+            <p className="text-gray-500 text-xs">Total meeting time this week</p>
+          </div>
+
+          <div className="glass p-4 rounded-lg">
+            <div className="flex items-center space-x-2 mb-2">
+              <Timer className="h-5 w-5 text-purple-400" />
+              <h4 className="text-white font-medium">Focus Time</h4>
+            </div>
+            <p className="text-gray-400 text-sm mb-2">Uninterrupted work blocks: 2.3h avg</p>
+            <div className="text-2xl font-bold text-purple-400">18.5h</div>
+            <p className="text-gray-500 text-xs">Deep work sessions this week</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default TimeTracking;

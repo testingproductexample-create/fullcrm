@@ -1,0 +1,22 @@
+CREATE TABLE design_approval_requests (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    organization_id UUID NOT NULL REFERENCES organizations(id) ON DELETE CASCADE,
+    selection_id UUID NOT NULL REFERENCES customer_design_selections(id) ON DELETE CASCADE,
+    customer_id UUID NOT NULL REFERENCES customers(id),
+    request_number TEXT UNIQUE NOT NULL,
+    approval_stage TEXT NOT NULL,
+    approval_sequence INTEGER DEFAULT 1,
+    requested_from UUID REFERENCES profiles(id),
+    requested_at TIMESTAMPTZ DEFAULT NOW(),
+    status TEXT DEFAULT 'pending',
+    approved_at TIMESTAMPTZ,
+    approved_by UUID REFERENCES profiles(id),
+    digital_signature TEXT,
+    rejection_reason TEXT,
+    revision_notes TEXT,
+    approval_notes TEXT,
+    version_number INTEGER DEFAULT 1,
+    previous_version_id UUID REFERENCES design_approval_requests(id),
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW()
+);

@@ -1,0 +1,417 @@
+import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import {
+  LineChart,
+  Line,
+  BarChart,
+  Bar,
+  AreaChart,
+  Area,
+  ComposedChart,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer
+} from 'recharts';
+import {
+  Factory,
+  TrendingUp,
+  TrendingDown,
+  Target,
+  Zap,
+  Package,
+  Settings,
+  Activity,
+  BarChart3,
+  AlertCircle,
+  CheckCircle
+} from 'lucide-react';
+
+// Mock production data
+const productionMetrics = [
+  {
+    id: 1,
+    name: 'Line A - Electronics',
+    capacity: 1000,
+    output: 850,
+    efficiency: 85,
+    quality: 94,
+    status: 'optimal',
+    downtime: 2.5
+  },
+  {
+    id: 2,
+    name: 'Line B - Assembly',
+    capacity: 800,
+    output: 720,
+    efficiency: 90,
+    quality: 91,
+    status: 'optimal',
+    downtime: 1.8
+  },
+  {
+    id: 3,
+    name: 'Line C - Packaging',
+    capacity: 1200,
+    output: 1080,
+    efficiency: 90,
+    quality: 96,
+    status: 'optimal',
+    downtime: 1.2
+  },
+  {
+    id: 4,
+    name: 'Line D - Quality Control',
+    capacity: 600,
+    output: 520,
+    efficiency: 87,
+    quality: 98,
+    status: 'warning',
+    downtime: 3.5
+  }
+];
+
+const productionTrends = [
+  { month: 'Jan', output: 2800, capacity: 3200, efficiency: 87.5, quality: 92 },
+  { month: 'Feb', output: 2950, capacity: 3200, efficiency: 92.2, quality: 93 },
+  { month: 'Mar', output: 3100, capacity: 3400, efficiency: 91.2, quality: 94 },
+  { month: 'Apr', output: 3050, capacity: 3400, efficiency: 89.7, quality: 93 },
+  { month: 'May', output: 3200, capacity: 3400, efficiency: 94.1, quality: 95 },
+  { month: 'Jun', output: 3350, capacity: 3600, efficiency: 93.1, quality: 96 }
+];
+
+const capacityUtilization = [
+  { line: 'Line A', utilization: 85, target: 90, variance: -5 },
+  { line: 'Line B', utilization: 90, target: 85, variance: +5 },
+  { line: 'Line C', utilization: 90, target: 88, variance: +2 },
+  { line: 'Line D', utilization: 87, target: 85, variance: +2 }
+];
+
+const qualityMetrics = [
+  { category: 'Defect Rate', value: 2.1, target: 2.0, trend: 'up' },
+  { category: 'First Pass Yield', value: 94.5, target: 95.0, trend: 'down' },
+  { category: 'Customer Returns', value: 0.8, target: 1.0, trend: 'down' },
+  { category: 'Process Capability', value: 1.45, target: 1.33, trend: 'up' }
+];
+
+const ProductionAnalytics = () => {
+  const { t } = useTranslation();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => setIsLoading(false), 1000);
+  }, []);
+
+  const ProductionCard = ({ line }) => {
+    const getStatusColor = (status) => {
+      switch (status) {
+        case 'optimal': return 'text-green-400';
+        case 'warning': return 'text-yellow-400';
+        case 'critical': return 'text-red-400';
+        default: return 'text-gray-400';
+      }
+    };
+
+    const getStatusIcon = (status) => {
+      switch (status) {
+        case 'optimal': return <CheckCircle className="h-4 w-4" />;
+        case 'warning': return <AlertCircle className="h-4 w-4" />;
+        case 'critical': return <AlertCircle className="h-4 w-4" />;
+        default: return <Settings className="h-4 w-4" />;
+      }
+    };
+
+    return (
+      <div className="glass-card p-6">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center space-x-3">
+            <div className="glass p-2 rounded-lg">
+              <Factory className="h-5 w-5 text-blue-400" />
+            </div>
+            <div>
+              <h3 className="text-white font-semibold">{line.name}</h3>
+              <p className="text-gray-400 text-sm">Production Line</p>
+            </div>
+          </div>
+          <div className={`flex items-center space-x-1 ${getStatusColor(line.status)}`}>
+            {getStatusIcon(line.status)}
+            <span className="text-sm font-medium capitalize">{line.status}</span>
+          </div>
+        </div>
+
+        <div className="space-y-4">
+          <div>
+            <div className="flex justify-between text-sm mb-2">
+              <span className="text-gray-400">Output vs Capacity</span>
+              <span className="text-white">{line.output}/{line.capacity}</span>
+            </div>
+            <div className="w-full bg-gray-700 rounded-full h-2">
+              <div
+                className="bg-gradient-to-r from-blue-500 to-green-500 h-2 rounded-full"
+                style={{ width: `${(line.output / line.capacity) * 100}%` }}
+              ></div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4 text-sm">
+            <div>
+              <p className="text-gray-400">Efficiency</p>
+              <p className="text-white font-semibold">{line.efficiency}%</p>
+            </div>
+            <div>
+              <p className="text-gray-400">Quality</p>
+              <p className="text-white font-semibold">{line.quality}%</p>
+            </div>
+            <div>
+              <p className="text-gray-400">Utilization</p>
+              <p className="text-white font-semibold">{Math.round((line.output / line.capacity) * 100)}%</p>
+            </div>
+            <div>
+              <p className="text-gray-400">Downtime</p>
+              <p className="text-white font-semibold">{line.downtime}h</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  if (isLoading) {
+    return (
+      <div className="space-y-6">
+        <div className="skeleton h-8 w-1/3 mb-4"></div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="glass-card p-6">
+              <div className="skeleton h-4 w-3/4 mb-4"></div>
+              <div className="skeleton h-2 w-full mb-2"></div>
+              <div className="skeleton h-4 w-1/2"></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="fade-in">
+        <h1 className="text-3xl font-bold text-white mb-2">
+          {t('production.title')}
+        </h1>
+        <p className="text-gray-400">Monitor production capacity, efficiency, and output optimization</p>
+      </div>
+
+      {/* Key Metrics */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="glass-card p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-gray-400 text-sm">Total Output</p>
+              <p className="text-2xl font-bold text-blue-400 mt-1">3,170</p>
+              <div className="flex items-center mt-2">
+                <TrendingUp className="h-4 w-4 text-green-400 mr-1" />
+                <span className="text-sm text-green-400">+4.7%</span>
+              </div>
+            </div>
+            <div className="glass p-3 rounded-lg">
+              <Package className="h-6 w-6 text-blue-400" />
+            </div>
+          </div>
+        </div>
+
+        <div className="glass-card p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-gray-400 text-sm">Avg Efficiency</p>
+              <p className="text-2xl font-bold text-green-400 mt-1">88.0%</p>
+              <div className="flex items-center mt-2">
+                <TrendingUp className="h-4 w-4 text-green-400 mr-1" />
+                <span className="text-sm text-green-400">+1.0%</span>
+              </div>
+            </div>
+            <div className="glass p-3 rounded-lg">
+              <Zap className="h-6 w-6 text-green-400" />
+            </div>
+          </div>
+        </div>
+
+        <div className="glass-card p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-gray-400 text-sm">Capacity Utilization</p>
+              <p className="text-2xl font-bold text-yellow-400 mt-1">88.1%</p>
+              <div className="flex items-center mt-2">
+                <TrendingUp className="h-4 w-4 text-green-400 mr-1" />
+                <span className="text-sm text-green-400">+2.3%</span>
+              </div>
+            </div>
+            <div className="glass p-3 rounded-lg">
+              <BarChart3 className="h-6 w-6 text-yellow-400" />
+            </div>
+          </div>
+        </div>
+
+        <div className="glass-card p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-gray-400 text-sm">Quality Score</p>
+              <p className="text-2xl font-bold text-purple-400 mt-1">94.8%</p>
+              <div className="flex items-center mt-2">
+                <TrendingUp className="h-4 w-4 text-green-400 mr-1" />
+                <span className="text-sm text-green-400">+1.1%</span>
+              </div>
+            </div>
+            <div className="glass p-3 rounded-lg">
+              <Target className="h-6 w-6 text-purple-400" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Production Line Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {productionMetrics.map((line) => (
+          <ProductionCard key={line.id} line={line} />
+        ))}
+      </div>
+
+      {/* Charts Row 1 */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Production Trends */}
+        <div className="glass-card p-6">
+          <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+            <Activity className="h-5 w-5 mr-2 text-blue-400" />
+            Production Trends
+          </h3>
+          <ResponsiveContainer width="100%" height={300}>
+            {/* @ts-ignore */}<ComposedChart data={productionTrends}>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+              {/* @ts-ignore */}<XAxis dataKey="month" stroke="rgba(255,255,255,0.7)" />
+              {/* @ts-ignore */}<YAxis stroke="rgba(255,255,255,0.7)" />
+              {/* @ts-ignore */}<Tooltip
+                contentStyle={{
+                  backgroundColor: 'rgba(0,0,0,0.8)',
+                  border: '1px solid rgba(255,255,255,0.2)',
+                  borderRadius: '8px',
+                  color: 'white'
+                }}
+              />
+              {/* @ts-ignore */}<Legend />
+              {/* @ts-ignore */}<Bar dataKey="output" fill="#3b82f6" />
+              {/* @ts-ignore */}<Bar dataKey="capacity" fill="#10b981" fillOpacity={0.6} />
+              {/* @ts-ignore */}<Line type="monotone" dataKey="efficiency" stroke="#f59e0b" strokeWidth={2} />
+            </ComposedChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Capacity Utilization */}
+        <div className="glass-card p-6">
+          <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+            <Target className="h-5 w-5 mr-2 text-green-400" />
+            Capacity Utilization vs Target
+          </h3>
+          <ResponsiveContainer width="100%" height={300}>
+            {/* @ts-ignore */}<BarChart data={capacityUtilization}>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+              {/* @ts-ignore */}<XAxis dataKey="line" stroke="rgba(255,255,255,0.7)" />
+              {/* @ts-ignore */}<YAxis stroke="rgba(255,255,255,0.7)" />
+              {/* @ts-ignore */}<Tooltip
+                contentStyle={{
+                  backgroundColor: 'rgba(0,0,0,0.8)',
+                  border: '1px solid rgba(255,255,255,0.2)',
+                  borderRadius: '8px',
+                  color: 'white'
+                }}
+              />
+              {/* @ts-ignore */}<Legend />
+              {/* @ts-ignore */}<Bar dataKey="utilization" fill="#8b5cf6" />
+              {/* @ts-ignore */}<Bar dataKey="target" fill="#6b7280" />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      {/* Quality Metrics */}
+      <div className="glass-card p-6">
+        <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+          <CheckCircle className="h-5 w-5 mr-2 text-green-400" />
+          Production Quality Metrics
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {qualityMetrics.map((metric, index) => (
+            <div key={index} className="glass p-4 rounded-lg">
+              <div className="flex justify-between items-center mb-2">
+                <h4 className="text-white font-medium">{metric.category}</h4>
+                <div className={`flex items-center ${
+                  metric.trend === 'up' ? 'text-green-400' : 'text-red-400'
+                }`}>
+                  {metric.trend === 'up' ? (
+                    <TrendingUp className="h-4 w-4" />
+                  ) : (
+                    <TrendingDown className="h-4 w-4" />
+                  )}
+                </div>
+              </div>
+              <div className="text-2xl font-bold text-white mb-1">
+                {metric.value}{metric.category === 'Defect Rate' || metric.category === 'Customer Returns' ? '%' : 
+                 metric.category === 'Process Capability' ? '' : '%'}
+              </div>
+              <div className="flex justify-between text-sm">
+                <span className="text-gray-400">Target: {metric.target}{metric.category === 'Defect Rate' || metric.category === 'Customer Returns' ? '%' : 
+                 metric.category === 'Process Capability' ? '' : '%'}</span>
+                <span className={metric.value <= metric.target || metric.category === 'Process Capability' ? 'text-green-400' : 'text-red-400'}>
+                  {metric.value <= metric.target || metric.category === 'Process Capability' ? 'On Target' : 'Off Target'}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Production Forecasting */}
+      <div className="glass-card p-6">
+        <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+          <BarChart3 className="h-5 w-5 mr-2 text-blue-400" />
+          Production Forecasting
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="glass p-4 rounded-lg">
+            <h4 className="text-white font-medium mb-2">Next 7 Days</h4>
+            <div className="text-2xl font-bold text-blue-400 mb-1">22,890</div>
+            <p className="text-gray-400 text-sm">Units projected</p>
+            <div className="w-full bg-gray-700 rounded-full h-2 mt-2">
+              <div className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full" style={{ width: '92%' }}></div>
+            </div>
+            <p className="text-xs text-gray-500 mt-1">92% confidence</p>
+          </div>
+
+          <div className="glass p-4 rounded-lg">
+            <h4 className="text-white font-medium mb-2">Next 30 Days</h4>
+            <div className="text-2xl font-bold text-green-400 mb-1">98,200</div>
+            <p className="text-gray-400 text-sm">Units projected</p>
+            <div className="w-full bg-gray-700 rounded-full h-2 mt-2">
+              <div className="bg-gradient-to-r from-green-500 to-blue-500 h-2 rounded-full" style={{ width: '87%' }}></div>
+            </div>
+            <p className="text-xs text-gray-500 mt-1">87% confidence</p>
+          </div>
+
+          <div className="glass p-4 rounded-lg">
+            <h4 className="text-white font-medium mb-2">Next Quarter</h4>
+            <div className="text-2xl font-bold text-purple-400 mb-1">294,500</div>
+            <p className="text-gray-400 text-sm">Units projected</p>
+            <div className="w-full bg-gray-700 rounded-full h-2 mt-2">
+              <div className="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full" style={{ width: '78%' }}></div>
+            </div>
+            <p className="text-xs text-gray-500 mt-1">78% confidence</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ProductionAnalytics;

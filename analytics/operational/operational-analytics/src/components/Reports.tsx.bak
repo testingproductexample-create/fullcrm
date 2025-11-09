@@ -1,0 +1,355 @@
+import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import {
+  FileText,
+  Download,
+  Calendar,
+  Filter,
+  BarChart3,
+  PieChart,
+  LineChart,
+  Table,
+  Share2,
+  Eye,
+  Mail,
+  Printer
+} from 'lucide-react';
+
+const reportTypes = [
+  {
+    id: 1,
+    name: 'Employee Performance Report',
+    description: 'Comprehensive analysis of employee productivity and performance metrics',
+    category: 'HR',
+    lastGenerated: '2 hours ago',
+    status: 'ready',
+    icon: BarChart3
+  },
+  {
+    id: 2,
+    name: 'Resource Utilization Report',
+    description: 'Detailed resource usage analysis and optimization recommendations',
+    category: 'Operations',
+    lastGenerated: '5 hours ago',
+    status: 'generating',
+    icon: PieChart
+  },
+  {
+    id: 3,
+    name: 'Workflow Analytics Report',
+    description: 'Process efficiency analysis and bottleneck identification',
+    category: 'Operations',
+    lastGenerated: '1 day ago',
+    status: 'ready',
+    icon: LineChart
+  },
+  {
+    id: 4,
+    name: 'Quality Control Report',
+    description: 'Quality metrics, defect analysis, and compliance tracking',
+    category: 'Quality',
+    lastGenerated: '3 hours ago',
+    status: 'ready',
+    icon: FileText
+  },
+  {
+    id: 5,
+    name: 'Production Analytics Report',
+    description: 'Production capacity, efficiency, and output analysis',
+    category: 'Production',
+    lastGenerated: '6 hours ago',
+    status: 'ready',
+    icon: Table
+  },
+  {
+    id: 6,
+    name: 'Time Tracking Report',
+    description: 'Employee time usage, productivity patterns, and efficiency metrics',
+    category: 'HR',
+    lastGenerated: '4 hours ago',
+    status: 'ready',
+    icon: Calendar
+  }
+];
+
+const recentReports = [
+  { name: 'Monthly Performance Summary', type: 'Employee', date: '2025-11-08', size: '2.4 MB' },
+  { name: 'Q3 Resource Analysis', type: 'Resource', date: '2025-11-07', size: '1.8 MB' },
+  { name: 'Workflow Optimization Report', type: 'Workflow', date: '2025-11-06', size: '3.1 MB' },
+  { name: 'Quality Metrics Dashboard', type: 'Quality', date: '2025-11-05', size: '1.9 MB' },
+  { name: 'Production Efficiency Report', type: 'Production', date: '2025-11-04', size: '2.7 MB' }
+];
+
+const Reports = () => {
+  const { t } = useTranslation();
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedReport, setSelectedReport] = useState(null);
+
+  const categories = ['all', 'HR', 'Operations', 'Quality', 'Production'];
+
+  const getStatusColor = (status) => {
+    switch (status) {
+      case 'ready': return 'text-green-400';
+      case 'generating': return 'text-yellow-400';
+      case 'error': return 'text-red-400';
+      default: return 'text-gray-400';
+    }
+  };
+
+  const filteredReports = selectedCategory === 'all' 
+    ? reportTypes 
+    : reportTypes.filter(report => report.category === selectedCategory);
+
+  return (
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="fade-in">
+        <h1 className="text-3xl font-bold text-white mb-2">
+          {t('nav.reports')}
+        </h1>
+        <p className="text-gray-400">Generate, view, and manage comprehensive analytics reports</p>
+      </div>
+
+      {/* Quick Actions */}
+      <div className="glass-card p-6">
+        <h3 className="text-lg font-semibold text-white mb-4">Quick Actions</h3>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <button className="glass-button p-4 text-left flex items-center space-x-3 hover:bg-white/10 transition-all">
+            <div className="glass p-2 rounded-lg">
+              <Download className="h-5 w-5 text-blue-400" />
+            </div>
+            <div>
+              <p className="text-white font-medium">Generate New Report</p>
+              <p className="text-gray-400 text-sm">Create custom analytics report</p>
+            </div>
+          </button>
+
+          <button className="glass-button p-4 text-left flex items-center space-x-3 hover:bg-white/10 transition-all">
+            <div className="glass p-2 rounded-lg">
+              <Calendar className="h-5 w-5 text-green-400" />
+            </div>
+            <div>
+              <p className="text-white font-medium">Schedule Reports</p>
+              <p className="text-gray-400 text-sm">Set up automated reports</p>
+            </div>
+          </button>
+
+          <button className="glass-button p-4 text-left flex items-center space-x-3 hover:bg-white/10 transition-all">
+            <div className="glass p-2 rounded-lg">
+              <Share2 className="h-5 w-5 text-purple-400" />
+            </div>
+            <div>
+              <p className="text-white font-medium">Share Reports</p>
+              <p className="text-gray-400 text-sm">Distribute to stakeholders</p>
+            </div>
+          </button>
+
+          <button className="glass-button p-4 text-left flex items-center space-x-3 hover:bg-white/10 transition-all">
+            <div className="glass p-2 rounded-lg">
+              <Mail className="h-5 w-5 text-yellow-400" />
+            </div>
+            <div>
+              <p className="text-white font-medium">Email Reports</p>
+              <p className="text-gray-400 text-sm">Send reports via email</p>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      {/* Filters */}
+      <div className="glass-card p-6">
+        <div className="flex items-center justify-between">
+          <h3 className="text-lg font-semibold text-white">Report Templates</h3>
+          <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2">
+              <Filter className="h-4 w-4 text-gray-400" />
+              <select
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className="glass-select px-3 py-2 text-sm"
+              >
+                {categories.map(category => (
+                  <option key={category} value={category} className="bg-gray-800">
+                    {category === 'all' ? 'All Categories' : category}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <button className="glass-button px-4 py-2 text-sm">
+              <Download className="h-4 w-4 mr-2" />
+              Export All
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Report Templates */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {filteredReports.map((report) => {
+          const Icon = report.icon;
+          return (
+            <div key={report.id} className="glass-card p-6 hover:scale-105 transition-all">
+              <div className="flex items-start justify-between mb-4">
+                <div className="flex items-center space-x-3">
+                  <div className="glass p-2 rounded-lg">
+                    <Icon className="h-5 w-5 text-blue-400" />
+                  </div>
+                  <div>
+                    <h3 className="text-white font-semibold">{report.name}</h3>
+                    <p className="text-gray-400 text-sm">{report.category}</p>
+                  </div>
+                </div>
+                <span className={`text-sm font-medium ${getStatusColor(report.status)}`}>
+                  {report.status === 'generating' ? 'Generating...' : 'Ready'}
+                </span>
+              </div>
+
+              <p className="text-gray-400 text-sm mb-4">{report.description}</p>
+
+              <div className="space-y-3">
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-400">Last Generated:</span>
+                  <span className="text-white">{report.lastGenerated}</span>
+                </div>
+
+                <div className="flex space-x-2">
+                  <button 
+                    className="flex-1 glass-button py-2 px-3 text-sm"
+                    onClick={() => setSelectedReport(report)}
+                  >
+                    <Eye className="h-4 w-4 mr-1" />
+                    View
+                  </button>
+                  <button className="flex-1 glass-button py-2 px-3 text-sm">
+                    <Download className="h-4 w-4 mr-1" />
+                    Download
+                  </button>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Recent Reports */}
+      <div className="glass-card p-6">
+        <h3 className="text-lg font-semibold text-white mb-4">Recent Reports</h3>
+        <div className="space-y-3">
+          {recentReports.map((report, index) => (
+            <div key={index} className="flex items-center justify-between p-4 glass rounded-lg hover:bg-white/5 transition-all">
+              <div className="flex items-center space-x-4">
+                <div className="glass p-2 rounded-lg">
+                  <FileText className="h-4 w-4 text-blue-400" />
+                </div>
+                <div>
+                  <h4 className="text-white font-medium">{report.name}</h4>
+                  <p className="text-gray-400 text-sm">{report.type} • {report.date}</p>
+                </div>
+              </div>
+              <div className="flex items-center space-x-4">
+                <span className="text-gray-400 text-sm">{report.size}</span>
+                <div className="flex space-x-2">
+                  <button className="glass-button p-2">
+                    <Eye className="h-4 w-4" />
+                  </button>
+                  <button className="glass-button p-2">
+                    <Download className="h-4 w-4" />
+                  </button>
+                  <button className="glass-button p-2">
+                    <Printer className="h-4 w-4" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Report Generation Modal */}
+      {selectedReport && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="glass-dark p-6 rounded-lg max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-2xl font-bold text-white">Generate {selectedReport.name}</h2>
+              <button
+                onClick={() => setSelectedReport(null)}
+                className="glass-button p-2"
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="space-y-4">
+              <div>
+                <label className="block text-white font-medium mb-2">Date Range</label>
+                <div className="grid grid-cols-2 gap-4">
+                  <input
+                    type="date"
+                    className="glass-input"
+                    defaultValue="2025-11-01"
+                  />
+                  <input
+                    type="date"
+                    className="glass-input"
+                    defaultValue="2025-11-08"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-white font-medium mb-2">Format</label>
+                <select className="glass-select w-full">
+                  <option>PDF</option>
+                  <option>Excel</option>
+                  <option>CSV</option>
+                  <option>PowerPoint</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-white font-medium mb-2">Include Charts</label>
+                <div className="space-y-2">
+                  <label className="flex items-center">
+                    <input type="checkbox" className="mr-2" defaultChecked />
+                    <span className="text-white">Performance Trends</span>
+                  </label>
+                  <label className="flex items-center">
+                    <input type="checkbox" className="mr-2" defaultChecked />
+                    <span className="text-white">Comparative Analysis</span>
+                  </label>
+                  <label className="flex items-center">
+                    <input type="checkbox" className="mr-2" />
+                    <span className="text-white">Detailed Metrics</span>
+                  </label>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-white font-medium mb-2">Recipients</label>
+                <input
+                  type="email"
+                  placeholder="Enter email addresses (comma separated)"
+                  className="glass-input w-full"
+                />
+              </div>
+
+              <div className="flex space-x-4 pt-4">
+                <button className="flex-1 glass-button py-3 font-medium">
+                  Generate Report
+                </button>
+                <button 
+                  onClick={() => setSelectedReport(null)}
+                  className="px-6 py-3 glass-button font-medium"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Reports;

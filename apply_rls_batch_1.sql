@@ -1,0 +1,6 @@
+-- Documents policies (continued)
+CREATE POLICY "Users can upload documents" ON documents FOR INSERT WITH CHECK (organization_id IN (SELECT organization_id FROM profiles WHERE id = auth.uid()) AND uploaded_by = auth.uid());
+
+CREATE POLICY "Users can update their own documents or with permission" ON documents FOR UPDATE USING (organization_id IN (SELECT organization_id FROM profiles WHERE id = auth.uid()) AND (uploaded_by = auth.uid() OR EXISTS (SELECT 1 FROM document_permissions WHERE document_id = documents.id AND target_user_id = auth.uid() AND can_edit = true AND is_active = true AND (valid_until IS NULL OR valid_until > NOW())) OR EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role IN ('owner', 'manager', 'admin') AND organization_id = documents.organization_id)));
+
+CREATE POLICY "Users can delete their own documents or with permission" ON documents FOR DELETE USING (organization_id IN (SELECT organization_id FROM profiles WHERE id = auth.uid()) AND (uploaded_by = auth.uid() OR EXISTS (SELECT 1 FROM document_permissions WHERE document_id = documents.id AND target_user_id = auth.uid() AND can_delete = true AND is_active = true AND (valid_until IS NULL OR valid_until > NOW())) OR EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role IN ('owner', 'admin') AND organization_id = documents.organization_id)));
