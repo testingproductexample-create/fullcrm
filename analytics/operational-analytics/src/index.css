@@ -1,0 +1,333 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+
+/* Glassmorphism base styles */
+.glass {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 16px 0 rgba(31, 38, 135, 0.25);
+}
+
+.glass-button {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.glass-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(31, 38, 135, 0.25);
+}
+
+.glass-input {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.glass-input:focus {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(59, 130, 246, 0.5);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.glass-dark {
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-dark-card {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-dark-button {
+  background: rgba(59, 130, 246, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.glass-dark-button:hover {
+  background: rgba(59, 130, 246, 0.2);
+  transform: translateY(-1px);
+}
+
+.glass-dark-input {
+  background: rgba(59, 130, 246, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.glass-dark-input:focus {
+  background: rgba(59, 130, 246, 0.15);
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Table styles */
+.glass-table {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-table th {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glass-table tr:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Animation classes */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Status indicators */
+.status-online {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800;
+}
+
+.status-offline {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800;
+}
+
+.status-busy {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800;
+}
+
+.status-away {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800;
+}
+
+/* Chart container styles */
+.chart-container {
+  @apply relative w-full h-full;
+}
+
+.chart-container canvas {
+  @apply w-full h-full;
+}
+
+/* Loading spinner */
+.spinner {
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-left: 2px solid #3b82f6;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Metric cards */
+.metric-card {
+  @apply glass-card rounded-lg p-6 hover:scale-105 transition-transform duration-200;
+}
+
+.metric-card-header {
+  @apply flex items-center justify-between mb-4;
+}
+
+.metric-card-title {
+  @apply text-sm font-medium text-gray-300;
+}
+
+.metric-card-value {
+  @apply text-2xl font-bold text-white;
+}
+
+.metric-card-change {
+  @apply text-xs font-medium;
+}
+
+.metric-card-change.positive {
+  @apply text-green-400;
+}
+
+.metric-card-change.negative {
+  @apply text-red-400;
+}
+
+.metric-card-change.neutral {
+  @apply text-gray-400;
+}
+
+/* Navigation */
+.nav-item {
+  @apply flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors duration-200;
+}
+
+.nav-item.active {
+  @apply bg-blue-600 text-white;
+}
+
+.nav-item:not(.active) {
+  @apply text-gray-300 hover:bg-gray-700 hover:text-white;
+}
+
+/* Form elements */
+.form-group {
+  @apply mb-4;
+}
+
+.form-label {
+  @apply block text-sm font-medium text-gray-300 mb-2;
+}
+
+.form-input {
+  @apply glass-input w-full px-3 py-2 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500;
+}
+
+.form-select {
+  @apply glass-input w-full px-3 py-2 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500;
+}
+
+.form-textarea {
+  @apply glass-input w-full px-3 py-2 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none;
+}
+
+/* Buttons */
+.btn-primary {
+  @apply glass-button px-4 py-2 rounded-lg font-medium text-white hover:bg-blue-600 transition-colors duration-200;
+}
+
+.btn-secondary {
+  @apply glass-button px-4 py-2 rounded-lg font-medium text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200;
+}
+
+.btn-success {
+  @apply glass-button px-4 py-2 rounded-lg font-medium text-green-400 hover:bg-green-600 hover:text-white transition-colors duration-200;
+}
+
+.btn-danger {
+  @apply glass-button px-4 py-2 rounded-lg font-medium text-red-400 hover:bg-red-600 hover:text-white transition-colors duration-200;
+}
+
+/* Tooltip */
+.tooltip {
+  @apply relative;
+}
+
+.tooltip::before {
+  content: attr(data-tooltip);
+  @apply absolute bottom-full left-1/2 transform -translate-x-1/2 bg-gray-900 text-white text-xs rounded py-1 px-2 opacity-0 pointer-events-none transition-opacity duration-200;
+}
+
+.tooltip:hover::before {
+  @apply opacity-100;
+}
+
+/* Alert styles */
+.alert {
+  @apply glass-card p-4 rounded-lg border-l-4;
+}
+
+.alert-info {
+  @apply border-blue-500 bg-blue-500/10;
+}
+
+.alert-success {
+  @apply border-green-500 bg-green-500/10;
+}
+
+.alert-warning {
+  @apply border-yellow-500 bg-yellow-500/10;
+}
+
+.alert-error {
+  @apply border-red-500 bg-red-500/10;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .glass {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  
+  .metric-card {
+    @apply p-4;
+  }
+  
+  .metric-card-value {
+    @apply text-xl;
+  }
+}
