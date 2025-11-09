@@ -208,7 +208,7 @@
         "id": "30",
         "content": "Quality Control & Standards Management",
         "details": "Quality assurance and standards management:\n- Quality control processes and checklists\n- Standards management with industry compliance\n- Defect tracking and resolution workflows\n- Quality metrics and performance tracking\n- Audit management with compliance monitoring\n- Quality training and certification tracking\n- Quality improvement initiatives and feedback\n- Integration with order and production workflows",
-        "status": "pending",
+        "status": "in_progress",
         "priority": "high"
       },
       "31": {
