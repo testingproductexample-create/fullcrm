@@ -208,14 +208,14 @@
         "id": "30",
         "content": "Quality Control & Standards Management",
         "details": "Quality assurance and standards management:\n- Quality control processes and checklists\n- Standards management with industry compliance\n- Defect tracking and resolution workflows\n- Quality metrics and performance tracking\n- Audit management with compliance monitoring\n- Quality training and certification tracking\n- Quality improvement initiatives and feedback\n- Integration with order and production workflows",
-        "status": "in_progress",
+        "status": "completed",
         "priority": "high"
       },
       "31": {
         "id": "31",
         "content": "Supplier & Vendor Management",
         "details": "Supplier and vendor relationship management:\n- Supplier database with comprehensive profiles\n- Vendor performance tracking and evaluation\n- Contract management with renewal tracking\n- Supplier compliance and certification management\n- Price comparison and negotiation tools\n- Delivery tracking and performance monitoring\n- Quality assessment and rating systems\n- Multi-vendor sourcing and comparison\n- Integration with inventory and procurement systems",
-        "status": "pending",
+        "status": "completed",
         "priority": "high"
       },
       "32": {
