@@ -1,0 +1,74 @@
+{
+  "name": "database-optimization-system",
+  "version": "1.0.0",
+  "description": "Comprehensive database optimization and performance tuning system",
+  "main": "core/database-optimizer.js",
+  "scripts": {
+    "start": "node admin-interface/admin-server.js",
+    "dev": "nodemon admin-interface/admin-server.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:integration": "jest --config=jest.integration.config.js",
+    "test:performance": "node benchmarking/performance-test.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "build:dashboard": "cd dashboard && npm run build",
+    "setup": "node scripts/setup.js",
+    "demo": "node examples/demo.js"
+  },
+  "keywords": [
+    "database",
+    "optimization",
+    "performance",
+    "tuning",
+    "sharding",
+    "partitioning",
+    "indexing",
+    "query-analysis",
+    "monitoring",
+    "benchmarking"
+  ],
+  "author": "Database Optimization Team",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "pg": "^8.11.0",
+    "mysql2": "^3.6.0",
+    "redis": "^4.6.7",
+    "node-cron": "^3.0.2",
+    "winston": "^3.10.0",
+    "helmet": "^7.0.0",
+    "express-rate-limit": "^6.8.1",
+    "bcrypt": "^5.1.0",
+    "jsonwebtoken": "^9.0.1",
+    "dotenv": "^16.3.1",
+    "joi": "^17.9.2",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.4",
+    "uuid": "^9.0.0",
+    "chokidar": "^3.5.3",
+    "file-type": "^18.5.0"
+  },
+  "devDependencies": {
+    "jest": "^29.6.2",
+    "nodemon": "^3.0.1",
+    "eslint": "^8.46.0",
+    "supertest": "^6.3.3",
+    "mockingoose": "^2.15.2",
+    "@types/node": "^20.4.8",
+    "typescript": "^5.1.6"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/company/database-optimization-system.git"
+  },
+  "bugs": {
+    "url": "https://github.com/company/database-optimization-system/issues"
+  },
+  "homepage": "https://github.com/company/database-optimization-system#readme"
+}

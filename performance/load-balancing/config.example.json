@@ -1,0 +1,416 @@
+{
+  "system": {
+    "name": "Production Load Balancing System",
+    "version": "1.0.0",
+    "environment": "production",
+    "port": 3001,
+    "apiKeys": [
+      "prod-api-key-1",
+      "prod-api-key-2"
+    ]
+  },
+  "loadBalancer": {
+    "algorithm": "round-robin",
+    "healthCheckInterval": 30000,
+    "healthCheckTimeout": 5000,
+    "healthCheckPath": "/health",
+    "maxRetries": 3,
+    "sessionAffinity": false,
+    "ssl": {
+      "enabled": true,
+      "certPath": "/etc/ssl/certs/lb.crt",
+      "keyPath": "/etc/ssl/private/lb.key"
+    }
+  },
+  "scaling": {
+    "minInstances": 2,
+    "maxInstances": 100,
+    "scaleUpCooldown": 300000,
+    "scaleDownCooldown": 600000,
+    "defaultMetrics": {
+      "cpu": {
+        "threshold": 70,
+        "period": 300000
+      },
+      "memory": {
+        "threshold": 80,
+        "period": 300000
+      },
+      "requests": {
+        "threshold": 1000,
+        "period": 300000
+      },
+      "latency": {
+        "threshold": 1000,
+        "period": 300000
+      }
+    }
+  },
+  "orchestration": {
+    "platform": "kubernetes",
+    "namespace": "production",
+    "resourceLimits": {
+      "cpu": "500m",
+      "memory": "512Mi"
+    }
+  },
+  "deployment": {
+    "defaultStrategy": "rolling",
+    "canarySteps": [5, 10, 25, 50, 100],
+    "canaryInterval": 300000,
+    "rollbackThreshold": 5,
+    "healthCheckTimeout": 300000
+  },
+  "health": {
+    "checkInterval": 30000,
+    "timeout": 10000,
+    "retries": 3,
+    "backoffMultiplier": 2,
+    "maxBackoff": 300000,
+    "healthThreshold": 80,
+    "failureThreshold": 3
+  },
+  "monitoring": {
+    "metricsInterval": 60000,
+    "retentionPeriod": 604800000,
+    "alertThresholds": {
+      "cpu": 80,
+      "memory": 85,
+      "disk": 90,
+      "responseTime": 5000,
+      "errorRate": 5
+    },
+    "enablePrometheus": true,
+    "enableInfluxDB": false,
+    "enableStatsD": false,
+    "prometheus": {
+      "port": 9090,
+      "path": "/metrics"
+    },
+    "influxdb": {
+      "host": "localhost",
+      "port": 8086,
+      "database": "load_balancer_metrics",
+      "username": "admin",
+      "password": "password"
+    },
+    "statsd": {
+      "host": "localhost",
+      "port": 8125,
+      "prefix": "load_balancer"
+    }
+  },
+  "disasterRecovery": {
+    "backupLocation": "./backups",
+    "recoveryPointObjective": 3600000,
+    "recoveryTimeObjective": 1800000,
+    "backupRetentionDays": 30,
+    "testSchedule": "weekly",
+    "notificationChannels": {
+      "email": [
+        {
+          "to": "admin@company.com",
+          "subject": "DR Alert"
+        },
+        {
+          "to": "ops@company.com",
+          "subject": "DR Alert"
+        }
+      ],
+      "slack": [
+        {
+          "webhook": "https://hooks.slack.com/services/...",
+          "channel": "#alerts"
+        }
+      ],
+      "webhook": [
+        {
+          "url": "https://api.company.com/alerts",
+          "headers": {
+            "Authorization": "Bearer token"
+          }
+        }
+      ]
+    }
+  },
+  "services": {
+    "api-service": {
+      "backends": [
+        {
+          "id": "api-1",
+          "name": "API Server 1",
+          "host": "10.0.1.10",
+          "port": 8080,
+          "weight": 1,
+          "maxFails": 3,
+          "failTimeout": 30
+        },
+        {
+          "id": "api-2",
+          "name": "API Server 2",
+          "host": "10.0.1.11",
+          "port": 8080,
+          "weight": 1,
+          "maxFails": 3,
+          "failTimeout": 30
+        }
+      ],
+      "scalingPolicy": {
+        "cpuUtilization": 70,
+        "memoryUtilization": 80,
+        "requestsPerInstance": 1000,
+        "minInstances": 2,
+        "maxInstances": 20,
+        "increaseBy": 2,
+        "decreaseBy": 1,
+        "scaleUpConditions": [
+          {
+            "metric": "cpu",
+            "threshold": 70,
+            "duration": 300000
+          },
+          {
+            "metric": "memory",
+            "threshold": 80,
+            "duration": 300000
+          }
+        ],
+        "scaleDownConditions": [
+          {
+            "metric": "cpu",
+            "threshold": 30,
+            "duration": 600000
+          },
+          {
+            "metric": "memory",
+            "threshold": 40,
+            "duration": 600000
+          }
+        ]
+      },
+      "healthCheck": {
+        "type": "http",
+        "url": "http://api-service:8080/health",
+        "method": "GET",
+        "interval": 30000,
+        "timeout": 10000,
+        "retries": 3,
+        "critical": true
+      }
+    },
+    "web-app": {
+      "backends": [
+        {
+          "id": "web-1",
+          "name": "Web Server 1",
+          "host": "10.0.2.10",
+          "port": 80,
+          "weight": 1
+        },
+        {
+          "id": "web-2",
+          "name": "Web Server 2",
+          "host": "10.0.2.11",
+          "port": 80,
+          "weight": 1
+        }
+      ],
+      "scalingPolicy": {
+        "cpuUtilization": 60,
+        "memoryUtilization": 70,
+        "minInstances": 3,
+        "maxInstances": 15
+      },
+      "healthCheck": {
+        "type": "http",
+        "url": "http://web-app/health",
+        "interval": 30000
+      }
+    }
+  },
+  "deploymentStrategies": {
+    "api-service": {
+      "strategy": "blue-green",
+      "config": {
+        "preDeploymentValidation": true,
+        "postDeploymentTests": true,
+        "rollbackOnFailure": true
+      }
+    },
+    "web-app": {
+      "strategy": "canary",
+      "config": {
+        "canarySteps": [5, 10, 25, 50, 100],
+        "canaryInterval": 300000,
+        "successCriteria": {
+          "errorRate": 1,
+          "responseTime": 1000
+        }
+      }
+    }
+  },
+  "recoveryPlans": {
+    "primary-region-dr": {
+      "name": "Primary Region Disaster Recovery",
+      "type": "disaster-recovery",
+      "priority": "critical",
+      "services": ["api-service", "web-app"],
+      "infrastructure": {
+        "primaryRegion": "us-east-1",
+        "backupRegion": "us-west-2",
+        "backupZones": ["us-west-2a", "us-west-2b"]
+      },
+      "procedures": {
+        "detection": [
+          {
+            "name": "Detect outage",
+            "type": "notification",
+            "critical": true,
+            "estimatedDuration": 60000,
+            "timeout": 120000
+          }
+        ],
+        "notification": [
+          {
+            "name": "Alert operations team",
+            "type": "notification",
+            "channels": ["email", "slack"],
+            "critical": true
+          }
+        ],
+        "failover": [
+          {
+            "name": "Switch DNS to backup region",
+            "type": "infrastructure-failover",
+            "critical": true,
+            "estimatedDuration": 120000,
+            "timeout": 300000
+          },
+          {
+            "name": "Update load balancer configuration",
+            "type": "infrastructure-failover",
+            "critical": true,
+            "estimatedDuration": 60000,
+            "timeout": 120000
+          }
+        ],
+        "recovery": [
+          {
+            "name": "Scale up services in backup region",
+            "type": "service-failover",
+            "critical": true,
+            "estimatedDuration": 300000,
+            "timeout": 600000
+          },
+          {
+            "name": "Validate service health",
+            "type": "validation",
+            "critical": true,
+            "estimatedDuration": 180000,
+            "timeout": 300000
+          }
+        ],
+        "validation": [
+          {
+            "name": "End-to-end testing",
+            "type": "validation",
+            "critical": true,
+            "estimatedDuration": 600000
+          }
+        ],
+        "rollback": [
+          {
+            "name": "Rollback to primary region",
+            "type": "service-failover",
+            "critical": false,
+            "estimatedDuration": 240000
+          }
+        ]
+      },
+      "dependencies": [
+        {
+          "service": "database",
+          "type": "critical",
+          "failoverRequired": true
+        }
+      ],
+      "estimatedDowntime": 600000
+    }
+  },
+  "backupJobs": {
+    "daily-full-backup": {
+      "name": "Daily Full Backup",
+      "type": "full",
+      "scope": "all",
+      "frequency": "daily",
+      "time": "02:00",
+      "retention": 30,
+      "compression": true,
+      "encryption": true
+    },
+    "hourly-incremental": {
+      "name": "Hourly Incremental Backup",
+      "type": "incremental",
+      "scope": "data",
+      "frequency": "hourly",
+      "retention": 168
+    }
+  },
+  "alerts": {
+    "critical": [
+      {
+        "condition": "service_health < 80",
+        "severity": "critical",
+        "channels": ["email", "slack", "webhook"]
+      },
+      {
+        "condition": "error_rate > 5",
+        "severity": "critical",
+        "channels": ["email", "slack"]
+      }
+    ],
+    "warning": [
+      {
+        "condition": "cpu_usage > 80",
+        "severity": "warning",
+        "channels": ["slack"]
+      },
+      {
+        "condition": "memory_usage > 85",
+        "severity": "warning",
+        "channels": ["slack"]
+      }
+    ]
+  },
+  "logging": {
+    "level": "info",
+    "format": "json",
+    "outputs": [
+      {
+        "type": "file",
+        "path": "/var/log/load-balancer.log",
+        "maxSize": "100M",
+        "maxFiles": 10
+      },
+      {
+        "type": "console"
+      }
+    ]
+  },
+  "security": {
+    "rateLimiting": {
+      "enabled": true,
+      "windowMs": 900000,
+      "max": 100
+    },
+    "cors": {
+      "enabled": true,
+      "origin": ["https://dashboard.company.com"],
+      "credentials": true
+    },
+    "helmet": {
+      "enabled": true,
+      "contentSecurityPolicy": true
+    }
+  }
+}

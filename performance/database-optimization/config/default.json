@@ -1,0 +1,168 @@
+{
+  "database": {
+    "type": "postgresql",
+    "host": "localhost",
+    "port": 5432,
+    "database": "performance_db",
+    "user": "postgres",
+    "password": "password",
+    "connectionPool": {
+      "max": 20,
+      "min": 5,
+      "idleTimeoutMillis": 30000,
+      "connectionTimeoutMillis": 10000
+    }
+  },
+  "sharding": {
+    "strategy": "hash",
+    "shardKey": "id",
+    "shardCount": 4,
+    "connectionTimeout": 30000,
+    "autoRebalancing": true,
+    "rebalancingThreshold": 0.3
+  },
+  "partitioning": {
+    "defaultStrategy": "range",
+    "autoPartition": true,
+    "partitionInterval": "1 month",
+    "cleanupOldPartitions": true,
+    "cleanupThreshold": 6
+  },
+  "indexing": {
+    "autoCreateIndexes": false,
+    "analyzeThreshold": 1000,
+    "maintenanceSchedule": "0 2 * * *",
+    "unusedIndexThreshold": 30,
+    "duplicateIndexThreshold": 0.8
+  },
+  "queryAnalysis": {
+    "maxQueries": 1000,
+    "analysisWindow": 3600000,
+    "slowQueryThreshold": 1000,
+    "analyzeExplain": true,
+    "capturePlans": true
+  },
+  "connectionPool": {
+    "defaultPoolSize": 20,
+    "minPoolSize": 5,
+    "maxPoolSize": 50,
+    "idleTimeout": 30000,
+    "connectionTimeout": 10000,
+    "reapInterval": 1000,
+    "allowUpgrade": true,
+    "monitorInterval": 30000
+  },
+  "monitoring": {
+    "pollInterval": 5000,
+    "retentionPeriod": 86400000,
+    "alertThresholds": {
+      "cpu": 80,
+      "memory": 85,
+      "disk": 90,
+      "connections": 80,
+      "slowQueries": 10,
+      "deadlocks": 5
+    },
+    "enableAlerts": true
+  },
+  "slowQueryDetection": {
+    "threshold": 1000,
+    "maxSlowQueries": 1000,
+    "analysisWindow": 3600000,
+    "autoRemediation": true,
+    "explainEnabled": true,
+    "recommendIndexes": true
+  },
+  "healthMonitoring": {
+    "checkInterval": 30000,
+    "timeout": 10000,
+    "healthThresholds": {
+      "cpu": 80,
+      "memory": 85,
+      "disk": 90,
+      "connections": 90,
+      "responseTime": 1000,
+      "errorRate": 5
+    },
+    "enableAutoRemediation": false
+  },
+  "optimization": {
+    "maxRecommendations": 50,
+    "minImpactScore": 25,
+    "autoApply": false,
+    "recommendationTypes": {
+      "index": { "weight": 1.0, "priority": "medium" },
+      "query": { "weight": 1.2, "priority": "high" },
+      "resource": { "weight": 0.8, "priority": "high" },
+      "configuration": { "weight": 0.6, "priority": "medium" },
+      "maintenance": { "weight": 0.4, "priority": "low" }
+    }
+  },
+  "migration": {
+    "migrationPath": "./migrations",
+    "tableName": "schema_migrations",
+    "batchSize": 10,
+    "backupBeforeMigration": true,
+    "transactional": true
+  },
+  "benchmarking": {
+    "defaultDuration": 60000,
+    "warmupDuration": 10000,
+    "concurrencyLevels": [1, 5, 10, 20, 50],
+    "batchSize": 100,
+    "timeout": 30000,
+    "enableProfiling": true
+  },
+  "adminInterface": {
+    "port": 3001,
+    "host": "localhost",
+    "apiKey": "admin-key",
+    "enableAuth": true,
+    "enableCORS": true
+  },
+  "logging": {
+    "level": "info",
+    "file": "./logs/database-optimization.log",
+    "maxSize": "10m",
+    "maxFiles": 5,
+    "format": "json"
+  },
+  "alerts": {
+    "email": {
+      "enabled": false,
+      "smtp": {
+        "host": "smtp.gmail.com",
+        "port": 587,
+        "secure": false,
+        "user": "",
+        "password": ""
+      },
+      "from": "database@company.com",
+      "to": ["admin@company.com"]
+    },
+    "slack": {
+      "enabled": false,
+      "webhook": "",
+      "channel": "#database-alerts"
+    }
+  },
+  "backup": {
+    "enabled": true,
+    "schedule": "0 3 * * *",
+    "retention": 30,
+    "path": "./backups",
+    "compression": true
+  },
+  "security": {
+    "allowedIPs": ["127.0.0.1", "::1"],
+    "rateLimiting": {
+      "enabled": true,
+      "requests": 100,
+      "window": 900000
+    },
+    "encryption": {
+      "enabled": true,
+      "algorithm": "aes-256-gcm"
+    }
+  }
+}
