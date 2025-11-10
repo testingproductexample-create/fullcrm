@@ -151,6 +151,16 @@ const navigation = [
     ],
   },
   {
+    name: 'Integrations & APIs',
+    items: [
+      { name: 'Integration Hub', href: '/integrations', icon: GlobeAltIcon },
+      { name: 'Setup Wizard', href: '/integrations/setup', icon: AdjustmentsHorizontalIcon },
+      { name: 'API Logs', href: '/integrations/logs', icon: ClipboardDocumentListIcon },
+      { name: 'Webhooks', href: '/integrations/webhooks', icon: ArrowPathRoundedSquareIcon },
+      { name: 'Analytics', href: '/integrations/analytics', icon: ChartBarIcon },
+    ],
+  },
+  {
     name: 'Inventory Management',
     items: [
       { name: 'Fabric Stock', href: '/inventory', icon: SwatchIcon },
