@@ -60,7 +60,7 @@ export interface Employee {
   created_by: string | null;
   
   // Relations
-  department?: Department;
+  department?: Department | null;
   skills?: EmployeeSkill[];
   certifications?: EmployeeCertification[];
   contracts?: EmploymentContract[];

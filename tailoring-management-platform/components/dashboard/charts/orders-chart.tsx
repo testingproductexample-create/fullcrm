@@ -1,7 +1,6 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer, Tooltip, PieChart, Pie, Cell, Legend } from 'recharts';
 import { supabase } from '@/lib/supabase';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
 
@@ -47,7 +46,7 @@ export function OrdersChart() {
       const statusChartData = Object.entries(statusCounts).map(([status, count]) => ({
         status: status.replace('_', ' ').toUpperCase(),
         count,
-        fill: STATUS_COLORS[status as keyof typeof STATUS_COLORS] || '#6b7280',
+        color: STATUS_COLORS[status as keyof typeof STATUS_COLORS] || '#6b7280',
       }));
 
       // Process date data (last 7 days)
@@ -92,72 +91,33 @@ export function OrdersChart() {
 
   return (
     <div className="space-y-6">
-      {/* Orders by Status - Pie Chart */}
-      <div className="h-40">
-        <h4 className="text-sm font-medium text-gray-700 mb-2">Orders by Status</h4>
-        <ResponsiveContainer width="100%" height="100%">
-          <PieChart>
-            <Pie
-              data={ordersData?.statusData}
-              cx="50%"
-              cy="50%"
-              innerRadius={40}
-              outerRadius={60}
-              dataKey="count"
-              stroke="#fff"
-              strokeWidth={2}
-            >
-              {ordersData?.statusData?.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={entry.fill} />
-              ))}
-            </Pie>
-            <Tooltip 
-              formatter={(value: number, name: string) => [value, 'Orders']}
-              contentStyle={{ 
-                backgroundColor: 'white',
-                border: '1px solid #e5e7eb',
-                borderRadius: '8px',
-                fontSize: '12px'
-              }}
-            />
-            <Legend 
-              wrapperStyle={{ fontSize: '12px' }}
-            />
-          </PieChart>
-        </ResponsiveContainer>
+      {/* Orders by Status */}
+      <div>
+        <h4 className="text-sm font-medium text-gray-700 mb-3">Orders by Status</h4>
+        <div className="space-y-2">
+          {ordersData?.statusData?.map((item, index) => (
+            <div key={index} className="flex items-center justify-between p-2 rounded-lg bg-gray-50">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full" style={{ backgroundColor: item.color }} />
+                <span className="text-sm font-medium text-gray-700">{item.status}</span>
+              </div>
+              <span className="text-sm font-bold text-gray-900">{item.count}</span>
+            </div>
+          ))}
+        </div>
       </div>
 
-      {/* Recent Orders - Bar Chart */}
-      <div className="h-32">
-        <h4 className="text-sm font-medium text-gray-700 mb-2">Last 7 Days</h4>
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={ordersData?.dailyData}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#e0e7ff" />
-            <XAxis 
-              dataKey="date" 
-              stroke="#64748b"
-              fontSize={10}
-            />
-            <YAxis 
-              stroke="#64748b"
-              fontSize={10}
-            />
-            <Tooltip 
-              formatter={(value: number) => [value, 'Orders']}
-              contentStyle={{ 
-                backgroundColor: 'white',
-                border: '1px solid #e5e7eb',
-                borderRadius: '8px',
-                fontSize: '12px'
-              }}
-            />
-            <Bar 
-              dataKey="orders" 
-              fill="#3b82f6"
-              radius={[2, 2, 0, 0]}
-            />
-          </BarChart>
-        </ResponsiveContainer>
+      {/* Last 7 Days */}
+      <div>
+        <h4 className="text-sm font-medium text-gray-700 mb-3">Last 7 Days</h4>
+        <div className="space-y-2">
+          {ordersData?.dailyData?.map((item, index) => (
+            <div key={index} className="flex items-center justify-between p-2 rounded-lg bg-gray-50">
+              <span className="text-sm font-medium text-gray-700">{item.date}</span>
+              <span className="text-sm font-bold text-blue-600">{item.orders} orders</span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

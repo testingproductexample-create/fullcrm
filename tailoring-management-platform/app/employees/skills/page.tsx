@@ -94,7 +94,7 @@ export default function SkillsManagementPage() {
         .order('first_name', { ascending: true });
 
       if (error) throw error;
-      return data || [];
+      return (data || []) as any as Employee[];
     },
   });
 
@@ -117,7 +117,7 @@ export default function SkillsManagementPage() {
         total_proficiency_score: number;
       }>();
 
-      data?.forEach(skill => {
+      data?.forEach((skill: any) => {
         if (skill.employee?.employment_status !== 'Active') return;
 
         const key = skill.skill_name;
@@ -133,14 +133,14 @@ export default function SkillsManagementPage() {
         existing.proficiency_levels.push(skill.proficiency_level);
 
         // Convert proficiency to score (Beginner=1, Intermediate=2, Advanced=3, Expert=4)
-        const proficiencyScore = {
+        const proficiencyScore: Record<string, number> = {
           'Beginner': 1,
           'Intermediate': 2,
           'Advanced': 3,
           'Expert': 4
-        }[skill.proficiency_level] || 0;
-
-        existing.total_proficiency_score += proficiencyScore;
+        };
+        
+        existing.total_proficiency_score += (proficiencyScore[skill.proficiency_level] || 0);
         skillsMap.set(key, existing);
       });
 
@@ -201,7 +201,7 @@ export default function SkillsManagementPage() {
   const totalSkills = skills?.length || 0;
   const totalCertifications = certifications?.length || 0;
   const activeEmployees = [...new Set(skills?.map(s => s.employee_id))].length;
-  const averageProficiency = analytics?.reduce((sum, skill) => sum + skill.average_proficiency, 0) / (analytics?.length || 1);
+  const averageProficiency = (analytics?.reduce((sum, skill) => sum + skill.average_proficiency, 0) || 0) / (analytics?.length || 1);
 
   const statsCards = [
     {

@@ -54,20 +54,22 @@ export default function SignupPage() {
       return;
     }
 
-    startTransition(async () => {
-      try {
-        await signUp(formData.email, formData.password, {
-          full_name: formData.fullName,
-          phone_number: formData.phoneNumber,
-          role: formData.role,
-          business_name: formData.businessName,
-        });
-        toast.success('Account created successfully! Please check your email for verification.');
-        router.push('/auth/login');
-      } catch (error) {
-        console.error('Signup error:', error);
-        toast.error('Failed to create account. Please try again.');
-      }
+    startTransition(() => {
+      (async () => {
+        try {
+          await signUp(formData.email, formData.password, {
+            full_name: formData.fullName,
+            phone_number: formData.phoneNumber,
+            role: formData.role,
+            business_name: formData.businessName,
+          });
+          toast.success('Account created successfully! Please check your email for verification.');
+          router.push('/auth/login');
+        } catch (error) {
+          console.error('Signup error:', error);
+          toast.error('Failed to create account. Please try again.');
+        }
+      })();
     });
   };
 

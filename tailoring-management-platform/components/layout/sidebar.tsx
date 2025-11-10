@@ -32,6 +32,9 @@ import {
   SwatchIcon,
   PresentationChartLineIcon,
   CurrencyDollarIcon,
+  BuildingOffice2Icon,
+  ArrowPathRoundedSquareIcon,
+  CubeIcon,
 } from '@heroicons/react/24/outline';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/hooks/use-auth';
@@ -153,6 +156,26 @@ const navigation = [
     ],
   },
   {
+    name: 'Multi-Location Management',
+    items: [
+      { name: 'All Branches', href: '/branches', icon: BuildingOffice2Icon },
+      { name: 'Inter-Branch Transfers', href: '/branches/transfers', icon: ArrowPathRoundedSquareIcon },
+      { name: 'Cross-Location Inventory', href: '/branches/inventory', icon: CubeIcon },
+      { name: 'Branch Analytics', href: '/branches/analytics', icon: ChartBarIcon },
+    ],
+  },
+  {
+    name: 'Loyalty & Rewards',
+    items: [
+      { name: 'Loyalty Overview', href: '/loyalty', icon: SwatchIcon },
+      { name: 'Members', href: '/loyalty/members', icon: UsersIcon },
+      { name: 'Rewards Catalog', href: '/loyalty/rewards', icon: TagIcon },
+      { name: 'Redemptions', href: '/loyalty/redemptions', icon: ReceiptRefundIcon },
+      { name: 'Campaigns', href: '/loyalty/campaigns', icon: ChartBarIcon },
+      { name: 'Analytics', href: '/loyalty/analytics', icon: PresentationChartLineIcon },
+    ],
+  },
+  {
     name: 'Appointments & Scheduling',
     items: [
       { name: 'Appointments', href: '/appointments', icon: CalendarIcon },
@@ -168,6 +191,19 @@ const navigation = [
       { name: 'SMS & WhatsApp', href: '/communication/messaging', icon: PhoneIcon },
       { name: 'Email Campaigns', href: '/communication/email', icon: PhoneIcon },
       { name: 'Bulk Messaging', href: '/communication/bulk', icon: ChatBubbleLeftRightIcon },
+    ],
+  },
+  {
+    name: 'Marketing & Campaigns',
+    items: [
+      { name: 'Marketing Dashboard', href: '/marketing', icon: ChartBarIcon },
+      { name: 'Campaigns', href: '/marketing/campaigns', icon: PhoneIcon },
+      { name: 'Email Templates', href: '/marketing/templates', icon: DocumentTextIcon },
+      { name: 'Customer Segments', href: '/marketing/segments', icon: TagIcon },
+      { name: 'Analytics', href: '/marketing/analytics', icon: PresentationChartLineIcon },
+      { name: 'Automation', href: '/marketing/automation', icon: CogIcon },
+      { name: 'A/B Testing', href: '/marketing/ab-tests', icon: BeakerIcon },
+      { name: 'Settings', href: '/marketing/settings', icon: AdjustmentsHorizontalIcon },
     ],
   },
   {

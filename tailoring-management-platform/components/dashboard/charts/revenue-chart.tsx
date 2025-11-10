@@ -1,7 +1,6 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, ResponsiveContainer, Tooltip } from 'recharts';
 import { supabase } from '@/lib/supabase';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import { formatCurrency } from '@/lib/utils';
@@ -47,43 +46,46 @@ export function RevenueChart() {
     );
   }
 
-  const formatTooltip = (value: number) => [formatCurrency(value), 'Revenue'];
+  const total = revenueData?.reduce((sum, item) => sum + item.revenue, 0) || 0;
+  const average = revenueData ? total / revenueData.length : 0;
 
   return (
-    <div className="h-80">
-      <ResponsiveContainer width="100%" height="100%">
-        <LineChart data={revenueData}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#e0e7ff" />
-          <XAxis 
-            dataKey="month" 
-            stroke="#64748b"
-            fontSize={12}
-          />
-          <YAxis 
-            stroke="#64748b"
-            fontSize={12}
-            tickFormatter={(value) => formatCurrency(value, 'AED').replace('AED', '')}
-          />
-          <Tooltip 
-            formatter={formatTooltip}
-            labelStyle={{ color: '#1f2937' }}
-            contentStyle={{ 
-              backgroundColor: 'white',
-              border: '1px solid #e5e7eb',
-              borderRadius: '8px',
-              boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
-            }}
-          />
-          <Line 
-            type="monotone" 
-            dataKey="revenue" 
-            stroke="#3b82f6" 
-            strokeWidth={3}
-            dot={{ fill: '#3b82f6', strokeWidth: 2, r: 4 }}
-            activeDot={{ r: 6, stroke: '#3b82f6', strokeWidth: 2 }}
-          />
-        </LineChart>
-      </ResponsiveContainer>
+    <div className="space-y-4">
+      {/* Summary Cards */}
+      <div className="grid grid-cols-2 gap-4 mb-4">
+        <div className="bg-blue-50 rounded-lg p-3">
+          <p className="text-xs text-gray-600 mb-1">Total Revenue</p>
+          <p className="text-lg font-bold text-blue-600">{formatCurrency(total)}</p>
+        </div>
+        <div className="bg-green-50 rounded-lg p-3">
+          <p className="text-xs text-gray-600 mb-1">Monthly Average</p>
+          <p className="text-lg font-bold text-green-600">{formatCurrency(average)}</p>
+        </div>
+      </div>
+
+      {/* Monthly Revenue Table */}
+      <div className="max-h-64 overflow-y-auto">
+        <table className="w-full text-sm">
+          <thead className="sticky top-0 bg-white border-b border-gray-200">
+            <tr>
+              <th className="text-left py-2 px-3 font-semibold text-gray-700">Month</th>
+              <th className="text-right py-2 px-3 font-semibold text-gray-700">Revenue</th>
+            </tr>
+          </thead>
+          <tbody>
+            {revenueData?.map((item, index) => (
+              <tr key={index} className="border-b border-gray-100 hover:bg-gray-50">
+                <td className="py-2 px-3 font-medium text-gray-900">{item.month}</td>
+                <td className="text-right py-2 px-3">
+                  <span className="font-semibold text-blue-600">
+                    {formatCurrency(item.revenue)}
+                  </span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

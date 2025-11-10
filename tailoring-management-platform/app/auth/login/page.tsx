@@ -31,15 +31,17 @@ export default function LoginPage() {
       return;
     }
 
-    startTransition(async () => {
-      try {
-        await signIn(email, password);
-        toast.success('Successfully signed in');
-        router.push('/');
-      } catch (error) {
-        console.error('Login error:', error);
-        toast.error('Failed to sign in. Please check your credentials.');
-      }
+    startTransition(() => {
+      (async () => {
+        try {
+          await signIn(email, password);
+          toast.success('Successfully signed in');
+          router.push('/');
+        } catch (error) {
+          console.error('Login error:', error);
+          toast.error('Failed to sign in. Please check your credentials.');
+        }
+      })();
     });
   };
 

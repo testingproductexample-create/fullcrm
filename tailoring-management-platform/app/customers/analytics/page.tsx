@@ -27,6 +27,7 @@ export const dynamic = 'force-dynamic';
 
 export default function CustomerAnalyticsPage() {
   const [timeRange, setTimeRange] = useState<'7d' | '30d' | '90d' | '1y'>('30d');
+  const [activeTab, setActiveTab] = useState('top-customers');
 
   // Fetch customer analytics
   const { data: analytics, isLoading, error, refetch } = useQuery({
@@ -80,7 +81,7 @@ export default function CustomerAnalyticsPage() {
         // Top customers by revenue
         supabase
           .from('customers')
-          .select('id, full_name, total_spent, total_orders')
+          .select('id, customer_code, full_name, total_spent, total_orders')
           .order('total_spent', { ascending: false })
           .limit(10),
         
@@ -345,7 +346,7 @@ export default function CustomerAnalyticsPage() {
       </div>
 
       {/* Detailed Analytics */}
-      <Tabs defaultValue="top-customers" className="space-y-4">
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
         <TabsList className="grid grid-cols-4 w-full">
           <TabsTrigger value="top-customers">Top Customers</TabsTrigger>
           <TabsTrigger value="demographics">Demographics</TabsTrigger>

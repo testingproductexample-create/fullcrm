@@ -7,8 +7,8 @@ import {
   BanknotesIcon,
   CurrencyDollarIcon,
   ChartBarIcon,
-  TrendingUpIcon,
-  TrendingDownIcon,
+  ArrowTrendingUpIcon,
+  ArrowTrendingDownIcon,
   ExclamationTriangleIcon,
   CalendarIcon,
   ReceiptRefundIcon,
@@ -219,7 +219,7 @@ export default function FinancialDashboard() {
                 </div>
                 {stats?.totalRevenue && (
                   <div className="flex items-center text-sm text-green-600">
-                    <TrendingUpIcon className="h-4 w-4 mr-1" />
+                    <ArrowTrendingUpIcon className="h-4 w-4 mr-1" />
                     Revenue stream
                   </div>
                 )}
@@ -241,7 +241,7 @@ export default function FinancialDashboard() {
                 </div>
                 {stats?.totalExpenses && (
                   <div className="flex items-center text-sm text-red-600">
-                    <TrendingDownIcon className="h-4 w-4 mr-1" />
+                    <ArrowTrendingDownIcon className="h-4 w-4 mr-1" />
                     Operating costs
                   </div>
                 )}
@@ -384,9 +384,9 @@ export default function FinancialDashboard() {
                   <div className="flex items-center gap-3">
                     <div className={`p-2 rounded-full ${transaction.type === 'revenue' ? 'bg-green-100' : 'bg-red-100'}`}>
                       {transaction.type === 'revenue' ? (
-                        <TrendingUpIcon className={`h-4 w-4 ${transaction.type === 'revenue' ? 'text-green-600' : 'text-red-600'}`} />
+                        <ArrowTrendingUpIcon className={`h-4 w-4 ${transaction.type === 'revenue' ? 'text-green-600' : 'text-red-600'}`} />
                       ) : (
-                        <TrendingDownIcon className={`h-4 w-4 ${transaction.type === 'revenue' ? 'text-green-600' : 'text-red-600'}`} />
+                        <ArrowTrendingDownIcon className={`h-4 w-4 ${transaction.type === 'revenue' ? 'text-green-600' : 'text-red-600'}`} />
                       )}
                     </div>
                     <div>

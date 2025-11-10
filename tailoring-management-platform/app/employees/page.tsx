@@ -181,7 +181,7 @@ export default function EmployeeDashboard() {
         .limit(5);
 
       if (error) throw error;
-      return data || [];
+      return (data || []) as any as Employee[];
     },
   });
 

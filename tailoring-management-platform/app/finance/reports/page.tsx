@@ -9,8 +9,8 @@ import {
   CalendarIcon,
   BanknotesIcon,
   ReceiptRefundIcon,
-  TrendingUpIcon,
-  TrendingDownIcon,
+  ArrowTrendingUpIcon,
+  ArrowTrendingDownIcon,
   ExclamationTriangleIcon,
 } from '@heroicons/react/24/outline';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';

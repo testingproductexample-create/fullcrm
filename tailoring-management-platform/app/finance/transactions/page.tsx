@@ -10,8 +10,8 @@ import {
   CalendarIcon,
   FunnelIcon,
   DocumentArrowDownIcon,
-  TrendingUpIcon,
-  TrendingDownIcon,
+  ArrowTrendingUpIcon,
+  ArrowTrendingDownIcon,
 } from '@heroicons/react/24/outline';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -154,7 +154,7 @@ export default function TransactionsPage() {
           <CardContent>
             <div className="flex items-center gap-2">
               <div className="text-2xl font-bold text-green-600">{formatCurrency(stats?.totalRevenue || 0)}</div>
-              <TrendingUpIcon className="h-6 w-6 text-green-500" />
+              <ArrowTrendingUpIcon className="h-6 w-6 text-green-500" />
             </div>
           </CardContent>
         </Card>
@@ -166,7 +166,7 @@ export default function TransactionsPage() {
           <CardContent>
             <div className="flex items-center gap-2">
               <div className="text-2xl font-bold text-red-600">{formatCurrency(stats?.totalExpenses || 0)}</div>
-              <TrendingDownIcon className="h-6 w-6 text-red-500" />
+              <ArrowTrendingDownIcon className="h-6 w-6 text-red-500" />
             </div>
           </CardContent>
         </Card>
@@ -269,9 +269,9 @@ export default function TransactionsPage() {
                     <div className="flex items-start gap-3">
                       <div className={`p-2 rounded-full ${transaction.transaction_type === 'revenue' ? 'bg-green-100' : 'bg-red-100'}`}>
                         {transaction.transaction_type === 'revenue' ? (
-                          <TrendingUpIcon className="h-5 w-5 text-green-600" />
+                          <ArrowTrendingUpIcon className="h-5 w-5 text-green-600" />
                         ) : (
-                          <TrendingDownIcon className="h-5 w-5 text-red-600" />
+                          <ArrowTrendingDownIcon className="h-5 w-5 text-red-600" />
                         )}
                       </div>
                       <div className="flex-1">
