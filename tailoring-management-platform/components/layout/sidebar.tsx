@@ -35,6 +35,9 @@ import {
   BuildingOffice2Icon,
   ArrowPathRoundedSquareIcon,
   CubeIcon,
+  ChatBubbleLeftEllipsisIcon,
+  ExclamationTriangleIcon,
+  ClipboardDocumentCheckIcon,
 } from '@heroicons/react/24/outline';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/hooks/use-auth';
@@ -51,6 +54,7 @@ const navigation = [
     items: [
       { name: 'Dashboard', href: '/', icon: HomeIcon },
       { name: 'Analytics', href: '/analytics', icon: ChartBarIcon },
+      { name: 'BI Dashboard', href: '/analytics/dashboard', icon: PresentationChartLineIcon },
       { name: 'Reports', href: '/reports', icon: PresentationChartLineIcon },
     ],
   },
@@ -204,6 +208,18 @@ const navigation = [
       { name: 'Automation', href: '/marketing/automation', icon: CogIcon },
       { name: 'A/B Testing', href: '/marketing/ab-tests', icon: BeakerIcon },
       { name: 'Settings', href: '/marketing/settings', icon: AdjustmentsHorizontalIcon },
+    ],
+  },
+  {
+    name: 'Feedback & Complaints',
+    items: [
+      { name: 'Dashboard', href: '/feedback', icon: ChartBarIcon },
+      { name: 'Complaints Management', href: '/feedback/complaints', icon: ExclamationTriangleIcon },
+      { name: 'Satisfaction Surveys', href: '/feedback/surveys', icon: ClipboardDocumentCheckIcon },
+      { name: 'Analytics & Reports', href: '/feedback/analytics', icon: PresentationChartLineIcon },
+      { name: 'Response Management', href: '/feedback/responses', icon: ChatBubbleLeftEllipsisIcon },
+      { name: 'Resolution Workflow', href: '/feedback/resolution', icon: ClipboardDocumentListIcon },
+      { name: 'Settings', href: '/feedback/settings', icon: AdjustmentsHorizontalIcon },
     ],
   },
   {

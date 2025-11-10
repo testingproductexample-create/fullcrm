@@ -763,3 +763,60 @@ export const calculateImportDuty = (fabricValue: number, fabricType: string): nu
   const rate = dutyRates[fabricType as keyof typeof dutyRates] || 0.075;
   return fabricValue * rate;
 };
+
+
+
+// Additional utility functions for formatting
+export const formatDate = (dateString: string): string => {
+  return new Date(dateString).toLocaleDateString('en-AE', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric'
+  });
+};
+
+export const formatPercentage = (value: number): string => {
+  return `${value.toFixed(2)}%`;
+};
+
+export const getStatusColor = (status: string): string => {
+  const statusColors: { [key: string]: string } = {
+    pending: 'bg-yellow-100 text-yellow-800',
+    approved: 'bg-green-100 text-green-800',
+    rejected: 'bg-red-100 text-red-800',
+    completed: 'bg-blue-100 text-blue-800',
+    cancelled: 'bg-gray-100 text-gray-800'
+  };
+  return statusColors[status] || 'bg-gray-100 text-gray-800';
+};
+
+export const getUrgencyColor = (urgency: string): string => {
+  const urgencyColors: { [key: string]: string } = {
+    low: 'bg-green-100 text-green-800',
+    normal: 'bg-blue-100 text-blue-800',
+    high: 'bg-orange-100 text-orange-800',
+    urgent: 'bg-red-100 text-red-800'
+  };
+  return urgencyColors[urgency] || 'bg-gray-100 text-gray-800';
+};
+
+export const getInspectionStatusColor = (status: string): string => {
+  const statusColors: { [key: string]: string } = {
+    pending: 'bg-yellow-100 text-yellow-800',
+    passed: 'bg-green-100 text-green-800',
+    failed: 'bg-red-100 text-red-800',
+    conditional: 'bg-orange-100 text-orange-800'
+  };
+  return statusColors[status] || 'bg-gray-100 text-gray-800';
+};
+
+export const getQualityGradeColor = (grade: string): string => {
+  const gradeColors: { [key: string]: string } = {
+    'A': 'bg-green-600 text-white',
+    'B': 'bg-blue-600 text-white',
+    'C': 'bg-yellow-600 text-white',
+    'D': 'bg-orange-600 text-white',
+    'F': 'bg-red-600 text-white'
+  };
+  return gradeColors[grade] || 'bg-gray-600 text-white';
+};

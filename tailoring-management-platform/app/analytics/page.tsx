@@ -82,6 +82,14 @@ export default function AnalyticsDashboard() {
 
   const analyticsModules = [
     {
+      name: 'Comprehensive BI Dashboard',
+      description: 'All-in-one business intelligence',
+      icon: ChartBarIcon,
+      href: '/analytics/dashboard',
+      color: 'from-indigo-500 to-indigo-600',
+      metric: 'Complete Business View'
+    },
+    {
       name: 'Executive Dashboard',
       description: 'High-level business overview',
       icon: ChartBarIcon,
