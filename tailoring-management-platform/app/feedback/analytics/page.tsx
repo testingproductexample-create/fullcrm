@@ -3,14 +3,13 @@
 import { useState } from 'react';
 import { 
   ChartBarIcon,
-  ArrowTrendingUpIcon,
-  ArrowTrendingDownIcon,
   UserGroupIcon,
   ExclamationTriangleIcon,
   CalendarDaysIcon,
   FunnelIcon,
   DocumentArrowDownIcon
 } from '@heroicons/react/24/outline';
+import { TrendingUp, TrendingDown } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { useFeedbackAnalytics, useFeedbackDashboard } from '@/hooks/useFeedback';
 import type { AnalyticsFilters } from '@/types/feedback';
@@ -187,7 +186,7 @@ export default function FeedbackAnalyticsPage() {
                   {metrics?.customer_satisfaction_score.toFixed(1) || 0}/5.0
                 </p>
                 <div className="flex items-center mt-2 text-sm">
-                  <ArrowTrendingUpIcon className="w-4 h-4 text-green-500 mr-1" />
+                  <TrendingUp className="w-4 h-4 text-green-500 mr-1" />
                   <span className="text-green-600">+0.3</span>
                   <span className="text-slate-500 ml-1">vs last period</span>
                 </div>
@@ -206,7 +205,7 @@ export default function FeedbackAnalyticsPage() {
                   {metrics?.nps_score.toFixed(0) || 0}
                 </p>
                 <div className="flex items-center mt-2 text-sm">
-                  <ArrowTrendingUpIcon className="w-4 h-4 text-green-500 mr-1" />
+                  <TrendingUp className="w-4 h-4 text-green-500 mr-1" />
                   <span className="text-green-600">+5</span>
                   <span className="text-slate-500 ml-1">vs last period</span>
                 </div>
@@ -225,7 +224,7 @@ export default function FeedbackAnalyticsPage() {
                   {metrics?.resolution_rate.toFixed(1) || 0}%
                 </p>
                 <div className="flex items-center mt-2 text-sm">
-                  <ArrowTrendingUpIcon className="w-4 h-4 text-green-500 mr-1" />
+                  <TrendingUp className="w-4 h-4 text-green-500 mr-1" />
                   <span className="text-green-600">+7%</span>
                   <span className="text-slate-500 ml-1">vs last period</span>
                 </div>
@@ -244,7 +243,7 @@ export default function FeedbackAnalyticsPage() {
                   {metrics?.average_resolution_time || 0}h
                 </p>
                 <div className="flex items-center mt-2 text-sm">
-                  <ArrowTrendingDownIcon className="w-4 h-4 text-green-500 mr-1" />
+                  <TrendingDown className="w-4 h-4 text-green-500 mr-1" />
                   <span className="text-green-600">-4h</span>
                   <span className="text-slate-500 ml-1">vs last period</span>
                 </div>

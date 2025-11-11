@@ -35,7 +35,7 @@ import {
   Upload,
   ArrowUpDown
 } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/client';
 import { 
   QualityInspection,
   FabricLibrary,
@@ -685,7 +685,7 @@ export default function QualityInspectionsPage() {
                             <Eye className="h-4 w-4" />
                           </Link>
                           <Link
-                            href={`/inventory/quality/${inspection.id/edit}`}
+                            href={`/inventory/quality/${inspection.id}/Edit`}
                             className="p-2 text-slate-600 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors"
                           >
                             <Edit className="h-4 w-4" />

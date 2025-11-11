@@ -26,6 +26,7 @@ export default function PerformanceAnalyticsPage() {
   const [filters, setFilters] = useState<AnalyticsFilters>({});
   const [selectedPeriod, setSelectedPeriod] = useState<'7d' | '30d' | '90d'>('30d');
   const [searchTerm, setSearchTerm] = useState('');
+  const [activeTab, setActiveTab] = useState("productivity");
 
   const { data: productivityData, isLoading: productivityLoading } = useProductivityAnalytics(filters);
   const { data: trendData, isLoading: trendLoading } = useProductivityTrendData(selectedPeriod);
@@ -206,7 +207,7 @@ export default function PerformanceAnalyticsPage() {
       </div>
 
       {/* Main Content Tabs */}
-      <Tabs defaultValue="productivity" className="space-y-6">
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
         <TabsList>
           <TabsTrigger value="productivity">Productivity Analysis</TabsTrigger>
           <TabsTrigger value="trends">Performance Trends</TabsTrigger>

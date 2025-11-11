@@ -20,7 +20,7 @@ import {
   FileText,
   BarChart
 } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/client';
 import { 
   Employee, 
   PerformanceReview,
@@ -409,7 +409,7 @@ export default function PerformanceReviewsPage() {
                               <Eye className="h-4 w-4" />
                             </Link>
                             <Link
-                              href={`/employees/reviews/${review.id/edit}`}
+                              href={`/employees/reviews/${review.id}/Edit`}
                               className="p-2 text-green-600 hover:text-green-700"
                             >
                               <Edit className="h-4 w-4" />

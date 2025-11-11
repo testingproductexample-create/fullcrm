@@ -34,24 +34,23 @@ import {
   DownloadIcon,
   RefreshCwIcon
 } from 'lucide-react';
-import { LineChart, Line, AreaChart, Area, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-
-// Type-safe Recharts component aliases to fix JSX component issues
-const SafeLineChart = LineChart as React.ComponentType<any>;
-const SafeLine = Line as React.ComponentType<any>;
-const SafeAreaChart = AreaChart as React.ComponentType<any>;
-const SafeArea = Area as React.ComponentType<any>;
-const SafeBarChart = BarChart as React.ComponentType<any>;
-const SafeBar = Bar as React.ComponentType<any>;
-const SafePieChart = PieChart as React.ComponentType<any>;
-const SafePie = Pie as React.ComponentType<any>;
-const SafeCell = Cell as React.ComponentType<any>;
-const SafeXAxis = XAxis as React.ComponentType<any>;
-const SafeYAxis = YAxis as React.ComponentType<any>;
-const SafeCartesianGrid = CartesianGrid as React.ComponentType<any>;
-const SafeTooltip = Tooltip as React.ComponentType<any>;
-const SafeLegend = Legend as React.ComponentType<any>;
-const SafeResponsiveContainer = ResponsiveContainer as React.ComponentType<any>;
+import { 
+  SafeLineChart, 
+  SafeLine, 
+  SafeAreaChart, 
+  SafeArea, 
+  SafeBarChart, 
+  SafeBar, 
+  SafePieChart, 
+  SafePie, 
+  SafeCell, 
+  SafeXAxis, 
+  SafeYAxis, 
+  SafeCartesianGrid, 
+  SafeTooltip, 
+  SafeLegend, 
+  SafeResponsiveContainer 
+} from '@/lib/recharts-safe';
 import { format, subDays, subMonths } from 'date-fns';
 
 // Colors for charts
@@ -68,6 +67,7 @@ const dateRangeOptions = [
 export default function SupportAnalytics() {
   const [dateRange, setDateRange] = useState('30d');
   const [selectedMetric, setSelectedMetric] = useState('tickets');
+  const [activeTab, setActiveTab] = useState("overview");
 
   // Calculate date range
   const getDateRange = (range: string) => {
@@ -336,7 +336,7 @@ export default function SupportAnalytics() {
       )}
 
       {/* Charts and Analytics */}
-      <Tabs defaultValue="overview" className="space-y-6">
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
         <TabsList className="grid w-full grid-cols-4">
           <TabsTrigger value="overview">Overview</TabsTrigger>
           <TabsTrigger value="trends">Trends</TabsTrigger>

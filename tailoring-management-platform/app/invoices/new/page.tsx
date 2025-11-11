@@ -19,16 +19,14 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/client';
 import { formatCurrency } from '@/lib/utils';
 import { 
   InvoiceFormData,
   InvoiceItemFormData,
-  calculateVAT,
-  calculateTotal,
-  calculateLineTotal,
   UAE_VAT_RATE,
 } from '@/types/financial';
+import { formatCurrency, calculateVAT, calculateTotal, calculateLineTotal } from '@/lib/utils';
 import toast from 'react-hot-toast';
 
 // Force this page to be dynamic

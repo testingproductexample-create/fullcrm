@@ -7,10 +7,9 @@ import {
   UserGroupIcon,
   ShoppingBagIcon,
   UsersIcon,
-  ArrowTrendingUpIcon,
-  ArrowTrendingDownIcon,
   CalendarIcon
 } from '@heroicons/react/24/outline';
+import { TrendingUp, TrendingDown } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { useDashboardData } from '@/hooks/useDashboardData';
 import {
@@ -391,7 +390,7 @@ export default function ComprehensiveDashboard() {
               title="New Customers (MTD)"
               value={customerData?.newCustomers || 0}
               change={customerData?.newCustomersGrowth || 0}
-              icon={ArrowTrendingUpIcon}
+              icon={TrendingUp}
               iconColor="text-green-600"
               iconBg="bg-green-100"
               isLoading={isLoading}
@@ -478,9 +477,9 @@ function MetricCard({ title, value, change, icon: Icon, iconColor, iconBg, isLoa
           </p>
           <div className="flex items-center gap-1 mt-1">
             {isPositive ? (
-              <ArrowTrendingUpIcon className="w-4 h-4 text-green-600" />
+              <TrendingUp className="w-4 h-4 text-green-600" />
             ) : (
-              <ArrowTrendingDownIcon className="w-4 h-4 text-red-600" />
+              <TrendingDown className="w-4 h-4 text-red-600" />
             )}
             <span className={`text-xs ${isPositive ? 'text-green-600' : 'text-red-600'}`}>
               {isPositive ? '+' : ''}{change.toFixed(1)}% vs last period

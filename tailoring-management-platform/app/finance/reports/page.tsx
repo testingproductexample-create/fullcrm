@@ -9,15 +9,13 @@ import {
   CalendarIcon,
   BanknotesIcon,
   ReceiptRefundIcon,
-  ArrowTrendingUpIcon,
-  ArrowTrendingDownIcon,
   ExclamationTriangleIcon,
 } from '@heroicons/react/24/outline';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/client';
 import { formatDate, formatCurrency } from '@/lib/utils';
 import { FinancialTransaction, UAE_EXPENSE_CATEGORY_LABELS } from '@/types/financial';
 

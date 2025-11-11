@@ -36,6 +36,7 @@ export default function OptimizationCenterPage() {
   const [selectedCategory, setSelectedCategory] = useState<OptimizationCategory | 'all'>('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [showCreateDialog, setShowCreateDialog] = useState(false);
+  const [activeTab, setActiveTab] = useState("recommendations");
 
   const { data: recommendations, isLoading: recommendationsLoading } = useOptimizationRecommendations();
   const { data: impactSummary, isLoading: impactLoading } = useOptimizationImpact();
@@ -281,7 +282,7 @@ export default function OptimizationCenterPage() {
       </div>
 
       {/* Main Content */}
-      <Tabs defaultValue="recommendations" className="space-y-6">
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
         <TabsList>
           <TabsTrigger value="recommendations">Recommendations</TabsTrigger>
           <TabsTrigger value="impact">Impact Analysis</TabsTrigger>

@@ -22,15 +22,15 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import { Badge } from '@/components/ui/badge';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/client';
 import { formatDate, formatCurrency } from '@/lib/utils';
 import { 
   Invoice,
   InvoiceAnalytics,
   INVOICE_STATUSES,
   INVOICE_STATUS_LABELS,
-  getInvoiceStatusColor,
 } from '@/types/financial';
+import { formatDate, formatCurrency, getInvoiceStatusColor } from '@/lib/utils';
 
 // Force this page to be dynamic
 export const dynamic = 'force-dynamic';

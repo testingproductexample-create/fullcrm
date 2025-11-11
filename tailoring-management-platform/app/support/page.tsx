@@ -64,6 +64,7 @@ export default function SupportDashboard() {
   const { data: agents = [], isLoading: agentsLoading } = useSupportAgents();
   const { data: analytics } = useSupportAnalytics();
   const { data: slaCompliance } = useSLACompliance();
+  const [activeTab, setActiveTab] = useState("tickets");
 
   const handleFilterChange = (key: string, value: string) => {
     setTicketFilters(prev => ({ ...prev, [key]: value }));
@@ -202,7 +203,7 @@ export default function SupportDashboard() {
       )}
 
       {/* Main Content Tabs */}
-      <Tabs defaultValue="tickets" className="space-y-6">
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
         <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="tickets">Recent Tickets</TabsTrigger>
           <TabsTrigger value="agents">Agent Status</TabsTrigger>
@@ -301,11 +302,11 @@ export default function SupportDashboard() {
                           <div className="flex items-center gap-2">
                             <Avatar className="h-6 w-6">
                               <AvatarFallback className="text-xs">
-                                {ticket.assigned_agent.agent_name.split(' ').map((n: string) => n[0]).join('')}
+                                {ticket.assigned_agent.agent_name?.split(' ')?.map((n: string) => n?.[0])?.join('') || 'NA'}
                               </AvatarFallback>
                             </Avatar>
                             <span className="text-sm text-muted-foreground">
-                              {ticket.assigned_agent.agent_name}
+                              {ticket.assigned_agent.agent_name || 'Unassigned'}
                             </span>
                           </div>
                         )}
@@ -347,11 +348,11 @@ export default function SupportDashboard() {
                         <div className="flex items-center gap-3">
                           <Avatar>
                             <AvatarFallback>
-                              {agent.agent_name.split(' ').map((n) => n[0]).join('')}
+                              {agent.agent_name?.split(' ')?.map((n) => n?.[0])?.join('') || 'NA'}
                             </AvatarFallback>
                           </Avatar>
                           <div>
-                            <p className="font-medium">{agent.agent_name}</p>
+                            <p className="font-medium">{agent.agent_name || 'Unknown Agent'}</p>
                             <p className="text-sm text-muted-foreground">{agent.skill_level}</p>
                           </div>
                         </div>

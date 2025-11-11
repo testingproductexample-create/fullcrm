@@ -8,8 +8,8 @@ import {
   XCircleIcon,
   ArrowPathIcon,
 } from '@heroicons/react/24/outline';
-import { useQuery, useMutation, useQueryClient } from '@tantml:react-query';
-import { supabase } from '@/lib/supabase';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { supabase } from '@/lib/supabase/client';
 import { WebhookEndpoint, WebhookEvent } from '@/types/integrations';
 
 export default function WebhooksManagement() {

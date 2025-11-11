@@ -28,7 +28,20 @@ import {
   useComplianceTracking,
   useTrainingCompletionTrends
 } from '@/hooks/useTraining';
-import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, BarChart, Bar, PieChart, Pie, Cell } from 'recharts';
+import { 
+  SafeResponsiveContainer, 
+  SafeLineChart, 
+  SafeLine, 
+  SafeXAxis, 
+  SafeYAxis, 
+  SafeCartesianGrid, 
+  SafeTooltip, 
+  SafeBarChart, 
+  SafeBar, 
+  SafePieChart, 
+  SafePie, 
+  SafeCell 
+} from '@/lib/recharts-safe';
 
 export default function TrainingAdminDashboard() {
   const [selectedTab, setSelectedTab] = useState('overview');
@@ -223,9 +236,9 @@ export default function TrainingAdminDashboard() {
               </CardHeader>
               <CardContent>
                 <div className="h-64">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <PieChart>
-                      <Pie
+                  <SafeResponsiveContainer width="100%" height="100%">
+                    <SafePieChart>
+                      <SafePie
                         data={statusDistribution}
                         cx="50%"
                         cy="50%"
@@ -235,12 +248,12 @@ export default function TrainingAdminDashboard() {
                         dataKey="value"
                       >
                         {statusDistribution.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={entry.color} />
+                          <SafeCell key={`cell-${index}`} fill={entry.color} />
                         ))}
-                      </Pie>
-                      <Tooltip />
-                    </PieChart>
-                  </ResponsiveContainer>
+                      </SafePie>
+                      <SafeTooltip />
+                    </SafePieChart>
+                  </SafeResponsiveContainer>
                 </div>
                 <div className="grid grid-cols-2 gap-2 mt-4">
                   {statusDistribution.map((item) => (
@@ -263,21 +276,21 @@ export default function TrainingAdminDashboard() {
               </CardHeader>
               <CardContent>
                 <div className="h-64">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <LineChart data={completionTrends}>
-                      <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="period" />
-                      <YAxis />
-                      <Tooltip />
-                      <Line 
+                  <SafeResponsiveContainer width="100%" height="100%">
+                    <SafeLineChart data={completionTrends}>
+                      <SafeCartesianGrid strokeDasharray="3 3" />
+                      <SafeXAxis dataKey="period" />
+                      <SafeYAxis />
+                      <SafeTooltip />
+                      <SafeLine 
                         type="monotone" 
                         dataKey="completion_rate" 
                         stroke="#3B82F6" 
                         strokeWidth={2}
                         name="Completion Rate (%)"
                       />
-                    </LineChart>
-                  </ResponsiveContainer>
+                    </SafeLineChart>
+                  </SafeResponsiveContainer>
                 </div>
               </CardContent>
             </Card>
@@ -404,7 +417,7 @@ export default function TrainingAdminDashboard() {
                             View
                           </Button>
                         </Link>
-                        <Link href={`/training/courses/${program.id/edit}`}>
+                        <Link href={`/training/courses/${program.id}/Edit`}>
                           <Button size="sm" variant="outline">
                             <PencilIcon className="h-4 w-4 mr-1" />
                             Edit
@@ -498,16 +511,16 @@ export default function TrainingAdminDashboard() {
             </CardHeader>
             <CardContent>
               <div className="h-80">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={programStats}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip />
-                    <Bar dataKey="enrollments" fill="#3B82F6" name="Enrollments" />
-                    <Bar dataKey="completions" fill="#10B981" name="Completions" />
-                  </BarChart>
-                </ResponsiveContainer>
+                <SafeResponsiveContainer width="100%" height="100%">
+                  <SafeBarChart data={programStats}>
+                    <SafeCartesianGrid strokeDasharray="3 3" />
+                    <SafeXAxis dataKey="name" />
+                    <SafeYAxis />
+                    <SafeTooltip />
+                    <SafeBar dataKey="enrollments" fill="#3B82F6" name="Enrollments" />
+                    <SafeBar dataKey="completions" fill="#10B981" name="Completions" />
+                  </SafeBarChart>
+                </SafeResponsiveContainer>
               </div>
             </CardContent>
           </Card>

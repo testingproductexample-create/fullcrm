@@ -22,6 +22,20 @@ import {
 import { cn } from '@/lib/utils';
 import type { BottleneckType, SeverityLevel, BottleneckStatus, CreateBottleneckData } from '@/types/efficiency';
 
+// Severity color helper function at module scope
+const getSeverityColor = (severity: SeverityLevel) => {
+  switch (severity) {
+    case 'critical':
+      return 'destructive';
+    case 'high':
+      return 'default';
+    case 'medium':
+      return 'secondary';
+    case 'low':
+      return 'outline';
+  }
+};
+
 export default function BottleneckManagementPage() {
   const [selectedStatus, setSelectedStatus] = useState<BottleneckStatus | 'all'>('all');
   const [selectedSeverity, setSelectedSeverity] = useState<SeverityLevel | 'all'>('all');
@@ -64,19 +78,6 @@ export default function BottleneckManagementPage() {
         return <TrendingDown className="h-4 w-4" />;
       case 'dependency':
         return <AlertCircle className="h-4 w-4" />;
-    }
-  };
-
-  const getSeverityColor = (severity: SeverityLevel) => {
-    switch (severity) {
-      case 'critical':
-        return 'destructive';
-      case 'high':
-        return 'default';
-      case 'medium':
-        return 'secondary';
-      case 'low':
-        return 'outline';
     }
   };
 

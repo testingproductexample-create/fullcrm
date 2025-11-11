@@ -12,7 +12,7 @@ import {
   ChevronLeftIcon,
 } from '@heroicons/react/24/outline';
 import { useQuery, useMutation } from '@tanstack/react-query';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/client';
 import { IntegrationProvider } from '@/types/integrations';
 
 export default function IntegrationSetup() {

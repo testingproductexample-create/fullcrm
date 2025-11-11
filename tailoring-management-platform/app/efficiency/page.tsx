@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -18,6 +18,7 @@ import {
 import { cn } from '@/lib/utils';
 
 export default function EfficiencyDashboardPage() {
+  const [activeTab, setActiveTab] = useState("overview");
   const { data: dashboardMetrics, isLoading: metricsLoading } = useEfficiencyDashboardMetrics();
   const { data: bottleneckSummary, isLoading: bottlenecksLoading } = useBottleneckSummary();
   const { data: activeAlertsCount, isLoading: alertsLoading } = useActiveAlertsCount();
@@ -147,7 +148,7 @@ export default function EfficiencyDashboardPage() {
       </div>
 
       {/* Main Dashboard Content */}
-      <Tabs defaultValue="overview" className="space-y-6">
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
         <TabsList className="grid w-full grid-cols-5">
           <TabsTrigger value="overview">Overview</TabsTrigger>
           <TabsTrigger value="performance">Performance</TabsTrigger>

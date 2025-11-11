@@ -16,7 +16,7 @@ import { RevenueChart } from './charts/revenue-chart';
 import { OrdersChart } from './charts/orders-chart';
 import { QualityMetrics } from './quality-metrics';
 import { RecentOrders } from './recent-orders';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/client';
 import { formatCurrency } from '@/lib/utils';
 import Link from 'next/link';
 

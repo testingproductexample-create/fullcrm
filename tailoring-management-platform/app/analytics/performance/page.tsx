@@ -3,11 +3,10 @@
 import { useState } from 'react';
 import { 
   ChartBarIcon,
-  ArrowTrendingUpIcon,
-  ArrowTrendingDownIcon,
   CheckCircleIcon,
   XCircleIcon
 } from '@heroicons/react/24/outline';
+import { TrendingUp, TrendingDown } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { useKPIMetrics, useUpdateKPIMetric } from '@/hooks/useAnalytics';
 
@@ -89,9 +88,9 @@ export default function PerformanceTrackingPage() {
             <div className={`text-right ${getProgressColor(progress)}`}>
               <div className="flex items-center gap-1">
                 {progress >= 100 ? (
-                  <ArrowTrendingUpIcon className="w-5 h-5" />
+                  <TrendingUp className="w-5 h-5" />
                 ) : (
-                  <ArrowTrendingDownIcon className="w-5 h-5" />
+                  <TrendingDown className="w-5 h-5" />
                 )}
                 <span className="text-lg font-bold">{progress.toFixed(0)}%</span>
               </div>

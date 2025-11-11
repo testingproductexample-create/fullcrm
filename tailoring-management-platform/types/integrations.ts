@@ -331,23 +331,4 @@ export type HealthStatus = 'healthy' | 'degraded' | 'down' | 'unknown';
 
 export type Environment = 'production' | 'staging' | 'development';
 
-// Export all types
-export type {
-  IntegrationProvider,
-  IntegrationConnection,
-  ApiCredential,
-  IntegrationHealth,
-  IntegrationLog,
-  WebhookEndpoint,
-  WebhookEvent,
-  RateLimit,
-  IntegrationAnalytics,
-  PaymentProvider,
-  ShippingProvider,
-  SocialMediaAccount,
-  CreateConnectionInput,
-  UpdateConnectionInput,
-  IntegrationStats,
-  ApiResponse,
-  HealthCheckResponse,
-};
+// All types are already exported individually above

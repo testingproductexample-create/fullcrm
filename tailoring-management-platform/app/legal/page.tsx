@@ -10,17 +10,16 @@ import {
   DocumentTextIcon, 
   PencilSquareIcon, 
   ClockIcon, 
-  ExclamationTriangleIcon,
   CheckCircleIcon,
   XMarkIcon,
   BanknotesIcon,
   ShieldCheckIcon,
   UsersIcon,
   CalendarIcon,
-  ArrowTrendingUpIcon,
   PlusIcon,
   EyeIcon
 } from '@heroicons/react/24/outline';
+import { TrendingUp, AlertTriangle } from 'lucide-react';
 import Link from 'next/link';
 import { 
   useLegalDashboardStats,
@@ -122,7 +121,7 @@ export default function LegalContractManagement() {
       {complianceAlerts.length > 0 && (
         <div className="bg-red-50 border border-red-200 rounded-lg p-4">
           <div className="flex items-center space-x-2">
-            <ExclamationTriangleIcon className="h-5 w-5 text-red-600" />
+            <AlertTriangle className="h-5 w-5 text-red-600" />
             <span className="font-medium text-red-800">Compliance Alert</span>
           </div>
           <div className="mt-2 text-sm text-red-700">
@@ -235,7 +234,7 @@ export default function LegalContractManagement() {
                 <p className="text-3xl font-bold text-cyan-600">{stats.renewal_rate}%</p>
               </div>
               <div className="p-3 bg-cyan-100 rounded-full">
-                <ArrowTrendingUpIcon className="h-6 w-6 text-cyan-600" />
+                <TrendingUp className="h-6 w-6 text-cyan-600" />
               </div>
             </div>
           </CardContent>
@@ -290,7 +289,7 @@ export default function LegalContractManagement() {
                   ].map((item) => (
                     <div key={item.status} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                       <div className="flex items-center space-x-3">
-                        <div className={`w-3 h-3 rounded-full ${item.color.split(' ')[1]}`}></div>
+                        <div className={`w-3 h-3 rounded-full ${item.color?.split(' ')?.[1] || 'bg-gray-300'}`}></div>
                         <span className="font-medium text-gray-900">{item.status}</span>
                       </div>
                       <span className={`px-2 py-1 rounded-full text-sm font-medium ${item.color}`}>
@@ -341,7 +340,7 @@ export default function LegalContractManagement() {
                   </Link>
                   <Link href={`/legal/analytics`}>
                     <Button variant="outline" className="w-full justify-start">
-                      <ArrowTrendingUpIcon className="h-4 w-4 mr-2" />
+                      <TrendingUp className="h-4 w-4 mr-2" />
                       View Analytics
                     </Button>
                   </Link>

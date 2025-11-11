@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { CurrencyDollarIcon, ArrowTrendingUpIcon, ArrowTrendingDownIcon, BanknotesIcon } from '@heroicons/react/24/outline';
+import { CurrencyDollarIcon, BanknotesIcon } from '@heroicons/react/24/outline';
+import { TrendingUp, TrendingDown } from 'lucide-react';
 // Charts temporarily removed for build compatibility
 import { useAuth } from '@/hooks/useAuth';
 import { useBusinessIntelligence, useTrendAnalysis } from '@/hooks/useAnalytics';
@@ -52,7 +53,7 @@ export default function FinancialAnalyticsPage() {
             <h3 className="text-sm font-medium text-gray-600 mb-1">Total Revenue</h3>
             <p className="text-3xl font-bold text-gray-900">AED 720K</p>
             <div className="flex items-center gap-1 mt-1">
-              <ArrowTrendingUpIcon className="w-4 h-4 text-green-600" />
+              <TrendingUp className="w-4 h-4 text-green-600" />
               <span className="text-xs text-green-600">+23.5% YTD</span>
             </div>
           </div>
@@ -60,7 +61,7 @@ export default function FinancialAnalyticsPage() {
             <h3 className="text-sm font-medium text-gray-600 mb-1">Total Expenses</h3>
             <p className="text-3xl font-bold text-gray-900">AED 463K</p>
             <div className="flex items-center gap-1 mt-1">
-              <ArrowTrendingDownIcon className="w-4 h-4 text-red-600" />
+              <TrendingDown className="w-4 h-4 text-red-600" />
               <span className="text-xs text-red-600">+18.2% YTD</span>
             </div>
           </div>
@@ -68,7 +69,7 @@ export default function FinancialAnalyticsPage() {
             <h3 className="text-sm font-medium text-gray-600 mb-1">Net Profit</h3>
             <p className="text-3xl font-bold text-gray-900">AED 257K</p>
             <div className="flex items-center gap-1 mt-1">
-              <ArrowTrendingUpIcon className="w-4 h-4 text-green-600" />
+              <TrendingUp className="w-4 h-4 text-green-600" />
               <span className="text-xs text-green-600">+32.7% YTD</span>
             </div>
           </div>
@@ -76,7 +77,7 @@ export default function FinancialAnalyticsPage() {
             <h3 className="text-sm font-medium text-gray-600 mb-1">Profit Margin</h3>
             <p className="text-3xl font-bold text-gray-900">35.7%</p>
             <div className="flex items-center gap-1 mt-1">
-              <ArrowTrendingUpIcon className="w-4 h-4 text-green-600" />
+              <TrendingUp className="w-4 h-4 text-green-600" />
               <span className="text-xs text-green-600">+2.8% improvement</span>
             </div>
           </div>

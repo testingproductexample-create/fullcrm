@@ -6,7 +6,8 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { CalendarIcon, ClockIcon, BookOpenIcon, CertificateIcon, ArrowTrendingUpIcon, AlertCircleIcon, PlayCircleIcon, CheckCircleIcon } from '@heroicons/react/24/outline';
+import { CalendarIcon, ClockIcon, BookOpenIcon, PlayCircleIcon, CheckCircleIcon } from '@heroicons/react/24/outline';
+import { Award, TrendingUp, AlertCircle, Ticket } from 'lucide-react';
 import Link from 'next/link';
 import { 
   useEmployeeTrainings, 
@@ -75,7 +76,7 @@ export default function TrainingPortal() {
       {(renewalAlerts.length > 0 || pendingCompliance.length > 0) && (
         <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
           <div className="flex items-center space-x-2">
-            <AlertCircleIcon className="h-5 w-5 text-orange-600" />
+            <AlertCircle className="h-5 w-5 text-orange-600" />
             <span className="font-medium text-orange-800">Action Required</span>
           </div>
           <div className="mt-2 text-sm text-orange-700 space-y-1">
@@ -130,7 +131,7 @@ export default function TrainingPortal() {
                 <p className="text-3xl font-bold text-purple-600">{certifications.length}</p>
               </div>
               <div className="p-3 bg-purple-100 rounded-full">
-                <CertificateIcon className="h-6 w-6 text-purple-600" />
+                <Award className="h-6 w-6 text-purple-600" />
               </div>
             </div>
           </CardContent>
@@ -144,7 +145,7 @@ export default function TrainingPortal() {
                 <p className="text-3xl font-bold text-orange-600">{employeeSkills.length}</p>
               </div>
               <div className="p-3 bg-orange-100 rounded-full">
-                <ArrowTrendingUpIcon className="h-6 w-6 text-orange-600" />
+                <TrendingUp className="h-6 w-6 text-orange-600" />
               </div>
             </div>
           </CardContent>
@@ -411,7 +412,7 @@ export default function TrainingPortal() {
                 ))}
                 {employeeSkills.length === 0 && (
                   <div className="text-center py-8">
-                    <ArrowTrendingUpIcon className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                    <TrendingUp className="h-12 w-12 text-gray-400 mx-auto mb-4" />
                     <p className="text-gray-500">No skills recorded yet</p>
                     <p className="text-sm text-gray-400 mt-1">Complete a skills assessment to get started</p>
                   </div>

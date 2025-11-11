@@ -14,7 +14,7 @@
  */
 
 import { useQuery, useMutation, useQueryClient, UseQueryResult, UseMutationResult } from '@tanstack/react-query';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/client';
 import {
   MarketingCampaign, MarketingCampaignInsert, MarketingCampaignUpdate,
   EmailTemplate, EmailTemplateInsert, EmailTemplateUpdate,
@@ -196,12 +196,14 @@ export function useMarketingCampaignWithRelations(campaignId: string): UseQueryR
       // Calculate computed metrics
       const campaign = data as MarketingCampaignWithRelations;
       if (campaign.analytics?.length) {
-        const latest = campaign.analytics[0];
-        campaign.open_rate = latest.open_rate;
-        campaign.click_rate = latest.click_rate;
-        campaign.conversion_rate = latest.conversion_rate;
-        campaign.roi_percentage = latest.roi_percentage;
-        campaign.estimated_revenue = latest.revenue_generated;
+        const latest = campaign.analytics?.[0];
+        if (latest) {
+          campaign.open_rate = latest.open_rate;
+          campaign.click_rate = latest.click_rate;
+          campaign.conversion_rate = latest.conversion_rate;
+          campaign.roi_percentage = latest.roi_percentage;
+          campaign.estimated_revenue = latest.revenue_generated;
+        }
       }
 
       return campaign;

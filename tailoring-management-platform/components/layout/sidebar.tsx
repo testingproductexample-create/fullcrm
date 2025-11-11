@@ -51,7 +51,7 @@ import {
   ScaleIcon,
 } from '@heroicons/react/24/outline';
 import { cn } from '@/lib/utils';
-import { useAuth } from '@/hooks/use-auth';
+import { useAuth } from '@/hooks/useAuth';
 
 interface SidebarProps {
   sidebarOpen: boolean;

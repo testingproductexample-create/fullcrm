@@ -2,7 +2,7 @@
 
 import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/client';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import { formatCurrency, formatDate } from '@/lib/utils';
 import { ClockIcon, CheckCircleIcon, TruckIcon } from '@heroicons/react/24/outline';

@@ -18,7 +18,7 @@ import {
   AlertCircle,
   CheckCircle
 } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/client';
 import { CreateEmployeeInput, Department } from '@/types/employee';
 import { UAE_LABOR_LAW } from '@/types/employee';
 

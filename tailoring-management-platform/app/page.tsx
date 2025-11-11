@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { redirect } from 'next/navigation';
-import { useAuth } from '@/hooks/use-auth';
+import { useAuth } from '@/hooks/useAuth';
 import { DashboardLayout } from '@/components/layout/dashboard-layout';
 import { MainDashboard } from '@/components/dashboard/main-dashboard';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';

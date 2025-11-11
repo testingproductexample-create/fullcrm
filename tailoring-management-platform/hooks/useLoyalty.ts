@@ -12,7 +12,7 @@
  */
 
 import { useQuery, useMutation, useQueryClient, UseQueryResult, UseMutationResult } from '@tanstack/react-query';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/client';
 import {
   LoyaltyProgram, LoyaltyProgramInsert, LoyaltyProgramUpdate,
   LoyaltyTier, LoyaltyTierInsert, LoyaltyTierUpdate,

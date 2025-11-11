@@ -3,16 +3,14 @@
 import { useState } from 'react';
 import { 
   ChatBubbleLeftEllipsisIcon, 
-  ExclamationTriangleIcon, 
   SparklesIcon,
   ChartBarIcon,
   ClockIcon,
   UserGroupIcon,
-  ArrowTrendingUpIcon,
-  ArrowTrendingDownIcon,
   CheckCircleIcon,
   XCircleIcon
 } from '@heroicons/react/24/outline';
+import { TrendingUp, TrendingDown, AlertTriangle } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { useFeedbackDashboard, useFeedback, useComplaintWorkflow } from '@/hooks/useFeedback';
 
@@ -77,7 +75,7 @@ export default function FeedbackDashboardPage() {
                 <p className="text-slate-600 text-sm font-medium">Total Feedback</p>
                 <p className="text-2xl font-bold text-slate-900">{metrics?.total_feedback || 0}</p>
                 <div className="flex items-center mt-2 text-sm">
-                  <ArrowTrendingUpIcon className="w-4 h-4 text-green-500 mr-1" />
+                  <TrendingUp className="w-4 h-4 text-green-500 mr-1" />
                   <span className="text-green-600">+12%</span>
                   <span className="text-slate-500 ml-1">vs last period</span>
                 </div>
@@ -94,13 +92,13 @@ export default function FeedbackDashboardPage() {
                 <p className="text-slate-600 text-sm font-medium">Active Complaints</p>
                 <p className="text-2xl font-bold text-slate-900">{metrics?.total_complaints || 0}</p>
                 <div className="flex items-center mt-2 text-sm">
-                  <ArrowTrendingDownIcon className="w-4 h-4 text-red-500 mr-1" />
+                  <TrendingDown className="w-4 h-4 text-red-500 mr-1" />
                   <span className="text-red-600">-8%</span>
                   <span className="text-slate-500 ml-1">vs last period</span>
                 </div>
               </div>
               <div className="p-3 bg-red-100 rounded-lg">
-                <ExclamationTriangleIcon className="w-6 h-6 text-red-600" />
+                <AlertTriangle className="w-6 h-6 text-red-600" />
               </div>
             </div>
           </div>
@@ -111,7 +109,7 @@ export default function FeedbackDashboardPage() {
                 <p className="text-slate-600 text-sm font-medium">Resolution Rate</p>
                 <p className="text-2xl font-bold text-slate-900">{metrics?.resolution_rate.toFixed(1) || 0}%</p>
                 <div className="flex items-center mt-2 text-sm">
-                  <ArrowTrendingUpIcon className="w-4 h-4 text-green-500 mr-1" />
+                  <TrendingUp className="w-4 h-4 text-green-500 mr-1" />
                   <span className="text-green-600">+5%</span>
                   <span className="text-slate-500 ml-1">vs last period</span>
                 </div>
@@ -194,7 +192,7 @@ export default function FeedbackDashboardPage() {
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold text-slate-900">Escalation Rate</h3>
               <div className="p-2 bg-orange-100 rounded-lg">
-                <ExclamationTriangleIcon className="w-5 h-5 text-orange-600" />
+                <AlertTriangle className="w-5 h-5 text-orange-600" />
               </div>
             </div>
             <div className="text-center">

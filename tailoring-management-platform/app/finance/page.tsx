@@ -7,8 +7,6 @@ import {
   BanknotesIcon,
   CurrencyDollarIcon,
   ChartBarIcon,
-  ArrowTrendingUpIcon,
-  ArrowTrendingDownIcon,
   ExclamationTriangleIcon,
   CalendarIcon,
   ReceiptRefundIcon,
@@ -17,10 +15,11 @@ import {
   DocumentTextIcon,
   PlusIcon,
 } from '@heroicons/react/24/outline';
+import { TrendingUp, TrendingDown, AlertTriangle } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/client';
 import { formatDate, formatCurrency } from '@/lib/utils';
 import { FinancialAnalytics } from '@/types/financial';
 
@@ -161,7 +160,7 @@ export default function FinancialDashboard() {
   if (error) {
     return (
       <div className="text-center py-8">
-        <ExclamationTriangleIcon className="mx-auto h-12 w-12 text-red-400" />
+        <AlertTriangle className="mx-auto h-12 w-12 text-red-400" />
         <h3 className="mt-2 text-sm font-medium text-gray-900">Error loading financial data</h3>
         <p className="mt-1 text-sm text-gray-500">
           There was a problem loading the financial dashboard.
@@ -219,7 +218,7 @@ export default function FinancialDashboard() {
                 </div>
                 {stats?.totalRevenue && (
                   <div className="flex items-center text-sm text-green-600">
-                    <ArrowTrendingUpIcon className="h-4 w-4 mr-1" />
+                    <TrendingUp className="h-4 w-4 mr-1" />
                     Revenue stream
                   </div>
                 )}
@@ -241,7 +240,7 @@ export default function FinancialDashboard() {
                 </div>
                 {stats?.totalExpenses && (
                   <div className="flex items-center text-sm text-red-600">
-                    <ArrowTrendingDownIcon className="h-4 w-4 mr-1" />
+                    <TrendingDown className="h-4 w-4 mr-1" />
                     Operating costs
                   </div>
                 )}
@@ -325,7 +324,7 @@ export default function FinancialDashboard() {
                   Requires action
                 </div>
               </div>
-              <ExclamationTriangleIcon className="h-8 w-8 text-red-500" />
+              <AlertTriangle className="h-8 w-8 text-red-500" />
             </div>
           </CardContent>
         </Card>
@@ -384,9 +383,9 @@ export default function FinancialDashboard() {
                   <div className="flex items-center gap-3">
                     <div className={`p-2 rounded-full ${transaction.type === 'revenue' ? 'bg-green-100' : 'bg-red-100'}`}>
                       {transaction.type === 'revenue' ? (
-                        <ArrowTrendingUpIcon className={`h-4 w-4 ${transaction.type === 'revenue' ? 'text-green-600' : 'text-red-600'}`} />
+                        <TrendingUp className={`h-4 w-4 ${transaction.type === 'revenue' ? 'text-green-600' : 'text-red-600'}`} />
                       ) : (
-                        <ArrowTrendingDownIcon className={`h-4 w-4 ${transaction.type === 'revenue' ? 'text-green-600' : 'text-red-600'}`} />
+                        <TrendingDown className={`h-4 w-4 ${transaction.type === 'revenue' ? 'text-green-600' : 'text-red-600'}`} />
                       )}
                     </div>
                     <div>

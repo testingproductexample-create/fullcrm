@@ -21,6 +21,7 @@ import {
   useBulkUpdateAlertStatus
 } from '@/hooks/useEfficiency';
 import { cn } from '@/lib/utils';
+import { getSeverityColor } from '@/lib/utils/severity';
 import type { AlertType, SeverityLevel, AlertStatus, ThresholdType } from '@/types/efficiency';
 
 export default function AlertManagementPage() {
@@ -29,6 +30,7 @@ export default function AlertManagementPage() {
   const [selectedType, setSelectedType] = useState<AlertType | 'all'>('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedAlerts, setSelectedAlerts] = useState<string[]>([]);
+  const [activeTab, setActiveTab] = useState("list");
 
   const { data: alerts, isLoading: alertsLoading } = usePerformanceAlerts(selectedStatus !== 'all' ? selectedStatus : undefined);
   const { data: activeAlertsCount } = useActiveAlertsCount();
@@ -61,19 +63,6 @@ export default function AlertManagementPage() {
         return <Clock className="h-4 w-4" />;
       case 'bottleneck_detected':
         return <AlertTriangle className="h-4 w-4" />;
-    }
-  };
-
-  const getSeverityColor = (severity: SeverityLevel) => {
-    switch (severity) {
-      case 'critical':
-        return 'destructive';
-      case 'high':
-        return 'default';
-      case 'medium':
-        return 'secondary';
-      case 'low':
-        return 'outline';
     }
   };
 
@@ -322,7 +311,7 @@ export default function AlertManagementPage() {
       </div>
 
       {/* Main Content */}
-      <Tabs defaultValue="list" className="space-y-6">
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
         <TabsList>
           <TabsTrigger value="list">Alert List</TabsTrigger>
           <TabsTrigger value="timeline">Timeline View</TabsTrigger>
@@ -431,7 +420,7 @@ export default function AlertManagementPage() {
                             {alert.recommended_actions && alert.recommended_actions.length > 0 && (
                               <div className="text-xs">
                                 <span className="font-medium">Recommended actions:</span>
-                                <span className="ml-1">{alert.recommended_actions[0]}</span>
+                                <span className="ml-1">{alert.recommended_actions?.[0]}</span>
                                 {alert.recommended_actions.length > 1 && (
                                   <span className="text-muted-foreground"> +{alert.recommended_actions.length - 1} more</span>
                                 )}

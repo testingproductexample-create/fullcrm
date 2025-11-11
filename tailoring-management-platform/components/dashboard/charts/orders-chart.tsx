@@ -1,7 +1,7 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/client';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
 
 const STATUS_COLORS = {
@@ -62,9 +62,11 @@ export function OrdersChart() {
       });
 
       recentData?.forEach((order) => {
-        const date = order.created_at.split('T')[0];
-        if (dateData.hasOwnProperty(date)) {
-          dateData[date] += 1;
+        if (order?.created_at) {
+          const date = order.created_at.split('T')[0];
+          if (dateData.hasOwnProperty(date)) {
+            dateData[date] += 1;
+          }
         }
       });
 

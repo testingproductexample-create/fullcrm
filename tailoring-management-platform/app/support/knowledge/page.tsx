@@ -65,6 +65,7 @@ export default function KnowledgeBase() {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedType, setSelectedType] = useState('');
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState("articles");
 
   // Data fetching
   const { data: articles = [], isLoading: articlesLoading, refetch } = useKnowledgeBaseArticles(search, selectedCategory);
@@ -218,7 +219,7 @@ export default function KnowledgeBase() {
       </div>
 
       {/* Main Content */}
-      <Tabs defaultValue="articles" className="space-y-6">
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
         <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="articles">Articles</TabsTrigger>
           <TabsTrigger value="popular">Most Popular</TabsTrigger>

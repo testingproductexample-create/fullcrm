@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { ChartBarIcon, ArrowTrendingUpIcon, CurrencyDollarIcon, UserGroupIcon, ShoppingBagIcon, ArrowPathIcon } from '@heroicons/react/24/outline';
+import { ChartBarIcon, CurrencyDollarIcon, UserGroupIcon, ShoppingBagIcon, ArrowPathIcon } from '@heroicons/react/24/outline';
+import { TrendingUp } from 'lucide-react';
 // Charts temporarily removed for build compatibility
 import { useAuth } from '@/hooks/useAuth';
 import { useKPIMetrics, useBusinessIntelligence, useTrendAnalysis } from '@/hooks/useAnalytics';
@@ -18,7 +19,7 @@ export default function ExecutiveDashboardPage() {
     { label: 'Orders Completed', value: '2,847', change: +12.3, trend: 'up', target: 88, icon: ShoppingBagIcon, color: 'blue' },
     { label: 'Customer Satisfaction', value: '4.8/5.0', change: +5.2, trend: 'up', target: 96, icon: UserGroupIcon, color: 'purple' },
     { label: 'Operational Efficiency', value: '94%', change: +3.1, trend: 'up', target: 94, icon: ArrowPathIcon, color: 'orange' },
-    { label: 'Profit Margin', value: '34.2%', change: +2.8, trend: 'up', target: 102, icon: ArrowTrendingUpIcon, color: 'pink' },
+    { label: 'Profit Margin', value: '34.2%', change: +2.8, trend: 'up', target: 102, icon: TrendingUp, color: 'pink' },
     { label: 'Employee Productivity', value: '87%', change: -1.5, trend: 'down', target: 82, icon: ChartBarIcon, color: 'indigo' },
   ];
 

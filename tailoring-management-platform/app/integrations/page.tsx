@@ -13,7 +13,7 @@ import {
   ClockIcon,
 } from '@heroicons/react/24/outline';
 import { useQuery } from '@tanstack/react-query';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/client';
 import { IntegrationConnection, IntegrationStats } from '@/types/integrations';
 
 export default function IntegrationsDashboard() {

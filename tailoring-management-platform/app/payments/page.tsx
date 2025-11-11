@@ -22,7 +22,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import { Badge } from '@/components/ui/badge';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/client';
 import { formatDate, formatCurrency } from '@/lib/utils';
 import { 
   Payment,
@@ -30,8 +30,8 @@ import {
   PAYMENT_METHOD_LABELS,
   PAYMENT_STATUSES,
   PAYMENT_STATUS_LABELS,
-  getPaymentStatusColor,
 } from '@/types/financial';
+import { formatDate, formatCurrency, getPaymentStatusColor } from '@/lib/utils';
 import toast from 'react-hot-toast';
 
 // Force this page to be dynamic

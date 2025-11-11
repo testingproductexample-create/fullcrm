@@ -522,11 +522,11 @@ export default function TicketDetails() {
                 <div className="flex items-center gap-3">
                   <Avatar>
                     <AvatarFallback>
-                      {ticket.assigned_agent.agent_name.split(' ').map((n: string) => n[0]).join('')}
+                      {ticket.assigned_agent.agent_name?.split(' ')?.map((n: string) => n?.[0])?.join('') || 'NA'}
                     </AvatarFallback>
                   </Avatar>
                   <div className="flex-1">
-                    <p className="font-medium">{ticket.assigned_agent.agent_name}</p>
+                    <p className="font-medium">{ticket.assigned_agent.agent_name || 'Unknown'}</p>
                     <p className="text-sm text-muted-foreground">{ticket.assigned_agent.skill_level}</p>
                   </div>
                 </div>

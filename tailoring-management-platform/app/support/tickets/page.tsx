@@ -47,14 +47,15 @@ import {
   PlusIcon,
   MoreHorizontalIcon,
   UserIcon,
-  AlertTriangleIcon,
+  AlertTriangle,
   ClockIcon,
   MessageSquareIcon,
   CheckIcon,
   XIcon,
   ArrowUpIcon,
   EditIcon,
-  EyeIcon
+  EyeIcon,
+  TicketIcon
 } from 'lucide-react';
 import Link from 'next/link';
 import { toast } from 'sonner';
@@ -434,11 +435,11 @@ export default function TicketManagement() {
                         <div className="flex items-center gap-2">
                           <Avatar className="h-8 w-8">
                             <AvatarFallback className="text-xs">
-                              {ticket.assigned_agent.agent_name.split(' ').map((n: string) => n[0]).join('')}
+                              {ticket.assigned_agent.agent_name?.split(' ')?.map((n: string) => n?.[0])?.join('') || 'NA'}
                             </AvatarFallback>
                           </Avatar>
                           <div className="text-right">
-                            <p className="text-sm font-medium">{ticket.assigned_agent.agent_name}</p>
+                            <p className="text-sm font-medium">{ticket.assigned_agent.agent_name || 'Unknown'}</p>
                             <p className="text-xs text-muted-foreground">{ticket.assigned_agent.skill_level}</p>
                           </div>
                         </div>
@@ -484,7 +485,7 @@ export default function TicketManagement() {
                             <DropdownMenuItem
                               onClick={() => handleEscalateTicket(ticket.id)}
                             >
-                              <AlertTriangleIcon className="w-4 h-4 mr-2" />
+                              <AlertTriangle className="w-4 h-4 mr-2" />
                               Escalate
                             </DropdownMenuItem>
                           )}
@@ -531,11 +532,11 @@ export default function TicketManagement() {
                 <div className="flex items-center gap-3">
                   <Avatar>
                     <AvatarFallback>
-                      {agent.agent_name.split(' ').map((n) => n[0]).join('')}
+                      {agent.agent_name?.split(' ')?.map((n) => n?.[0])?.join('') || 'NA'}
                     </AvatarFallback>
                   </Avatar>
                   <div>
-                    <p className="font-medium">{agent.agent_name}</p>
+                    <p className="font-medium">{agent.agent_name || 'Unknown Agent'}</p>
                     <p className="text-sm text-muted-foreground">{agent.skill_level}</p>
                   </div>
                 </div>

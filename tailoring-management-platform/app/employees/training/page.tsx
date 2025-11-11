@@ -20,7 +20,7 @@ import {
   Eye,
   Trash2
 } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/client';
 import { 
   Employee, 
   TrainingProgram,

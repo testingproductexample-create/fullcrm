@@ -21,8 +21,8 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import { supabase } from '@/lib/supabase';
-import { IntegrationAnalytics } from '@/types/integrations';
+import { supabase } from '@/lib/supabase/client';
+import type { IntegrationAnalytics } from '@/types/integrations';
 
 ChartJS.register(
   CategoryScale,

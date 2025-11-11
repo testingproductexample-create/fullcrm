@@ -11,7 +11,7 @@ import {
   MoonIcon,
 } from '@heroicons/react/24/outline';
 import { useTheme } from 'next-themes';
-import { useAuth } from '@/hooks/use-auth';
+import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 

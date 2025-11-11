@@ -24,6 +24,7 @@ export default function ResourceAnalysisPage() {
   const [selectedResourceType, setSelectedResourceType] = useState<ResourceType | 'all'>('all');
   const [selectedPeriod, setSelectedPeriod] = useState<'today' | '7d' | '30d'>('today');
   const [filters, setFilters] = useState<AnalyticsFilters>({});
+  const [activeTab, setActiveTab] = useState("overview");
 
   const { data: resourceData, isLoading: resourceLoading } = useResourceUtilization({
     resourceTypes: selectedResourceType !== 'all' ? [selectedResourceType] : undefined,
@@ -164,7 +165,7 @@ export default function ResourceAnalysisPage() {
       </div>
 
       {/* Main Content Tabs */}
-      <Tabs defaultValue="overview" className="space-y-6">
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
         <TabsList>
           <TabsTrigger value="overview">Overview</TabsTrigger>
           <TabsTrigger value="utilization">Utilization Details</TabsTrigger>

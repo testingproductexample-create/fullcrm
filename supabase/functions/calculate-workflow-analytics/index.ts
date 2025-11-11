@@ -1,22 +1,27 @@
-Deno.serve(async (req) => {
-  const corsHeaders = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-    'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
-    'Access-Control-Max-Age': '86400',
-  };
+/**
+ * Calculate Workflow Analytics Edge Function
+ * Using type-only imports and proper patterns
+ */
 
-  if (req.method === 'OPTIONS') {
-    return new Response(null, { status: 200, headers: corsHeaders });
-  }
+// Type-only imports to bypass runtime checks
+import type { EdgeFunctionContext, EdgeFunctionResponse } from '../edge-types.ts';
 
-  try {
-    const supabaseUrl = Deno.env.get('SUPABASE_URL');
-    const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
+// Import utilities using relative path (these are safe)
+import { 
+  createHandler, 
+  createSuccessResponse, 
+  createErrorResponse,
+  getSupabaseClient,
+  logRequest
+} from '../edge-utils.ts';
 
-    if (!supabaseUrl || !supabaseKey) {
-      throw new Error('Missing Supabase environment variables');
-    }
+// Main handler function
+const handler = async (req: Request): Promise<Response> => {
+  // Log the request for debugging
+  logRequest(req, { function: 'calculate-workflow-analytics' });
+
+  // Get Supabase configuration
+  const { supabaseUrl, supabaseKey } = getSupabaseClient(req);
 
     // Fetch all workflow statuses
     const statusesResponse = await fetch(`${supabaseUrl}/rest/v1/order_workflow_statuses?select=*`, {
@@ -140,26 +145,29 @@ Deno.serve(async (req) => {
 
     console.log(`Calculated analytics for ${analyticsUpdates.length} workflow statuses`);
 
-    return new Response(JSON.stringify({
+    const response: EdgeFunctionResponse = {
       success: true,
-      analytics_calculated: analyticsUpdates.length,
-      bottlenecks_identified: analyticsUpdates.filter(a => parseFloat(a.bottleneck_score) > 50).length,
+      data: {
+        analytics_calculated: analyticsUpdates.length,
+        bottlenecks_identified: analyticsUpdates.filter(a => parseFloat(a.bottleneck_score) > 50).length,
+        analytics: analyticsUpdates
+      },
       timestamp: new Date().toISOString()
-    }), {
-      status: 200,
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-    });
+    };
+
+    return createSuccessResponse(response, 200);
 
   } catch (error) {
     console.error('Workflow analytics error:', error);
-    return new Response(JSON.stringify({
-      error: {
-        code: 'WORKFLOW_ANALYTICS_ERROR',
-        message: error.message
-      }
-    }), {
-      status: 500,
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-    });
+    
+    const errorResponse = {
+      code: 'WORKFLOW_ANALYTICS_ERROR',
+      message: error instanceof Error ? error.message : 'An unknown error occurred'
+    };
+
+    return createErrorResponse(errorResponse, 500);
   }
-});
+};
+
+// Export the wrapped handler for Deno
+Deno.serve(createHandler(handler));

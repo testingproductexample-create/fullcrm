@@ -26,7 +26,7 @@ import {
   CreditCard,
   FileText
 } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/client';
 import { 
   Supplier
 } from '@/types/inventory';
@@ -552,7 +552,7 @@ export default function SuppliersManagementPage() {
                         <Eye className="h-4 w-4" />
                       </Link>
                       <Link
-                        href={`/inventory/suppliers/${supplier.id/edit}`}
+                        href={`/inventory/suppliers/${supplier.id}/Edit`}
                         className="text-green-600 hover:text-green-900"
                       >
                         <Edit className="h-4 w-4" />

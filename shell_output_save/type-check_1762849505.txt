@@ -1,0 +1,2893 @@
+
+> tailoring-management-platform@1.0.0 type-check
+> tsc --noEmit
+
+app/branches/analytics/page.tsx:281:16 - error TS2304: Cannot find name 'ArrowTrendingUpIcon'.
+
+281               <ArrowTrendingUpIcon className="h-5 w-5 text-green-400 flex-shrink-0 mt-0.5" />
+                   ~~~~~~~~~~~~~~~~~~~
+
+app/employees/skills/page.tsx:133:42 - error TS2345: Argument of type 'any' is not assignable to parameter of type 'never'.
+
+133         existing.proficiency_levels.push(skill.proficiency_level);
+                                             ~~~~~~~~~~~~~~~~~~~~~~~
+
+app/feedback/page.tsx:129:20 - error TS2304: Cannot find name 'ArrowTrendingDownIcon'.
+
+129                   <ArrowTrendingDownIcon className="w-4 h-4 text-green-500 mr-1" />
+                       ~~~~~~~~~~~~~~~~~~~~~
+
+app/feedback/surveys/page.tsx:431:35 - error TS18048: 'response.nps_score' is possibly 'undefined'.
+
+431                                   response.nps_score >= 9
+                                      ~~~~~~~~~~~~~~~~~~
+
+app/feedback/surveys/page.tsx:433:39 - error TS18048: 'response.nps_score' is possibly 'undefined'.
+
+433                                     : response.nps_score >= 7
+                                          ~~~~~~~~~~~~~~~~~~
+
+app/finance/reports/page.tsx:132:11 - error TS2322: Type '{ category: "Other" | "Office Rent" | "Utilities" | "Marketing & Advertising" | "Travel & Transportation" | "Professional Services" | "Office Supplies" | "Insurance" | "Training & Development" | ... 8 more ... | "Trade License & Permits"; amount: unknown; }[]' is not assignable to type '{ category: string; amount: number; }[]'.
+  Type '{ category: "Other" | "Office Rent" | "Utilities" | "Marketing & Advertising" | "Travel & Transportation" | "Professional Services" | "Office Supplies" | "Insurance" | "Training & Development" | ... 8 more ... | "Trade License & Permits"; amount: unknown; }' is not assignable to type '{ category: string; amount: number; }'.
+    Types of property 'amount' are incompatible.
+      Type 'unknown' is not assignable to type 'number'.
+
+132           expensesByCategory: expensesCategorized,
+              ~~~~~~~~~~~~~~~~~~
+
+  app/finance/reports/page.tsx:31:5
+    31     expensesByCategory: { category: string; amount: number }[];
+           ~~~~~~~~~~~~~~~~~~
+    The expected type comes from property 'expensesByCategory' which is declared here on type '{ totalRevenue: number; totalExpenses: number; grossProfit: number; netProfit: number; expensesByCategory: { category: string; amount: number; }[]; }'
+
+app/inventory/materials/page.tsx:98:43 - error TS7006: Parameter 'sum' implicitly has an 'any' type.
+
+98         const totalStock = stocks.reduce((sum, stock) => sum + (stock.current_stock_meters || 0), 0);
+                                             ~~~
+
+app/inventory/materials/page.tsx:98:48 - error TS7006: Parameter 'stock' implicitly has an 'any' type.
+
+98         const totalStock = stocks.reduce((sum, stock) => sum + (stock.current_stock_meters || 0), 0);
+                                                  ~~~~~
+
+app/inventory/materials/page.tsx:99:43 - error TS7006: Parameter 'sum' implicitly has an 'any' type.
+
+99         const totalValue = stocks.reduce((sum, stock) => sum + (stock.total_value_aed || 0), 0);
+                                             ~~~
+
+app/inventory/materials/page.tsx:99:48 - error TS7006: Parameter 'stock' implicitly has an 'any' type.
+
+99         const totalValue = stocks.reduce((sum, stock) => sum + (stock.total_value_aed || 0), 0);
+                                                  ~~~~~
+
+app/inventory/materials/page.tsx:100:49 - error TS7006: Parameter 's' implicitly has an 'any' type.
+
+100         const minStock = Math.max(...stocks.map(s => s.minimum_stock_level || 0), 10);
+                                                    ~
+
+app/inventory/orders/page.tsx:323:13 - error TS2339: Property 'bgColor' does not exist on type 'String'.
+
+323     const { bgColor, textColor, borderColor } = getStatusColor(status);
+                ~~~~~~~
+
+app/inventory/orders/page.tsx:323:22 - error TS2339: Property 'textColor' does not exist on type 'String'.
+
+323     const { bgColor, textColor, borderColor } = getStatusColor(status);
+                         ~~~~~~~~~
+
+app/inventory/orders/page.tsx:323:33 - error TS2339: Property 'borderColor' does not exist on type 'String'.
+
+323     const { bgColor, textColor, borderColor } = getStatusColor(status);
+                                    ~~~~~~~~~~~
+
+app/inventory/orders/page.tsx:333:13 - error TS2339: Property 'bgColor' does not exist on type 'String'.
+
+333     const { bgColor, textColor } = getUrgencyColor(urgency);
+                ~~~~~~~
+
+app/inventory/orders/page.tsx:333:22 - error TS2339: Property 'textColor' does not exist on type 'String'.
+
+333     const { bgColor, textColor } = getUrgencyColor(urgency);
+                         ~~~~~~~~~
+
+app/inventory/page.tsx:155:46 - error TS2339: Property 'fabric_name' does not exist on type '{ fabric_name: any; }[]'.
+
+155           fabric_name: stock.fabric_library?.fabric_name || 'Unknown Fabric',
+                                                 ~~~~~~~~~~~
+
+app/inventory/page.tsx:477:78 - error TS2339: Property 'supplier_name' does not exist on type '{ supplier_name: any; }[]'.
+
+477                     <div className="text-sm text-gray-900">{order.suppliers?.supplier_name || 'Unknown'}</div>
+                                                                                 ~~~~~~~~~~~~~
+
+app/inventory/quality/page.tsx:44:3 - error TS2305: Module '"@/types/inventory"' has no exported member 'QualityDefect'.
+
+44   QualityDefect,
+     ~~~~~~~~~~~~~
+
+app/inventory/quality/page.tsx:45:3 - error TS2305: Module '"@/types/inventory"' has no exported member 'InspectionResult'.
+
+45   InspectionResult
+     ~~~~~~~~~~~~~~~~
+
+app/inventory/quality/page.tsx:264:13 - error TS2339: Property 'bgColor' does not exist on type 'String'.
+
+264     const { bgColor, textColor, borderColor } = getInspectionStatusColor(status);
+                ~~~~~~~
+
+app/inventory/quality/page.tsx:264:22 - error TS2339: Property 'textColor' does not exist on type 'String'.
+
+264     const { bgColor, textColor, borderColor } = getInspectionStatusColor(status);
+                         ~~~~~~~~~
+
+app/inventory/quality/page.tsx:264:33 - error TS2339: Property 'borderColor' does not exist on type 'String'.
+
+264     const { bgColor, textColor, borderColor } = getInspectionStatusColor(status);
+                                    ~~~~~~~~~~~
+
+app/inventory/quality/page.tsx:274:13 - error TS2339: Property 'bgColor' does not exist on type 'String'.
+
+274     const { bgColor, textColor } = getQualityGradeColor(grade);
+                ~~~~~~~
+
+app/inventory/quality/page.tsx:274:22 - error TS2339: Property 'textColor' does not exist on type 'String'.
+
+274     const { bgColor, textColor } = getQualityGradeColor(grade);
+                         ~~~~~~~~~
+
+app/inventory/quality/page.tsx:494:47 - error TS2339: Property 'compliance_passed' does not exist on type 'QualityInspectionWithDetails'.
+
+494                   {inspections?.filter(i => i.compliance_passed).length || 0}
+                                                  ~~~~~~~~~~~~~~~~~
+
+app/inventory/quality/page.tsx:508:48 - error TS2339: Property 'compliance_passed' does not exist on type 'QualityInspectionWithDetails'.
+
+508                   {inspections?.filter(i => !i.compliance_passed).length || 0}
+                                                   ~~~~~~~~~~~~~~~~~
+
+app/inventory/quality/page.tsx:522:103 - error TS2551: Property 'inspection_status' does not exist on type 'QualityInspectionWithDetails'. Did you mean 'inspection_date'?
+
+522                   {inspections?.filter(i => ['Scheduled', 'In Progress', 'Pending Review'].includes(i.inspection_status)).length || 0}
+                                                                                                          ~~~~~~~~~~~~~~~~~
+
+  types/inventory.ts:381:3
+    381   inspection_date: string;
+          ~~~~~~~~~~~~~~~
+    'inspection_date' is declared here.
+
+app/inventory/quality/page.tsx:536:47 - error TS2339: Property 'overall_grade' does not exist on type 'QualityInspectionWithDetails'.
+
+536                   {inspections?.filter(i => i.overall_grade && ['A+', 'A'].includes(i.overall_grade)).length || 0}
+                                                  ~~~~~~~~~~~~~
+
+app/inventory/quality/page.tsx:536:87 - error TS2339: Property 'overall_grade' does not exist on type 'QualityInspectionWithDetails'.
+
+536                   {inspections?.filter(i => i.overall_grade && ['A+', 'A'].includes(i.overall_grade)).length || 0}
+                                                                                          ~~~~~~~~~~~~~
+
+app/inventory/quality/page.tsx:633:52 - error TS2551: Property 'inspection_status' does not exist on type 'QualityInspectionWithDetails'. Did you mean 'inspection_date'?
+
+633                         {getStatusBadge(inspection.inspection_status)}
+                                                       ~~~~~~~~~~~~~~~~~
+
+  types/inventory.ts:381:3
+    381   inspection_date: string;
+          ~~~~~~~~~~~~~~~
+    'inspection_date' is declared here.
+
+app/inventory/quality/page.tsx:637:51 - error TS2339: Property 'overall_grade' does not exist on type 'QualityInspectionWithDetails'.
+
+637                         {getGradeBadge(inspection.overall_grade)}
+                                                      ~~~~~~~~~~~~~
+
+app/inventory/quality/page.tsx:654:57 - error TS2339: Property 'compliance_passed' does not exist on type 'QualityInspectionWithDetails'.
+
+654                           {getComplianceIcon(inspection.compliance_passed)}
+                                                            ~~~~~~~~~~~~~~~~~
+
+app/inventory/quality/page.tsx:655:66 - error TS2339: Property 'compliance_passed' does not exist on type 'QualityInspectionWithDetails'.
+
+655                           <span className={`text-sm ${inspection.compliance_passed ? 'text-green-600' : 'text-red-600'}`}>
+                                                                     ~~~~~~~~~~~~~~~~~
+
+app/inventory/quality/page.tsx:656:41 - error TS2339: Property 'compliance_passed' does not exist on type 'QualityInspectionWithDetails'.
+
+656                             {inspection.compliance_passed ? 'Passed' : 'Failed'}
+                                            ~~~~~~~~~~~~~~~~~
+
+app/inventory/quality/page.tsx:662:26 - error TS18048: 'inspection.defects_count' is possibly 'undefined'.
+
+662                         {inspection.defects_count > 0 ? (
+                             ~~~~~~~~~~~~~~~~~~~~~~~~
+
+app/invoices/new/page.tsx:23:10 - error TS2300: Duplicate identifier 'formatCurrency'.
+
+23 import { formatCurrency } from '@/lib/utils';
+            ~~~~~~~~~~~~~~
+
+app/invoices/new/page.tsx:29:10 - error TS2300: Duplicate identifier 'formatCurrency'.
+
+29 import { formatCurrency, calculateVAT, calculateTotal, calculateLineTotal } from '@/lib/utils';
+            ~~~~~~~~~~~~~~
+
+app/invoices/page.tsx:26:10 - error TS2300: Duplicate identifier 'formatDate'.
+
+26 import { formatDate, formatCurrency } from '@/lib/utils';
+            ~~~~~~~~~~
+
+app/invoices/page.tsx:26:22 - error TS2300: Duplicate identifier 'formatCurrency'.
+
+26 import { formatDate, formatCurrency } from '@/lib/utils';
+                        ~~~~~~~~~~~~~~
+
+app/invoices/page.tsx:33:10 - error TS2300: Duplicate identifier 'formatDate'.
+
+33 import { formatDate, formatCurrency, getInvoiceStatusColor } from '@/lib/utils';
+            ~~~~~~~~~~
+
+app/invoices/page.tsx:33:22 - error TS2300: Duplicate identifier 'formatCurrency'.
+
+33 import { formatDate, formatCurrency, getInvoiceStatusColor } from '@/lib/utils';
+                        ~~~~~~~~~~~~~~
+
+app/legal/analytics/page.tsx:58:55 - error TS2339: Property 'sent_at' does not exist on type 'SignatureTracking'.
+
+58     .filter(s => s.signature_status === 'signed' && s.sent_at && s.signed_at)
+                                                         ~~~~~~~
+
+app/legal/analytics/page.tsx:58:68 - error TS2339: Property 'signed_at' does not exist on type 'SignatureTracking'.
+
+58     .filter(s => s.signature_status === 'signed' && s.sent_at && s.signed_at)
+                                                                      ~~~~~~~~~
+
+app/legal/analytics/page.tsx:60:31 - error TS2339: Property 'sent_at' does not exist on type 'SignatureTracking'.
+
+60       const sent = new Date(s.sent_at!).getTime();
+                                 ~~~~~~~
+
+app/legal/analytics/page.tsx:61:33 - error TS2339: Property 'signed_at' does not exist on type 'SignatureTracking'.
+
+61       const signed = new Date(s.signed_at!).getTime();
+                                   ~~~~~~~~~
+
+app/legal/analytics/page.tsx:220:31 - error TS2322: Type 'unknown' is not assignable to type 'ReactNode'.
+
+220                         <span>{count} contracts</span>
+                                  ~~~~~~~
+
+app/legal/analytics/page.tsx:230:49 - error TS18046: 'count' is of type 'unknown'.
+
+230                             style={{ width: `${(count / contracts.length) * 100}%` }}
+                                                    ~~~~~
+
+app/legal/analytics/page.tsx:234:40 - error TS18046: 'count' is of type 'unknown'.
+
+234                           {Math.round((count / contracts.length) * 100)}%
+                                           ~~~~~
+
+app/legal/analytics/page.tsx:257:66 - error TS2322: Type 'unknown' is not assignable to type 'ReactNode'.
+
+257                         <div className="font-bold text-blue-600">{count}</div>
+                                                                     ~~~~~~~
+
+  ../../tmp/tailoring-management-platform/.pnpm/@types+react@18.3.20/node_modules/@types/react/index.d.ts:2392:9
+    2392         children?: ReactNode | undefined;
+                 ~~~~~~~~
+    The expected type comes from property 'children' which is declared here on type 'DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>'
+
+app/legal/analytics/page.tsx:259:40 - error TS18046: 'count' is of type 'unknown'.
+
+259                           {Math.round((count / contracts.length) * 100)}%
+                                           ~~~~~
+
+app/legal/analytics/page.tsx:285:55 - error TS18046: 'count' is of type 'unknown'.
+
+285                         style={{ height: `${Math.min((count / Math.max(...Object.values(monthlyContractTrend))) * 100, 100)}%` }}
+                                                          ~~~~~
+
+app/legal/analytics/page.tsx:285:72 - error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'number'.
+
+285                         style={{ height: `${Math.min((count / Math.max(...Object.values(monthlyContractTrend))) * 100, 100)}%` }}
+                                                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+app/legal/analytics/page.tsx:288:63 - error TS2322: Type 'unknown' is not assignable to type 'ReactNode'.
+
+288                     <div className="text-xs font-medium mt-1">{count}</div>
+                                                                  ~~~~~~~
+
+  ../../tmp/tailoring-management-platform/.pnpm/@types+react@18.3.20/node_modules/@types/react/index.d.ts:2392:9
+    2392         children?: ReactNode | undefined;
+                 ~~~~~~~~
+    The expected type comes from property 'children' which is declared here on type 'DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>'
+
+app/legal/analytics/page.tsx:315:37 - error TS2769: No overload matches this call.
+  Overload 1 of 2, '(value: number | bigint): string', gave the following error.
+    Argument of type 'unknown' is not assignable to parameter of type 'number | bigint'.
+  Overload 2 of 2, '(value: number): string', gave the following error.
+    Argument of type 'unknown' is not assignable to parameter of type 'number'.
+
+315                           }).format(value)}
+                                        ~~~~~
+
+
+app/legal/analytics/page.tsx:322:40 - error TS18046: 'value' is of type 'unknown'.
+
+322                             width: `${(value / Math.max(...Object.values(contractValueByType))) * 100}%`
+                                           ~~~~~
+
+app/legal/analytics/page.tsx:322:57 - error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'number'.
+
+322                             width: `${(value / Math.max(...Object.values(contractValueByType))) * 100}%`
+                                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+app/legal/compliance/page.tsx:20:3 - error TS2305: Module '"@heroicons/react/24/outline"' has no exported member 'AlertTriangleIcon'.
+
+20   AlertTriangleIcon,
+     ~~~~~~~~~~~~~~~~~
+
+app/legal/compliance/page.tsx:42:12 - error TS2339: Property 'requirement_title' does not exist on type 'ComplianceTracking'.
+
+42       item.requirement_title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+              ~~~~~~~~~~~~~~~~~
+
+app/legal/compliance/page.tsx:44:12 - error TS2339: Property 'description' does not exist on type 'ComplianceTracking'.
+
+44       item.description?.toLowerCase().includes(searchTerm.toLowerCase());
+              ~~~~~~~~~~~
+
+app/legal/compliance/page.tsx:302:54 - error TS2345: Argument of type '(prev: ComplianceFilters) => { compliance_type: string; compliance_status?: ComplianceStatus | undefined; risk_level?: RiskLevel | undefined; deadline_from?: string | undefined; deadline_to?: string | undefined; authority?: string | undefined; search?: string | undefined; }' is not assignable to parameter of type 'SetStateAction<ComplianceFilters>'.
+  Type '(prev: ComplianceFilters) => { compliance_type: string; compliance_status?: ComplianceStatus | undefined; risk_level?: RiskLevel | undefined; deadline_from?: string | undefined; deadline_to?: string | undefined; authority?: string | undefined; search?: string | undefined; }' is not assignable to type '(prevState: ComplianceFilters) => ComplianceFilters'.
+    Call signature return types '{ compliance_type: string; compliance_status?: ComplianceStatus | undefined; risk_level?: RiskLevel | undefined; deadline_from?: string | undefined; deadline_to?: string | undefined; authority?: string | undefined; search?: string | undefined; }' and 'ComplianceFilters' are incompatible.
+      The types of 'compliance_type' are incompatible between these types.
+        Type 'string' is not assignable to type 'ComplianceType | undefined'.
+
+302                 onValueChange={(value) => setFilters(prev => ({ ...prev, compliance_type: value }))}
+                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+app/legal/compliance/page.tsx:318:54 - error TS2345: Argument of type '(prev: ComplianceFilters) => { risk_level: string; compliance_type?: ComplianceType | undefined; compliance_status?: ComplianceStatus | undefined; deadline_from?: string | undefined; deadline_to?: string | undefined; authority?: string | undefined; search?: string | undefined; }' is not assignable to parameter of type 'SetStateAction<ComplianceFilters>'.
+  Type '(prev: ComplianceFilters) => { risk_level: string; compliance_type?: ComplianceType | undefined; compliance_status?: ComplianceStatus | undefined; deadline_from?: string | undefined; deadline_to?: string | undefined; authority?: string | undefined; search?: string | undefined; }' is not assignable to type '(prevState: ComplianceFilters) => ComplianceFilters'.
+    Call signature return types '{ risk_level: string; compliance_type?: ComplianceType | undefined; compliance_status?: ComplianceStatus | undefined; deadline_from?: string | undefined; deadline_to?: string | undefined; authority?: string | undefined; search?: string | undefined; }' and 'ComplianceFilters' are incompatible.
+      The types of 'risk_level' are incompatible between these types.
+        Type 'string' is not assignable to type 'RiskLevel | undefined'.
+
+318                 onValueChange={(value) => setFilters(prev => ({ ...prev, risk_level: value }))}
+                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+app/legal/compliance/page.tsx:370:85 - error TS2339: Property 'requirement_title' does not exist on type 'ComplianceTracking'.
+
+370                           <h3 className="text-lg font-semibold text-gray-900">{item.requirement_title}</h3>
+                                                                                        ~~~~~~~~~~~~~~~~~
+
+app/legal/compliance/page.tsx:371:75 - error TS2339: Property 'description' does not exist on type 'ComplianceTracking'.
+
+371                           <p className="text-sm text-gray-600 mt-1">{item.description}</p>
+                                                                              ~~~~~~~~~~~
+
+app/legal/compliance/page.tsx:388:29 - error TS2551: Property 'last_review_date' does not exist on type 'ComplianceTracking'. Did you mean 'next_review_date'?
+
+388                       {item.last_review_date && (
+                                ~~~~~~~~~~~~~~~~
+
+  types/legal.ts:324:3
+    324   next_review_date?: string;
+          ~~~~~~~~~~~~~~~~
+    'next_review_date' is declared here.
+
+app/legal/compliance/page.tsx:394:69 - error TS2551: Property 'last_review_date' does not exist on type 'ComplianceTracking'. Did you mean 'next_review_date'?
+
+394                           <p className="font-medium">{new Date(item.last_review_date).toLocaleDateString()}</p>
+                                                                        ~~~~~~~~~~~~~~~~
+
+  types/legal.ts:324:3
+    324   next_review_date?: string;
+          ~~~~~~~~~~~~~~~~
+    'next_review_date' is declared here.
+
+app/legal/compliance/page.tsx:412:29 - error TS2339: Property 'responsible_party' does not exist on type 'ComplianceTracking'.
+
+412                       {item.responsible_party && (
+                                ~~~~~~~~~~~~~~~~~
+
+app/legal/compliance/page.tsx:418:60 - error TS2339: Property 'responsible_party' does not exist on type 'ComplianceTracking'.
+
+418                           <p className="font-medium">{item.responsible_party}</p>
+                                                               ~~~~~~~~~~~~~~~~~
+
+app/legal/compliance/page.tsx:424:73 - error TS2339: Property 'non_compliance_details' does not exist on type 'ComplianceTracking'.
+
+424                     {item.compliance_status === 'non_compliant' && item.non_compliance_details && (
+                                                                            ~~~~~~~~~~~~~~~~~~~~~~
+
+app/legal/compliance/page.tsx:430:76 - error TS2339: Property 'non_compliance_details' does not exist on type 'ComplianceTracking'.
+
+430                             <p className="text-sm text-red-700 mt-1">{item.non_compliance_details}</p>
+                                                                               ~~~~~~~~~~~~~~~~~~~~~~
+
+app/legal/compliance/page.tsx:437:27 - error TS2339: Property 'remediation_plan' does not exist on type 'ComplianceTracking'.
+
+437                     {item.remediation_plan && (
+                              ~~~~~~~~~~~~~~~~
+
+app/legal/compliance/page.tsx:440:73 - error TS2339: Property 'remediation_plan' does not exist on type 'ComplianceTracking'.
+
+440                         <p className="text-sm text-blue-700 mt-1">{item.remediation_plan}</p>
+                                                                            ~~~~~~~~~~~~~~~~
+
+app/legal/compliance/page.tsx:490:76 - error TS2339: Property 'reference_code' does not exist on type 'LegalReference'.
+
+490                       <p className="text-xs text-gray-600 mt-1">{reference.reference_code}</p>
+                                                                               ~~~~~~~~~~~~~~
+
+app/legal/signatures/page.tsx:38:17 - error TS2339: Property 'contract_id' does not exist on type 'SignatureTracking'.
+
+38       signature.contract_id?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                   ~~~~~~~~~~~
+
+app/legal/signatures/page.tsx:52:26 - error TS2339: Property 'is_expired' does not exist on type 'SignatureTracking'.
+
+52         return signature.is_expired;
+                            ~~~~~~~~~~
+
+app/legal/signatures/page.tsx:101:16 - error TS2339: Property 'signed_at' does not exist on type 'SignatureTracking'.
+
+101     new Date(s.signed_at || '').toDateString() === new Date().toDateString()
+                   ~~~~~~~~~
+
+app/legal/signatures/page.tsx:105:7 - error TS2339: Property 'expires_at' does not exist on type 'SignatureTracking'.
+
+105     s.expires_at &&
+          ~~~~~~~~~~
+
+app/legal/signatures/page.tsx:106:22 - error TS2339: Property 'expires_at' does not exist on type 'SignatureTracking'.
+
+106     isExpiringSoon(s.expires_at)
+                         ~~~~~~~~~~
+
+app/legal/signatures/page.tsx:237:75 - error TS2339: Property 'is_expired' does not exist on type 'SignatureTracking'.
+
+237           <TabsTrigger value="expired">Expired ({signatures.filter(s => s.is_expired).length})</TabsTrigger>
+                                                                              ~~~~~~~~~~
+
+app/legal/signatures/page.tsx:266:38 - error TS2339: Property 'contract_id' does not exist on type 'SignatureTracking'.
+
+266                           {signature.contract_id} • {signature.signature_method}
+                                         ~~~~~~~~~~~
+
+app/legal/signatures/page.tsx:273:36 - error TS2339: Property 'is_expired' does not exist on type 'SignatureTracking'.
+
+273                         {signature.is_expired && (
+                                       ~~~~~~~~~~
+
+app/legal/signatures/page.tsx:302:95 - error TS2339: Property 'sent_at' does not exist on type 'SignatureTracking'.
+
+302                           <p><span className="text-gray-500">Sent:</span> {new Date(signature.sent_at || '').toLocaleDateString()}</p>
+                                                                                                  ~~~~~~~
+
+app/legal/signatures/page.tsx:303:38 - error TS2339: Property 'signed_at' does not exist on type 'SignatureTracking'.
+
+303                           {signature.signed_at && (
+                                         ~~~~~~~~~
+
+app/legal/signatures/page.tsx:304:99 - error TS2339: Property 'signed_at' does not exist on type 'SignatureTracking'.
+
+304                             <p><span className="text-gray-500">Signed:</span> {new Date(signature.signed_at).toLocaleDateString()}</p>
+                                                                                                      ~~~~~~~~~
+
+app/legal/signatures/page.tsx:306:38 - error TS2339: Property 'expires_at' does not exist on type 'SignatureTracking'.
+
+306                           {signature.expires_at && (
+                                         ~~~~~~~~~~
+
+app/legal/signatures/page.tsx:307:71 - error TS2339: Property 'expires_at' does not exist on type 'SignatureTracking'.
+
+307                             <p className={`${isExpiringSoon(signature.expires_at) ? 'text-red-600' : 'text-gray-500'}`}>
+                                                                          ~~~~~~~~~~
+
+app/legal/signatures/page.tsx:308:99 - error TS2339: Property 'expires_at' does not exist on type 'SignatureTracking'.
+
+308                               <span className="text-gray-500">Expires:</span> {new Date(signature.expires_at).toLocaleDateString()}
+                                                                                                      ~~~~~~~~~~
+
+app/legal/signatures/page.tsx:322:34 - error TS2339: Property 'is_legally_valid' does not exist on type 'SignatureTracking'.
+
+322                       {signature.is_legally_valid && (
+                                     ~~~~~~~~~~~~~~~~
+
+app/legal/signatures/page.tsx:331:76 - error TS2339: Property 'expires_at' does not exist on type 'SignatureTracking'.
+
+331                     {signature.signature_status === 'pending' && signature.expires_at && isExpiringSoon(signature.expires_at) && (
+                                                                               ~~~~~~~~~~
+
+app/legal/signatures/page.tsx:331:115 - error TS2339: Property 'expires_at' does not exist on type 'SignatureTracking'.
+
+331                     {signature.signature_status === 'pending' && signature.expires_at && isExpiringSoon(signature.expires_at) && (
+                                                                                                                      ~~~~~~~~~~
+
+app/legal/signatures/page.tsx:369:65 - error TS2339: Property 'contract_id' does not exist on type 'SignatureTracking'.
+
+369                       <Link href={`/legal/contracts/${signature.contract_id}`} className="flex-1">
+                                                                    ~~~~~~~~~~~
+
+app/legal/templates/page.tsx:39:16 - error TS2339: Property 'description' does not exist on type 'ContractTemplate'.
+
+39       template.description?.toLowerCase().includes(searchTerm.toLowerCase());
+                  ~~~~~~~~~~~
+
+app/legal/templates/page.tsx:200:37 - error TS2339: Property 'language' does not exist on type 'ContractTemplate'.
+
+200                           {template.language === 'both' ? 'English & Arabic' :
+                                        ~~~~~~~~
+
+app/legal/templates/page.tsx:201:37 - error TS2339: Property 'language' does not exist on type 'ContractTemplate'.
+
+201                            template.language === 'ar' ? 'Arabic' : 'English'}
+                                        ~~~~~~~~
+
+app/legal/templates/page.tsx:217:31 - error TS2339: Property 'description' does not exist on type 'ContractTemplate'.
+
+217                     {template.description && (
+                                  ~~~~~~~~~~~
+
+app/legal/templates/page.tsx:219:85 - error TS2339: Property 'description' does not exist on type 'ContractTemplate'.
+
+219                         <p className="text-sm text-gray-700 line-clamp-3">{template.description}</p>
+                                                                                        ~~~~~~~~~~~
+
+app/legal/templates/page.tsx:224:31 - error TS2339: Property 'default_contract_value' does not exist on type 'ContractTemplate'.
+
+224                     {template.default_contract_value && (
+                                  ~~~~~~~~~~~~~~~~~~~~~~
+
+app/legal/templates/page.tsx:230:48 - error TS2339: Property 'default_currency' does not exist on type 'ContractTemplate'.
+
+230                             currency: template.default_currency || 'AED'
+                                                   ~~~~~~~~~~~~~~~~
+
+app/legal/templates/page.tsx:231:46 - error TS2339: Property 'default_contract_value' does not exist on type 'ContractTemplate'.
+
+231                           }).format(template.default_contract_value)}
+                                                 ~~~~~~~~~~~~~~~~~~~~~~
+
+app/marketing/campaigns/page.tsx:109:9 - error TS2353: Object literal may only specify known properties, and 'organization_id' does not exist in type 'CreateCampaignInput'.
+
+109         organization_id: '' // Will be set by backend
+            ~~~~~~~~~~~~~~~
+
+app/marketing/settings/page.tsx:9:31 - error TS2305: Module '"@/hooks/useMarketing"' has no exported member 'useMarketingIntegration'.
+
+9 import { useMarketingBudgets, useMarketingIntegration } from '@/hooks/useMarketing';
+                                ~~~~~~~~~~~~~~~~~~~~~~~
+
+app/orders/[id]/page.tsx:200:34 - error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
+
+200           <Link href={`/orders/${orderId/edit}`}>
+                                     ~~~~~~~
+
+app/orders/[id]/page.tsx:200:42 - error TS2304: Cannot find name 'edit'.
+
+200           <Link href={`/orders/${orderId/edit}`}>
+                                             ~~~~
+
+app/orders/page.tsx:100:7 - error TS2322: Type '{ id: any; order_number: any; order_type: any; status: any; sub_status: any; priority_level: any; total_amount: any; advance_payment: any; vat_amount: any; final_amount: any; progress_percentage: any; ... 4 more ...; customers: { ...; }[]; }[]' is not assignable to type 'OrderWithCustomer[]'.
+  Type '{ id: any; order_number: any; order_type: any; status: any; sub_status: any; priority_level: any; total_amount: any; advance_payment: any; vat_amount: any; final_amount: any; progress_percentage: any; ... 4 more ...; customers: { ...; }[]; }' is not assignable to type 'OrderWithCustomer'.
+    Types of property 'customers' are incompatible.
+      Type '{ full_name: any; customer_code: any; }[]' is missing the following properties from type '{ full_name: string; customer_code: string; }': full_name, customer_code
+
+100       return data || [];
+          ~~~~~~
+
+app/payments/page.tsx:26:10 - error TS2300: Duplicate identifier 'formatDate'.
+
+26 import { formatDate, formatCurrency } from '@/lib/utils';
+            ~~~~~~~~~~
+
+app/payments/page.tsx:26:22 - error TS2300: Duplicate identifier 'formatCurrency'.
+
+26 import { formatDate, formatCurrency } from '@/lib/utils';
+                        ~~~~~~~~~~~~~~
+
+app/payments/page.tsx:34:10 - error TS2300: Duplicate identifier 'formatDate'.
+
+34 import { formatDate, formatCurrency, getPaymentStatusColor } from '@/lib/utils';
+            ~~~~~~~~~~
+
+app/payments/page.tsx:34:22 - error TS2300: Duplicate identifier 'formatCurrency'.
+
+34 import { formatDate, formatCurrency, getPaymentStatusColor } from '@/lib/utils';
+                        ~~~~~~~~~~~~~~
+
+app/support/analytics/page.tsx:17:3 - error TS2724: '"@/hooks/useSupport"' has no exported member named 'useTicketVolumeIndex'. Did you mean 'useTicketVolumeInder'?
+
+17   useTicketVolumeIndex,
+     ~~~~~~~~~~~~~~~~~~~~
+
+  hooks/useSupport.ts:809:17
+    809 export function useTicketVolumeInder() {
+                        ~~~~~~~~~~~~~~~~~~~~
+    'useTicketVolumeInder' is declared here.
+
+app/support/analytics/page.tsx:360:39 - error TS7006: Parameter 'value' implicitly has an 'any' type.
+
+360                       tickFormatter={(value) => format(new Date(value), 'MMM dd')}
+                                          ~~~~~
+
+app/support/analytics/page.tsx:364:40 - error TS7006: Parameter 'value' implicitly has an 'any' type.
+
+364                       labelFormatter={(value) => format(new Date(value), 'MMM dd, yyyy')}
+                                           ~~~~~
+
+app/support/analytics/page.tsx:365:35 - error TS7006: Parameter 'value' implicitly has an 'any' type.
+
+365                       formatter={(value) => [value, 'Tickets']}
+                                      ~~~~~
+
+app/support/analytics/page.tsx:440:37 - error TS7006: Parameter 'value' implicitly has an 'any' type.
+
+440                     tickFormatter={(value) => format(new Date(value), 'MMM dd')}
+                                        ~~~~~
+
+app/support/analytics/page.tsx:444:38 - error TS7006: Parameter 'value' implicitly has an 'any' type.
+
+444                     labelFormatter={(value) => format(new Date(value), 'MMM dd, yyyy')}
+                                         ~~~~~
+
+app/support/analytics/page.tsx:497:33 - error TS7031: Binding element 'name' implicitly has an 'any' type.
+
+497                       label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                                    ~~~~
+
+app/support/analytics/page.tsx:497:39 - error TS7031: Binding element 'percent' implicitly has an 'any' type.
+
+497                       label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                                          ~~~~~~~
+
+app/support/analytics/page.tsx:525:33 - error TS7031: Binding element 'name' implicitly has an 'any' type.
+
+525                       label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                                    ~~~~
+
+app/support/analytics/page.tsx:525:39 - error TS7031: Binding element 'percent' implicitly has an 'any' type.
+
+525                       label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                                          ~~~~~~~
+
+app/support/knowledge/page.tsx:43:3 - error TS2724: '"lucide-react"' has no exported member named 'ArrowTrendingUpIcon'. Did you mean 'TrendingUpIcon'?
+
+43   ArrowTrendingUpIcon,
+     ~~~~~~~~~~~~~~~~~~~
+
+app/support/page.tsx:26:3 - error TS2724: '"lucide-react"' has no exported member named 'ArrowTrendingUpIcon'. Did you mean 'TrendingUpIcon'?
+
+26   ArrowTrendingUpIcon,
+     ~~~~~~~~~~~~~~~~~~~
+
+app/support/page.tsx:351:67 - error TS7006: Parameter 'n' implicitly has an 'any' type.
+
+351                               {agent.agent_name?.split(' ')?.map((n) => n?.[0])?.join('') || 'NA'}
+                                                                      ~
+
+app/support/tickets/[id]/page.tsx:348:61 - error TS7006: Parameter 'n' implicitly has an 'any' type.
+
+348                       {ticket.customer_name?.split(' ').map(n => n[0]).join('') || 'C'}
+                                                                ~
+
+app/support/tickets/[id]/page.tsx:470:59 - error TS7006: Parameter 'n' implicitly has an 'any' type.
+
+470                     {ticket.customer_name?.split(' ').map(n => n[0]).join('') || 'C'}
+                                                              ~
+
+app/support/tickets/page.tsx:466:46 - error TS2322: Type '{ children: (false | Element | Element[])[]; align: string; }' is not assignable to type 'IntrinsicAttributes & HTMLAttributes<HTMLDivElement> & RefAttributes<HTMLDivElement>'.
+  Property 'align' does not exist on type 'IntrinsicAttributes & HTMLAttributes<HTMLDivElement> & RefAttributes<HTMLDivElement>'.
+
+466                         <DropdownMenuContent align="end">
+                                                 ~~~~~
+
+app/support/tickets/page.tsx:535:59 - error TS7006: Parameter 'n' implicitly has an 'any' type.
+
+535                       {agent.agent_name?.split(' ')?.map((n) => n?.[0])?.join('') || 'NA'}
+                                                              ~
+
+app/training/career-paths/page.tsx:33:3 - error TS2305: Module '"@/hooks/useTraining"' has no exported member 'useEmployees'.
+
+33   useEmployees,
+     ~~~~~~~~~~~~
+
+app/training/career-paths/page.tsx:116:9 - error TS2561: Object literal may only specify known properties, but 'created_at' does not exist in type 'Omit<TcCareerPath, "created_at" | "id" | "updated_at">'. Did you mean to write 'created_by'?
+
+116         created_at: new Date().toISOString()
+            ~~~~~~~~~~
+
+app/training/career-paths/page.tsx:411:44 - error TS2322: Type 'string | undefined' is not assignable to type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+
+411                     <SelectItem key={dept} value={dept}>{dept}</SelectItem>
+                                               ~~~~~
+
+  ../../tmp/tailoring-management-platform/.pnpm/@radix-ui+react-select@2.1.7_@types+react-dom@18.3.6_@types+react@18.3.20__@types+react_7df9ab66e2e7db1e0e7f3ff0fc4116e9/node_modules/@radix-ui/react-select/dist/index.d.mts:91:5
+    91     value: string;
+           ~~~~~
+    The expected type comes from property 'value' which is declared here on type 'IntrinsicAttributes & Omit<SelectItemProps & RefAttributes<HTMLDivElement>, "ref"> & RefAttributes<...>'
+
+app/training/career-paths/page.tsx:472:44 - error TS2345: Argument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+
+472                         {getDepartmentIcon(path.department)}
+                                               ~~~~~~~~~~~~~~~
+
+app/training/career-paths/page.tsx:476:51 - error TS2339: Property 'estimated_duration_months' does not exist on type 'TcCareerPath'.
+
+476                         {path.department} • {path.estimated_duration_months} months
+                                                      ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+app/training/career-paths/page.tsx:570:39 - error TS2339: Property 'milestone_requirements' does not exist on type 'TcCareerPath'.
+
+570                   {Array.isArray(path.milestone_requirements) && path.milestone_requirements.length > 0 && (
+                                          ~~~~~~~~~~~~~~~~~~~~~~
+
+app/training/career-paths/page.tsx:570:71 - error TS2339: Property 'milestone_requirements' does not exist on type 'TcCareerPath'.
+
+570                   {Array.isArray(path.milestone_requirements) && path.milestone_requirements.length > 0 && (
+                                                                          ~~~~~~~~~~~~~~~~~~~~~~
+
+app/training/career-paths/page.tsx:577:31 - error TS2339: Property 'milestone_requirements' does not exist on type 'TcCareerPath'.
+
+577                         {path.milestone_requirements.slice(0, 3).map((milestone, index) => (
+                                  ~~~~~~~~~~~~~~~~~~~~~~
+
+app/training/career-paths/page.tsx:577:71 - error TS7006: Parameter 'milestone' implicitly has an 'any' type.
+
+577                         {path.milestone_requirements.slice(0, 3).map((milestone, index) => (
+                                                                          ~~~~~~~~~
+
+app/training/career-paths/page.tsx:577:82 - error TS7006: Parameter 'index' implicitly has an 'any' type.
+
+577                         {path.milestone_requirements.slice(0, 3).map((milestone, index) => (
+                                                                                     ~~~~~
+
+app/training/career-paths/page.tsx:583:31 - error TS2339: Property 'milestone_requirements' does not exist on type 'TcCareerPath'.
+
+583                         {path.milestone_requirements.length > 3 && (
+                                  ~~~~~~~~~~~~~~~~~~~~~~
+
+app/training/career-paths/page.tsx:584:64 - error TS2339: Property 'milestone_requirements' does not exist on type 'TcCareerPath'.
+
+584                           <li className="text-gray-500">+{path.milestone_requirements.length - 3} more milestones</li>
+                                                                   ~~~~~~~~~~~~~~~~~~~~~~
+
+app/training/career-paths/page.tsx:593:29 - error TS2339: Property 'estimated_duration_months' does not exist on type 'TcCareerPath'.
+
+593                       {path.estimated_duration_months} month{path.estimated_duration_months !== 1 ? 's' : ''}
+                                ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+app/training/career-paths/page.tsx:593:67 - error TS2339: Property 'estimated_duration_months' does not exist on type 'TcCareerPath'.
+
+593                       {path.estimated_duration_months} month{path.estimated_duration_months !== 1 ? 's' : ''}
+                                                                      ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+app/training/certifications/page.tsx:14:3 - error TS2305: Module '"@heroicons/react/24/outline"' has no exported member 'CertificateIcon'.
+
+14   CertificateIcon,
+     ~~~~~~~~~~~~~~~
+
+app/training/certifications/page.tsx:73:67 - error TS2339: Property 'status' does not exist on type 'EmployeeCertification'.
+
+73   const activeCertifications = certifications.filter(cert => cert.status === 'active');
+                                                                     ~~~~~~
+
+app/training/certifications/page.tsx:74:68 - error TS2339: Property 'status' does not exist on type 'EmployeeCertification'.
+
+74   const expiredCertifications = certifications.filter(cert => cert.status === 'expired' || (cert.expiry_date && new Date(cert.expiry_date) <= now));
+                                                                      ~~~~~~
+
+app/training/certifications/page.tsx:89:31 - error TS2551: Property 'certification_authority' does not exist on type 'EmployeeCertification'. Did you mean 'certification_category'?
+
+89                          cert.certification_authority?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                                 ~~~~~~~~~~~~~~~~~~~~~~~
+
+  types/training.ts:142:3
+    142   certification_category?: string;
+          ~~~~~~~~~~~~~~~~~~~~~~
+    'certification_category' is declared here.
+
+app/training/certifications/page.tsx:91:58 - error TS2339: Property 'status' does not exist on type 'EmployeeCertification'.
+
+91     const matchesStatus = statusFilter === 'all' || cert.status === statusFilter;
+                                                            ~~~~~~
+
+app/training/certifications/page.tsx:92:64 - error TS2551: Property 'certification_authority' does not exist on type 'EmployeeCertification'. Did you mean 'certification_category'?
+
+92     const matchesAuthority = authorityFilter === 'all' || cert.certification_authority === authorityFilter;
+                                                                  ~~~~~~~~~~~~~~~~~~~~~~~
+
+  types/training.ts:142:3
+    142   certification_category?: string;
+          ~~~~~~~~~~~~~~~~~~~~~~
+    'certification_category' is declared here.
+
+app/training/certifications/page.tsx:94:57 - error TS2339: Property 'status' does not exist on type 'EmployeeCertification'.
+
+94                       (selectedTab === 'active' && cert.status === 'active') ||
+                                                           ~~~~~~
+
+app/training/certifications/page.tsx:95:59 - error TS2339: Property 'status' does not exist on type 'EmployeeCertification'.
+
+95                       (selectedTab === 'expired' && (cert.status === 'expired' || (cert.expiry_date && new Date(cert.expiry_date) <= now))) ||
+                                                             ~~~~~~
+
+app/training/certifications/page.tsx:102:61 - error TS2551: Property 'certification_authority' does not exist on type 'EmployeeCertification'. Did you mean 'certification_category'?
+
+102   const authorities = [...new Set(certifications.map(c => c.certification_authority).filter(Boolean))];
+                                                                ~~~~~~~~~~~~~~~~~~~~~~~
+
+  types/training.ts:142:3
+    142   certification_category?: string;
+          ~~~~~~~~~~~~~~~~~~~~~~
+    'certification_category' is declared here.
+
+app/training/certifications/page.tsx:110:9 - error TS2353: Object literal may only specify known properties, and 'created_at' does not exist in type 'Omit<EmployeeCertification, "created_at" | "id" | "updated_at">'.
+
+110         created_at: new Date().toISOString()
+            ~~~~~~~~~~
+
+app/training/certifications/page.tsx:383:31 - error TS2551: Property 'certification_authority' does not exist on type 'EmployeeCertification'. Did you mean 'certification_category'?
+
+383                         {cert.certification_authority}
+                                  ~~~~~~~~~~~~~~~~~~~~~~~
+
+  types/training.ts:142:3
+    142   certification_category?: string;
+          ~~~~~~~~~~~~~~~~~~~~~~
+    'certification_category' is declared here.
+
+app/training/compliance/page.tsx:15:3 - error TS2724: '"@heroicons/react/24/outline"' has no exported member named 'AlertCircleIcon'. Did you mean 'UserCircleIcon'?
+
+15   AlertCircleIcon,
+     ~~~~~~~~~~~~~~~
+
+app/training/courses/page.tsx:19:3 - error TS2305: Module '"@heroicons/react/24/outline"' has no exported member 'CertificateIcon'.
+
+19   CertificateIcon,
+     ~~~~~~~~~~~~~~~
+
+app/training/courses/page.tsx:134:48 - error TS2322: Type 'string | undefined' is not assignable to type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+
+134                     <SelectItem key={category} value={category}>{category}</SelectItem>
+                                                   ~~~~~
+
+  ../../tmp/tailoring-management-platform/.pnpm/@radix-ui+react-select@2.1.7_@types+react-dom@18.3.6_@types+react@18.3.20__@types+react_7df9ab66e2e7db1e0e7f3ff0fc4116e9/node_modules/@radix-ui/react-select/dist/index.d.mts:91:5
+    91     value: string;
+           ~~~~~
+    The expected type comes from property 'value' which is declared here on type 'IntrinsicAttributes & Omit<SelectItemProps & RefAttributes<HTMLDivElement>, "ref"> & RefAttributes<...>'
+
+app/training/courses/page.tsx:146:45 - error TS2322: Type 'string | undefined' is not assignable to type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+
+146                     <SelectItem key={level} value={level}>{level}</SelectItem>
+                                                ~~~~~
+
+  ../../tmp/tailoring-management-platform/.pnpm/@radix-ui+react-select@2.1.7_@types+react-dom@18.3.6_@types+react@18.3.20__@types+react_7df9ab66e2e7db1e0e7f3ff0fc4116e9/node_modules/@radix-ui/react-select/dist/index.d.mts:91:5
+    91     value: string;
+           ~~~~~
+    The expected type comes from property 'value' which is declared here on type 'IntrinsicAttributes & Omit<SelectItemProps & RefAttributes<HTMLDivElement>, "ref"> & RefAttributes<...>'
+
+app/training/courses/page.tsx:236:30 - error TS2339: Property 'language_support' does not exist on type 'TrainingProgram'.
+
+236                     {program.language_support && program.language_support.length > 0 && (
+                                 ~~~~~~~~~~~~~~~~
+
+app/training/courses/page.tsx:236:58 - error TS2339: Property 'language_support' does not exist on type 'TrainingProgram'.
+
+236                     {program.language_support && program.language_support.length > 0 && (
+                                                             ~~~~~~~~~~~~~~~~
+
+app/training/courses/page.tsx:239:48 - error TS2339: Property 'language_support' does not exist on type 'TrainingProgram'.
+
+239                         Available in: {program.language_support.map(lang =>
+                                                   ~~~~~~~~~~~~~~~~
+
+app/training/courses/page.tsx:239:69 - error TS7006: Parameter 'lang' implicitly has an 'any' type.
+
+239                         Available in: {program.language_support.map(lang =>
+                                                                        ~~~~
+
+app/training/page.tsx:68:16 - error TS2304: Cannot find name 'ArrowTrendingUpIcon'.
+
+68               <ArrowTrendingUpIcon className="h-4 w-4 mr-2" />
+                  ~~~~~~~~~~~~~~~~~~~
+
+app/training/page.tsx:354:22 - error TS2552: Cannot find name 'CertificateIcon'. Did you mean 'certifications'?
+
+354                     <CertificateIcon className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                         ~~~~~~~~~~~~~~~
+
+  app/training/page.tsx:27:17
+    27   const { data: certifications = [], isLoading: certificationsLoading } = useEmployeeCertifications();
+                       ~~~~~~~~~~~~~~
+    'certifications' is declared here.
+
+app/training/skills/page.tsx:32:3 - error TS2305: Module '"@/hooks/useTraining"' has no exported member 'useEmployees'.
+
+32   useEmployees
+     ~~~~~~~~~~~~
+
+app/training/skills/page.tsx:135:9 - error TS2353: Object literal may only specify known properties, and 'created_at' does not exist in type 'Omit<TcSkillAssessment, "created_at" | "id">'.
+
+135         created_at: new Date().toISOString()
+            ~~~~~~~~~~
+
+app/workflow/page.tsx:136:7 - error TS2322: Type '{ id: any; order_number: any; customer_id: any; status: any; priority_level: any; total_amount: any; delivery_date: any; created_at: any; workflow_status: any; progress_percentage: any; assigned_employee_id: any; status_notes: any; entered_at: any; customers: any; employees: { ...; }[]; }[]' is not assignable to type 'WorkflowOrder[]'.
+  Type '{ id: any; order_number: any; customer_id: any; status: any; priority_level: any; total_amount: any; delivery_date: any; created_at: any; workflow_status: any; progress_percentage: any; assigned_employee_id: any; status_notes: any; entered_at: any; customers: any; employees: { ...; }[]; }' is not assignable to type 'WorkflowOrder'.
+    Types of property 'employees' are incompatible.
+      Property 'full_name' is missing in type '{ full_name: any; }[]' but required in type '{ full_name: string; }'.
+
+136       return data?.map((item) => ({
+          ~~~~~~
+
+  app/workflow/page.tsx:69:5
+    69     full_name: string;
+           ~~~~~~~~~
+    'full_name' is declared here.
+
+app/workflow/page.tsx:137:25 - error TS2339: Property 'id' does not exist on type '{ id: any; order_number: any; customer_id: any; status: any; priority_level: any; total_amount: any; delivery_date: any; created_at: any; customers: { full_name: any; customer_code: any; }[]; }[]'.
+
+137         id: item.orders.id,
+                            ~~
+
+app/workflow/page.tsx:138:35 - error TS2339: Property 'order_number' does not exist on type '{ id: any; order_number: any; customer_id: any; status: any; priority_level: any; total_amount: any; delivery_date: any; created_at: any; customers: { full_name: any; customer_code: any; }[]; }[]'.
+
+138         order_number: item.orders.order_number,
+                                      ~~~~~~~~~~~~
+
+app/workflow/page.tsx:139:34 - error TS2339: Property 'customer_id' does not exist on type '{ id: any; order_number: any; customer_id: any; status: any; priority_level: any; total_amount: any; delivery_date: any; created_at: any; customers: { full_name: any; customer_code: any; }[]; }[]'.
+
+139         customer_id: item.orders.customer_id,
+                                     ~~~~~~~~~~~
+
+app/workflow/page.tsx:140:29 - error TS2339: Property 'status' does not exist on type '{ id: any; order_number: any; customer_id: any; status: any; priority_level: any; total_amount: any; delivery_date: any; created_at: any; customers: { full_name: any; customer_code: any; }[]; }[]'.
+
+140         status: item.orders.status,
+                                ~~~~~~
+
+app/workflow/page.tsx:141:37 - error TS2339: Property 'priority_level' does not exist on type '{ id: any; order_number: any; customer_id: any; status: any; priority_level: any; total_amount: any; delivery_date: any; created_at: any; customers: { full_name: any; customer_code: any; }[]; }[]'.
+
+141         priority_level: item.orders.priority_level,
+                                        ~~~~~~~~~~~~~~
+
+app/workflow/page.tsx:142:35 - error TS2339: Property 'total_amount' does not exist on type '{ id: any; order_number: any; customer_id: any; status: any; priority_level: any; total_amount: any; delivery_date: any; created_at: any; customers: { full_name: any; customer_code: any; }[]; }[]'.
+
+142         total_amount: item.orders.total_amount,
+                                      ~~~~~~~~~~~~
+
+app/workflow/page.tsx:143:36 - error TS2339: Property 'delivery_date' does not exist on type '{ id: any; order_number: any; customer_id: any; status: any; priority_level: any; total_amount: any; delivery_date: any; created_at: any; customers: { full_name: any; customer_code: any; }[]; }[]'.
+
+143         delivery_date: item.orders.delivery_date,
+                                       ~~~~~~~~~~~~~
+
+app/workflow/page.tsx:144:33 - error TS2339: Property 'created_at' does not exist on type '{ id: any; order_number: any; customer_id: any; status: any; priority_level: any; total_amount: any; delivery_date: any; created_at: any; customers: { full_name: any; customer_code: any; }[]; }[]'.
+
+144         created_at: item.orders.created_at,
+                                    ~~~~~~~~~~
+
+app/workflow/page.tsx:150:32 - error TS2339: Property 'customers' does not exist on type '{ id: any; order_number: any; customer_id: any; status: any; priority_level: any; total_amount: any; delivery_date: any; created_at: any; customers: { full_name: any; customer_code: any; }[]; }[]'.
+
+150         customers: item.orders.customers,
+                                   ~~~~~~~~~
+
+components/dashboard/main-dashboard.tsx:60:30 - error TS2532: Object is possibly 'undefined'.
+
+60       const averageQuality = qualityResult.data?.reduce((sum, item) => sum + (item.score || 0), 0) / (qualityResult.data?.length || 1) || 85;
+                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+components/dashboard/quality-metrics.tsx:50:24 - error TS2532: Object is possibly 'undefined'.
+
+50       const avgScore = averageScore.data?.reduce((sum, item) => sum + (item.score || 0), 0) / (averageScore.data?.length || 1) || 0;
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+components/layout/sidebar.tsx:46:3 - error TS2305: Module '"@heroicons/react/24/outline"' has no exported member 'CertificateIcon'.
+
+46   CertificateIcon,
+     ~~~~~~~~~~~~~~~
+
+components/layout/sidebar.tsx:402:26 - error TS2322: Type 'string' is not assignable to type 'never'.
+
+402         <Dialog as="div" className="relative z-50 lg:hidden" onClose={setSidebarOpen}>
+                             ~~~~~~~~~
+
+components/providers.tsx:25:8 - error TS2322: Type '{ children: Element; attribute: "class"; defaultTheme: string; enableSystem: true; disableTransitionOnChange: true; }' is not assignable to type 'IntrinsicAttributes & ThemeProviderProps'.
+  Property 'children' does not exist on type 'IntrinsicAttributes & ThemeProviderProps'.
+
+25       <ThemeProvider
+          ~~~~~~~~~~~~~
+
+components/ui/checkbox.tsx:24:9 - error TS2322: Type 'MouseEventHandler<HTMLInputElement>' is not assignable to type 'MouseEventHandler<HTMLButtonElement>'.
+  Type 'HTMLInputElement' is not assignable to type 'HTMLButtonElement'.
+    Types of property 'labels' are incompatible.
+      Type 'NodeListOf<HTMLLabelElement> | null' is not assignable to type 'NodeListOf<HTMLLabelElement>'.
+        Type 'null' is not assignable to type 'NodeListOf<HTMLLabelElement>'.
+
+24         onClick={() => {
+           ~~~~~~~
+
+  ../../tmp/tailoring-management-platform/.pnpm/@types+react@18.3.20/node_modules/@types/react/index.d.ts:2502:9
+    2502         onClick?: MouseEventHandler<T> | undefined;
+                 ~~~~~~~
+    The expected type comes from property 'onClick' which is declared here on type 'DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>'
+
+components/ui/dropdown-menu.tsx:45:25 - error TS2345: Argument of type 'MouseEvent<Element, MouseEvent>' is not assignable to parameter of type 'MouseEvent<HTMLButtonElement, MouseEvent>'.
+  Type 'Element' is missing the following properties from type 'HTMLButtonElement': disabled, form, formAction, formEnctype, and 144 more.
+
+45         props.onClick?.(e)
+                           ~
+
+hooks/useDashboardData.ts:263:22 - error TS18048: 'payments' is possibly 'undefined'.
+
+263   const paidAmount = payments.filter(p => p.status === 'completed').reduce((sum, p) => sum + (p.amount_aed || 0), 0);
+                         ~~~~~~~~
+
+hooks/useDashboardData.ts:294:22 - error TS18048: 'currentInspections' is possibly 'undefined'.
+
+294   const defectRate = currentInspections.length > 0
+                         ~~~~~~~~~~~~~~~~~~
+
+hooks/useDashboardData.ts:295:8 - error TS18048: 'currentInspections' is possibly 'undefined'.
+
+295     ? (currentInspections.filter(i => i.inspection_result === 'failed').length / currentInspections.length) * 100
+           ~~~~~~~~~~~~~~~~~~
+
+hooks/useDashboardData.ts:295:82 - error TS18048: 'currentInspections' is possibly 'undefined'.
+
+295     ? (currentInspections.filter(i => i.inspection_result === 'failed').length / currentInspections.length) * 100
+                                                                                     ~~~~~~~~~~~~~~~~~~
+
+hooks/useDashboardData.ts:297:30 - error TS18048: 'currentInspections' is possibly 'undefined'.
+
+297   const firstTimeRightRate = currentInspections.length > 0
+                                 ~~~~~~~~~~~~~~~~~~
+
+hooks/useDashboardData.ts:298:8 - error TS18048: 'currentInspections' is possibly 'undefined'.
+
+298     ? (currentInspections.filter(i => i.inspection_result === 'passed' && !i.is_rework).length / currentInspections.length) * 100
+           ~~~~~~~~~~~~~~~~~~
+
+hooks/useDashboardData.ts:298:98 - error TS18048: 'currentInspections' is possibly 'undefined'.
+
+298     ? (currentInspections.filter(i => i.inspection_result === 'passed' && !i.is_rework).length / currentInspections.length) * 100
+                                                                                                     ~~~~~~~~~~~~~~~~~~
+
+hooks/useLegal.ts:815:18 - error TS2339: Property 'end_date' does not exist on type '{ status: any; signature_status: any; contract_value: any; }'.
+
+815           if (!c.end_date) return false;
+                     ~~~~~~~~
+
+hooks/useLegal.ts:816:38 - error TS2339: Property 'end_date' does not exist on type '{ status: any; signature_status: any; contract_value: any; }'.
+
+816           const endDate = new Date(c.end_date);
+                                         ~~~~~~~~
+
+hooks/useSupport.ts:599:25 - error TS7053: Element implicitly has an 'any' type because expression of type '"helpful_count" | "not_helpful_count"' can't be used to index type '{ helpful_count: any; } | { not_helpful_count: any; }'.
+  Property 'helpful_count' does not exist on type '{ helpful_count: any; } | { not_helpful_count: any; }'.
+
+599       const newCount = (data[field] || 0) + 1;
+                            ~~~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:4:1 - error TS2304: Cannot find name 'Deno'.
+
+4 Deno.serve(async (req) => {
+  ~~~~
+
+supabase/functions/alert-processor/index.ts:4:19 - error TS7006: Parameter 'req' implicitly has an 'any' type.
+
+4 Deno.serve(async (req) => {
+                    ~~~
+
+supabase/functions/alert-processor/index.ts:23:32 - error TS2304: Cannot find name 'Deno'.
+
+23         const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
+                                  ~~~~
+
+supabase/functions/alert-processor/index.ts:24:29 - error TS2304: Cannot find name 'Deno'.
+
+24         const supabaseUrl = Deno.env.get('SUPABASE_URL');
+                               ~~~~
+
+supabase/functions/alert-processor/index.ts:81:26 - error TS18046: 'error' is of type 'unknown'.
+
+81                 message: error.message
+                            ~~~~~
+
+supabase/functions/alert-processor/index.ts:93:29 - error TS7006: Parameter 'supabaseUrl' implicitly has an 'any' type.
+
+93 async function processAlert(supabaseUrl, headers, alertData) {
+                               ~~~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:93:42 - error TS7006: Parameter 'headers' implicitly has an 'any' type.
+
+93 async function processAlert(supabaseUrl, headers, alertData) {
+                                            ~~~~~~~
+
+supabase/functions/alert-processor/index.ts:93:51 - error TS7006: Parameter 'alertData' implicitly has an 'any' type.
+
+93 async function processAlert(supabaseUrl, headers, alertData) {
+                                                     ~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:180:50 - error TS2304: Cannot find name 'sendImmediateNotification'.
+
+180                 const notificationResult = await sendImmediateNotification(recipient, alertRecord);
+                                                     ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:203:46 - error TS7006: Parameter 'r' implicitly has an 'any' type.
+
+203         recipients: recipients.immediate.map(r => ({ name: r.contact_name, method: r.preferred_contact_method })),
+                                                 ~
+
+supabase/functions/alert-processor/index.ts:209:33 - error TS7006: Parameter 'supabaseUrl' implicitly has an 'any' type.
+
+209 async function sendNotification(supabaseUrl, headers, notificationData) {
+                                    ~~~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:209:46 - error TS7006: Parameter 'headers' implicitly has an 'any' type.
+
+209 async function sendNotification(supabaseUrl, headers, notificationData) {
+                                                 ~~~~~~~
+
+supabase/functions/alert-processor/index.ts:209:55 - error TS7006: Parameter 'notificationData' implicitly has an 'any' type.
+
+209 async function sendNotification(supabaseUrl, headers, notificationData) {
+                                                          ~~~~~~~~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:282:30 - error TS7006: Parameter 'supabaseUrl' implicitly has an 'any' type.
+
+282 async function escalateAlert(supabaseUrl, headers, escalationData) {
+                                 ~~~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:282:43 - error TS7006: Parameter 'headers' implicitly has an 'any' type.
+
+282 async function escalateAlert(supabaseUrl, headers, escalationData) {
+                                              ~~~~~~~
+
+supabase/functions/alert-processor/index.ts:282:52 - error TS7006: Parameter 'escalationData' implicitly has an 'any' type.
+
+282 async function escalateAlert(supabaseUrl, headers, escalationData) {
+                                                       ~~~~~~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:286:38 - error TS2304: Cannot find name 'getEscalationContacts'.
+
+286     const escalationContacts = await getEscalationContacts(supabaseUrl, headers, organization_id, escalation_level);
+                                         ~~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:326:24 - error TS18046: 'error' is of type 'unknown'.
+
+326                 error: error.message
+                           ~~~~~
+
+supabase/functions/alert-processor/index.ts:333:15 - error TS2304: Cannot find name 'updateIncidentEscalation'.
+
+333         await updateIncidentEscalation(supabaseUrl, headers, incident_id, escalation_level);
+                  ~~~~~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:346:33 - error TS7006: Parameter 'supabaseUrl' implicitly has an 'any' type.
+
+346 async function acknowledgeAlert(supabaseUrl, headers, ackData) {
+                                    ~~~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:346:46 - error TS7006: Parameter 'headers' implicitly has an 'any' type.
+
+346 async function acknowledgeAlert(supabaseUrl, headers, ackData) {
+                                                 ~~~~~~~
+
+supabase/functions/alert-processor/index.ts:346:55 - error TS7006: Parameter 'ackData' implicitly has an 'any' type.
+
+346 async function acknowledgeAlert(supabaseUrl, headers, ackData) {
+                                                          ~~~~~~~
+
+supabase/functions/alert-processor/index.ts:371:39 - error TS2304: Cannot find name 'cancelScheduledEscalations'.
+
+371     const escalationCancelled = await cancelScheduledEscalations(supabaseUrl, headers, alert_id);
+                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:384:32 - error TS7006: Parameter 'supabaseUrl' implicitly has an 'any' type.
+
+384 async function checkAlertRules(supabaseUrl, headers, organizationId) {
+                                   ~~~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:384:45 - error TS7006: Parameter 'headers' implicitly has an 'any' type.
+
+384 async function checkAlertRules(supabaseUrl, headers, organizationId) {
+                                                ~~~~~~~
+
+supabase/functions/alert-processor/index.ts:384:54 - error TS7006: Parameter 'organizationId' implicitly has an 'any' type.
+
+384 async function checkAlertRules(supabaseUrl, headers, organizationId) {
+                                                         ~~~~~~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:462:33 - error TS7006: Parameter 'supabaseUrl' implicitly has an 'any' type.
+
+462 async function sendDigestReport(supabaseUrl, headers, organizationId) {
+                                    ~~~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:462:46 - error TS7006: Parameter 'headers' implicitly has an 'any' type.
+
+462 async function sendDigestReport(supabaseUrl, headers, organizationId) {
+                                                 ~~~~~~~
+
+supabase/functions/alert-processor/index.ts:462:55 - error TS7006: Parameter 'organizationId' implicitly has an 'any' type.
+
+462 async function sendDigestReport(supabaseUrl, headers, organizationId) {
+                                                          ~~~~~~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:468:31 - error TS2304: Cannot find name 'getBackupStatistics'.
+
+468     const backupStats = await getBackupStatistics(supabaseUrl, headers, organizationId, yesterday, now);
+                                  ~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:469:33 - error TS2304: Cannot find name 'getIncidentStatistics'.
+
+469     const incidentStats = await getIncidentStatistics(supabaseUrl, headers, organizationId, weekAgo, now);
+                                    ~~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:470:33 - error TS2304: Cannot find name 'getSystemHealthSummary'.
+
+470     const healthSummary = await getSystemHealthSummary(supabaseUrl, headers, organizationId);
+                                    ~~~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:491:26 - error TS2304: Cannot find name 'generateRecommendations'.
+
+491         recommendations: generateRecommendations(backupStats, incidentStats, healthSummary)
+                             ~~~~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:495:36 - error TS2304: Cannot find name 'getDigestRecipients'.
+
+495     const digestRecipients = await getDigestRecipients(supabaseUrl, headers, organizationId);
+                                       ~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:500:35 - error TS2304: Cannot find name 'formatDigestReport'.
+
+500             const digestMessage = formatDigestReport(digestReport, recipient);
+                                      ~~~~~~~~~~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:519:24 - error TS18046: 'error' is of type 'unknown'.
+
+519                 error: error.message
+                           ~~~~~
+
+supabase/functions/alert-processor/index.ts:534:32 - error TS7006: Parameter 'supabaseUrl' implicitly has an 'any' type.
+
+534 async function testAlertSystem(supabaseUrl, headers, organizationId) {
+                                   ~~~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:534:45 - error TS7006: Parameter 'headers' implicitly has an 'any' type.
+
+534 async function testAlertSystem(supabaseUrl, headers, organizationId) {
+                                                ~~~~~~~
+
+supabase/functions/alert-processor/index.ts:534:54 - error TS7006: Parameter 'organizationId' implicitly has an 'any' type.
+
+534 async function testAlertSystem(supabaseUrl, headers, organizationId) {
+                                                         ~~~~~~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:544:42 - error TS2345: Argument of type '{ test: string; status: string; details: string; }' is not assignable to parameter of type 'never'.
+
+544         testResults.tests_performed.push({
+                                             ~
+545             test: 'Emergency Contact Retrieval',
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+... 
+547             details: `Retrieved ${contacts.immediate.length} immediate contacts, ${contacts.escalation.length} escalation contacts`
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+548         });
+    ~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:550:42 - error TS2345: Argument of type '{ test: string; status: string; error: any; }' is not assignable to parameter of type 'never'.
+
+550         testResults.tests_performed.push({
+                                             ~
+551             test: 'Emergency Contact Retrieval',
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+... 
+553             error: error.message
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+554         });
+    ~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:553:20 - error TS18046: 'error' is of type 'unknown'.
+
+553             error: error.message
+                       ~~~~~
+
+supabase/functions/alert-processor/index.ts:574:42 - error TS2345: Argument of type '{ test: string; status: string; details: string; }' is not assignable to parameter of type 'never'.
+
+574         testResults.tests_performed.push({
+                                             ~
+575             test: 'Notification Delivery',
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+... 
+577             details: `Test notification sent successfully`
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+578         });
+    ~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:580:42 - error TS2345: Argument of type '{ test: string; status: string; error: any; }' is not assignable to parameter of type 'never'.
+
+580         testResults.tests_performed.push({
+                                             ~
+581             test: 'Notification Delivery',
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+... 
+583             error: error.message
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+584         });
+    ~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:583:20 - error TS18046: 'error' is of type 'unknown'.
+
+583             error: error.message
+                       ~~~~~
+
+supabase/functions/alert-processor/index.ts:598:42 - error TS2345: Argument of type '{ test: string; status: string; details: string; }' is not assignable to parameter of type 'never'.
+
+598         testResults.tests_performed.push({
+                                             ~
+599             test: 'Alert Processing',
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+... 
+601             details: `Test alert processed with ID: ${testAlert.alert_id}`
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+602         });
+    ~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:604:42 - error TS2345: Argument of type '{ test: string; status: string; error: any; }' is not assignable to parameter of type 'never'.
+
+604         testResults.tests_performed.push({
+                                             ~
+605             test: 'Alert Processing',
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+... 
+607             error: error.message
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+608         });
+    ~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:607:20 - error TS18046: 'error' is of type 'unknown'.
+
+607             error: error.message
+                       ~~~~~
+
+supabase/functions/alert-processor/index.ts:612:67 - error TS2339: Property 'status' does not exist on type 'never'.
+
+612     const passedTests = testResults.tests_performed.filter(t => t.status === 'passed').length;
+                                                                      ~~~~~~
+
+supabase/functions/alert-processor/index.ts:625:33 - error TS7006: Parameter 'severity' implicitly has an 'any' type.
+
+625 function determineAlertPriority(severity, alertType, currentValue, thresholdValue) {
+                                    ~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:625:43 - error TS7006: Parameter 'alertType' implicitly has an 'any' type.
+
+625 function determineAlertPriority(severity, alertType, currentValue, thresholdValue) {
+                                              ~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:625:54 - error TS7006: Parameter 'currentValue' implicitly has an 'any' type.
+
+625 function determineAlertPriority(severity, alertType, currentValue, thresholdValue) {
+                                                         ~~~~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:625:68 - error TS7006: Parameter 'thresholdValue' implicitly has an 'any' type.
+
+625 function determineAlertPriority(severity, alertType, currentValue, thresholdValue) {
+                                                                       ~~~~~~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:651:37 - error TS7006: Parameter 'alertType' implicitly has an 'any' type.
+
+651 function mapAlertTypeToIncidentType(alertType) {
+                                        ~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:660:12 - error TS7053: Element implicitly has an 'any' type because expression of type 'any' can't be used to index type '{ backup_failure: string; storage_capacity: string; connection_failure: string; threshold_exceeded: string; system_health: string; }'.
+
+660     return mapping[alertType] || 'system_outage';
+               ~~~~~~~~~~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:663:34 - error TS7006: Parameter 'severity' implicitly has an 'any' type.
+
+663 function determineBusinessImpact(severity, alertType) {
+                                     ~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:663:44 - error TS7006: Parameter 'alertType' implicitly has an 'any' type.
+
+663 function determineBusinessImpact(severity, alertType) {
+                                               ~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:671:38 - error TS7006: Parameter 'recipient' implicitly has an 'any' type.
+
+671 async function sendEmailNotification(recipient, subject, message, urgency) {
+                                         ~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:671:49 - error TS7006: Parameter 'subject' implicitly has an 'any' type.
+
+671 async function sendEmailNotification(recipient, subject, message, urgency) {
+                                                    ~~~~~~~
+
+supabase/functions/alert-processor/index.ts:671:58 - error TS7006: Parameter 'message' implicitly has an 'any' type.
+
+671 async function sendEmailNotification(recipient, subject, message, urgency) {
+                                                             ~~~~~~~
+
+supabase/functions/alert-processor/index.ts:671:67 - error TS7006: Parameter 'urgency' implicitly has an 'any' type.
+
+671 async function sendEmailNotification(recipient, subject, message, urgency) {
+                                                                      ~~~~~~~
+
+supabase/functions/alert-processor/index.ts:680:36 - error TS7006: Parameter 'recipient' implicitly has an 'any' type.
+
+680 async function sendSMSNotification(recipient, message, urgency) {
+                                       ~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:680:47 - error TS7006: Parameter 'message' implicitly has an 'any' type.
+
+680 async function sendSMSNotification(recipient, message, urgency) {
+                                                  ~~~~~~~
+
+supabase/functions/alert-processor/index.ts:680:56 - error TS7006: Parameter 'urgency' implicitly has an 'any' type.
+
+680 async function sendSMSNotification(recipient, message, urgency) {
+                                                           ~~~~~~~
+
+supabase/functions/alert-processor/index.ts:689:36 - error TS7006: Parameter 'recipient' implicitly has an 'any' type.
+
+689 async function sendWhatsAppMessage(recipient, message, urgency) {
+                                       ~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:689:47 - error TS7006: Parameter 'message' implicitly has an 'any' type.
+
+689 async function sendWhatsAppMessage(recipient, message, urgency) {
+                                                  ~~~~~~~
+
+supabase/functions/alert-processor/index.ts:689:56 - error TS7006: Parameter 'urgency' implicitly has an 'any' type.
+
+689 async function sendWhatsAppMessage(recipient, message, urgency) {
+                                                           ~~~~~~~
+
+supabase/functions/alert-processor/index.ts:698:34 - error TS7006: Parameter 'recipient' implicitly has an 'any' type.
+
+698 async function initiatePhoneCall(recipient, message, urgency) {
+                                     ~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:698:45 - error TS7006: Parameter 'message' implicitly has an 'any' type.
+
+698 async function initiatePhoneCall(recipient, message, urgency) {
+                                                ~~~~~~~
+
+supabase/functions/alert-processor/index.ts:698:54 - error TS7006: Parameter 'urgency' implicitly has an 'any' type.
+
+698 async function initiatePhoneCall(recipient, message, urgency) {
+                                                         ~~~~~~~
+
+supabase/functions/alert-processor/index.ts:708:42 - error TS7006: Parameter 'supabaseUrl' implicitly has an 'any' type.
+
+708 async function getNotificationRecipients(supabaseUrl, headers, organizationId, severity, alertType) {
+                                             ~~~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:708:55 - error TS7006: Parameter 'headers' implicitly has an 'any' type.
+
+708 async function getNotificationRecipients(supabaseUrl, headers, organizationId, severity, alertType) {
+                                                          ~~~~~~~
+
+supabase/functions/alert-processor/index.ts:708:64 - error TS7006: Parameter 'organizationId' implicitly has an 'any' type.
+
+708 async function getNotificationRecipients(supabaseUrl, headers, organizationId, severity, alertType) {
+                                                                   ~~~~~~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:708:80 - error TS7006: Parameter 'severity' implicitly has an 'any' type.
+
+708 async function getNotificationRecipients(supabaseUrl, headers, organizationId, severity, alertType) {
+                                                                                   ~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:708:90 - error TS7006: Parameter 'alertType' implicitly has an 'any' type.
+
+708 async function getNotificationRecipients(supabaseUrl, headers, organizationId, severity, alertType) {
+                                                                                             ~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:721:36 - error TS7006: Parameter 'c' implicitly has an 'any' type.
+
+721         immediate: contacts.filter(c => c.escalation_level <= 2),
+                                       ~
+
+supabase/functions/alert-processor/index.ts:722:37 - error TS7006: Parameter 'c' implicitly has an 'any' type.
+
+722         escalation: contacts.filter(c => c.escalation_level > 2)
+                                        ~
+
+supabase/functions/alert-processor/index.ts:727:38 - error TS7006: Parameter 'supabaseUrl' implicitly has an 'any' type.
+
+727 async function checkAlertSuppression(supabaseUrl, headers, monitorId, alertType) {
+                                         ~~~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:727:51 - error TS7006: Parameter 'headers' implicitly has an 'any' type.
+
+727 async function checkAlertSuppression(supabaseUrl, headers, monitorId, alertType) {
+                                                      ~~~~~~~
+
+supabase/functions/alert-processor/index.ts:727:60 - error TS7006: Parameter 'monitorId' implicitly has an 'any' type.
+
+727 async function checkAlertSuppression(supabaseUrl, headers, monitorId, alertType) {
+                                                               ~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:727:71 - error TS7006: Parameter 'alertType' implicitly has an 'any' type.
+
+727 async function checkAlertSuppression(supabaseUrl, headers, monitorId, alertType) {
+                                                                          ~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:731:35 - error TS7006: Parameter 'supabaseUrl' implicitly has an 'any' type.
+
+731 async function scheduleEscalation(supabaseUrl, headers, alertRecord, escalationContacts) {
+                                      ~~~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:731:48 - error TS7006: Parameter 'headers' implicitly has an 'any' type.
+
+731 async function scheduleEscalation(supabaseUrl, headers, alertRecord, escalationContacts) {
+                                                   ~~~~~~~
+
+supabase/functions/alert-processor/index.ts:731:57 - error TS7006: Parameter 'alertRecord' implicitly has an 'any' type.
+
+731 async function scheduleEscalation(supabaseUrl, headers, alertRecord, escalationContacts) {
+                                                            ~~~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:731:70 - error TS7006: Parameter 'escalationContacts' implicitly has an 'any' type.
+
+731 async function scheduleEscalation(supabaseUrl, headers, alertRecord, escalationContacts) {
+                                                                         ~~~~~~~~~~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:735:39 - error TS7006: Parameter 'supabaseUrl' implicitly has an 'any' type.
+
+735 async function updateMonitorLastAlert(supabaseUrl, headers, monitorId, timestamp) {
+                                          ~~~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:735:52 - error TS7006: Parameter 'headers' implicitly has an 'any' type.
+
+735 async function updateMonitorLastAlert(supabaseUrl, headers, monitorId, timestamp) {
+                                                       ~~~~~~~
+
+supabase/functions/alert-processor/index.ts:735:61 - error TS7006: Parameter 'monitorId' implicitly has an 'any' type.
+
+735 async function updateMonitorLastAlert(supabaseUrl, headers, monitorId, timestamp) {
+                                                                ~~~~~~~~~
+
+supabase/functions/alert-processor/index.ts:735:72 - error TS7006: Parameter 'timestamp' implicitly has an 'any' type.
+
+735 async function updateMonitorLastAlert(supabaseUrl, headers, monitorId, timestamp) {
+                                                                           ~~~~~~~~~
+
+supabase/functions/api-proxy/index.ts:4:30 - error TS2307: Cannot find module 'https://esm.sh/@supabase/supabase-js@2.39.3' or its corresponding type declarations.
+
+4 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.39.3';
+                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/api-proxy/index.ts:22:1 - error TS2304: Cannot find name 'Deno'.
+
+22 Deno.serve(async (req) => {
+   ~~~~
+
+supabase/functions/api-proxy/index.ts:22:19 - error TS7006: Parameter 'req' implicitly has an 'any' type.
+
+22 Deno.serve(async (req) => {
+                     ~~~
+
+supabase/functions/api-proxy/index.ts:29:25 - error TS2304: Cannot find name 'Deno'.
+
+29     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
+                           ~~~~
+
+supabase/functions/api-proxy/index.ts:30:25 - error TS2304: Cannot find name 'Deno'.
+
+30     const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+                           ~~~~
+
+supabase/functions/backup-scheduler/index.ts:4:1 - error TS2304: Cannot find name 'Deno'.
+
+4 Deno.serve(async (req) => {
+  ~~~~
+
+supabase/functions/backup-scheduler/index.ts:4:19 - error TS7006: Parameter 'req' implicitly has an 'any' type.
+
+4 Deno.serve(async (req) => {
+                    ~~~
+
+supabase/functions/backup-scheduler/index.ts:23:32 - error TS2304: Cannot find name 'Deno'.
+
+23         const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
+                                  ~~~~
+
+supabase/functions/backup-scheduler/index.ts:24:29 - error TS2304: Cannot find name 'Deno'.
+
+24         const supabaseUrl = Deno.env.get('SUPABASE_URL');
+                               ~~~~
+
+supabase/functions/backup-scheduler/index.ts:69:26 - error TS18046: 'error' is of type 'unknown'.
+
+69                 message: error.message
+                            ~~~~~
+
+supabase/functions/backup-scheduler/index.ts:81:30 - error TS7006: Parameter 'supabaseUrl' implicitly has an 'any' type.
+
+81 async function executeBackup(supabaseUrl, headers, scheduleId, isManual = false) {
+                                ~~~~~~~~~~~
+
+supabase/functions/backup-scheduler/index.ts:81:43 - error TS7006: Parameter 'headers' implicitly has an 'any' type.
+
+81 async function executeBackup(supabaseUrl, headers, scheduleId, isManual = false) {
+                                             ~~~~~~~
+
+supabase/functions/backup-scheduler/index.ts:81:52 - error TS7006: Parameter 'scheduleId' implicitly has an 'any' type.
+
+81 async function executeBackup(supabaseUrl, headers, scheduleId, isManual = false) {
+                                                      ~~~~~~~~~~
+
+supabase/functions/backup-scheduler/index.ts:175:28 - error TS18046: 'backupError' is of type 'unknown'.
+
+175             error_message: backupError.message,
+                               ~~~~~~~~~~~
+
+supabase/functions/backup-scheduler/index.ts:193:53 - error TS18046: 'backupError' is of type 'unknown'.
+
+193         throw new Error(`Backup execution failed: ${backupError.message}`);
+                                                        ~~~~~~~~~~~
+
+supabase/functions/backup-scheduler/index.ts:198:30 - error TS7006: Parameter 'schedule' implicitly has an 'any' type.
+
+198 async function performBackup(schedule, supabaseUrl, headers) {
+                                 ~~~~~~~~
+
+supabase/functions/backup-scheduler/index.ts:198:40 - error TS7006: Parameter 'supabaseUrl' implicitly has an 'any' type.
+
+198 async function performBackup(schedule, supabaseUrl, headers) {
+                                           ~~~~~~~~~~~
+
+supabase/functions/backup-scheduler/index.ts:198:53 - error TS7006: Parameter 'headers' implicitly has an 'any' type.
+
+198 async function performBackup(schedule, supabaseUrl, headers) {
+                                                        ~~~~~~~
+
+supabase/functions/backup-scheduler/index.ts:278:32 - error TS7006: Parameter 'supabaseUrl' implicitly has an 'any' type.
+
+278 async function checkDueBackups(supabaseUrl, headers, organizationId) {
+                                   ~~~~~~~~~~~
+
+supabase/functions/backup-scheduler/index.ts:278:45 - error TS7006: Parameter 'headers' implicitly has an 'any' type.
+
+278 async function checkDueBackups(supabaseUrl, headers, organizationId) {
+                                                ~~~~~~~
+
+supabase/functions/backup-scheduler/index.ts:278:54 - error TS7006: Parameter 'organizationId' implicitly has an 'any' type.
+
+278 async function checkDueBackups(supabaseUrl, headers, organizationId) {
+                                                         ~~~~~~~~~~~~~~
+
+supabase/functions/backup-scheduler/index.ts:304:21 - error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
+
+304                     new Date() - new Date(schedule.last_execution_at) > 3600000) {
+                        ~~~~~~~~~~
+
+supabase/functions/backup-scheduler/index.ts:304:34 - error TS2363: The right-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
+
+304                     new Date() - new Date(schedule.last_execution_at) > 3600000) {
+                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/backup-scheduler/index.ts:364:36 - error TS7006: Parameter 'supabaseUrl' implicitly has an 'any' type.
+
+364 async function updateScheduleStats(supabaseUrl, headers, scheduleId, success) {
+                                       ~~~~~~~~~~~
+
+supabase/functions/backup-scheduler/index.ts:364:49 - error TS7006: Parameter 'headers' implicitly has an 'any' type.
+
+364 async function updateScheduleStats(supabaseUrl, headers, scheduleId, success) {
+                                                    ~~~~~~~
+
+supabase/functions/backup-scheduler/index.ts:364:58 - error TS7006: Parameter 'scheduleId' implicitly has an 'any' type.
+
+364 async function updateScheduleStats(supabaseUrl, headers, scheduleId, success) {
+                                                             ~~~~~~~~~~
+
+supabase/functions/backup-scheduler/index.ts:364:70 - error TS7006: Parameter 'success' implicitly has an 'any' type.
+
+364 async function updateScheduleStats(supabaseUrl, headers, scheduleId, success) {
+                                                                         ~~~~~~~
+
+supabase/functions/backup-scheduler/index.ts:401:33 - error TS7006: Parameter 'schedule' implicitly has an 'any' type.
+
+401 function calculateNextExecution(schedule) {
+                                    ~~~~~~~~
+
+supabase/functions/backup-scheduler/index.ts:451:32 - error TS7006: Parameter 'sourceSystem' implicitly has an 'any' type.
+
+451 function getDataClassification(sourceSystem) {
+                                   ~~~~~~~~~~~~
+
+supabase/functions/backup-scheduler/index.ts:461:12 - error TS7053: Element implicitly has an 'any' type because expression of type 'any' can't be used to index type '{ customer_management: string; financial_management: string; employee_management: string; inventory_management: string; order_system: string; entire_platform: string; }'.
+
+461     return classificationMap[sourceSystem] || 'internal';
+               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/backup-scheduler/index.ts:465:32 - error TS7006: Parameter 'supabaseUrl' implicitly has an 'any' type.
+
+465 async function getBackupStatus(supabaseUrl, headers, scheduleId) {
+                                   ~~~~~~~~~~~
+
+supabase/functions/backup-scheduler/index.ts:465:45 - error TS7006: Parameter 'headers' implicitly has an 'any' type.
+
+465 async function getBackupStatus(supabaseUrl, headers, scheduleId) {
+                                                ~~~~~~~
+
+supabase/functions/backup-scheduler/index.ts:465:54 - error TS7006: Parameter 'scheduleId' implicitly has an 'any' type.
+
+465 async function getBackupStatus(supabaseUrl, headers, scheduleId) {
+                                                         ~~~~~~~~~~
+
+supabase/functions/backup-scheduler/index.ts:481:36 - error TS7006: Parameter 'job' implicitly has an 'any' type.
+
+481         success_count: jobs.filter(job => job.job_status === 'completed').length,
+                                       ~~~
+
+supabase/functions/backup-scheduler/index.ts:482:36 - error TS7006: Parameter 'job' implicitly has an 'any' type.
+
+482         failure_count: jobs.filter(job => job.job_status === 'failed').length
+                                       ~~~
+
+supabase/functions/backup-scheduler/index.ts:487:37 - error TS7006: Parameter 'supabaseUrl' implicitly has an 'any' type.
+
+487 async function updateScheduleStatus(supabaseUrl, headers, scheduleId, status) {
+                                        ~~~~~~~~~~~
+
+supabase/functions/backup-scheduler/index.ts:487:50 - error TS7006: Parameter 'headers' implicitly has an 'any' type.
+
+487 async function updateScheduleStatus(supabaseUrl, headers, scheduleId, status) {
+                                                     ~~~~~~~
+
+supabase/functions/backup-scheduler/index.ts:487:59 - error TS7006: Parameter 'scheduleId' implicitly has an 'any' type.
+
+487 async function updateScheduleStatus(supabaseUrl, headers, scheduleId, status) {
+                                                              ~~~~~~~~~~
+
+supabase/functions/backup-scheduler/index.ts:487:71 - error TS7006: Parameter 'status' implicitly has an 'any' type.
+
+487 async function updateScheduleStatus(supabaseUrl, headers, scheduleId, status) {
+                                                                          ~~~~~~
+
+supabase/functions/backup-scheduler/index.ts:514:16 - error TS2393: Duplicate function implementation.
+
+514 async function generateHash(data) {
+                   ~~~~~~~~~~~~
+
+supabase/functions/backup-scheduler/index.ts:514:29 - error TS7006: Parameter 'data' implicitly has an 'any' type.
+
+514 async function generateHash(data) {
+                                ~~~~
+
+supabase/functions/health-monitor/index.ts:4:30 - error TS2307: Cannot find module 'https://esm.sh/@supabase/supabase-js@2.39.3' or its corresponding type declarations.
+
+4 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.39.3';
+                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/health-monitor/index.ts:20:1 - error TS2304: Cannot find name 'Deno'.
+
+20 Deno.serve(async (req) => {
+   ~~~~
+
+supabase/functions/health-monitor/index.ts:20:19 - error TS7006: Parameter 'req' implicitly has an 'any' type.
+
+20 Deno.serve(async (req) => {
+                     ~~~
+
+supabase/functions/health-monitor/index.ts:27:25 - error TS2304: Cannot find name 'Deno'.
+
+27     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
+                           ~~~~
+
+supabase/functions/health-monitor/index.ts:28:25 - error TS2304: Cannot find name 'Deno'.
+
+28     const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+                           ~~~~
+
+supabase/functions/health-monitor/index.ts:151:9 - error TS2322: Type '"unknown"' is not assignable to type '"down" | "healthy" | "degraded"'.
+
+151         status: 'unknown',
+            ~~~~~~
+
+  supabase/functions/health-monitor/index.ts:15:3
+    15   status: 'healthy' | 'degraded' | 'down';
+         ~~~~~~
+    The expected type comes from property 'status' which is declared here on type 'HealthCheckResult'
+
+supabase/functions/monitoring-service/index.ts:4:1 - error TS2304: Cannot find name 'Deno'.
+
+4 Deno.serve(async (req) => {
+  ~~~~
+
+supabase/functions/monitoring-service/index.ts:4:19 - error TS7006: Parameter 'req' implicitly has an 'any' type.
+
+4 Deno.serve(async (req) => {
+                    ~~~
+
+supabase/functions/monitoring-service/index.ts:23:32 - error TS2304: Cannot find name 'Deno'.
+
+23         const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
+                                  ~~~~
+
+supabase/functions/monitoring-service/index.ts:24:29 - error TS2304: Cannot find name 'Deno'.
+
+24         const supabaseUrl = Deno.env.get('SUPABASE_URL');
+                               ~~~~
+
+supabase/functions/monitoring-service/index.ts:48:32 - error TS2304: Cannot find name 'updateMonitorStatus'.
+
+48                 result = await updateMonitorStatus(supabaseUrl, supabaseHeaders, monitor_id, requestData);
+                                  ~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:52:32 - error TS2304: Cannot find name 'checkThresholds'.
+
+52                 result = await checkThresholds(supabaseUrl, supabaseHeaders, organization_id);
+                                  ~~~~~~~~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:56:32 - error TS2304: Cannot find name 'generateMonitoringReport'.
+
+56                 result = await generateMonitoringReport(supabaseUrl, supabaseHeaders, organization_id);
+                                  ~~~~~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:60:32 - error TS2304: Cannot find name 'checkBackupPerformance'.
+
+60                 result = await checkBackupPerformance(supabaseUrl, supabaseHeaders, organization_id);
+                                  ~~~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:77:26 - error TS18046: 'error' is of type 'unknown'.
+
+77                 message: error.message
+                            ~~~~~
+
+supabase/functions/monitoring-service/index.ts:89:32 - error TS7006: Parameter 'supabaseUrl' implicitly has an 'any' type.
+
+89 async function runHealthChecks(supabaseUrl, headers, organizationId) {
+                                  ~~~~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:89:45 - error TS7006: Parameter 'headers' implicitly has an 'any' type.
+
+89 async function runHealthChecks(supabaseUrl, headers, organizationId) {
+                                               ~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:89:54 - error TS7006: Parameter 'organizationId' implicitly has an 'any' type.
+
+89 async function runHealthChecks(supabaseUrl, headers, organizationId) {
+                                                        ~~~~~~~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:131:87 - error TS2339: Property 'severity' does not exist on type 'never'.
+
+131         healthCheckResults.critical_issues = healthCheckResults.details.filter(d => d.severity === 'critical').length;
+                                                                                          ~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:132:80 - error TS2339: Property 'severity' does not exist on type 'never'.
+
+132         healthCheckResults.warnings = healthCheckResults.details.filter(d => d.severity === 'warning').length;
+                                                                                   ~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:147:41 - error TS2345: Argument of type '{ check_name: string; status: string; severity: string; message: string; timestamp: string; }' is not assignable to parameter of type 'never'.
+
+147         healthCheckResults.details.push({
+                                            ~
+148             check_name: 'Health Check System',
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+... 
+152             timestamp: new Date().toISOString()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+153         });
+    ~~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:151:54 - error TS18046: 'error' is of type 'unknown'.
+
+151             message: `Health check system failure: ${error.message}`,
+                                                         ~~~~~
+
+supabase/functions/monitoring-service/index.ts:160:43 - error TS7006: Parameter 'supabaseUrl' implicitly has an 'any' type.
+
+160 async function checkBackupLocationsHealth(supabaseUrl, headers, organizationId) {
+                                              ~~~~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:160:56 - error TS7006: Parameter 'headers' implicitly has an 'any' type.
+
+160 async function checkBackupLocationsHealth(supabaseUrl, headers, organizationId) {
+                                                           ~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:160:65 - error TS7006: Parameter 'organizationId' implicitly has an 'any' type.
+
+160 async function checkBackupLocationsHealth(supabaseUrl, headers, organizationId) {
+                                                                    ~~~~~~~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:213:34 - error TS2345: Argument of type '{ check_name: string; status: string; severity: string; message: string; timestamp: string; location_id: any; storage_type: any; capacity_usage: number; }' is not assignable to parameter of type 'never'.
+
+213             results.details.push({
+                                     ~
+214                 check_name: `Backup Location: ${location.location_name}`,
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+... 
+221                 capacity_usage: capacityUsage
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+222             });
+    ~~~~~~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:232:34 - error TS2345: Argument of type '{ check_name: string; status: string; severity: string; message: string; timestamp: string; location_id: any; }' is not assignable to parameter of type 'never'.
+
+232             results.details.push({
+                                     ~
+233                 check_name: `Backup Location: ${location.location_name}`,
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+... 
+238                 location_id: location.id
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+239             });
+    ~~~~~~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:236:52 - error TS18046: 'error' is of type 'unknown'.
+
+236                 message: `Location check failed: ${error.message}`,
+                                                       ~~~~~
+
+supabase/functions/monitoring-service/index.ts:247:38 - error TS7006: Parameter 'supabaseUrl' implicitly has an 'any' type.
+
+247 async function checkRecentBackupJobs(supabaseUrl, headers, organizationId) {
+                                         ~~~~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:247:51 - error TS7006: Parameter 'headers' implicitly has an 'any' type.
+
+247 async function checkRecentBackupJobs(supabaseUrl, headers, organizationId) {
+                                                      ~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:247:60 - error TS7006: Parameter 'organizationId' implicitly has an 'any' type.
+
+247 async function checkRecentBackupJobs(supabaseUrl, headers, organizationId) {
+                                                               ~~~~~~~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:271:39 - error TS7006: Parameter 'job' implicitly has an 'any' type.
+
+271     const completedJobs = jobs.filter(job => job.job_status === 'completed').length;
+                                          ~~~
+
+supabase/functions/monitoring-service/index.ts:272:36 - error TS7006: Parameter 'job' implicitly has an 'any' type.
+
+272     const failedJobs = jobs.filter(job => job.job_status === 'failed').length;
+                                       ~~~
+
+supabase/functions/monitoring-service/index.ts:273:37 - error TS7006: Parameter 'job' implicitly has an 'any' type.
+
+273     const runningJobs = jobs.filter(job => job.job_status === 'running').length;
+                                        ~~~
+
+supabase/functions/monitoring-service/index.ts:288:26 - error TS2345: Argument of type '{ check_name: string; status: string; severity: string; message: string; timestamp: string; total_jobs: any; success_rate: number; failed_jobs: any; }' is not assignable to parameter of type 'never'.
+
+288     results.details.push({
+                             ~
+289         check_name: 'Backup Job Performance',
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+... 
+296         failed_jobs: failedJobs
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+297     });
+    ~~~~~
+
+supabase/functions/monitoring-service/index.ts:309:16 - error TS2393: Duplicate function implementation.
+
+309 async function checkStorageCapacity(supabaseUrl, headers, organizationId) {
+                   ~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:309:37 - error TS7006: Parameter 'supabaseUrl' implicitly has an 'any' type.
+
+309 async function checkStorageCapacity(supabaseUrl, headers, organizationId) {
+                                        ~~~~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:309:50 - error TS7006: Parameter 'headers' implicitly has an 'any' type.
+
+309 async function checkStorageCapacity(supabaseUrl, headers, organizationId) {
+                                                     ~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:309:59 - error TS7006: Parameter 'organizationId' implicitly has an 'any' type.
+
+309 async function checkStorageCapacity(supabaseUrl, headers, organizationId) {
+                                                              ~~~~~~~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:325:30 - error TS2345: Argument of type '{ check_name: string; status: string; severity: string; message: string; timestamp: string; }' is not assignable to parameter of type 'never'.
+
+325         results.details.push({
+                                 ~
+326             check_name: 'Storage Capacity Analysis',
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+... 
+330             timestamp: new Date().toISOString()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+331         });
+    ~~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:338:30 - error TS2345: Argument of type '{ check_name: string; status: string; severity: string; message: string; timestamp: string; }' is not assignable to parameter of type 'never'.
+
+338         results.details.push({
+                                 ~
+339             check_name: 'Storage Capacity Analysis',
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+... 
+343             timestamp: new Date().toISOString()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+344         });
+    ~~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:369:26 - error TS2345: Argument of type '{ check_name: string; status: string; severity: string; message: string; timestamp: string; storage_used_gb: any; usage_percent: number; growth_rate: any; days_until_warning: number; }' is not assignable to parameter of type 'never'.
+
+369     results.details.push({
+                             ~
+370         check_name: 'Storage Capacity Analysis',
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+... 
+378         days_until_warning: daysUntilWarning
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+379     });
+    ~~~~~
+
+supabase/functions/monitoring-service/index.ts:391:40 - error TS7006: Parameter 'supabaseUrl' implicitly has an 'any' type.
+
+391 async function checkRecoveryProcedures(supabaseUrl, headers, organizationId) {
+                                           ~~~~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:391:53 - error TS7006: Parameter 'headers' implicitly has an 'any' type.
+
+391 async function checkRecoveryProcedures(supabaseUrl, headers, organizationId) {
+                                                        ~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:391:62 - error TS7006: Parameter 'organizationId' implicitly has an 'any' type.
+
+391 async function checkRecoveryProcedures(supabaseUrl, headers, organizationId) {
+                                                                 ~~~~~~~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:452:30 - error TS2345: Argument of type '{ check_name: string; status: string; severity: string; message: string; timestamp: string; procedure_id: any; disaster_type: any; rto_hours: any; }' is not assignable to parameter of type 'never'.
+
+452         results.details.push({
+                                 ~
+453             check_name: `Recovery Procedure: ${procedure.procedure_name}`,
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+... 
+460             rto_hours: procedure.recovery_time_objective_hours
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+461         });
+    ~~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:474:38 - error TS7006: Parameter 'supabaseUrl' implicitly has an 'any' type.
+
+474 async function testStorageConnection(supabaseUrl, headers, locationId) {
+                                         ~~~~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:474:51 - error TS7006: Parameter 'headers' implicitly has an 'any' type.
+
+474 async function testStorageConnection(supabaseUrl, headers, locationId) {
+                                                      ~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:474:60 - error TS7006: Parameter 'locationId' implicitly has an 'any' type.
+
+474 async function testStorageConnection(supabaseUrl, headers, locationId) {
+                                                               ~~~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:505:9 - error TS2322: Type '{ status: string; latency_ms: number; message: string; }' is not assignable to type 'null'.
+
+505         testResults.connection_test = {
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:515:9 - error TS2322: Type '{ status: string; speed_mbps: any; message: string; }' is not assignable to type 'null'.
+
+515         testResults.write_test = {
+            ~~~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:525:9 - error TS2322: Type '{ status: string; speed_mbps: number; message: string; }' is not assignable to type 'null'.
+
+525         testResults.read_test = {
+            ~~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:534:27 - error TS18047: 'testResults.connection_test' is possibly 'null'.
+
+534         const allPassed = testResults.connection_test.status === 'passed' &&
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:535:27 - error TS18047: 'testResults.write_test' is possibly 'null'.
+
+535                           testResults.write_test.status === 'passed' &&
+                              ~~~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:536:27 - error TS18047: 'testResults.read_test' is possibly 'null'.
+
+536                           testResults.read_test.status === 'passed';
+                              ~~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:548:21 - error TS2339: Property 'error_message' does not exist on type '{ location_id: any; location_name: any; storage_type: any; test_timestamp: string; connection_test: null; write_test: null; read_test: null; overall_status: string; }'.
+
+548         testResults.error_message = error.message;
+                        ~~~~~~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:548:37 - error TS18046: 'error' is of type 'unknown'.
+
+548         testResults.error_message = error.message;
+                                        ~~~~~
+
+supabase/functions/monitoring-service/index.ts:554:40 - error TS7006: Parameter 'supabaseUrl' implicitly has an 'any' type.
+
+554 async function updateMonitoringRecords(supabaseUrl, headers, organizationId, healthResults) {
+                                           ~~~~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:554:53 - error TS7006: Parameter 'headers' implicitly has an 'any' type.
+
+554 async function updateMonitoringRecords(supabaseUrl, headers, organizationId, healthResults) {
+                                                        ~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:554:62 - error TS7006: Parameter 'organizationId' implicitly has an 'any' type.
+
+554 async function updateMonitoringRecords(supabaseUrl, headers, organizationId, healthResults) {
+                                                                 ~~~~~~~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:554:78 - error TS7006: Parameter 'healthResults' implicitly has an 'any' type.
+
+554 async function updateMonitoringRecords(supabaseUrl, headers, organizationId, healthResults) {
+                                                                                 ~~~~~~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:612:39 - error TS7006: Parameter 'location' implicitly has an 'any' type.
+
+612 async function simulateConnectionTest(location) {
+                                          ~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:622:21 - error TS7053: Element implicitly has an 'any' type because expression of type 'any' can't be used to index type '{ supabase: number; aws_s3: number; google_cloud: number; azure_blob: number; local: number; }'.
+
+622     const latency = baseLatency[location.storage_type] || 100;
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:632:34 - error TS7006: Parameter 'location' implicitly has an 'any' type.
+
+632 async function simulateWriteTest(location) {
+                                     ~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:641:24 - error TS7053: Element implicitly has an 'any' type because expression of type 'any' can't be used to index type '{ hot: { min: number; max: number; }; cool: { min: number; max: number; }; cold: { min: number; max: number; }; archive: { min: number; max: number; }; }'.
+
+641     const speedRange = baseSpeeds[location.storage_tier] || { min: 10, max: 30 };
+                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:650:33 - error TS7006: Parameter 'location' implicitly has an 'any' type.
+
+650 async function simulateReadTest(location) {
+                                    ~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:657:37 - error TS7006: Parameter 'supabaseUrl' implicitly has an 'any' type.
+
+657 async function updateLocationHealth(supabaseUrl, headers, locationId, healthStatus) {
+                                        ~~~~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:657:50 - error TS7006: Parameter 'headers' implicitly has an 'any' type.
+
+657 async function updateLocationHealth(supabaseUrl, headers, locationId, healthStatus) {
+                                                     ~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:657:59 - error TS7006: Parameter 'locationId' implicitly has an 'any' type.
+
+657 async function updateLocationHealth(supabaseUrl, headers, locationId, healthStatus) {
+                                                              ~~~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:657:71 - error TS7006: Parameter 'healthStatus' implicitly has an 'any' type.
+
+657 async function updateLocationHealth(supabaseUrl, headers, locationId, healthStatus) {
+                                                                          ~~~~~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:675:42 - error TS7006: Parameter 'supabaseUrl' implicitly has an 'any' type.
+
+675 async function checkLastSuccessfulBackup(supabaseUrl, headers, locationId) {
+                                             ~~~~~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:675:55 - error TS7006: Parameter 'headers' implicitly has an 'any' type.
+
+675 async function checkLastSuccessfulBackup(supabaseUrl, headers, locationId) {
+                                                          ~~~~~~~
+
+supabase/functions/monitoring-service/index.ts:675:64 - error TS7006: Parameter 'locationId' implicitly has an 'any' type.
+
+675 async function checkLastSuccessfulBackup(supabaseUrl, headers, locationId) {
+                                                                   ~~~~~~~~~~
+
+supabase/functions/payment-processor/index.ts:4:30 - error TS2307: Cannot find module 'https://esm.sh/@supabase/supabase-js@2.39.3' or its corresponding type declarations.
+
+4 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.39.3';
+                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/payment-processor/index.ts:23:1 - error TS2304: Cannot find name 'Deno'.
+
+23 Deno.serve(async (req) => {
+   ~~~~
+
+supabase/functions/payment-processor/index.ts:23:19 - error TS7006: Parameter 'req' implicitly has an 'any' type.
+
+23 Deno.serve(async (req) => {
+                     ~~~
+
+supabase/functions/payment-processor/index.ts:30:25 - error TS2304: Cannot find name 'Deno'.
+
+30     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
+                           ~~~~
+
+supabase/functions/payment-processor/index.ts:31:25 - error TS2304: Cannot find name 'Deno'.
+
+31     const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+                           ~~~~
+
+supabase/functions/rate-limiter/index.ts:4:30 - error TS2307: Cannot find module 'https://esm.sh/@supabase/supabase-js@2.39.3' or its corresponding type declarations.
+
+4 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.39.3';
+                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/rate-limiter/index.ts:18:1 - error TS2304: Cannot find name 'Deno'.
+
+18 Deno.serve(async (req) => {
+   ~~~~
+
+supabase/functions/rate-limiter/index.ts:18:19 - error TS7006: Parameter 'req' implicitly has an 'any' type.
+
+18 Deno.serve(async (req) => {
+                     ~~~
+
+supabase/functions/rate-limiter/index.ts:25:25 - error TS2304: Cannot find name 'Deno'.
+
+25     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
+                           ~~~~
+
+supabase/functions/rate-limiter/index.ts:26:25 - error TS2304: Cannot find name 'Deno'.
+
+26     const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+                           ~~~~
+
+supabase/functions/storage-manager/index.ts:4:1 - error TS2304: Cannot find name 'Deno'.
+
+4 Deno.serve(async (req) => {
+  ~~~~
+
+supabase/functions/storage-manager/index.ts:4:19 - error TS7006: Parameter 'req' implicitly has an 'any' type.
+
+4 Deno.serve(async (req) => {
+                    ~~~
+
+supabase/functions/storage-manager/index.ts:23:32 - error TS2304: Cannot find name 'Deno'.
+
+23         const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
+                                  ~~~~
+
+supabase/functions/storage-manager/index.ts:24:29 - error TS2304: Cannot find name 'Deno'.
+
+24         const supabaseUrl = Deno.env.get('SUPABASE_URL');
+                               ~~~~
+
+supabase/functions/storage-manager/index.ts:64:32 - error TS2304: Cannot find name 'migrateData'.
+
+64                 result = await migrateData(supabaseUrl, supabaseHeaders, requestData);
+                                  ~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:85:26 - error TS18046: 'error' is of type 'unknown'.
+
+85                 message: error.message
+                            ~~~~~
+
+supabase/functions/storage-manager/index.ts:97:29 - error TS7006: Parameter 'supabaseUrl' implicitly has an 'any' type.
+
+97 async function uploadBackup(supabaseUrl, headers, uploadData) {
+                               ~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:97:42 - error TS7006: Parameter 'headers' implicitly has an 'any' type.
+
+97 async function uploadBackup(supabaseUrl, headers, uploadData) {
+                                            ~~~~~~~
+
+supabase/functions/storage-manager/index.ts:97:51 - error TS7006: Parameter 'uploadData' implicitly has an 'any' type.
+
+97 async function uploadBackup(supabaseUrl, headers, uploadData) {
+                                                     ~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:194:31 - error TS7006: Parameter 'supabaseUrl' implicitly has an 'any' type.
+
+194 async function downloadBackup(supabaseUrl, headers, locationId, filePath) {
+                                  ~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:194:44 - error TS7006: Parameter 'headers' implicitly has an 'any' type.
+
+194 async function downloadBackup(supabaseUrl, headers, locationId, filePath) {
+                                               ~~~~~~~
+
+supabase/functions/storage-manager/index.ts:194:53 - error TS7006: Parameter 'locationId' implicitly has an 'any' type.
+
+194 async function downloadBackup(supabaseUrl, headers, locationId, filePath) {
+                                                        ~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:194:65 - error TS7006: Parameter 'filePath' implicitly has an 'any' type.
+
+194 async function downloadBackup(supabaseUrl, headers, locationId, filePath) {
+                                                                    ~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:218:36 - error TS2304: Cannot find name 'downloadFromSupabase'.
+
+218             downloadResult = await downloadFromSupabase(supabaseUrl, headers, location, filePath);
+                                       ~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:221:36 - error TS2304: Cannot find name 'downloadFromAWS'.
+
+221             downloadResult = await downloadFromAWS(location, filePath);
+                                       ~~~~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:224:36 - error TS2304: Cannot find name 'downloadFromGoogleCloud'.
+
+224             downloadResult = await downloadFromGoogleCloud(location, filePath);
+                                       ~~~~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:227:36 - error TS2304: Cannot find name 'downloadFromAzure'.
+
+227             downloadResult = await downloadFromAzure(location, filePath);
+                                       ~~~~~~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:236:34 - error TS2304: Cannot find name 'verifyDownloadIntegrity'.
+
+236     const integrityCheck = await verifyDownloadIntegrity(downloadResult.data, downloadResult.expectedHash);
+                                     ~~~~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:262:29 - error TS7006: Parameter 'supabaseUrl' implicitly has an 'any' type.
+
+262 async function verifyBackup(supabaseUrl, headers, verificationData) {
+                                ~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:262:42 - error TS7006: Parameter 'headers' implicitly has an 'any' type.
+
+262 async function verifyBackup(supabaseUrl, headers, verificationData) {
+                                             ~~~~~~~
+
+supabase/functions/storage-manager/index.ts:262:51 - error TS7006: Parameter 'verificationData' implicitly has an 'any' type.
+
+262 async function verifyBackup(supabaseUrl, headers, verificationData) {
+                                                      ~~~~~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:290:38 - error TS2304: Cannot find name 'checkFileExistence'.
+
+290         const existenceCheck = await checkFileExistence(location, file_path);
+                                         ~~~~~~~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:291:51 - error TS2345: Argument of type '{ check: string; status: string; details: any; }' is not assignable to parameter of type 'never'.
+
+291         verificationResults.checks_performed.push({
+                                                      ~
+292             check: 'File Existence',
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+... 
+294             details: existenceCheck.details
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+295         });
+    ~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:299:51 - error TS2345: Argument of type 'string' is not assignable to parameter of type 'never'.
+
+299             verificationResults.issues_found.push('File does not exist in storage');
+                                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:305:37 - error TS2304: Cannot find name 'verifyFileSize'.
+
+305             const sizeCheck = await verifyFileSize(location, file_path, expected_size);
+                                        ~~~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:306:55 - error TS2345: Argument of type '{ check: string; status: string; details: string; }' is not assignable to parameter of type 'never'.
+
+306             verificationResults.checks_performed.push({
+                                                          ~
+307                 check: 'File Size',
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+... 
+309                 details: `Expected: ${expected_size}, Actual: ${sizeCheck.actualSize}`
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+310             });
+    ~~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:314:55 - error TS2345: Argument of type 'string' is not assignable to parameter of type 'never'.
+
+314                 verificationResults.issues_found.push(`File size mismatch: expected ${expected_size}, got ${sizeCheck.actualSize}`);
+                                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:320:37 - error TS2304: Cannot find name 'verifyFileHash'.
+
+320             const hashCheck = await verifyFileHash(location, file_path, expected_hash);
+                                        ~~~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:321:55 - error TS2345: Argument of type '{ check: string; status: string; details: string; }' is not assignable to parameter of type 'never'.
+
+321             verificationResults.checks_performed.push({
+                                                          ~
+322                 check: 'Hash Verification',
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+... 
+324                 details: `Expected: ${expected_hash}, Actual: ${hashCheck.actualHash}`
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+325             });
+    ~~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:329:55 - error TS2345: Argument of type 'string' is not assignable to parameter of type 'never'.
+
+329                 verificationResults.issues_found.push('File integrity check failed - hash mismatch');
+                                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:334:35 - error TS2304: Cannot find name 'testFileAccessibility'.
+
+334         const accessCheck = await testFileAccessibility(location, file_path);
+                                      ~~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:335:51 - error TS2345: Argument of type '{ check: string; status: string; details: any; }' is not assignable to parameter of type 'never'.
+
+335         verificationResults.checks_performed.push({
+                                                      ~
+336             check: 'File Accessibility',
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+... 
+338             details: accessCheck.details
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+339         });
+    ~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:343:51 - error TS2345: Argument of type 'string' is not assignable to parameter of type 'never'.
+
+343             verificationResults.issues_found.push('File is not accessible for download');
+                                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:359:47 - error TS2345: Argument of type 'string' is not assignable to parameter of type 'never'.
+
+359         verificationResults.issues_found.push(`Verification error: ${error.message}`);
+                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:359:70 - error TS18046: 'error' is of type 'unknown'.
+
+359         verificationResults.issues_found.push(`Verification error: ${error.message}`);
+                                                                         ~~~~~
+
+supabase/functions/storage-manager/index.ts:366:32 - error TS7006: Parameter 'supabaseUrl' implicitly has an 'any' type.
+
+366 async function manageRetention(supabaseUrl, headers, organizationId) {
+                                   ~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:366:45 - error TS7006: Parameter 'headers' implicitly has an 'any' type.
+
+366 async function manageRetention(supabaseUrl, headers, organizationId) {
+                                                ~~~~~~~
+
+supabase/functions/storage-manager/index.ts:366:54 - error TS7006: Parameter 'organizationId' implicitly has an 'any' type.
+
+366 async function manageRetention(supabaseUrl, headers, organizationId) {
+                                                         ~~~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:389:42 - error TS2304: Cannot find name 'processScheduleRetention'.
+
+389             const scheduleResult = await processScheduleRetention(supabaseUrl, headers, schedule);
+                                             ~~~~~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:393:43 - error TS2345: Argument of type 'any' is not assignable to parameter of type 'never'.
+
+393             retentionResults.details.push(scheduleResult);
+                                              ~~~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:396:42 - error TS2345: Argument of type '{ schedule_id: any; schedule_name: any; error: any; }' is not assignable to parameter of type 'never'.
+
+396             retentionResults.errors.push({
+                                             ~
+397                 schedule_id: schedule.id,
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+... 
+399                 error: error.message
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+400             });
+    ~~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:399:24 - error TS18046: 'error' is of type 'unknown'.
+
+399                 error: error.message
+                           ~~~~~
+
+supabase/functions/storage-manager/index.ts:406:15 - error TS2304: Cannot find name 'updateOrganizationStorageStats'.
+
+406         await updateOrganizationStorageStats(supabaseUrl, headers, organizationId, -retentionResults.storage_freed_gb);
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:413:37 - error TS7006: Parameter 'supabaseUrl' implicitly has an 'any' type.
+
+413 async function syncStorageLocations(supabaseUrl, headers, organizationId) {
+                                        ~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:413:50 - error TS7006: Parameter 'headers' implicitly has an 'any' type.
+
+413 async function syncStorageLocations(supabaseUrl, headers, organizationId) {
+                                                     ~~~~~~~
+
+supabase/functions/storage-manager/index.ts:413:59 - error TS7006: Parameter 'organizationId' implicitly has an 'any' type.
+
+413 async function syncStorageLocations(supabaseUrl, headers, organizationId) {
+                                                              ~~~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:435:40 - error TS2304: Cannot find name 'syncSingleLocation'.
+
+435             const locationSync = await syncSingleLocation(supabaseUrl, headers, location);
+                                           ~~~~~~~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:438:47 - error TS2345: Argument of type 'any' is not assignable to parameter of type 'never'.
+
+438             syncResults.location_details.push(locationSync);
+                                                  ~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:442:47 - error TS2345: Argument of type '{ location_id: any; location_name: any; sync_status: string; error: any; }' is not assignable to parameter of type 'never'.
+
+442             syncResults.location_details.push({
+                                                  ~
+443                 location_id: location.id,
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+... 
+446                 error: error.message
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+447             });
+    ~~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:446:24 - error TS18046: 'error' is of type 'unknown'.
+
+446                 error: error.message
+                           ~~~~~
+
+supabase/functions/storage-manager/index.ts:455:32 - error TS7006: Parameter 'supabaseUrl' implicitly has an 'any' type.
+
+455 async function optimizeStorage(supabaseUrl, headers, locationId) {
+                                   ~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:455:45 - error TS7006: Parameter 'headers' implicitly has an 'any' type.
+
+455 async function optimizeStorage(supabaseUrl, headers, locationId) {
+                                                ~~~~~~~
+
+supabase/functions/storage-manager/index.ts:455:54 - error TS7006: Parameter 'locationId' implicitly has an 'any' type.
+
+455 async function optimizeStorage(supabaseUrl, headers, locationId) {
+                                                         ~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:479:34 - error TS2304: Cannot find name 'findDuplicateFiles'.
+
+479     const duplicateCheck = await findDuplicateFiles(location);
+                                     ~~~~~~~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:481:43 - error TS2304: Cannot find name 'deduplicateFiles'.
+
+481         const deduplicationResult = await deduplicateFiles(location, duplicateCheck.duplicates);
+                                              ~~~~~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:482:56 - error TS2345: Argument of type '{ type: string; files_processed: any; storage_saved_gb: any; cost_savings: any; }' is not assignable to parameter of type 'never'.
+
+482         optimizationResults.optimizations_applied.push({
+                                                           ~
+483             type: 'Deduplication',
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+... 
+486             cost_savings: deduplicationResult.cost_savings
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+487         });
+    ~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:493:36 - error TS2304: Cannot find name 'findUncompressedFiles'.
+
+493     const compressionCheck = await findUncompressedFiles(location);
+                                       ~~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:495:41 - error TS2304: Cannot find name 'compressFiles'.
+
+495         const compressionResult = await compressFiles(location, compressionCheck.files);
+                                            ~~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:496:56 - error TS2345: Argument of type '{ type: string; files_processed: any; storage_saved_gb: any; cost_savings: any; }' is not assignable to parameter of type 'never'.
+
+496         optimizationResults.optimizations_applied.push({
+                                                           ~
+497             type: 'Compression',
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+... 
+500             cost_savings: compressionResult.cost_savings
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+501         });
+    ~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:507:36 - error TS2304: Cannot find name 'optimizeStorageTiers'.
+
+507     const tierOptimization = await optimizeStorageTiers(location);
+                                       ~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:509:56 - error TS2345: Argument of type '{ type: string; files_processed: any; cost_savings: any; }' is not assignable to parameter of type 'never'.
+
+509         optimizationResults.optimizations_applied.push({
+                                                           ~
+510             type: 'Storage Tier Optimization',
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+... 
+512             cost_savings: tierOptimization.cost_savings
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+513         });
+    ~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:524:38 - error TS7006: Parameter 'supabaseUrl' implicitly has an 'any' type.
+
+524 async function calculateStorageCosts(supabaseUrl, headers, organizationId) {
+                                         ~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:524:51 - error TS7006: Parameter 'headers' implicitly has an 'any' type.
+
+524 async function calculateStorageCosts(supabaseUrl, headers, organizationId) {
+                                                      ~~~~~~~
+
+supabase/functions/storage-manager/index.ts:524:60 - error TS7006: Parameter 'organizationId' implicitly has an 'any' type.
+
+524 async function calculateStorageCosts(supabaseUrl, headers, organizationId) {
+                                                               ~~~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:548:37 - error TS2304: Cannot find name 'calculateLocationCosts'.
+
+548         const locationCosts = await calculateLocationCosts(location);
+                                        ~~~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:549:42 - error TS2345: Argument of type 'any' is not assignable to parameter of type 'never'.
+
+549         costAnalysis.location_costs.push(locationCosts);
+                                             ~~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:560:36 - error TS2304: Cannot find name 'generateCostRecommendations'.
+
+560     costAnalysis.recommendations = generateCostRecommendations(costAnalysis);
+                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:567:30 - error TS7006: Parameter 'location' implicitly has an 'any' type.
+
+567 function generateStoragePath(location, fileName, metadata) {
+                                 ~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:567:40 - error TS7006: Parameter 'fileName' implicitly has an 'any' type.
+
+567 function generateStoragePath(location, fileName, metadata) {
+                                           ~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:567:50 - error TS7006: Parameter 'metadata' implicitly has an 'any' type.
+
+567 function generateStoragePath(location, fileName, metadata) {
+                                                     ~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:577:34 - error TS7006: Parameter 'data' implicitly has an 'any' type.
+
+577 async function processBackupData(data, options) {
+                                     ~~~~
+
+supabase/functions/storage-manager/index.ts:577:40 - error TS7006: Parameter 'options' implicitly has an 'any' type.
+
+577 async function processBackupData(data, options) {
+                                           ~~~~~~~
+
+supabase/functions/storage-manager/index.ts:601:16 - error TS2393: Duplicate function implementation.
+
+601 async function checkStorageCapacity(location, requiredSize) {
+                   ~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:601:37 - error TS7006: Parameter 'location' implicitly has an 'any' type.
+
+601 async function checkStorageCapacity(location, requiredSize) {
+                                        ~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:601:47 - error TS7006: Parameter 'requiredSize' implicitly has an 'any' type.
+
+601 async function checkStorageCapacity(location, requiredSize) {
+                                                  ~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:614:33 - error TS7006: Parameter 'supabaseUrl' implicitly has an 'any' type.
+
+614 async function uploadToSupabase(supabaseUrl, headers, location, storagePath, data) {
+                                    ~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:614:46 - error TS7006: Parameter 'headers' implicitly has an 'any' type.
+
+614 async function uploadToSupabase(supabaseUrl, headers, location, storagePath, data) {
+                                                 ~~~~~~~
+
+supabase/functions/storage-manager/index.ts:614:55 - error TS7006: Parameter 'location' implicitly has an 'any' type.
+
+614 async function uploadToSupabase(supabaseUrl, headers, location, storagePath, data) {
+                                                          ~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:614:65 - error TS7006: Parameter 'storagePath' implicitly has an 'any' type.
+
+614 async function uploadToSupabase(supabaseUrl, headers, location, storagePath, data) {
+                                                                    ~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:614:78 - error TS7006: Parameter 'data' implicitly has an 'any' type.
+
+614 async function uploadToSupabase(supabaseUrl, headers, location, storagePath, data) {
+                                                                                 ~~~~
+
+supabase/functions/storage-manager/index.ts:627:28 - error TS7006: Parameter 'location' implicitly has an 'any' type.
+
+627 async function uploadToAWS(location, storagePath, data) {
+                               ~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:627:38 - error TS7006: Parameter 'storagePath' implicitly has an 'any' type.
+
+627 async function uploadToAWS(location, storagePath, data) {
+                                         ~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:627:51 - error TS7006: Parameter 'data' implicitly has an 'any' type.
+
+627 async function uploadToAWS(location, storagePath, data) {
+                                                      ~~~~
+
+supabase/functions/storage-manager/index.ts:640:36 - error TS7006: Parameter 'location' implicitly has an 'any' type.
+
+640 async function uploadToGoogleCloud(location, storagePath, data) {
+                                       ~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:640:46 - error TS7006: Parameter 'storagePath' implicitly has an 'any' type.
+
+640 async function uploadToGoogleCloud(location, storagePath, data) {
+                                                 ~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:640:59 - error TS7006: Parameter 'data' implicitly has an 'any' type.
+
+640 async function uploadToGoogleCloud(location, storagePath, data) {
+                                                              ~~~~
+
+supabase/functions/storage-manager/index.ts:653:30 - error TS7006: Parameter 'location' implicitly has an 'any' type.
+
+653 async function uploadToAzure(location, storagePath, data) {
+                                 ~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:653:40 - error TS7006: Parameter 'storagePath' implicitly has an 'any' type.
+
+653 async function uploadToAzure(location, storagePath, data) {
+                                           ~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:653:53 - error TS7006: Parameter 'data' implicitly has an 'any' type.
+
+653 async function uploadToAzure(location, storagePath, data) {
+                                                        ~~~~
+
+supabase/functions/storage-manager/index.ts:667:38 - error TS7006: Parameter 'location' implicitly has an 'any' type.
+
+667 async function verifyUploadIntegrity(location, storagePath, expectedHash) {
+                                         ~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:667:48 - error TS7006: Parameter 'storagePath' implicitly has an 'any' type.
+
+667 async function verifyUploadIntegrity(location, storagePath, expectedHash) {
+                                                   ~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:667:61 - error TS7006: Parameter 'expectedHash' implicitly has an 'any' type.
+
+667 async function verifyUploadIntegrity(location, storagePath, expectedHash) {
+                                                                ~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:673:36 - error TS7006: Parameter 'supabaseUrl' implicitly has an 'any' type.
+
+673 async function updateLocationUsage(supabaseUrl, headers, locationId, sizeChange) {
+                                       ~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:673:49 - error TS7006: Parameter 'headers' implicitly has an 'any' type.
+
+673 async function updateLocationUsage(supabaseUrl, headers, locationId, sizeChange) {
+                                                    ~~~~~~~
+
+supabase/functions/storage-manager/index.ts:673:58 - error TS7006: Parameter 'locationId' implicitly has an 'any' type.
+
+673 async function updateLocationUsage(supabaseUrl, headers, locationId, sizeChange) {
+                                                             ~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:673:70 - error TS7006: Parameter 'sizeChange' implicitly has an 'any' type.
+
+673 async function updateLocationUsage(supabaseUrl, headers, locationId, sizeChange) {
+                                                                         ~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:689:35 - error TS7006: Parameter 'supabaseUrl' implicitly has an 'any' type.
+
+689 async function logStorageActivity(supabaseUrl, headers, activityData) {
+                                      ~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:689:48 - error TS7006: Parameter 'headers' implicitly has an 'any' type.
+
+689 async function logStorageActivity(supabaseUrl, headers, activityData) {
+                                                   ~~~~~~~
+
+supabase/functions/storage-manager/index.ts:689:57 - error TS7006: Parameter 'activityData' implicitly has an 'any' type.
+
+689 async function logStorageActivity(supabaseUrl, headers, activityData) {
+                                                            ~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:694:16 - error TS2393: Duplicate function implementation.
+
+694 async function generateHash(data) {
+                   ~~~~~~~~~~~~
+
+supabase/functions/storage-manager/index.ts:694:29 - error TS7006: Parameter 'data' implicitly has an 'any' type.
+
+694 async function generateHash(data) {
+                                ~~~~
+
+supabase/functions/webhook-handler/index.ts:4:30 - error TS2307: Cannot find module 'https://esm.sh/@supabase/supabase-js@2.39.3' or its corresponding type declarations.
+
+4 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.39.3';
+                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/webhook-handler/index.ts:5:24 - error TS2307: Cannot find module 'https://deno.land/std@0.177.0/crypto/mod.ts' or its corresponding type declarations.
+
+5 import { crypto } from 'https://deno.land/std@0.177.0/crypto/mod.ts';
+                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+supabase/functions/webhook-handler/index.ts:54:1 - error TS2304: Cannot find name 'Deno'.
+
+54 Deno.serve(async (req) => {
+   ~~~~
+
+supabase/functions/webhook-handler/index.ts:54:19 - error TS7006: Parameter 'req' implicitly has an 'any' type.
+
+54 Deno.serve(async (req) => {
+                     ~~~
+
+supabase/functions/webhook-handler/index.ts:61:25 - error TS2304: Cannot find name 'Deno'.
+
+61     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
+                           ~~~~
+
+supabase/functions/webhook-handler/index.ts:62:25 - error TS2304: Cannot find name 'Deno'.
+
+62     const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+                           ~~~~
+
+
+Found 509 errors in 50 files.
+
+Errors  Files
+     1  app/branches/analytics/page.tsx:281
+     1  app/employees/skills/page.tsx:133
+     1  app/feedback/page.tsx:129
+     2  app/feedback/surveys/page.tsx:431
+     1  app/finance/reports/page.tsx:132
+     5  app/inventory/materials/page.tsx:98
+     5  app/inventory/orders/page.tsx:323
+     2  app/inventory/page.tsx:155
+    18  app/inventory/quality/page.tsx:44
+     2  app/invoices/new/page.tsx:23
+     4  app/invoices/page.tsx:26
+    15  app/legal/analytics/page.tsx:58
+    16  app/legal/compliance/page.tsx:20
+    18  app/legal/signatures/page.tsx:38
+     8  app/legal/templates/page.tsx:39
+     1  app/marketing/campaigns/page.tsx:109
+     1  app/marketing/settings/page.tsx:9
+     2  app/orders/[id]/page.tsx:200
+     1  app/orders/page.tsx:100
+     4  app/payments/page.tsx:26
+    10  app/support/analytics/page.tsx:17
+     1  app/support/knowledge/page.tsx:43
+     2  app/support/page.tsx:26
+     2  app/support/tickets/[id]/page.tsx:348
+     2  app/support/tickets/page.tsx:466
+    14  app/training/career-paths/page.tsx:33
+    11  app/training/certifications/page.tsx:14
+     1  app/training/compliance/page.tsx:15
+     7  app/training/courses/page.tsx:19
+     2  app/training/page.tsx:68
+     2  app/training/skills/page.tsx:32
+    10  app/workflow/page.tsx:136
+     1  components/dashboard/main-dashboard.tsx:60
+     1  components/dashboard/quality-metrics.tsx:50
+     2  components/layout/sidebar.tsx:46
+     1  components/providers.tsx:25
+     1  components/ui/checkbox.tsx:24
+     1  components/ui/dropdown-menu.tsx:45
+     7  hooks/useDashboardData.ts:263
+     2  hooks/useLegal.ts:815
+     1  hooks/useSupport.ts:599
+    89  supabase/functions/alert-processor/index.ts:4
+     5  supabase/functions/api-proxy/index.ts:4
+    36  supabase/functions/backup-scheduler/index.ts:4
+     6  supabase/functions/health-monitor/index.ts:4
+    67  supabase/functions/monitoring-service/index.ts:4
+     5  supabase/functions/payment-processor/index.ts:4
+     5  supabase/functions/rate-limiter/index.ts:4
+   101  supabase/functions/storage-manager/index.ts:4
+     6  supabase/functions/webhook-handler/index.ts:4

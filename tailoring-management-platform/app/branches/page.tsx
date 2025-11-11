@@ -14,10 +14,10 @@ import {
   UserGroupIcon,
   CurrencyDollarIcon,
   ChartBarIcon,
-  ArrowTrendingUpIcon,
   Cog6ToothIcon,
   EyeIcon
 } from '@heroicons/react/24/outline';
+import { TrendingUp } from 'lucide-react';
 import Link from 'next/link';
 import type { Branch } from '@/types/branch';
 
@@ -100,7 +100,7 @@ export default function BranchesPage() {
         <Card className="bg-white/5 backdrop-blur-xl border border-white/10 p-6">
           <div className="flex items-center justify-between mb-4">
             <UserGroupIcon className="h-8 w-8 text-green-400" />
-            <ArrowTrendingUpIcon className="h-5 w-5 text-green-400" />
+            <TrendingUp className="h-5 w-5 text-green-400" />
           </div>
           <div className="text-3xl font-bold text-white mb-1">
             {overview?.total_staff || 0}
@@ -129,7 +129,7 @@ export default function BranchesPage() {
           <div className="text-3xl font-bold text-white mb-1">
             {overview?.branches && overview.branches.length > 0
               ? Math.round(
-                  overview.branches.reduce((sum, b) => sum + b.customer_satisfaction, 0) /
+                  overview.branches?.reduce((sum, b) => sum + b.customer_satisfaction, 0) /
                     overview.branches.length * 10
                 ) / 10
               : 0}

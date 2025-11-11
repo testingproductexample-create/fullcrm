@@ -17,7 +17,7 @@ import {
   SortAsc,
   SortDesc
 } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/client';
 import { Employee, Department } from '@/types/employee';
 import { formatEmployeeName, formatEmployeeId, getEmployeeStatusColor, calculateTotalCompensation, formatAEDCurrency } from '@/types/employee';
 
@@ -452,7 +452,7 @@ export default function EmployeeDirectory() {
                         <Eye className="h-4 w-4" />
                       </Link>
                       <Link
-                        href={`/employees/${employee.id/edit}`}
+                        href={`/employees/${employee.id}/Edit`}
                         className="text-green-600 hover:text-green-900"
                       >
                         <Edit className="h-4 w-4" />

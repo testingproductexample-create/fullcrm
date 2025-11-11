@@ -36,7 +36,7 @@ import {
   ChevronDown,
   ExternalLink
 } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/client';
 import { 
   PurchaseOrder,
   PurchaseOrderItem,
@@ -752,7 +752,7 @@ export default function PurchaseOrdersPage() {
                               <Eye className="h-4 w-4" />
                             </Link>
                             <Link
-                              href={`/inventory/orders/${order.id/edit}`}
+                              href={`/inventory/orders/${order.id}/Edit`}
                               className="p-2 text-slate-600 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors"
                             >
                               <Edit className="h-4 w-4" />

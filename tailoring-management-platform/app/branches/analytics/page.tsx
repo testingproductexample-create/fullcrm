@@ -10,13 +10,12 @@ import {
   ChartBarIcon,
   BuildingOffice2Icon,
   TrophyIcon,
-  ArrowTrendingUpIcon,
-  ArrowTrendingDownIcon,
   UsersIcon,
   CurrencyDollarIcon,
   ShoppingBagIcon,
   ClockIcon
 } from '@heroicons/react/24/outline';
+import { TrendingUp, TrendingDown } from 'lucide-react';
 
 export default function BranchAnalyticsPage() {
   const { user } = useAuth();
@@ -39,11 +38,11 @@ export default function BranchAnalyticsPage() {
     : 0;
 
   const averageSatisfaction = overview?.branches?.length
-    ? overview.branches.reduce((sum, b) => sum + b.customer_satisfaction, 0) / overview.branches.length
+    ? overview.branches?.reduce((sum, b) => sum + b.customer_satisfaction, 0) / overview.branches.length
     : 0;
 
   const averageDeliveryRate = overview?.branches?.length
-    ? overview.branches.reduce((sum, b) => sum + b.on_time_delivery_rate, 0) / overview.branches.length
+    ? overview.branches?.reduce((sum, b) => sum + b.on_time_delivery_rate, 0) / overview.branches.length
     : 0;
 
   if (loadingBranches || loadingOverview) {
@@ -88,7 +87,7 @@ export default function BranchAnalyticsPage() {
           </div>
           <div className="text-3xl font-bold text-white">{averageRevenue.toLocaleString()} AED</div>
           <div className="flex items-center gap-1 text-xs text-green-400 mt-2">
-            <ArrowTrendingUpIcon className="h-4 w-4" />
+            <TrendingUp className="h-4 w-4" />
             <span>12% vs last month</span>
           </div>
         </Card>
@@ -100,7 +99,7 @@ export default function BranchAnalyticsPage() {
           </div>
           <div className="text-3xl font-bold text-white">{(averageSatisfaction || 0).toFixed(1)}/5.0</div>
           <div className="flex items-center gap-1 text-xs text-green-400 mt-2">
-            <ArrowTrendingUpIcon className="h-4 w-4" />
+            <TrendingUp className="h-4 w-4" />
             <span>0.3 points improvement</span>
           </div>
         </Card>
@@ -112,7 +111,7 @@ export default function BranchAnalyticsPage() {
           </div>
           <div className="text-3xl font-bold text-white">{(averageDeliveryRate || 0).toFixed(1)}%</div>
           <div className="flex items-center gap-1 text-xs text-green-400 mt-2">
-            <ArrowTrendingUpIcon className="h-4 w-4" />
+            <TrendingUp className="h-4 w-4" />
             <span>5% improvement</span>
           </div>
         </Card>
@@ -235,9 +234,9 @@ export default function BranchAnalyticsPage() {
                     <div className="flex items-center justify-end gap-1">
                       <span className="text-white">{branch.customer_satisfaction.toFixed(1)}</span>
                       {branch.customer_satisfaction >= 4.5 ? (
-                        <ArrowTrendingUpIcon className="h-4 w-4 text-green-400" />
+                        <TrendingUp className="h-4 w-4 text-green-400" />
                       ) : branch.customer_satisfaction < 3.5 ? (
-                        <ArrowTrendingDownIcon className="h-4 w-4 text-red-400" />
+                        <TrendingDown className="h-4 w-4 text-red-400" />
                       ) : null}
                     </div>
                   </td>

@@ -688,8 +688,6 @@ export type FeedbackExportRequest = {
   };
 };
 
-// Re-export for convenience
-export * from './customer';
-export * from './order';
-export * from './branch';
-export * from './employee';
+// Re-export specific types for convenience (avoiding conflicts)
+// Note: Individual types from these modules should be imported directly if needed:
+// import { Customer, Order, Branch, Employee } from their respective modules

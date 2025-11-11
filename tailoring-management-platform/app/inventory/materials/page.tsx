@@ -20,7 +20,7 @@ import {
   Layers,
   ShoppingCart
 } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/client';
 import { 
   FabricLibrary, 
   InventoryStock, 
@@ -535,7 +535,7 @@ export default function MaterialsManagementPage() {
                           <Eye className="h-4 w-4" />
                         </Link>
                         <Link
-                          href={`/inventory/materials/${fabric.id/edit}`}
+                          href={`/inventory/materials/${fabric.id}/Edit`}
                           className="text-green-600 hover:text-green-900"
                         >
                           <Edit className="h-4 w-4" />
@@ -583,7 +583,7 @@ export default function MaterialsManagementPage() {
                       <Eye className="h-4 w-4" />
                     </Link>
                     <Link
-                      href={`/inventory/materials/${fabric.id/edit}`}
+                      href={`/inventory/materials/${fabric.id}/Edit`}
                       className="text-green-600 hover:text-green-700"
                     >
                       <Edit className="h-4 w-4" />

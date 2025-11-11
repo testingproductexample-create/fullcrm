@@ -6,10 +6,9 @@ import {
   CurrencyDollarIcon,
   UserGroupIcon,
   ShoppingBagIcon,
-  ArrowTrendingUpIcon,
-  ArrowTrendingDownIcon,
   ArrowPathIcon
 } from '@heroicons/react/24/outline';
+import { TrendingUp, TrendingDown } from 'lucide-react';
 import Link from 'next/link';
 // Charts temporarily removed for build compatibility
 import { useAuth } from '@/hooks/useAuth';
@@ -132,7 +131,7 @@ export default function AnalyticsDashboard() {
     {
       name: 'Performance Tracking',
       description: 'KPI monitoring',
-      icon: ArrowTrendingUpIcon,
+      icon: TrendingUp,
       href: '/analytics/performance',
       color: 'from-orange-500 to-orange-600',
       metric: `${kpiData?.length || 0} KPIs tracked`
@@ -163,7 +162,7 @@ export default function AnalyticsDashboard() {
               {loadingBI ? '...' : `AED ${(executiveMetrics.revenue / 1000).toFixed(0)}K`}
             </p>
             <div className="flex items-center gap-1 mt-1">
-              <ArrowTrendingUpIcon className="w-4 h-4 text-green-600" />
+              <TrendingUp className="w-4 h-4 text-green-600" />
               <span className="text-xs text-green-600">+{executiveMetrics.revenueGrowth.toFixed(1)}% vs last month</span>
             </div>
           </div>
@@ -177,7 +176,7 @@ export default function AnalyticsDashboard() {
               {loadingBI ? '...' : executiveMetrics.orders}
             </p>
             <div className="flex items-center gap-1 mt-1">
-              <ArrowTrendingUpIcon className="w-4 h-4 text-green-600" />
+              <TrendingUp className="w-4 h-4 text-green-600" />
               <span className="text-xs text-green-600">+{executiveMetrics.ordersGrowth.toFixed(1)}% vs last month</span>
             </div>
           </div>
@@ -191,7 +190,7 @@ export default function AnalyticsDashboard() {
               {loadingBI ? '...' : executiveMetrics.customers}
             </p>
             <div className="flex items-center gap-1 mt-1">
-              <ArrowTrendingUpIcon className="w-4 h-4 text-green-600" />
+              <TrendingUp className="w-4 h-4 text-green-600" />
               <span className="text-xs text-green-600">+{executiveMetrics.customersGrowth.toFixed(1)}% vs last month</span>
             </div>
           </div>
@@ -205,7 +204,7 @@ export default function AnalyticsDashboard() {
               {loadingBI ? '...' : `${executiveMetrics.profitMargin}%`}
             </p>
             <div className="flex items-center gap-1 mt-1">
-              <ArrowTrendingUpIcon className="w-4 h-4 text-green-600" />
+              <TrendingUp className="w-4 h-4 text-green-600" />
               <span className="text-xs text-green-600">Above target</span>
             </div>
           </div>

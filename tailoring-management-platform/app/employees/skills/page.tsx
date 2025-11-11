@@ -17,7 +17,7 @@ import {
   Trash2,
   Calendar
 } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/client';
 import { 
   Employee, 
   EmployeeSkill, 

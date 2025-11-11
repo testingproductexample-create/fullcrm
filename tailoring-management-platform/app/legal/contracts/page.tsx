@@ -329,7 +329,7 @@ export default function ContractManagement() {
                           View
                         </Button>
                       </Link>
-                      <Link href={`/legal/contracts/${contract.id/edit}`} className="flex-1">
+                      <Link href={`/legal/contracts/${contract.id}/Edit`} className="flex-1">
                         <Button variant="outline" size="sm" className="w-full">
                           <PencilIcon className="h-4 w-4 mr-2" />
                           Edit
