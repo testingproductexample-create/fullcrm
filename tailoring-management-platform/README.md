@@ -1,50 +1,58 @@
-# React + TypeScript + Vite
+# Tailoring Management Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A comprehensive business management system for tailoring shops with 44 integrated business systems.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Core Business Systems
+- **Customer Management** - Complete customer lifecycle management
+- **Order Processing** - Full order workflow from intake to delivery
+- **Inventory Management** - Real-time inventory tracking
+- **Financial Management** - Complete accounting and financial reporting
+- **Quality Control** - Multi-stage quality assurance
+- **Multi-Location Support** - Manage multiple store locations
+- **Analytics & Reporting** - Business intelligence and insights
+- **Communication** - Internal and external communication tools
+- **Training System** - Staff training and certification
+- **Legal & Compliance** - Regulatory compliance management
+- **Security** - Multi-level security and access control
+- **Loyalty Program** - Customer retention and rewards
+- **Complaints & Feedback** - Customer feedback management
+- **Efficiency Analytics** - Performance monitoring and optimization
+- **Backup & Recovery** - Automated backup systems
+- **Integration APIs** - Third-party service integrations
+- **Support System** - Customer and internal support tools
 
-## Expanding the ESLint configuration
+### Technical Stack
+- **Frontend**: Next.js 14 with TypeScript
+- **UI Library**: Shadcn/UI with Tailwind CSS
+- **Backend**: Supabase (Database, Auth, Storage, Edge Functions)
+- **State Management**: React Query (TanStack Query)
+- **Charts**: Recharts
+- **Authentication**: Supabase Auth
+- **Database**: PostgreSQL (via Supabase)
+- **Deployment**: Vercel
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Getting Started
 
-- Configure the top-level `parserOptions` property like this:
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Set up environment variables (see `.env.example`)
+4. Run the development server: `npm run dev`
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Environment Variables
+
+Create a `.env.local` file with the following variables:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Deployment
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+The application is configured for deployment on Vercel with Supabase backend services.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## License
+
+Private repository - All rights reserved
