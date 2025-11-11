@@ -38,6 +38,17 @@ import {
   ChatBubbleLeftEllipsisIcon,
   ExclamationTriangleIcon,
   ClipboardDocumentCheckIcon,
+  BellIcon,
+  MagnifyingGlassIcon,
+  WrenchIcon,
+  AcademicCapIcon,
+  BookOpenIcon,
+  CertificateIcon,
+  ArrowUpIcon,
+  TrophyIcon,
+  MapIcon,
+  PencilSquareIcon,
+  ScaleIcon,
 } from '@heroicons/react/24/outline';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/hooks/use-auth';
@@ -56,6 +67,17 @@ const navigation = [
       { name: 'Analytics', href: '/analytics', icon: ChartBarIcon },
       { name: 'BI Dashboard', href: '/analytics/dashboard', icon: PresentationChartLineIcon },
       { name: 'Reports', href: '/reports', icon: PresentationChartLineIcon },
+    ],
+  },
+  {
+    name: 'Efficiency & Performance',
+    items: [
+      { name: 'Overview Dashboard', href: '/efficiency', icon: ChartBarIcon },
+      { name: 'Performance Analytics', href: '/efficiency/analytics', icon: PresentationChartLineIcon },
+      { name: 'Bottleneck Management', href: '/efficiency/bottlenecks', icon: MagnifyingGlassIcon },
+      { name: 'Resource Analysis', href: '/efficiency/resources', icon: CubeIcon },
+      { name: 'Optimization Center', href: '/efficiency/optimization', icon: WrenchIcon },
+      { name: 'Alert Management', href: '/efficiency/alerts', icon: BellIcon },
     ],
   },
   {
@@ -95,6 +117,30 @@ const navigation = [
       { name: 'Skills Management', href: '/employees/skills', icon: ChartBarIcon },
       { name: 'Performance Reviews', href: '/employees/reviews', icon: ClipboardDocumentListIcon },
       { name: 'Training Programs', href: '/employees/training', icon: DocumentTextIcon },
+    ],
+  },
+  {
+    name: 'Training & Certification',
+    items: [
+      { name: 'Training Dashboard', href: '/training', icon: AcademicCapIcon },
+      { name: 'Training Admin', href: '/training/admin', icon: CogIcon },
+      { name: 'Course Catalog', href: '/training/courses', icon: BookOpenIcon },
+      { name: 'Certifications', href: '/training/certifications', icon: CertificateIcon },
+      { name: 'Skills Assessment', href: '/training/skills', icon: TrophyIcon },
+      { name: 'Career Paths', href: '/training/career-paths', icon: MapIcon },
+      { name: 'Compliance Training', href: '/training/compliance', icon: ShieldCheckIcon },
+    ],
+  },
+  {
+    name: 'Legal & Contract Management',
+    items: [
+      { name: 'Legal Dashboard', href: '/legal', icon: ScaleIcon },
+      { name: 'Contract Management', href: '/legal/contracts', icon: DocumentTextIcon },
+      { name: 'Contract Templates', href: '/legal/templates', icon: ClipboardDocumentListIcon },
+      { name: 'Digital Signatures', href: '/legal/signatures', icon: PencilSquareIcon },
+      { name: 'Legal Documents', href: '/legal/documents', icon: DocumentTextIcon },
+      { name: 'Compliance Tracking', href: '/legal/compliance', icon: ShieldCheckIcon },
+      { name: 'Legal Analytics', href: '/legal/analytics', icon: ChartBarIcon },
     ],
   },
   {
@@ -205,6 +251,16 @@ const navigation = [
       { name: 'SMS & WhatsApp', href: '/communication/messaging', icon: PhoneIcon },
       { name: 'Email Campaigns', href: '/communication/email', icon: PhoneIcon },
       { name: 'Bulk Messaging', href: '/communication/bulk', icon: ChatBubbleLeftRightIcon },
+    ],
+  },
+  {
+    name: 'Customer Service & Support',
+    items: [
+      { name: 'Support Dashboard', href: '/support', icon: ChatBubbleLeftEllipsisIcon },
+      { name: 'Ticket Management', href: '/support/tickets', icon: ClipboardDocumentListIcon },
+      { name: 'Knowledge Base', href: '/support/knowledge', icon: DocumentTextIcon },
+      { name: 'Support Analytics', href: '/support/analytics', icon: ChartBarIcon },
+      { name: 'Agent Management', href: '/support/agents', icon: UserGroupIcon },
     ],
   },
   {
