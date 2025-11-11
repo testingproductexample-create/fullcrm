@@ -130,10 +130,10 @@ export default function EmailManagement() {
         .eq('is_active', true);
 
       // Process analytics data
-      const totalSent = analyticsData?.reduce((sum, item) => sum + (item.messages_sent || 0), 0) || 0;
-      const totalDelivered = analyticsData?.reduce((sum, item) => sum + (item.messages_delivered || 0), 0) || 0;
-      const totalOpened = analyticsData?.reduce((sum, item) => sum + (item.messages_read || 0), 0) || 0;
-      const totalBounced = analyticsData?.reduce((sum, item) => sum + (item.messages_failed || 0), 0) || 0;
+      const totalSent = analyticsData?.reduce((sum: number, item: AnalyticsData) => sum + (item.messages_sent || 0), 0) || 0;
+      const totalDelivered = analyticsData?.reduce((sum: number, item: AnalyticsData) => sum + (item.messages_delivered || 0), 0) || 0;
+      const totalOpened = analyticsData?.reduce((sum: number, item: AnalyticsData) => sum + (item.messages_read || 0), 0) || 0;
+      const totalBounced = analyticsData?.reduce((sum: number, item: AnalyticsData) => sum + (item.messages_failed || 0), 0) || 0;
 
       // Calculate clicked from metadata (would normally be tracked)
       const totalClicked = Math.floor(totalOpened * 0.15); // Estimate 15% click rate

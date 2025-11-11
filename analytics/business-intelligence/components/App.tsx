@@ -38,7 +38,7 @@ const BusinessIntelligenceApp: React.FC = () => {
 
   // Set default dashboard on mount
   useEffect(() => {
-    if (dashboards.length > 0 && !selectedDashboardId) {
+    if (dashboards && dashboards.length > 0 && !selectedDashboardId) {
       const defaultDashboard = dashboards.find(d => d.isDefault) || dashboards[0];
       setCurrentDashboard(defaultDashboard);
       setSelectedDashboardId(defaultDashboard.id);

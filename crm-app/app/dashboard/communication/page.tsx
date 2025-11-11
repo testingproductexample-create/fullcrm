@@ -142,16 +142,16 @@ export default function CommunicationDashboard() {
         .gte('scheduled_at', new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString());
 
       // Calculate stats
-      const totalSent = analyticsData?.reduce((sum, item) => sum + (item.messages_sent || 0), 0) || 0;
-      const totalDelivered = analyticsData?.reduce((sum, item) => sum + (item.messages_delivered || 0), 0) || 0;
-      const totalFailed = analyticsData?.reduce((sum, item) => sum + (item.messages_failed || 0), 0) || 0;
+      const totalSent = analyticsData?.reduce((sum: number, item: AnalyticsData) => sum + (item.messages_sent || 0), 0) || 0;
+      const totalDelivered = analyticsData?.reduce((sum: number, item: AnalyticsData) => sum + (item.messages_delivered || 0), 0) || 0;
+      const totalFailed = analyticsData?.reduce((sum: number, item: AnalyticsData) => sum + (item.messages_failed || 0), 0) || 0;
       
-      const smsAnalytics = analyticsData?.filter(item => item.channel_type === 'SMS') || [];
-      const emailAnalytics = analyticsData?.filter(item => item.channel_type === 'Email') || [];
-      const whatsappAnalytics = analyticsData?.filter(item => item.channel_type === 'WhatsApp') || [];
+      const smsAnalytics = analyticsData?.filter((item: AnalyticsData) => item.channel_type === 'SMS') || [];
+      const emailAnalytics = analyticsData?.filter((item: AnalyticsData) => item.channel_type === 'Email') || [];
+      const whatsappAnalytics = analyticsData?.filter((item: AnalyticsData) => item.channel_type === 'WhatsApp') || [];
       
-      const avgResponseTimes = analyticsData?.filter(item => item.average_response_time).map(item => item.average_response_time) || [];
-      const avgResponseTime = avgResponseTimes.length > 0 ? avgResponseTimes.reduce((sum, time) => sum + time, 0) / avgResponseTimes.length : 0;
+      const avgResponseTimes = analyticsData?.filter((item: AnalyticsData) => item.average_response_time).map((item: AnalyticsData) => item.average_response_time) || [];
+      const avgResponseTime = avgResponseTimes.length > 0 ? avgResponseTimes.reduce((sum: number, time: number) => sum + time, 0) / avgResponseTimes.length : 0;
       
       const satisfactionScores = analyticsData?.filter(item => item.satisfaction_score).map(item => item.satisfaction_score) || [];
       const avgSatisfaction = satisfactionScores.length > 0 ? satisfactionScores.reduce((sum, score) => sum + score, 0) / satisfactionScores.length : 0;

@@ -59,7 +59,7 @@ export default function BranchDetailPage({ params }: { params: { id: string } })
           <BuildingOffice2Icon className="h-16 w-16 text-gray-400 mx-auto mb-4" />
           <h3 className="text-xl font-semibold text-white mb-2">Branch not found</h3>
           <p className="text-gray-400 mb-6">The branch you're looking for doesn't exist or has been deleted.</p>
-          <Link href="/branches">
+          <Link href={`/branches`}>
             <Button className="bg-indigo-600 hover:bg-indigo-700 text-white">
               Back to Branches
             </Button>
@@ -90,7 +90,7 @@ export default function BranchDetailPage({ params }: { params: { id: string } })
       {/* Header */}
       <div className="flex justify-between items-start">
         <div className="flex items-start gap-4">
-          <Link href="/branches">
+          <Link href={`/branches`}>
             <Button variant="outline" className="border-white/10 text-white hover:bg-white/5">
               <ArrowLeftIcon className="h-5 w-5" />
             </Button>
@@ -113,13 +113,13 @@ export default function BranchDetailPage({ params }: { params: { id: string } })
           </div>
         </div>
         <div className="flex gap-2">
-          <Link href={`/branches/${branchId}/edit`}>
+          <Link href={`${`/branches/${branchId}/edit`}`}>
             <Button className="bg-indigo-600 hover:bg-indigo-700 text-white">
               <PencilIcon className="h-5 w-5 mr-2" />
               Edit Branch
             </Button>
           </Link>
-          <Link href={`/branches/${branchId}/settings`}>
+          <Link href={`${`/branches/${branchId}/settings`}`}>
             <Button variant="outline" className="border-white/10 text-white hover:bg-white/5">
               <Cog6ToothIcon className="h-5 w-5" />
             </Button>
@@ -378,7 +378,7 @@ export default function BranchDetailPage({ params }: { params: { id: string } })
           <div className="space-y-4">
             <div className="flex justify-between items-center">
               <h3 className="text-lg font-semibold text-white">Staff Assignments</h3>
-              <Link href={`/branches/${branchId}/staff/new`}>
+              <Link href={`${`/branches/${branchId}/staff/new`}`}>
                 <Button className="bg-indigo-600 hover:bg-indigo-700 text-white">
                   Assign Staff
                 </Button>
@@ -582,7 +582,7 @@ export default function BranchDetailPage({ params }: { params: { id: string } })
           <div className="space-y-4">
             <div className="flex justify-between items-center">
               <h3 className="text-lg font-semibold text-white">Branch Assets</h3>
-              <Link href={`/branches/${branchId}/assets/new`}>
+              <Link href={`${`/branches/${branchId}/assets/new`}`}>
                 <Button className="bg-indigo-600 hover:bg-indigo-700 text-white">
                   Add Asset
                 </Button>

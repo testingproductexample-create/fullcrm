@@ -22,6 +22,28 @@ import {
   PolarRadiusAxis,
   Radar
 } from 'recharts';
+
+// Type-safe Recharts component aliases to fix JSX component issues
+const SafeLineChart = LineChart as React.ComponentType<any>;
+const SafeAreaChart = AreaChart as React.ComponentType<any>;
+const SafeBarChart = BarChart as React.ComponentType<any>;
+const SafePieChart = PieChart as React.ComponentType<any>;
+const SafeRadarChart = RadarChart as React.ComponentType<any>;
+const SafeResponsiveContainer = ResponsiveContainer as React.ComponentType<any>;
+const SafeLine = Line as React.ComponentType<any>;
+const SafeArea = Area as React.ComponentType<any>;
+const SafeBar = Bar as React.ComponentType<any>;
+const SafePie = Pie as React.ComponentType<any>;
+const SafeCell = Cell as React.ComponentType<any>;
+const SafeXAxis = XAxis as React.ComponentType<any>;
+const SafeYAxis = YAxis as React.ComponentType<any>;
+const SafeCartesianGrid = CartesianGrid as React.ComponentType<any>;
+const SafeTooltip = Tooltip as React.ComponentType<any>;
+const SafeLegend = Legend as React.ComponentType<any>;
+const SafePolarGrid = PolarGrid as React.ComponentType<any>;
+const SafePolarAngleAxis = PolarAngleAxis as React.ComponentType<any>;
+const SafePolarRadiusAxis = PolarRadiusAxis as React.ComponentType<any>;
+const SafeRadar = Radar as React.ComponentType<any>;
 import { 
   RefreshCw, 
   Settings, 
@@ -92,22 +114,22 @@ export const ChartWidget: React.FC<ChartWidgetProps> = ({
     switch (widget.visualization) {
       case 'line':
         return (
-          <LineChart {...commonProps}>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-            <XAxis 
+          <SafeLineChart {...commonProps}>
+            <SafeCartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+            <SafeXAxis 
               dataKey="name" 
               stroke="rgba(0,0,0,0.6)"
               fontSize={12}
               tickLine={false}
               axisLine={false}
             />
-            <YAxis 
+            <SafeYAxis 
               stroke="rgba(0,0,0,0.6)"
               fontSize={12}
               tickLine={false}
               axisLine={false}
             />
-            <Tooltip 
+            <SafeTooltip 
               contentStyle={{
                 backgroundColor: 'rgba(255,255,255,0.9)',
                 border: '1px solid rgba(0,0,0,0.1)',
@@ -115,8 +137,8 @@ export const ChartWidget: React.FC<ChartWidgetProps> = ({
                 boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
               }}
             />
-            {isLegendVisible && <Legend />}
-            <Line
+            {isLegendVisible && <SafeLegend />}
+            <SafeLine
               type="monotone"
               dataKey="value"
               stroke={colors[0]}
@@ -124,27 +146,27 @@ export const ChartWidget: React.FC<ChartWidgetProps> = ({
               dot={{ fill: colors[0], strokeWidth: 2, r: 4 }}
               activeDot={{ r: 6, stroke: colors[0], strokeWidth: 2, fill: '#fff' }}
             />
-          </LineChart>
+          </SafeLineChart>
         );
 
       case 'area':
         return (
-          <AreaChart {...commonProps}>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-            <XAxis 
+          <SafeAreaChart {...commonProps}>
+            <SafeCartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+            <SafeXAxis 
               dataKey="name" 
               stroke="rgba(0,0,0,0.6)"
               fontSize={12}
               tickLine={false}
               axisLine={false}
             />
-            <YAxis 
+            <SafeYAxis 
               stroke="rgba(0,0,0,0.6)"
               fontSize={12}
               tickLine={false}
               axisLine={false}
             />
-            <Tooltip 
+            <SafeTooltip 
               contentStyle={{
                 backgroundColor: 'rgba(255,255,255,0.9)',
                 border: '1px solid rgba(0,0,0,0.1)',
@@ -152,35 +174,35 @@ export const ChartWidget: React.FC<ChartWidgetProps> = ({
                 boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
               }}
             />
-            {isLegendVisible && <Legend />}
-            <Area
+            {isLegendVisible && <SafeLegend />}
+            <SafeArea
               type="monotone"
               dataKey="value"
               stroke={colors[0]}
               fill={generateGradient(colors[0], 1)[0]}
               strokeWidth={2}
             />
-          </AreaChart>
+          </SafeAreaChart>
         );
 
       case 'bar':
         return (
-          <BarChart {...commonProps}>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-            <XAxis 
+          <SafeBarChart {...commonProps}>
+            <SafeCartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+            <SafeXAxis 
               dataKey="name" 
               stroke="rgba(0,0,0,0.6)"
               fontSize={12}
               tickLine={false}
               axisLine={false}
             />
-            <YAxis 
+            <SafeYAxis 
               stroke="rgba(0,0,0,0.6)"
               fontSize={12}
               tickLine={false}
               axisLine={false}
             />
-            <Tooltip 
+            <SafeTooltip 
               contentStyle={{
                 backgroundColor: 'rgba(255,255,255,0.9)',
                 border: '1px solid rgba(0,0,0,0.1)',
@@ -188,20 +210,20 @@ export const ChartWidget: React.FC<ChartWidgetProps> = ({
                 boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
               }}
             />
-            {isLegendVisible && <Legend />}
-            <Bar
+            {isLegendVisible && <SafeLegend />}
+            <SafeBar
               dataKey="value"
               fill={colors[0]}
               radius={[4, 4, 0, 0]}
             />
-          </BarChart>
+          </SafeBarChart>
         );
 
       case 'pie':
       case 'doughnut':
         return (
-          <PieChart>
-            <Pie
+          <SafePieChart>
+            <SafePie
               data={chartData}
               cx="50%"
               cy="50%"
@@ -214,15 +236,15 @@ export const ChartWidget: React.FC<ChartWidgetProps> = ({
               onMouseLeave={() => setHoveredIndex(null)}
             >
               {chartData.map((entry: any, index: number) => (
-                <Cell 
+                <SafeCell 
                   key={`cell-${index}`} 
                   fill={colors[index % colors.length]}
                   stroke={hoveredIndex === index ? '#fff' : 'none'}
                   strokeWidth={hoveredIndex === index ? 2 : 0}
                 />
               ))}
-            </Pie>
-            <Tooltip 
+            </SafePie>
+            <SafeTooltip 
               contentStyle={{
                 backgroundColor: 'rgba(255,255,255,0.9)',
                 border: '1px solid rgba(0,0,0,0.1)',
@@ -230,17 +252,17 @@ export const ChartWidget: React.FC<ChartWidgetProps> = ({
                 boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
               }}
             />
-            {isLegendVisible && <Legend />}
-          </PieChart>
+            {isLegendVisible && <SafeLegend />}
+          </SafePieChart>
         );
 
       case 'radar':
         return (
-          <RadarChart data={chartData}>
-            <PolarGrid />
-            <PolarAngleAxis dataKey="subject" />
-            <PolarRadiusAxis />
-            <Radar
+          <SafeRadarChart data={chartData}>
+            <SafePolarGrid />
+            <SafePolarAngleAxis dataKey="subject" />
+            <SafePolarRadiusAxis />
+            <SafeRadar
               name="Score"
               dataKey="value"
               stroke={colors[0]}
@@ -248,7 +270,7 @@ export const ChartWidget: React.FC<ChartWidgetProps> = ({
               fillOpacity={0.3}
               strokeWidth={2}
             />
-            <Tooltip 
+            <SafeTooltip 
               contentStyle={{
                 backgroundColor: 'rgba(255,255,255,0.9)',
                 border: '1px solid rgba(0,0,0,0.1)',
@@ -256,20 +278,20 @@ export const ChartWidget: React.FC<ChartWidgetProps> = ({
                 boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
               }}
             />
-            {isLegendVisible && <Legend />}
-          </RadarChart>
+            {isLegendVisible && <SafeLegend />}
+          </SafeRadarChart>
         );
 
       default:
         return (
-          <LineChart {...commonProps}>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            {isLegendVisible && <Legend />}
-            <Line type="monotone" dataKey="value" stroke={colors[0]} strokeWidth={2} />
-          </LineChart>
+          <SafeLineChart {...commonProps}>
+            <SafeCartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+            <SafeXAxis dataKey="name" />
+            <SafeYAxis />
+            <SafeTooltip />
+            {isLegendVisible && <SafeLegend />}
+            <SafeLine type="monotone" dataKey="value" stroke={colors[0]} strokeWidth={2} />
+          </SafeLineChart>
         );
     }
   };
@@ -354,9 +376,9 @@ export const ChartWidget: React.FC<ChartWidgetProps> = ({
             </div>
           </div>
           <div className="h-[calc(100%-4rem)] bg-white/10 backdrop-blur-sm rounded-xl p-6">
-            <ResponsiveContainer width="100%" height="100%">
+            <SafeResponsiveContainer width="100%" height="100%">
               {getChartComponent()}
-            </ResponsiveContainer>
+            </SafeResponsiveContainer>
           </div>
         </div>
       </motion.div>
@@ -446,9 +468,9 @@ export const ChartWidget: React.FC<ChartWidgetProps> = ({
             </div>
           </div>
         ) : (
-          <ResponsiveContainer width="100%" height="100%">
+          <SafeResponsiveContainer width="100%" height="100%">
             {getChartComponent()}
-          </ResponsiveContainer>
+          </SafeResponsiveContainer>
         )}
       </div>
 

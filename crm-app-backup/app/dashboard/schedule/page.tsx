@@ -188,7 +188,7 @@ export default function AttendanceDashboard() {
 
   const handleQuickCheckIn = async () => {
     // This would implement quick check-in functionality
-    router.push('/dashboard/schedule/attendance');
+    router.push('/dashboard/schedule/attendance' as any);
   };
 
   if (loading) {

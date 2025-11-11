@@ -52,10 +52,10 @@ export default function CommunicationDashboard() {
     whatsappMessages: communications?.filter(c => c.channel_type === 'whatsapp').length || 0,
     activeChatSessions: chatSessions?.length || 0,
     deliveryRate: analytics && analytics.length > 0
-      ? (analytics.reduce((acc, a) => acc + (a.delivery_rate || 0), 0) / analytics.length).toFixed(1)
+      ? (analytics.reduce((acc: number, a: any) => acc + (a.delivery_rate || 0), 0) / analytics.length).toFixed(1)
       : 98.5,
     responseRate: analytics && analytics.length > 0
-      ? (analytics.reduce((acc, a) => acc + (a.response_rate || 0), 0) / analytics.length).toFixed(1)
+      ? (analytics.reduce((acc: number, a: any) => acc + (a.response_rate || 0), 0) / analytics.length).toFixed(1)
       : 87.3
   };
 
@@ -205,7 +205,7 @@ export default function CommunicationDashboard() {
             return (
               <Link
                 key={module.name}
-                href={module.href}
+                href={`${module.href}`}
                 className="group bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-6 border border-gray-200 hover:shadow-2xl hover:scale-105 transition-all duration-300"
               >
                 <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${module.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>

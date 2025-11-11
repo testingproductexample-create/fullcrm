@@ -282,7 +282,7 @@ export default function InventoryDashboard() {
             Refresh
           </button>
           <Link
-            href="/inventory/orders/new"
+            href={`/inventory/orders/new`}
             className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700"
           >
             <Plus className="h-4 w-4 mr-2" />
@@ -333,7 +333,7 @@ export default function InventoryDashboard() {
           <div className="bg-white/80 backdrop-blur-sm rounded-lg p-6 border border-gray-200 shadow-sm">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-lg font-semibold text-gray-900">Stock Alerts</h2>
-              <Link href="/inventory/materials?filter=alerts" className="text-sm text-blue-600 hover:text-blue-700">
+              <Link href={`/inventory/materials?filter=alerts`} className="text-sm text-blue-600 hover:text-blue-700">
                 View all
               </Link>
             </div>
@@ -377,7 +377,7 @@ export default function InventoryDashboard() {
           <div className="bg-white/80 backdrop-blur-sm rounded-lg p-6 border border-gray-200 shadow-sm">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-lg font-semibold text-gray-900">Top Fabrics</h2>
-              <Link href="/inventory/analytics" className="text-sm text-blue-600 hover:text-blue-700">
+              <Link href={`/inventory/analytics`} className="text-sm text-blue-600 hover:text-blue-700">
                 View analytics
               </Link>
             </div>
@@ -409,7 +409,7 @@ export default function InventoryDashboard() {
           <div className="bg-white/80 backdrop-blur-sm rounded-lg p-6 border border-gray-200 shadow-sm">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-lg font-semibold text-gray-900">Supplier Performance</h2>
-              <Link href="/inventory/suppliers" className="text-sm text-blue-600 hover:text-blue-700">
+              <Link href={`/inventory/suppliers`} className="text-sm text-blue-600 hover:text-blue-700">
                 View all
               </Link>
             </div>
@@ -447,7 +447,7 @@ export default function InventoryDashboard() {
         <div className="p-6 border-b border-gray-200">
           <div className="flex justify-between items-center">
             <h2 className="text-lg font-semibold text-gray-900">Recent Purchase Orders</h2>
-            <Link href="/inventory/orders" className="text-sm text-blue-600 hover:text-blue-700">
+            <Link href={`/inventory/orders`} className="text-sm text-blue-600 hover:text-blue-700">
               View all orders
             </Link>
           </div>
@@ -515,7 +515,7 @@ export default function InventoryDashboard() {
         <h2 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <Link
-            href="/inventory/materials/new"
+            href={`/inventory/materials/new`}
             className="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
           >
             <Package2 className="h-6 w-6 text-blue-600 mr-3" />
@@ -526,7 +526,7 @@ export default function InventoryDashboard() {
           </Link>
           
           <Link
-            href="/inventory/suppliers/new"
+            href={`/inventory/suppliers/new`}
             className="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
           >
             <Truck className="h-6 w-6 text-green-600 mr-3" />
@@ -537,7 +537,7 @@ export default function InventoryDashboard() {
           </Link>
           
           <Link
-            href="/inventory/orders/new"
+            href={`/inventory/orders/new`}
             className="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
           >
             <ShoppingCart className="h-6 w-6 text-purple-600 mr-3" />
@@ -548,7 +548,7 @@ export default function InventoryDashboard() {
           </Link>
           
           <Link
-            href="/inventory/analytics"
+            href={`/inventory/analytics`}
             className="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
           >
             <BarChart3 className="h-6 w-6 text-orange-600 mr-3" />

@@ -87,7 +87,7 @@ export function RecentOrders() {
       <div className="flex items-center justify-between">
         <h4 className="text-sm font-medium text-gray-700">Recent Orders</h4>
         <Link 
-          href="/orders" 
+          href={`/orders`} 
           className="text-sm text-blue-600 hover:text-blue-700 font-medium"
         >
           View All

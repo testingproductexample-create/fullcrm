@@ -201,22 +201,22 @@ export default function TicketManagement() {
   };
 
   return (
-    <div className=\"p-6 space-y-6\">
+    <div className="p-6 space-y-6">
       {/* Header */}
-      <div className=\"flex items-center justify-between\">
+      <div className="flex items-center justify-between">
         <div>
-          <h1 className=\"text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent\">
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             Support Tickets
           </h1>
-          <p className=\"text-muted-foreground mt-2\">
+          <p className="text-muted-foreground mt-2">
             Manage and track customer support tickets
           </p>
         </div>
-        <div className=\"flex items-center gap-3\">
+        <div className="flex items-center gap-3">
           {selectedTickets.length > 0 && (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant=\"outline\">
+                <Button variant="outline">
                   Bulk Actions ({selectedTickets.length})
                 </Button>
               </DropdownMenuTrigger>
@@ -235,12 +235,12 @@ export default function TicketManagement() {
           )}
           <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
             <DialogTrigger asChild>
-              <Button className=\"bg-blue-600 hover:bg-blue-700\">
-                <PlusIcon className=\"w-4 h-4 mr-2\" />
+              <Button className="bg-blue-600 hover:bg-blue-700">
+                <PlusIcon className="w-4 h-4 mr-2" />
                 New Ticket
               </Button>
             </DialogTrigger>
-            <DialogContent className=\"max-w-md\">
+            <DialogContent className="max-w-md">
               <DialogHeader>
                 <DialogTitle>Create New Ticket</DialogTitle>
                 <DialogDescription>
@@ -265,24 +265,24 @@ export default function TicketManagement() {
       </div>
 
       {/* Filters */}
-      <Card className=\"backdrop-blur-sm bg-white/60 border border-white/20\">
-        <CardContent className=\"p-6\">
-          <div className=\"flex items-center gap-4 flex-wrap\">
-            <div className=\"relative min-w-64\">
-              <SearchIcon className=\"absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground\" />
+      <Card className="backdrop-blur-sm bg-white/60 border border-white/20">
+        <CardContent className="p-6">
+          <div className="flex items-center gap-4 flex-wrap">
+            <div className="relative min-w-64">
+              <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
-                placeholder=\"Search tickets, customers, descriptions...\"
+                placeholder="Search tickets, customers, descriptions..."
                 value={filters.search}
                 onChange={(e) => handleFilterChange('search', e.target.value)}
-                className=\"pl-10\"
+                className="pl-10"
               />
             </div>
             <Select value={filters.status} onValueChange={(value) => handleFilterChange('status', value)}>
-              <SelectTrigger className=\"w-40\">
-                <SelectValue placeholder=\"Status\" />
+              <SelectTrigger className="w-40">
+                <SelectValue placeholder="Status" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value=\"\">All Status</SelectItem>
+                <SelectItem value="">All Status</SelectItem>
                 {statusOptions.map(status => (
                   <SelectItem key={status.value} value={status.value}>
                     {status.label}
@@ -291,23 +291,23 @@ export default function TicketManagement() {
               </SelectContent>
             </Select>
             <Select value={filters.priority} onValueChange={(value) => handleFilterChange('priority', value)}>
-              <SelectTrigger className=\"w-40\">
-                <SelectValue placeholder=\"Priority\" />
+              <SelectTrigger className="w-40">
+                <SelectValue placeholder="Priority" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value=\"\">All Priority</SelectItem>
-                <SelectItem value=\"critical\">Critical</SelectItem>
-                <SelectItem value=\"high\">High</SelectItem>
-                <SelectItem value=\"medium\">Medium</SelectItem>
-                <SelectItem value=\"low\">Low</SelectItem>
+                <SelectItem value="">All Priority</SelectItem>
+                <SelectItem value="critical">Critical</SelectItem>
+                <SelectItem value="high">High</SelectItem>
+                <SelectItem value="medium">Medium</SelectItem>
+                <SelectItem value="low">Low</SelectItem>
               </SelectContent>
             </Select>
             <Select value={filters.assigned_agent_id} onValueChange={(value) => handleFilterChange('assigned_agent_id', value)}>
-              <SelectTrigger className=\"w-48\">
-                <SelectValue placeholder=\"Assigned Agent\" />
+              <SelectTrigger className="w-48">
+                <SelectValue placeholder="Assigned Agent" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value=\"\">All Agents</SelectItem>
+                <SelectItem value="">All Agents</SelectItem>
                 {agents.map(agent => (
                   <SelectItem key={agent.id} value={agent.id}>
                     {agent.agent_name}
@@ -316,11 +316,11 @@ export default function TicketManagement() {
               </SelectContent>
             </Select>
             <Select value={filters.category_id} onValueChange={(value) => handleFilterChange('category_id', value)}>
-              <SelectTrigger className=\"w-48\">
-                <SelectValue placeholder=\"Category\" />
+              <SelectTrigger className="w-48">
+                <SelectValue placeholder="Category" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value=\"\">All Categories</SelectItem>
+                <SelectItem value="">All Categories</SelectItem>
                 {categories.map(category => (
                   <SelectItem key={category.id} value={category.id}>
                     {category.category_name}
@@ -329,7 +329,7 @@ export default function TicketManagement() {
               </SelectContent>
             </Select>
             {Object.values(filters).some(value => value !== '') && (
-              <Button variant=\"outline\" onClick={clearFilters}>
+              <Button variant="outline" onClick={clearFilters}>
                 Clear Filters
               </Button>
             )}
@@ -338,89 +338,89 @@ export default function TicketManagement() {
       </Card>
 
       {/* Tickets List */}
-      <Card className=\"backdrop-blur-sm bg-white/60 border border-white/20\">
+      <Card className="backdrop-blur-sm bg-white/60 border border-white/20">
         <CardHeader>
-          <div className=\"flex items-center justify-between\">
+          <div className="flex items-center justify-between">
             <div>
               <CardTitle>Support Tickets ({tickets.length})</CardTitle>
               <CardDescription>
                 Manage customer support requests and track resolution progress
               </CardDescription>
             </div>
-            <div className=\"flex items-center gap-2\">
+            <div className="flex items-center gap-2">
               <Checkbox
                 checked={selectedTickets.length === tickets.length && tickets.length > 0}
                 onCheckedChange={handleSelectAll}
-                aria-label=\"Select all tickets\"
+                aria-label="Select all tickets"
               />
-              <span className=\"text-sm text-muted-foreground\">Select All</span>
+              <span className="text-sm text-muted-foreground">Select All</span>
             </div>
           </div>
         </CardHeader>
-        <CardContent className=\"p-0\">
+        <CardContent className="p-0">
           {ticketsLoading ? (
-            <div className=\"text-center py-12\">
-              <div className=\"animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto\"></div>
-              <p className=\"mt-4 text-muted-foreground\">Loading tickets...</p>
+            <div className="text-center py-12">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+              <p className="mt-4 text-muted-foreground">Loading tickets...</p>
             </div>
           ) : tickets.length === 0 ? (
-            <div className=\"text-center py-12\">
-              <TicketIcon className=\"mx-auto h-12 w-12 text-muted-foreground\" />
-              <p className=\"mt-4 text-muted-foreground\">No tickets found</p>
-              <p className=\"text-sm text-muted-foreground\">Try adjusting your search or filters</p>
+            <div className="text-center py-12">
+              <TicketIcon className="mx-auto h-12 w-12 text-muted-foreground" />
+              <p className="mt-4 text-muted-foreground">No tickets found</p>
+              <p className="text-sm text-muted-foreground">Try adjusting your search or filters</p>
             </div>
           ) : (
-            <div className=\"divide-y divide-border\">
+            <div className="divide-y divide-border">
               {tickets.map((ticket, index) => (
                 <div key={ticket.id} className={`p-6 hover:bg-white/30 transition-colors ${index % 2 === 0 ? 'bg-white/10' : ''}`}>
-                  <div className=\"flex items-center justify-between\">
-                    <div className=\"flex items-center space-x-4\">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-4">
                       <Checkbox
                         checked={selectedTickets.includes(ticket.id)}
                         onCheckedChange={(checked) => handleSelectTicket(ticket.id, checked as boolean)}
                       />
                       
-                      <div className=\"flex-1 min-w-0\">
-                        <div className=\"flex items-center gap-3 mb-2\">
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-3 mb-2">
                           <Link 
                             href={`/support/tickets/${ticket.id}`}
-                            className=\"font-semibold text-blue-600 hover:text-blue-700 transition-colors\"
+                            className="font-semibold text-blue-600 hover:text-blue-700 transition-colors"
                           >
                             {ticket.ticket_number}
                           </Link>
                           <Badge className={priorityColors[ticket.priority as keyof typeof priorityColors]}>
                             {ticket.priority}
                           </Badge>
-                          <Badge variant=\"outline\" className=\"flex items-center gap-1\">
+                          <Badge variant="outline" className="flex items-center gap-1">
                             <div className={`w-2 h-2 rounded-full ${statusColors[ticket.status as keyof typeof statusColors]}`} />
                             {ticket.status.replace('_', ' ')}
                           </Badge>
                           {ticket.is_escalated && (
-                            <Badge variant=\"destructive\" className=\"flex items-center gap-1\">
-                              <ArrowUpIcon className=\"w-3 h-3\" />
+                            <Badge variant="destructive" className="flex items-center gap-1">
+                              <ArrowUpIcon className="w-3 h-3" />
                               Escalated
                             </Badge>
                           )}
                         </div>
                         
-                        <h3 className=\"font-medium text-foreground mb-1 line-clamp-1\">
+                        <h3 className="font-medium text-foreground mb-1 line-clamp-1">
                           {ticket.ticket_title}
                         </h3>
                         
-                        <div className=\"flex items-center gap-4 text-sm text-muted-foreground\">
+                        <div className="flex items-center gap-4 text-sm text-muted-foreground">
                           <span>{ticket.customer_name}</span>
                           <span>•</span>
                           <span>{ticket.category?.category_name || 'Uncategorized'}</span>
                           <span>•</span>
-                          <span className=\"flex items-center gap-1\">
-                            <ClockIcon className=\"w-3 h-3\" />
+                          <span className="flex items-center gap-1">
+                            <ClockIcon className="w-3 h-3" />
                             {new Date(ticket.created_at).toLocaleDateString()} at {new Date(ticket.created_at).toLocaleTimeString()}
                           </span>
                           {ticket.response_count > 0 && (
                             <>
                               <span>•</span>
-                              <span className=\"flex items-center gap-1\">
-                                <MessageSquareIcon className=\"w-3 h-3\" />
+                              <span className="flex items-center gap-1">
+                                <MessageSquareIcon className="w-3 h-3" />
                                 {ticket.response_count} responses
                               </span>
                             </>
@@ -429,45 +429,45 @@ export default function TicketManagement() {
                       </div>
                     </div>
 
-                    <div className=\"flex items-center space-x-3\">
+                    <div className="flex items-center space-x-3">
                       {ticket.assigned_agent ? (
-                        <div className=\"flex items-center gap-2\">
-                          <Avatar className=\"h-8 w-8\">
-                            <AvatarFallback className=\"text-xs\">
+                        <div className="flex items-center gap-2">
+                          <Avatar className="h-8 w-8">
+                            <AvatarFallback className="text-xs">
                               {ticket.assigned_agent.agent_name.split(' ').map((n: string) => n[0]).join('')}
                             </AvatarFallback>
                           </Avatar>
-                          <div className=\"text-right\">
-                            <p className=\"text-sm font-medium\">{ticket.assigned_agent.agent_name}</p>
-                            <p className=\"text-xs text-muted-foreground\">{ticket.assigned_agent.skill_level}</p>
+                          <div className="text-right">
+                            <p className="text-sm font-medium">{ticket.assigned_agent.agent_name}</p>
+                            <p className="text-xs text-muted-foreground">{ticket.assigned_agent.skill_level}</p>
                           </div>
                         </div>
                       ) : (
                         <Button
-                          variant=\"outline\"
-                          size=\"sm\"
+                          variant="outline"
+                          size="sm"
                           onClick={() => {
                             setSelectedTicketForAction(ticket.id);
                             setIsAssignDialogOpen(true);
                           }}
                         >
-                          <UserIcon className=\"w-4 h-4 mr-1\" />
+                          <UserIcon className="w-4 h-4 mr-1" />
                           Assign
                         </Button>
                       )}
 
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                          <Button variant=\"ghost\" size=\"sm\">
-                            <MoreHorizontalIcon className=\"w-4 h-4\" />
+                          <Button variant="ghost" size="sm">
+                            <MoreHorizontalIcon className="w-4 h-4" />
                           </Button>
                         </DropdownMenuTrigger>
-                        <DropdownMenuContent align=\"end\">
+                        <DropdownMenuContent align="end">
                           <DropdownMenuLabel>Actions</DropdownMenuLabel>
                           <DropdownMenuSeparator />
                           <DropdownMenuItem asChild>
                             <Link href={`/support/tickets/${ticket.id}`}>
-                              <EyeIcon className=\"w-4 h-4 mr-2\" />
+                              <EyeIcon className="w-4 h-4 mr-2" />
                               View Details
                             </Link>
                           </DropdownMenuItem>
@@ -477,14 +477,14 @@ export default function TicketManagement() {
                               setIsAssignDialogOpen(true);
                             }}
                           >
-                            <UserIcon className=\"w-4 h-4 mr-2\" />
+                            <UserIcon className="w-4 h-4 mr-2" />
                             Reassign
                           </DropdownMenuItem>
                           {!ticket.is_escalated && (
                             <DropdownMenuItem
                               onClick={() => handleEscalateTicket(ticket.id)}
                             >
-                              <AlertTriangleIcon className=\"w-4 h-4 mr-2\" />
+                              <AlertTriangleIcon className="w-4 h-4 mr-2" />
                               Escalate
                             </DropdownMenuItem>
                           )}
@@ -521,27 +521,27 @@ export default function TicketManagement() {
               Select an agent to assign this ticket to
             </DialogDescription>
           </DialogHeader>
-          <div className=\"space-y-4\">
+          <div className="space-y-4">
             {agents.map((agent) => (
               <div
                 key={agent.id}
-                className=\"flex items-center justify-between p-4 border rounded-lg cursor-pointer hover:bg-muted/50\"
+                className="flex items-center justify-between p-4 border rounded-lg cursor-pointer hover:bg-muted/50"
                 onClick={() => handleAssignTicket(agent.id)}
               >
-                <div className=\"flex items-center gap-3\">
+                <div className="flex items-center gap-3">
                   <Avatar>
                     <AvatarFallback>
                       {agent.agent_name.split(' ').map((n) => n[0]).join('')}
                     </AvatarFallback>
                   </Avatar>
                   <div>
-                    <p className=\"font-medium\">{agent.agent_name}</p>
-                    <p className=\"text-sm text-muted-foreground\">{agent.skill_level}</p>
+                    <p className="font-medium">{agent.agent_name}</p>
+                    <p className="text-sm text-muted-foreground">{agent.skill_level}</p>
                   </div>
                 </div>
-                <div className=\"text-right text-sm\">
-                  <p className=\"font-medium\">{agent.current_ticket_count}/{agent.max_concurrent_tickets}</p>
-                  <p className=\"text-muted-foreground\">Active tickets</p>
+                <div className="text-right text-sm">
+                  <p className="font-medium">{agent.current_ticket_count}/{agent.max_concurrent_tickets}</p>
+                  <p className="text-muted-foreground">Active tickets</p>
                 </div>
               </div>
             ))}
@@ -579,42 +579,42 @@ function CreateTicketForm({ categories, onSubmit }: CreateTicketFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className=\"space-y-4\">
-      <div className=\"space-y-2\">
-        <Label htmlFor=\"customer_name\">Customer Name</Label>
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <div className="space-y-2">
+        <Label htmlFor="customer_name">Customer Name</Label>
         <Input
-          id=\"customer_name\"
+          id="customer_name"
           value={formData.customer_name}
           onChange={(e) => setFormData(prev => ({ ...prev, customer_name: e.target.value }))}
           required
         />
       </div>
 
-      <div className=\"space-y-2\">
-        <Label htmlFor=\"customer_email\">Customer Email</Label>
+      <div className="space-y-2">
+        <Label htmlFor="customer_email">Customer Email</Label>
         <Input
-          id=\"customer_email\"
-          type=\"email\"
+          id="customer_email"
+          type="email"
           value={formData.customer_email}
           onChange={(e) => setFormData(prev => ({ ...prev, customer_email: e.target.value }))}
           required
         />
       </div>
 
-      <div className=\"space-y-2\">
-        <Label htmlFor=\"ticket_title\">Ticket Title</Label>
+      <div className="space-y-2">
+        <Label htmlFor="ticket_title">Ticket Title</Label>
         <Input
-          id=\"ticket_title\"
+          id="ticket_title"
           value={formData.ticket_title}
           onChange={(e) => setFormData(prev => ({ ...prev, ticket_title: e.target.value }))}
           required
         />
       </div>
 
-      <div className=\"space-y-2\">
-        <Label htmlFor=\"ticket_description\">Description</Label>
+      <div className="space-y-2">
+        <Label htmlFor="ticket_description">Description</Label>
         <Textarea
-          id=\"ticket_description\"
+          id="ticket_description"
           value={formData.ticket_description}
           onChange={(e) => setFormData(prev => ({ ...prev, ticket_description: e.target.value }))}
           required
@@ -622,27 +622,27 @@ function CreateTicketForm({ categories, onSubmit }: CreateTicketFormProps) {
         />
       </div>
 
-      <div className=\"grid grid-cols-2 gap-4\">
-        <div className=\"space-y-2\">
-          <Label htmlFor=\"priority\">Priority</Label>
+      <div className="grid grid-cols-2 gap-4">
+        <div className="space-y-2">
+          <Label htmlFor="priority">Priority</Label>
           <Select value={formData.priority} onValueChange={(value) => setFormData(prev => ({ ...prev, priority: value }))}>
             <SelectTrigger>
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value=\"low\">Low</SelectItem>
-              <SelectItem value=\"medium\">Medium</SelectItem>
-              <SelectItem value=\"high\">High</SelectItem>
-              <SelectItem value=\"critical\">Critical</SelectItem>
+              <SelectItem value="low">Low</SelectItem>
+              <SelectItem value="medium">Medium</SelectItem>
+              <SelectItem value="high">High</SelectItem>
+              <SelectItem value="critical">Critical</SelectItem>
             </SelectContent>
           </Select>
         </div>
 
-        <div className=\"space-y-2\">
-          <Label htmlFor=\"category_id\">Category</Label>
+        <div className="space-y-2">
+          <Label htmlFor="category_id">Category</Label>
           <Select value={formData.category_id} onValueChange={(value) => setFormData(prev => ({ ...prev, category_id: value }))}>
             <SelectTrigger>
-              <SelectValue placeholder=\"Select category\" />
+              <SelectValue placeholder="Select category" />
             </SelectTrigger>
             <SelectContent>
               {categories.map(category => (
@@ -656,7 +656,7 @@ function CreateTicketForm({ categories, onSubmit }: CreateTicketFormProps) {
       </div>
 
       <DialogFooter>
-        <Button type=\"submit\">Create Ticket</Button>
+        <Button type="submit">Create Ticket</Button>
       </DialogFooter>
     </form>
   );

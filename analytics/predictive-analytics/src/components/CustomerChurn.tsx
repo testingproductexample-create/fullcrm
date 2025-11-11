@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import {
   UserGroupIcon,
   ExclamationTriangleIcon,
-  TrendingDownIcon,
+  ArrowTrendingDownIcon,
   HeartIcon,
   ShieldCheckIcon,
   BellIcon,
@@ -14,6 +14,37 @@ import {
 import { useAnalytics } from '../contexts/AnalyticsContext'
 import { formatPercentage, formatCurrency, formatRelativeTime } from '../lib/utils'
 import { PieChart, Pie, Cell, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, BarChart, Bar } from 'recharts'
+// Type-safe Recharts component aliases to fix JSX component issues
+// This fixes "cannot be used as JSX component" errors in Recharts v2
+const SafeLineChart = LineChart as React.ComponentType<any>;
+const SafeAreaChart = AreaChart as React.ComponentType<any>;
+const SafeBarChart = BarChart as React.ComponentType<any>;
+const SafePieChart = PieChart as React.ComponentType<any>;
+const SafeRadarChart = RadarChart as React.ComponentType<any>;
+const SafeComposedChart = ComposedChart as React.ComponentType<any>;
+const SafeScatterChart = ScatterChart as React.ComponentType<any>;
+const SafeResponsiveContainer = ResponsiveContainer as React.ComponentType<any>;
+const SafeLine = Line as React.ComponentType<any>;
+const SafeArea = Area as React.ComponentType<any>;
+const SafeBar = Bar as React.ComponentType<any>;
+const SafePie = Pie as React.ComponentType<any>;
+const SafeCell = Cell as React.ComponentType<any>;
+const SafeXAxis = XAxis as React.ComponentType<any>;
+const SafeYAxis = YAxis as React.ComponentType<any>;
+const SafeCartesianGrid = CartesianGrid as React.ComponentType<any>;
+const SafeTooltip = Tooltip as React.ComponentType<any>;
+const SafeLegend = Legend as React.ComponentType<any>;
+const SafeRadar = Radar as React.ComponentType<any>;
+const SafePolarGrid = PolarGrid as React.ComponentType<any>;
+const SafePolarAngleAxis = PolarAngleAxis as React.ComponentType<any>;
+const SafePolarRadiusAxis = PolarRadiusAxis as React.ComponentType<any>;
+const SafeBrush = Brush as React.ComponentType<any>;
+const SafeReferenceLine = ReferenceLine as React.ComponentType<any>;
+const SafeReferenceDot = ReferenceDot as React.ComponentType<any>;
+const SafeFunnelChart = FunnelChart as React.ComponentType<any>;
+const SafeFunnel = Funnel as React.ComponentType<any>;
+const SafeTreemap = Treemap as React.ComponentType<any>;
+const SafeSankey = Sankey as React.ComponentType<any>;
 
 const CustomerChurn: React.FC = () => {
   const { customers, alerts, loading } = useAnalytics()
@@ -105,7 +136,7 @@ const CustomerChurn: React.FC = () => {
               <p className="text-3xl font-bold text-gray-900 dark:text-white">8.2%</p>
               <p className="text-sm text-red-600 dark:text-red-400">↑ 0.5% vs last month</p>
             </div>
-            <TrendingDownIcon className="w-8 h-8 text-red-500" />
+            <ArrowTrendingDownIcon className="w-8 h-8 text-red-500" />
           </div>
         </motion.div>
 
@@ -152,9 +183,9 @@ const CustomerChurn: React.FC = () => {
             <p className="card-description">Churn risk levels across customer base</p>
           </div>
           <div className="h-80 flex items-center justify-center">
-            <ResponsiveContainer width="100%" height={300}>
-              <PieChart>
-                <Pie
+            <SafeResponsiveContainer width="100%" height={300}>
+              <SafePieChart>
+                <SafePie
                   data={churnRiskData}
                   cx="50%"
                   cy="50%"
@@ -164,10 +195,10 @@ const CustomerChurn: React.FC = () => {
                   dataKey="count"
                 >
                   {churnRiskData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.color} />
+                    <SafeCell key={`cell-${index}`} fill={entry.color} />
                   ))}
-                </Pie>
-                <Tooltip 
+                </SafePie>
+                <SafeTooltip 
                   formatter={(value, name) => [`${value} customers`, name]}
                   contentStyle={{ 
                     backgroundColor: '#1f2937', 
@@ -176,9 +207,9 @@ const CustomerChurn: React.FC = () => {
                     color: '#f9fafb' 
                   }}
                 />
-                <Legend />
-              </PieChart>
-            </ResponsiveContainer>
+                <SafeLegend />
+              </SafePieChart>
+            </SafeResponsiveContainer>
           </div>
         </motion.div>
 
@@ -189,12 +220,12 @@ const CustomerChurn: React.FC = () => {
             <p className="card-description">Monthly churn and retention rates</p>
           </div>
           <div className="h-80">
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={churnTrend}>
-                <CartesianGrid strokeDasharray="3 3" className="opacity-30" />
-                <XAxis dataKey="month" />
-                <YAxis tickFormatter={(value) => formatPercentage(value, 0)} />
-                <Tooltip 
+            <SafeResponsiveContainer width="100%" height="100%">
+              <SafeLineChart data={churnTrend}>
+                <SafeCartesianGrid strokeDasharray="3 3" className="opacity-30" />
+                <SafeXAxis dataKey="month" />
+                <SafeYAxis tickFormatter={(value) => formatPercentage(value, 0)} />
+                <SafeTooltip 
                   formatter={(value, name) => [formatPercentage(Number(value), 1), name]}
                   contentStyle={{ 
                     backgroundColor: '#1f2937', 
@@ -203,23 +234,23 @@ const CustomerChurn: React.FC = () => {
                     color: '#f9fafb' 
                   }}
                 />
-                <Legend />
-                <Line 
+                <SafeLegend />
+                <SafeLine 
                   type="monotone" 
                   dataKey="churnRate" 
                   stroke="#ef4444" 
                   strokeWidth={3}
                   name="Churn Rate"
                 />
-                <Line 
+                <SafeLine 
                   type="monotone" 
                   dataKey="retentionRate" 
                   stroke="#10b981" 
                   strokeWidth={3}
                   name="Retention Rate"
                 />
-              </LineChart>
-            </ResponsiveContainer>
+              </SafeLineChart>
+            </SafeResponsiveContainer>
           </div>
         </motion.div>
       </div>

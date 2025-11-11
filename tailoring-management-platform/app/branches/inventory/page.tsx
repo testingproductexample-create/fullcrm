@@ -131,7 +131,7 @@ export default function CrossLocationInventoryPage() {
           <p className="text-gray-400">View and manage inventory across all branch locations</p>
         </div>
         <div className="flex gap-2">
-          <Link href="/branches/transfers/new">
+          <Link href={`/branches/transfers/new`}>
             <Button className="bg-indigo-600 hover:bg-indigo-700 text-white">
               <ArrowPathIcon className="h-5 w-5 mr-2" />
               Transfer Stock

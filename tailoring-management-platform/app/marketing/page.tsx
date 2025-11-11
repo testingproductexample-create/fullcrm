@@ -45,7 +45,7 @@ export default function MarketingDashboardPage() {
           <p className="text-slate-600 mt-1">Manage campaigns, segments, and marketing automation</p>
         </div>
         <div className="flex gap-3">
-          <Link href="/marketing/campaigns/new">
+          <Link href={`/marketing/campaigns/new`}>
             <Button className="bg-blue-600 hover:bg-blue-700">
               <Plus className="h-4 w-4 mr-2" />
               New Campaign
@@ -228,7 +228,7 @@ export default function MarketingDashboardPage() {
       <Card className="p-6">
         <h2 className="text-lg font-semibold text-slate-900 mb-4">Quick Actions</h2>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <Link href="/marketing/campaigns">
+          <Link href={`/marketing/campaigns`}>
             <Button variant="outline" className="w-full justify-start h-auto p-4">
               <Mail className="h-5 w-5 mr-3 text-blue-600" />
               <div className="text-left">
@@ -238,7 +238,7 @@ export default function MarketingDashboardPage() {
             </Button>
           </Link>
           
-          <Link href="/marketing/segments">
+          <Link href={`/marketing/segments`}>
             <Button variant="outline" className="w-full justify-start h-auto p-4">
               <Users className="h-5 w-5 mr-3 text-purple-600" />
               <div className="text-left">
@@ -248,7 +248,7 @@ export default function MarketingDashboardPage() {
             </Button>
           </Link>
           
-          <Link href="/marketing/templates">
+          <Link href={`/marketing/templates`}>
             <Button variant="outline" className="w-full justify-start h-auto p-4">
               <BarChart3 className="h-5 w-5 mr-3 text-green-600" />
               <div className="text-left">
@@ -258,7 +258,7 @@ export default function MarketingDashboardPage() {
             </Button>
           </Link>
           
-          <Link href="/marketing/analytics">
+          <Link href={`/marketing/analytics`}>
             <Button variant="outline" className="w-full justify-start h-auto p-4">
               <TrendingUp className="h-5 w-5 mr-3 text-amber-600" />
               <div className="text-left">

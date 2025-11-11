@@ -196,7 +196,7 @@ export default function FinancialDashboard() {
             <option value="90">Last 90 days</option>
             <option value="365">Last year</option>
           </select>
-          <Link href="/finance/transactions">
+          <Link href={`/finance/transactions`}>
             <Button variant="outline">
               <PlusIcon className="h-4 w-4 mr-2" />
               Add Transaction
@@ -338,25 +338,25 @@ export default function FinancialDashboard() {
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-            <Link href="/invoices/new">
+            <Link href={`/invoices/new`}>
               <Button variant="outline" className="w-full flex flex-col items-center gap-2 h-auto py-4">
                 <DocumentTextIcon className="h-6 w-6" />
                 <span>Create Invoice</span>
               </Button>
             </Link>
-            <Link href="/finance/transactions">
+            <Link href={`/finance/transactions`}>
               <Button variant="outline" className="w-full flex flex-col items-center gap-2 h-auto py-4">
                 <BanknotesIcon className="h-6 w-6" />
                 <span>Add Transaction</span>
               </Button>
             </Link>
-            <Link href="/finance/reports">
+            <Link href={`/finance/reports`}>
               <Button variant="outline" className="w-full flex flex-col items-center gap-2 h-auto py-4">
                 <ChartPieIcon className="h-6 w-6" />
                 <span>View Reports</span>
               </Button>
             </Link>
-            <Link href="/payments">
+            <Link href={`/payments`}>
               <Button variant="outline" className="w-full flex flex-col items-center gap-2 h-auto py-4">
                 <CurrencyDollarIcon className="h-6 w-6" />
                 <span>Record Payment</span>
@@ -370,7 +370,7 @@ export default function FinancialDashboard() {
       <Card className="glass">
         <CardHeader className="flex flex-row items-center justify-between">
           <CardTitle>Recent Transactions</CardTitle>
-          <Link href="/finance/transactions">
+          <Link href={`/finance/transactions`}>
             <Button variant="outline" size="sm">
               View All
             </Button>
@@ -410,7 +410,7 @@ export default function FinancialDashboard() {
                 Start by recording your first financial transaction.
               </p>
               <div className="mt-6">
-                <Link href="/finance/transactions">
+                <Link href={`/finance/transactions`}>
                   <Button>
                     <PlusIcon className="h-4 w-4 mr-2" />
                     Add Transaction

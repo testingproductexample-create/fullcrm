@@ -29,7 +29,7 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (user) {
-      router.push('/dashboard');
+      router.push('/dashboard' as any);
     }
   }, [user, router]);
 
@@ -147,7 +147,7 @@ export default function LoginPage() {
           { user_agent: navigator.userAgent }
         );
 
-        router.push('/dashboard');
+        router.push('/dashboard' as any);
       }
     } catch (err) {
       setError('An unexpected error occurred');
@@ -185,7 +185,7 @@ export default function LoginPage() {
             { method: preferredMethod }
           );
 
-          router.push('/dashboard');
+          router.push('/dashboard' as any);
         } else {
           setError('MFA verification failed. Please try again.');
           setCurrentStep('credentials');

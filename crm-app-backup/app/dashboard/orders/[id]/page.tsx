@@ -115,7 +115,7 @@ export default function OrderDetailPage() {
 
       if (orderError) throw orderError;
       if (!orderData) {
-        router.push('/dashboard/orders/list');
+        router.push('/dashboard/orders/list' as any);
         return;
       }
       setOrder(orderData);

@@ -17,7 +17,7 @@ interface NavigationItem {
 
 const navigation: NavigationItem[] = [
   { name: 'Dashboard', href: '/dashboard', icon: HomeIcon },
-  { name: 'Revenue', href: '/revenue', icon: TrendingUpIcon },
+  { name: 'Revenue', href: '/revenue', icon: ArrowTrendingUpIcon },
   { name: 'Profit & Loss', href: '/profit-loss', icon: ChartBarIcon },
   { name: 'Costs', href: '/costs', icon: CurrencyDollarIcon },
   { name: 'Cash Flow', href: '/cash-flow', icon: ArrowsRightLeftIcon },
@@ -146,7 +146,7 @@ function HomeIcon({ className }: { className?: string }) {
   )
 }
 
-function TrendingUpIcon({ className }: { className?: string }) {
+function ArrowTrendingUpIcon({ className }: { className?: string }) {
   return (
     <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />

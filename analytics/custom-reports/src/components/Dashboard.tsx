@@ -44,7 +44,7 @@ const Dashboard: React.FC = () => {
 
   useEffect(() => {
     setDashboardsList(dashboards);
-    if (dashboards.length > 0 && !currentDashboard) {
+    if (dashboards && dashboards.length > 0 && !currentDashboard) {
       setCurrentDashboard(dashboards[0]);
     }
   }, [dashboards, currentDashboard, setCurrentDashboard]);
@@ -155,7 +155,7 @@ const Dashboard: React.FC = () => {
     toast.success('Data refreshed');
   };
 
-  const currentData = realTimeData[0];
+  const currentData = realTimeData?.[0];
 
   return (
     <div className="h-full flex flex-col">

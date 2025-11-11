@@ -107,7 +107,7 @@ export default function IntegrationsDashboard() {
             </p>
           </div>
           <Link
-            href="/integrations/setup"
+            href={`/integrations/setup`}
             className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium flex items-center gap-2 transition-colors"
           >
             <PlusIcon className="w-5 h-5" />
@@ -292,7 +292,7 @@ export default function IntegrationsDashboard() {
         {/* Quick Actions */}
         <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
           <Link
-            href="/integrations/logs"
+            href={`/integrations/logs`}
             className="bg-white/80 backdrop-blur-xl rounded-2xl p-6 border border-white/20 shadow-lg hover:shadow-xl transition-shadow"
           >
             <ChartBarIcon className="w-10 h-10 text-blue-600 mb-3" />
@@ -301,7 +301,7 @@ export default function IntegrationsDashboard() {
           </Link>
 
           <Link
-            href="/integrations/webhooks"
+            href={`/integrations/webhooks`}
             className="bg-white/80 backdrop-blur-xl rounded-2xl p-6 border border-white/20 shadow-lg hover:shadow-xl transition-shadow"
           >
             <ServerIcon className="w-10 h-10 text-purple-600 mb-3" />
@@ -310,7 +310,7 @@ export default function IntegrationsDashboard() {
           </Link>
 
           <Link
-            href="/integrations/analytics"
+            href={`/integrations/analytics`}
             className="bg-white/80 backdrop-blur-xl rounded-2xl p-6 border border-white/20 shadow-lg hover:shadow-xl transition-shadow"
           >
             <CogIcon className="w-10 h-10 text-green-600 mb-3" />

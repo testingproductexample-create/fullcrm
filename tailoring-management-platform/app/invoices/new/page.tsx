@@ -171,7 +171,7 @@ export default function CreateInvoicePage() {
     onSuccess: (invoice) => {
       queryClient.invalidateQueries({ queryKey: ['invoices'] });
       toast.success(`Invoice ${invoice.invoice_number} ${isDraft ? 'saved as draft' : 'created successfully'}!`);
-      router.push(`/invoices/${invoice.id}`);
+      router.push("/invoices/${invoice.id}" as any as any);
     },
     onError: (error) => {
       console.error('Error creating invoice:', error);

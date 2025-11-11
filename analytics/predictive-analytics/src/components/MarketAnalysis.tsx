@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { TrendingUpIcon, GlobeAltIcon } from '@heroicons/react/24/outline'
+import { ArrowTrendingUpIcon, GlobeAltIcon } from '@heroicons/react/24/outline'
 
 const MarketAnalysis: React.FC = () => {
   return (
@@ -28,7 +28,7 @@ const MarketAnalysis: React.FC = () => {
               <p className="text-3xl font-bold text-gray-900 dark:text-white">High</p>
               <p className="text-sm text-green-600">Growing demand</p>
             </div>
-            <TrendingUpIcon className="w-8 h-8 text-green-500" />
+            <ArrowTrendingUpIcon className="w-8 h-8 text-green-500" />
           </div>
         </div>
 

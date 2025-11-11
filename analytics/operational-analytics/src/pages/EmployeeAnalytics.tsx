@@ -55,13 +55,13 @@ const EmployeeAnalytics: React.FC = () => {
   const employeeMetrics = employees.map(employee => {
     const employeePerf = performanceMetrics.filter(perf => perf.employeeId === employee.employeeId);
     const avgTasks = employeePerf.length > 0 
-      ? employeePerf.reduce((sum, perf) => sum + perf.tasksCompleted, 0) / employeePerf.length 
+      ? employeePerf.reduce((sum: number, perf: PerformanceMetric) => sum + perf.tasksCompleted, 0) / employeePerf.length 
       : 0;
     const avgQuality = employeePerf.length > 0 
-      ? employeePerf.reduce((sum, perf) => sum + perf.qualityScore, 0) / employeePerf.length 
+      ? employeePerf.reduce((sum: number, perf: PerformanceMetric) => sum + perf.qualityScore, 0) / employeePerf.length 
       : 0;
     const avgEfficiency = employeePerf.length > 0 
-      ? employeePerf.reduce((sum, perf) => sum + perf.efficiencyRating, 0) / employeePerf.length 
+      ? employeePerf.reduce((sum: number, perf: PerformanceMetric) => sum + perf.efficiencyRating, 0) / employeePerf.length 
       : 0;
 
     return {
@@ -83,7 +83,7 @@ const EmployeeAnalytics: React.FC = () => {
     };
   });
 
-  const avgDepartmentPerf = departmentData.reduce((acc, curr) => {
+  const avgDepartmentPerf = departmentData.reduce((acc: Record<string, { total: number; count: number }>, curr: { department: string; efficiency: number }) => {
     if (!acc[curr.department]) {
       acc[curr.department] = { total: 0, count: 0 };
     }
@@ -134,7 +134,7 @@ const EmployeeAnalytics: React.FC = () => {
   const totalEmployees = employees.length;
   const activeEmployees = employees.filter(emp => emp.status === 'active').length;
   const avgEfficiency = employeeMetrics.length > 0 
-    ? employeeMetrics.reduce((sum, emp) => sum + emp.avgEfficiency, 0) / employeeMetrics.length 
+    ? employeeMetrics.reduce((sum: number, emp: typeof employeeMetrics[0]) => sum + emp.avgEfficiency, 0) / employeeMetrics.length 
     : 0;
   const topPerformer = employeeMetrics.length > 0 
     ? Math.max(...employeeMetrics.map(emp => emp.avgEfficiency)) 

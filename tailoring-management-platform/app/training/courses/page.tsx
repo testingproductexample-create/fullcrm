@@ -98,7 +98,7 @@ export default function CoursesPage() {
           <Badge variant="outline" className="px-3 py-1">
             {filteredPrograms.length} Course{filteredPrograms.length !== 1 ? 's' : ''} Available
           </Badge>
-          <Link href="/training/sessions">
+          <Link href={`/training/sessions`}>
             <Button variant="outline">
               <CalendarIcon className="h-4 w-4 mr-2" />
               View Sessions

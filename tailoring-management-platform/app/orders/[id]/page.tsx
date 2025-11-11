@@ -92,7 +92,7 @@ export default function OrderDetailPage() {
     },
     onSuccess: () => {
       toast.success('Order deleted successfully');
-      router.push('/orders');
+      router.push("/orders" as any as any);
     },
     onError: () => {
       toast.error('Failed to delete order');
@@ -145,7 +145,7 @@ export default function OrderDetailPage() {
     return (
       <div className="text-center py-8">
         <p className="text-red-600">Error loading order</p>
-        <Button variant="outline" onClick={() => router.back()}>
+        <Button variant="outline" onClick={() => router.back() as any}>
           Go Back
         </Button>
       </div>
@@ -181,7 +181,7 @@ export default function OrderDetailPage() {
           <Button
             variant="outline"
             size="sm"
-            onClick={() => router.back()}
+            onClick={() => router.back() as any}
             className="flex items-center gap-2"
           >
             <ArrowLeftIcon className="h-4 w-4" />
@@ -197,7 +197,7 @@ export default function OrderDetailPage() {
             <PrinterIcon className="h-4 w-4" />
             Print
           </Button>
-          <Link href={`/orders/${orderId}/edit`}>
+          <Link href={`/orders/${orderId/edit}`}>
             <Button variant="outline" className="flex items-center gap-2">
               <PencilIcon className="h-4 w-4" />
               Edit

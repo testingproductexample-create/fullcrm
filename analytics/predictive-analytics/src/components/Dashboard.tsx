@@ -6,7 +6,7 @@ import {
   CurrencyDollarIcon,
   CubeIcon,
   ExclamationTriangleIcon,
-  TrendingUpIcon,
+  ArrowTrendingUpIcon,
   WrenchScrewdriverIcon,
   BanknotesIcon,
   CpuChipIcon,
@@ -18,6 +18,37 @@ import {
 import { useAnalytics } from '../contexts/AnalyticsContext'
 import { cn, formatCurrency, formatNumber, formatPercentage, getStatusColor } from '../lib/utils'
 import { LineChart, Line, AreaChart, Area, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts'
+// Type-safe Recharts component aliases to fix JSX component issues
+// This fixes "cannot be used as JSX component" errors in Recharts v2
+const SafeLineChart = LineChart as React.ComponentType<any>;
+const SafeAreaChart = AreaChart as React.ComponentType<any>;
+const SafeBarChart = BarChart as React.ComponentType<any>;
+const SafePieChart = PieChart as React.ComponentType<any>;
+const SafeRadarChart = RadarChart as React.ComponentType<any>;
+const SafeComposedChart = ComposedChart as React.ComponentType<any>;
+const SafeScatterChart = ScatterChart as React.ComponentType<any>;
+const SafeResponsiveContainer = ResponsiveContainer as React.ComponentType<any>;
+const SafeLine = Line as React.ComponentType<any>;
+const SafeArea = Area as React.ComponentType<any>;
+const SafeBar = Bar as React.ComponentType<any>;
+const SafePie = Pie as React.ComponentType<any>;
+const SafeCell = Cell as React.ComponentType<any>;
+const SafeXAxis = XAxis as React.ComponentType<any>;
+const SafeYAxis = YAxis as React.ComponentType<any>;
+const SafeCartesianGrid = CartesianGrid as React.ComponentType<any>;
+const SafeTooltip = Tooltip as React.ComponentType<any>;
+const SafeLegend = Legend as React.ComponentType<any>;
+const SafeRadar = Radar as React.ComponentType<any>;
+const SafePolarGrid = PolarGrid as React.ComponentType<any>;
+const SafePolarAngleAxis = PolarAngleAxis as React.ComponentType<any>;
+const SafePolarRadiusAxis = PolarRadiusAxis as React.ComponentType<any>;
+const SafeBrush = Brush as React.ComponentType<any>;
+const SafeReferenceLine = ReferenceLine as React.ComponentType<any>;
+const SafeReferenceDot = ReferenceDot as React.ComponentType<any>;
+const SafeFunnelChart = FunnelChart as React.ComponentType<any>;
+const SafeFunnel = Funnel as React.ComponentType<any>;
+const SafeTreemap = Treemap as React.ComponentType<any>;
+const SafeSankey = Sankey as React.ComponentType<any>;
 
 // Metric Card Component
 interface MetricCardProps {
@@ -145,10 +176,10 @@ const MiniChart: React.FC<MiniChartProps> = ({ data, type, color, height = 60 })
   const ChartComponent = type === 'line' ? LineChart : type === 'area' ? AreaChart : BarChart
 
   return (
-    <ResponsiveContainer width="100%" height={height}>
+    <SafeResponsiveContainer width="100%" height={height}>
       <ChartComponent data={data}>
         {type === 'line' && (
-          <Line 
+          <SafeLine 
             type="monotone" 
             dataKey="value" 
             stroke={color} 
@@ -158,7 +189,7 @@ const MiniChart: React.FC<MiniChartProps> = ({ data, type, color, height = 60 })
           />
         )}
         {type === 'area' && (
-          <Area 
+          <SafeArea 
             type="monotone" 
             dataKey="value" 
             stroke={color} 
@@ -167,15 +198,15 @@ const MiniChart: React.FC<MiniChartProps> = ({ data, type, color, height = 60 })
           />
         )}
         {type === 'bar' && (
-          <Bar 
+          <SafeBar 
             dataKey="value" 
             fill={color}
             radius={[2, 2, 0, 0]}
           />
         )}
-        <XAxis hide />
-        <YAxis hide />
-        <Tooltip 
+        <SafeXAxis hide />
+        <SafeYAxis hide />
+        <SafeTooltip 
           contentStyle={{ 
             backgroundColor: '#1f2937', 
             border: 'none', 
@@ -184,7 +215,7 @@ const MiniChart: React.FC<MiniChartProps> = ({ data, type, color, height = 60 })
           }}
         />
       </ChartComponent>
-    </ResponsiveContainer>
+    </SafeResponsiveContainer>
   )
 }
 
@@ -374,7 +405,7 @@ const Dashboard: React.FC = () => {
           value={formatCurrency(currentRevenue.predicted)}
           change={0.15}
           trend="up"
-          icon={TrendingUpIcon}
+          icon={ArrowTrendingUpIcon}
           color="#10b981"
           subtitle="This month"
         />
@@ -412,12 +443,12 @@ const Dashboard: React.FC = () => {
             <p className="card-description">Actual vs. AI-predicted revenue with confidence intervals</p>
           </div>
           <div className="h-80">
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={chartData.revenue}>
-                <CartesianGrid strokeDasharray="3 3" className="opacity-30" />
-                <XAxis dataKey="month" />
-                <YAxis tickFormatter={(value) => `$${value/1000}k`} />
-                <Tooltip 
+            <SafeResponsiveContainer width="100%" height="100%">
+              <SafeLineChart data={chartData.revenue}>
+                <SafeCartesianGrid strokeDasharray="3 3" className="opacity-30" />
+                <SafeXAxis dataKey="month" />
+                <SafeYAxis tickFormatter={(value) => `$${value/1000}k`} />
+                <SafeTooltip 
                   formatter={(value, name) => [formatCurrency(Number(value)), name]}
                   contentStyle={{ 
                     backgroundColor: '#1f2937', 
@@ -426,8 +457,8 @@ const Dashboard: React.FC = () => {
                     color: '#f9fafb' 
                   }}
                 />
-                <Legend />
-                <Line 
+                <SafeLegend />
+                <SafeLine 
                   type="monotone" 
                   dataKey="actual" 
                   stroke="#10b981" 
@@ -435,7 +466,7 @@ const Dashboard: React.FC = () => {
                   name="Actual Revenue"
                   dot={{ fill: '#10b981', strokeWidth: 2, r: 4 }}
                 />
-                <Line 
+                <SafeLine 
                   type="monotone" 
                   dataKey="predicted" 
                   stroke="#0ea5e9" 
@@ -444,8 +475,8 @@ const Dashboard: React.FC = () => {
                   name="Predicted Revenue"
                   dot={{ fill: '#0ea5e9', strokeWidth: 2, r: 4 }}
                 />
-              </LineChart>
-            </ResponsiveContainer>
+              </SafeLineChart>
+            </SafeResponsiveContainer>
           </div>
         </motion.div>
 
@@ -460,9 +491,9 @@ const Dashboard: React.FC = () => {
           </div>
           <div className="h-80 flex items-center justify-center">
             <div className="w-full">
-              <ResponsiveContainer width="100%" height={300}>
-                <PieChart>
-                  <Pie
+              <SafeResponsiveContainer width="100%" height={300}>
+                <SafePieChart>
+                  <SafePie
                     data={chartData.customerSegments}
                     cx="50%"
                     cy="50%"
@@ -472,10 +503,10 @@ const Dashboard: React.FC = () => {
                     dataKey="value"
                   >
                     {chartData.customerSegments.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={entry.color} />
+                      <SafeCell key={`cell-${index}`} fill={entry.color} />
                     ))}
-                  </Pie>
-                  <Tooltip 
+                  </SafePie>
+                  <SafeTooltip 
                     formatter={(value, name) => [`${value}%`, name]}
                     contentStyle={{ 
                       backgroundColor: '#1f2937', 
@@ -484,8 +515,8 @@ const Dashboard: React.FC = () => {
                       color: '#f9fafb' 
                     }}
                   />
-                </PieChart>
-              </ResponsiveContainer>
+                </SafePieChart>
+              </SafeResponsiveContainer>
               <div className="flex justify-center space-x-6 mt-4">
                 {chartData.customerSegments.map((segment, index) => (
                   <div key={index} className="flex items-center space-x-2">
@@ -516,12 +547,12 @@ const Dashboard: React.FC = () => {
             <p className="card-description">30-day order demand prediction</p>
           </div>
           <div className="h-64">
-            <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={chartData.demand.slice(-14)}>
-                <CartesianGrid strokeDasharray="3 3" className="opacity-30" />
-                <XAxis dataKey="day" />
-                <YAxis />
-                <Tooltip 
+            <SafeResponsiveContainer width="100%" height="100%">
+              <SafeAreaChart data={chartData.demand.slice(-14)}>
+                <SafeCartesianGrid strokeDasharray="3 3" className="opacity-30" />
+                <SafeXAxis dataKey="day" />
+                <SafeYAxis />
+                <SafeTooltip 
                   contentStyle={{ 
                     backgroundColor: '#1f2937', 
                     border: 'none', 
@@ -529,7 +560,7 @@ const Dashboard: React.FC = () => {
                     color: '#f9fafb' 
                   }}
                 />
-                <Area 
+                <SafeArea 
                   type="monotone" 
                   dataKey="forecast" 
                   stroke="#8b5cf6" 
@@ -537,8 +568,8 @@ const Dashboard: React.FC = () => {
                   fillOpacity={0.3}
                   name="Forecasted Demand"
                 />
-              </AreaChart>
-            </ResponsiveContainer>
+              </SafeAreaChart>
+            </SafeResponsiveContainer>
           </div>
         </motion.div>
 
@@ -552,12 +583,12 @@ const Dashboard: React.FC = () => {
             <p className="card-description">Business risk levels across operations</p>
           </div>
           <div className="h-64">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={chartData.riskDistribution}>
-                <CartesianGrid strokeDasharray="3 3" className="opacity-30" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip 
+            <SafeResponsiveContainer width="100%" height="100%">
+              <SafeBarChart data={chartData.riskDistribution}>
+                <SafeCartesianGrid strokeDasharray="3 3" className="opacity-30" />
+                <SafeXAxis dataKey="name" />
+                <SafeYAxis />
+                <SafeTooltip 
                   contentStyle={{ 
                     backgroundColor: '#1f2937', 
                     border: 'none', 
@@ -565,13 +596,13 @@ const Dashboard: React.FC = () => {
                     color: '#f9fafb' 
                   }}
                 />
-                <Bar 
+                <SafeBar 
                   dataKey="value" 
                   fill="#0ea5e9"
                   radius={[4, 4, 0, 0]}
                 />
-              </BarChart>
-            </ResponsiveContainer>
+              </SafeBarChart>
+            </SafeResponsiveContainer>
           </div>
         </motion.div>
 

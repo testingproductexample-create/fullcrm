@@ -207,7 +207,7 @@ export default function NewAppointment() {
 
       if (createError) throw createError;
 
-      router.push(`/dashboard/appointments/${appointment.id}`);
+      router.push(`/dashboard/appointments/${appointment.id}` as any);
     } catch (error: any) {
       console.error('Error creating appointment:', error);
       setError(error.message || 'Failed to create appointment. Please try again.');

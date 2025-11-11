@@ -178,22 +178,22 @@ export default function CommunicationAnalytics() {
       setTimeMetrics(timeMetrics);
 
       // Calculate total stats
-      const totalSent = analyticsData?.reduce((sum, d) => sum + (d.messages_sent || 0), 0) || 0;
-      const totalDelivered = analyticsData?.reduce((sum, d) => sum + (d.messages_delivered || 0), 0) || 0;
-      const totalRead = analyticsData?.reduce((sum, d) => sum + (d.messages_read || 0), 0) || 0;
-      const totalFailed = analyticsData?.reduce((sum, d) => sum + (d.messages_failed || 0), 0) || 0;
+      const totalSent = analyticsData?.reduce((sum: number, d: AnalyticsData) => sum + (d.messages_sent || 0), 0) || 0;
+      const totalDelivered = analyticsData?.reduce((sum: number, d: AnalyticsData) => sum + (d.messages_delivered || 0), 0) || 0;
+      const totalRead = analyticsData?.reduce((sum: number, d: AnalyticsData) => sum + (d.messages_read || 0), 0) || 0;
+      const totalFailed = analyticsData?.reduce((sum: number, d: AnalyticsData) => sum + (d.messages_failed || 0), 0) || 0;
       
       const avgDeliveryRate = totalSent > 0 ? (totalDelivered / totalSent) * 100 : 0;
       const avgReadRate = totalDelivered > 0 ? (totalRead / totalDelivered) * 100 : 0;
       
-      const responseTimeData = analyticsData?.filter(d => d.average_response_time) || [];
+      const responseTimeData = analyticsData?.filter((d: AnalyticsData) => d.average_response_time) || [];
       const avgResponseTime = responseTimeData.length > 0 
-        ? responseTimeData.reduce((sum, d) => sum + d.average_response_time, 0) / responseTimeData.length 
+        ? responseTimeData.reduce((sum: number, d: AnalyticsData) => sum + d.average_response_time, 0) / responseTimeData.length 
         : 0;
       
-      const satisfactionData = analyticsData?.filter(d => d.satisfaction_score) || [];
+      const satisfactionData = analyticsData?.filter((d: AnalyticsData) => d.satisfaction_score) || [];
       const avgSatisfaction = satisfactionData.length > 0
-        ? satisfactionData.reduce((sum, d) => sum + d.satisfaction_score, 0) / satisfactionData.length
+        ? satisfactionData.reduce((sum: number, d: AnalyticsData) => sum + d.satisfaction_score, 0) / satisfactionData.length
         : 0;
 
       setTotalStats({

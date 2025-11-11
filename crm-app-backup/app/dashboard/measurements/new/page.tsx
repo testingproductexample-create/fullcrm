@@ -144,7 +144,7 @@ export default function NewMeasurementPage() {
       if (error) throw error;
 
       addToast('Measurements saved successfully', 'success');
-      router.push('/dashboard/measurements');
+      router.push('/dashboard/measurements' as any);
     } catch (error) {
       console.error('Error saving measurements:', error);
       addToast('Failed to save measurements', 'error');

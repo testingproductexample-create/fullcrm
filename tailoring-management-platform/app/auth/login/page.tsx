@@ -36,7 +36,7 @@ export default function LoginPage() {
         try {
           await signIn(email, password);
           toast.success('Successfully signed in');
-          router.push('/');
+          router.push("/" as any as any);
         } catch (error) {
           console.error('Login error:', error);
           toast.error('Failed to sign in. Please check your credentials.');
@@ -97,7 +97,7 @@ export default function LoginPage() {
 
         <div className="flex items-center justify-between">
           <Link
-            href="/auth/reset-password"
+            href={`/auth/reset-password`}
             className="text-sm text-blue-600 hover:text-blue-700 hover:underline"
           >
             Forgot password?
@@ -122,7 +122,7 @@ export default function LoginPage() {
 
       <div className="text-center text-sm text-gray-600">
         Don&apos;t have an account?{' '}
-        <Link href="/auth/signup" className="text-blue-600 hover:text-blue-700 hover:underline">
+        <Link href={`/auth/signup`} className="text-blue-600 hover:text-blue-700 hover:underline">
           Sign up
         </Link>
       </div>

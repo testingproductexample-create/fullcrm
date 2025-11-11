@@ -64,7 +64,7 @@ export default function SignupPage() {
             business_name: formData.businessName,
           });
           toast.success('Account created successfully! Please check your email for verification.');
-          router.push('/auth/login');
+          router.push("/auth/login" as any as any);
         } catch (error) {
           console.error('Signup error:', error);
           toast.error('Failed to create account. Please try again.');
@@ -234,7 +234,7 @@ export default function SignupPage() {
 
       <div className="text-center text-sm text-gray-600">
         Already have an account?{' '}
-        <Link href="/auth/login" className="text-blue-600 hover:text-blue-700 hover:underline">
+        <Link href={`/auth/login`} className="text-blue-600 hover:text-blue-700 hover:underline">
           Sign in
         </Link>
       </div>

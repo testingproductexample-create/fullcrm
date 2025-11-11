@@ -33,13 +33,13 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
   useEffect(() => {
     if (!loading && !user) {
-      router.push('/auth/login');
+      router.push('/auth/login' as any);
     }
   }, [user, loading, router]);
 
   const handleSignOut = async () => {
     await signOut();
-    router.push('/auth/login');
+    router.push('/auth/login' as any);
   };
 
   if (loading) {

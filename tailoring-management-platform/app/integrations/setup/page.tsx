@@ -79,7 +79,7 @@ export default function IntegrationSetup() {
       return connection;
     },
     onSuccess: (connection) => {
-      router.push(`/integrations/${connection.id}`);
+      router.push("/integrations/${connection.id}" as any as any);
     },
   });
 

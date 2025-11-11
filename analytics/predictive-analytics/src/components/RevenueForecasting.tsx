@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { CurrencyDollarIcon, TrendingUpIcon, ChartBarIcon } from '@heroicons/react/24/outline'
+import { CurrencyDollarIcon, ArrowTrendingUpIcon, ChartBarIcon } from '@heroicons/react/24/outline'
 
 const RevenueForecasting: React.FC = () => {
   return (
@@ -39,7 +39,7 @@ const RevenueForecasting: React.FC = () => {
               <p className="text-3xl font-bold text-gray-900 dark:text-white">12.5%</p>
               <p className="text-sm text-blue-600">Strong growth</p>
             </div>
-            <TrendingUpIcon className="w-8 h-8 text-blue-500" />
+            <ArrowTrendingUpIcon className="w-8 h-8 text-blue-500" />
           </div>
         </div>
 

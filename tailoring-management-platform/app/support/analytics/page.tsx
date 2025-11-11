@@ -14,7 +14,7 @@ import { Badge } from '@/components/ui/badge';
 import { 
   useSupportAnalytics,
   useSLACompliance,
-  useTicketVolumeInder,
+  useTicketVolumeIndex,
   useSupportAgents
 } from '@/hooks/useSupport';
 import { 
@@ -35,6 +35,23 @@ import {
   RefreshCwIcon
 } from 'lucide-react';
 import { LineChart, Line, AreaChart, Area, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+
+// Type-safe Recharts component aliases to fix JSX component issues
+const SafeLineChart = LineChart as React.ComponentType<any>;
+const SafeLine = Line as React.ComponentType<any>;
+const SafeAreaChart = AreaChart as React.ComponentType<any>;
+const SafeArea = Area as React.ComponentType<any>;
+const SafeBarChart = BarChart as React.ComponentType<any>;
+const SafeBar = Bar as React.ComponentType<any>;
+const SafePieChart = PieChart as React.ComponentType<any>;
+const SafePie = Pie as React.ComponentType<any>;
+const SafeCell = Cell as React.ComponentType<any>;
+const SafeXAxis = XAxis as React.ComponentType<any>;
+const SafeYAxis = YAxis as React.ComponentType<any>;
+const SafeCartesianGrid = CartesianGrid as React.ComponentType<any>;
+const SafeTooltip = Tooltip as React.ComponentType<any>;
+const SafeLegend = Legend as React.ComponentType<any>;
+const SafeResponsiveContainer = ResponsiveContainer as React.ComponentType<any>;
 import { format, subDays, subMonths } from 'date-fns';
 
 // Colors for charts
@@ -76,7 +93,7 @@ export default function SupportAnalytics() {
   const { data: analytics, isLoading: analyticsLoading, refetch: refetchAnalytics } = useSupportAnalytics(currentDateRange);
   const { data: previousAnalytics } = useSupportAnalytics(previousDateRange);
   const { data: slaCompliance } = useSLACompliance(currentDateRange);
-  const { data: ticketVolume = [] } = useTicketVolumeInder();
+  const { data: ticketVolume = [] } = useTicketVolumeIndex();
   const { data: agents = [] } = useSupportAgents();
 
   // Calculate changes from previous period
@@ -122,20 +139,20 @@ export default function SupportAnalytics() {
   };
 
   return (
-    <div className=\"p-6 space-y-6\">
+    <div className="p-6 space-y-6">
       {/* Header */}
-      <div className=\"flex items-center justify-between\">
+      <div className="flex items-center justify-between">
         <div>
-          <h1 className=\"text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent\">
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             Support Analytics
           </h1>
-          <p className=\"text-muted-foreground mt-2\">
+          <p className="text-muted-foreground mt-2">
             Comprehensive insights into support operations and performance
           </p>
         </div>
-        <div className=\"flex items-center gap-3\">
+        <div className="flex items-center gap-3">
           <Select value={dateRange} onValueChange={setDateRange}>
-            <SelectTrigger className=\"w-40\">
+            <SelectTrigger className="w-40">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -146,31 +163,31 @@ export default function SupportAnalytics() {
               ))}
             </SelectContent>
           </Select>
-          <Button variant=\"outline\" onClick={handleRefresh}>
-            <RefreshCwIcon className=\"w-4 h-4 mr-2\" />
+          <Button variant="outline" onClick={handleRefresh}>
+            <RefreshCwIcon className="w-4 h-4 mr-2" />
             Refresh
           </Button>
-          <Button variant=\"outline\" onClick={handleExport}>
-            <DownloadIcon className=\"w-4 h-4 mr-2\" />
+          <Button variant="outline" onClick={handleExport}>
+            <DownloadIcon className="w-4 h-4 mr-2" />
             Export
           </Button>
         </div>
       </div>
 
       {/* Key Metrics */}
-      <div className=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6\">
-        <Card className=\"backdrop-blur-sm bg-white/60 border border-white/20\">
-          <CardContent className=\"p-6\">
-            <div className=\"flex items-center justify-between\">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <Card className="backdrop-blur-sm bg-white/60 border border-white/20">
+          <CardContent className="p-6">
+            <div className="flex items-center justify-between">
               <div>
-                <p className=\"text-sm font-medium text-muted-foreground\">Total Tickets</p>
-                <p className=\"text-2xl font-bold\">{analytics?.totalTickets || 0}</p>
+                <p className="text-sm font-medium text-muted-foreground">Total Tickets</p>
+                <p className="text-2xl font-bold">{analytics?.totalTickets || 0}</p>
                 {changes && (
-                  <div className=\"flex items-center mt-1\">
+                  <div className="flex items-center mt-1">
                     {changes.totalTickets > 0 ? (
-                      <ArrowUpIcon className=\"h-3 w-3 text-red-500 mr-1\" />
+                      <ArrowUpIcon className="h-3 w-3 text-red-500 mr-1" />
                     ) : (
-                      <ArrowDownIcon className=\"h-3 w-3 text-green-500 mr-1\" />
+                      <ArrowDownIcon className="h-3 w-3 text-green-500 mr-1" />
                     )}
                     <span className={`text-xs ${changes.totalTickets > 0 ? 'text-red-600' : 'text-green-600'}`}>
                       {Math.abs(changes.totalTickets).toFixed(1)}%
@@ -178,25 +195,25 @@ export default function SupportAnalytics() {
                   </div>
                 )}
               </div>
-              <div className=\"h-12 w-12 bg-blue-100 rounded-lg flex items-center justify-center\">
-                <TicketIcon className=\"h-6 w-6 text-blue-600\" />
+              <div className="h-12 w-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                <TicketIcon className="h-6 w-6 text-blue-600" />
               </div>
             </div>
           </CardContent>
         </Card>
 
-        <Card className=\"backdrop-blur-sm bg-white/60 border border-white/20\">
-          <CardContent className=\"p-6\">
-            <div className=\"flex items-center justify-between\">
+        <Card className="backdrop-blur-sm bg-white/60 border border-white/20">
+          <CardContent className="p-6">
+            <div className="flex items-center justify-between">
               <div>
-                <p className=\"text-sm font-medium text-muted-foreground\">Resolution Rate</p>
-                <p className=\"text-2xl font-bold\">{analytics?.resolutionRate?.toFixed(1) || 0}%</p>
+                <p className="text-sm font-medium text-muted-foreground">Resolution Rate</p>
+                <p className="text-2xl font-bold">{analytics?.resolutionRate?.toFixed(1) || 0}%</p>
                 {changes && (
-                  <div className=\"flex items-center mt-1\">
+                  <div className="flex items-center mt-1">
                     {changes.resolutionRate > 0 ? (
-                      <ArrowUpIcon className=\"h-3 w-3 text-green-500 mr-1\" />
+                      <ArrowUpIcon className="h-3 w-3 text-green-500 mr-1" />
                     ) : (
-                      <ArrowDownIcon className=\"h-3 w-3 text-red-500 mr-1\" />
+                      <ArrowDownIcon className="h-3 w-3 text-red-500 mr-1" />
                     )}
                     <span className={`text-xs ${changes.resolutionRate > 0 ? 'text-green-600' : 'text-red-600'}`}>
                       {Math.abs(changes.resolutionRate).toFixed(1)}%
@@ -204,25 +221,25 @@ export default function SupportAnalytics() {
                   </div>
                 )}
               </div>
-              <div className=\"h-12 w-12 bg-green-100 rounded-lg flex items-center justify-center\">
-                <CheckCircleIcon className=\"h-6 w-6 text-green-600\" />
+              <div className="h-12 w-12 bg-green-100 rounded-lg flex items-center justify-center">
+                <CheckCircleIcon className="h-6 w-6 text-green-600" />
               </div>
             </div>
           </CardContent>
         </Card>
 
-        <Card className=\"backdrop-blur-sm bg-white/60 border border-white/20\">
-          <CardContent className=\"p-6\">
-            <div className=\"flex items-center justify-between\">
+        <Card className="backdrop-blur-sm bg-white/60 border border-white/20">
+          <CardContent className="p-6">
+            <div className="flex items-center justify-between">
               <div>
-                <p className=\"text-sm font-medium text-muted-foreground\">Avg Resolution Time</p>
-                <p className=\"text-2xl font-bold\">{analytics?.avgResolutionTime || 0}m</p>
+                <p className="text-sm font-medium text-muted-foreground">Avg Resolution Time</p>
+                <p className="text-2xl font-bold">{analytics?.avgResolutionTime || 0}m</p>
                 {changes && (
-                  <div className=\"flex items-center mt-1\">
+                  <div className="flex items-center mt-1">
                     {changes.avgResolutionTime > 0 ? (
-                      <ArrowUpIcon className=\"h-3 w-3 text-red-500 mr-1\" />
+                      <ArrowUpIcon className="h-3 w-3 text-red-500 mr-1" />
                     ) : (
-                      <ArrowDownIcon className=\"h-3 w-3 text-green-500 mr-1\" />
+                      <ArrowDownIcon className="h-3 w-3 text-green-500 mr-1" />
                     )}
                     <span className={`text-xs ${changes.avgResolutionTime > 0 ? 'text-red-600' : 'text-green-600'}`}>
                       {Math.abs(changes.avgResolutionTime).toFixed(1)}%
@@ -230,25 +247,25 @@ export default function SupportAnalytics() {
                   </div>
                 )}
               </div>
-              <div className=\"h-12 w-12 bg-orange-100 rounded-lg flex items-center justify-center\">
-                <ClockIcon className=\"h-6 w-6 text-orange-600\" />
+              <div className="h-12 w-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                <ClockIcon className="h-6 w-6 text-orange-600" />
               </div>
             </div>
           </CardContent>
         </Card>
 
-        <Card className=\"backdrop-blur-sm bg-white/60 border border-white/20\">
-          <CardContent className=\"p-6\">
-            <div className=\"flex items-center justify-between\">
+        <Card className="backdrop-blur-sm bg-white/60 border border-white/20">
+          <CardContent className="p-6">
+            <div className="flex items-center justify-between">
               <div>
-                <p className=\"text-sm font-medium text-muted-foreground\">Customer Satisfaction</p>
-                <p className=\"text-2xl font-bold\">{analytics?.avgSatisfaction?.toFixed(1) || 0}/5</p>
+                <p className="text-sm font-medium text-muted-foreground">Customer Satisfaction</p>
+                <p className="text-2xl font-bold">{analytics?.avgSatisfaction?.toFixed(1) || 0}/5</p>
                 {changes && (
-                  <div className=\"flex items-center mt-1\">
+                  <div className="flex items-center mt-1">
                     {changes.avgSatisfaction > 0 ? (
-                      <ArrowUpIcon className=\"h-3 w-3 text-green-500 mr-1\" />
+                      <ArrowUpIcon className="h-3 w-3 text-green-500 mr-1" />
                     ) : (
-                      <ArrowDownIcon className=\"h-3 w-3 text-red-500 mr-1\" />
+                      <ArrowDownIcon className="h-3 w-3 text-red-500 mr-1" />
                     )}
                     <span className={`text-xs ${changes.avgSatisfaction > 0 ? 'text-green-600' : 'text-red-600'}`}>
                       {Math.abs(changes.avgSatisfaction).toFixed(1)}%
@@ -256,8 +273,8 @@ export default function SupportAnalytics() {
                   </div>
                 )}
               </div>
-              <div className=\"h-12 w-12 bg-purple-100 rounded-lg flex items-center justify-center\">
-                <TrendingUpIcon className=\"h-6 w-6 text-purple-600\" />
+              <div className="h-12 w-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                <TrendingUpIcon className="h-6 w-6 text-purple-600" />
               </div>
             </div>
           </CardContent>
@@ -266,49 +283,49 @@ export default function SupportAnalytics() {
 
       {/* SLA Compliance Overview */}
       {slaCompliance && (
-        <Card className=\"backdrop-blur-sm bg-white/60 border border-white/20\">
+        <Card className="backdrop-blur-sm bg-white/60 border border-white/20">
           <CardHeader>
-            <CardTitle className=\"flex items-center gap-2\">
-              <AlertCircleIcon className=\"h-5 w-5\" />
+            <CardTitle className="flex items-center gap-2">
+              <AlertCircleIcon className="h-5 w-5" />
               SLA Compliance Overview
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className=\"grid grid-cols-1 md:grid-cols-3 gap-6\">
-              <div className=\"text-center p-6 bg-white/30 rounded-lg border border-white/20\">
-                <div className=\"text-3xl font-bold text-green-600 mb-2\">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="text-center p-6 bg-white/30 rounded-lg border border-white/20">
+                <div className="text-3xl font-bold text-green-600 mb-2">
                   {slaCompliance.overallCompliance.toFixed(1)}%
                 </div>
-                <div className=\"text-sm text-muted-foreground mb-4\">Overall Compliance</div>
-                <div className=\"w-full bg-gray-200 rounded-full h-2\">
+                <div className="text-sm text-muted-foreground mb-4">Overall Compliance</div>
+                <div className="w-full bg-gray-200 rounded-full h-2">
                   <div 
-                    className=\"bg-green-600 h-2 rounded-full transition-all duration-500\"
+                    className="bg-green-600 h-2 rounded-full transition-all duration-500"
                     style={{ width: `${slaCompliance.overallCompliance}%` }}
                   ></div>
                 </div>
               </div>
               
-              <div className=\"text-center p-6 bg-white/30 rounded-lg border border-white/20\">
-                <div className=\"text-3xl font-bold text-blue-600 mb-2\">
+              <div className="text-center p-6 bg-white/30 rounded-lg border border-white/20">
+                <div className="text-3xl font-bold text-blue-600 mb-2">
                   {slaCompliance.firstResponseCompliance.toFixed(1)}%
                 </div>
-                <div className=\"text-sm text-muted-foreground mb-4\">First Response</div>
-                <div className=\"w-full bg-gray-200 rounded-full h-2\">
+                <div className="text-sm text-muted-foreground mb-4">First Response</div>
+                <div className="w-full bg-gray-200 rounded-full h-2">
                   <div 
-                    className=\"bg-blue-600 h-2 rounded-full transition-all duration-500\"
+                    className="bg-blue-600 h-2 rounded-full transition-all duration-500"
                     style={{ width: `${slaCompliance.firstResponseCompliance}%` }}
                   ></div>
                 </div>
               </div>
               
-              <div className=\"text-center p-6 bg-white/30 rounded-lg border border-white/20\">
-                <div className=\"text-3xl font-bold text-purple-600 mb-2\">
+              <div className="text-center p-6 bg-white/30 rounded-lg border border-white/20">
+                <div className="text-3xl font-bold text-purple-600 mb-2">
                   {slaCompliance.resolutionCompliance.toFixed(1)}%
                 </div>
-                <div className=\"text-sm text-muted-foreground mb-4\">Resolution</div>
-                <div className=\"w-full bg-gray-200 rounded-full h-2\">
+                <div className="text-sm text-muted-foreground mb-4">Resolution</div>
+                <div className="w-full bg-gray-200 rounded-full h-2">
                   <div 
-                    className=\"bg-purple-600 h-2 rounded-full transition-all duration-500\"
+                    className="bg-purple-600 h-2 rounded-full transition-all duration-500"
                     style={{ width: `${slaCompliance.resolutionCompliance}%` }}
                   ></div>
                 </div>
@@ -319,87 +336,87 @@ export default function SupportAnalytics() {
       )}
 
       {/* Charts and Analytics */}
-      <Tabs defaultValue=\"overview\" className=\"space-y-6\">
-        <TabsList className=\"grid w-full grid-cols-4\">
-          <TabsTrigger value=\"overview\">Overview</TabsTrigger>
-          <TabsTrigger value=\"trends\">Trends</TabsTrigger>
-          <TabsTrigger value=\"agents\">Agents</TabsTrigger>
-          <TabsTrigger value=\"distribution\">Distribution</TabsTrigger>
+      <Tabs defaultValue="overview" className="space-y-6">
+        <TabsList className="grid w-full grid-cols-4">
+          <TabsTrigger value="overview">Overview</TabsTrigger>
+          <TabsTrigger value="trends">Trends</TabsTrigger>
+          <TabsTrigger value="agents">Agents</TabsTrigger>
+          <TabsTrigger value="distribution">Distribution</TabsTrigger>
         </TabsList>
 
-        <TabsContent value=\"overview\">
-          <div className=\"grid grid-cols-1 lg:grid-cols-2 gap-6\">
-            <Card className=\"backdrop-blur-sm bg-white/60 border border-white/20\">
+        <TabsContent value="overview">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <Card className="backdrop-blur-sm bg-white/60 border border-white/20">
               <CardHeader>
                 <CardTitle>Ticket Volume Trend</CardTitle>
                 <CardDescription>Daily ticket creation over time</CardDescription>
               </CardHeader>
               <CardContent>
-                <ResponsiveContainer width=\"100%\" height={300}>
-                  <AreaChart data={ticketVolume}>
-                    <CartesianGrid strokeDasharray=\"3 3\" />
-                    <XAxis 
-                      dataKey=\"date\" 
+                <SafeResponsiveContainer width="100%" height={300}>
+                  <SafeAreaChart data={ticketVolume}>
+                    <SafeCartesianGrid strokeDasharray="3 3" />
+                    <SafeXAxis 
+                      dataKey="date" 
                       tickFormatter={(value) => format(new Date(value), 'MMM dd')}
                     />
-                    <YAxis />
-                    <Tooltip 
+                    <SafeYAxis />
+                    <SafeTooltip 
                       labelFormatter={(value) => format(new Date(value), 'MMM dd, yyyy')}
                       formatter={(value) => [value, 'Tickets']}
                     />
-                    <Area 
-                      type=\"monotone\" 
-                      dataKey=\"count\" 
-                      stroke=\"#3B82F6\" 
-                      fill=\"#3B82F6\" 
+                    <SafeArea 
+                      type="monotone" 
+                      dataKey="count" 
+                      stroke="#3B82F6" 
+                      fill="#3B82F6" 
                       fillOpacity={0.3}
                     />
-                  </AreaChart>
-                </ResponsiveContainer>
+                  </SafeAreaChart>
+                </SafeResponsiveContainer>
               </CardContent>
             </Card>
 
-            <Card className=\"backdrop-blur-sm bg-white/60 border border-white/20\">
+            <Card className="backdrop-blur-sm bg-white/60 border border-white/20">
               <CardHeader>
                 <CardTitle>Response Time Distribution</CardTitle>
                 <CardDescription>How quickly tickets are being resolved</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className=\"space-y-4\">
-                  <div className=\"flex items-center justify-between\">
-                    <span className=\"text-sm\">< 1 hour</span>
-                    <div className=\"flex items-center gap-2\">
-                      <div className=\"w-32 bg-gray-200 rounded-full h-2\">
-                        <div className=\"bg-green-600 h-2 rounded-full w-3/4\"></div>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm">&lt; 1 hour</span>
+                    <div className="flex items-center gap-2">
+                      <div className="w-32 bg-gray-200 rounded-full h-2">
+                        <div className="bg-green-600 h-2 rounded-full w-3/4"></div>
                       </div>
-                      <span className=\"text-sm font-medium\">75%</span>
+                      <span className="text-sm font-medium">75%</span>
                     </div>
                   </div>
-                  <div className=\"flex items-center justify-between\">
-                    <span className=\"text-sm\">1-4 hours</span>
-                    <div className=\"flex items-center gap-2\">
-                      <div className=\"w-32 bg-gray-200 rounded-full h-2\">
-                        <div className=\"bg-yellow-600 h-2 rounded-full w-1/2\"></div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm">1-4 hours</span>
+                    <div className="flex items-center gap-2">
+                      <div className="w-32 bg-gray-200 rounded-full h-2">
+                        <div className="bg-yellow-600 h-2 rounded-full w-1/2"></div>
                       </div>
-                      <span className=\"text-sm font-medium\">15%</span>
+                      <span className="text-sm font-medium">15%</span>
                     </div>
                   </div>
-                  <div className=\"flex items-center justify-between\">
-                    <span className=\"text-sm\">4-24 hours</span>
-                    <div className=\"flex items-center gap-2\">
-                      <div className=\"w-32 bg-gray-200 rounded-full h-2\">
-                        <div className=\"bg-orange-600 h-2 rounded-full w-1/4\"></div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm">4-24 hours</span>
+                    <div className="flex items-center gap-2">
+                      <div className="w-32 bg-gray-200 rounded-full h-2">
+                        <div className="bg-orange-600 h-2 rounded-full w-1/4"></div>
                       </div>
-                      <span className=\"text-sm font-medium\">8%</span>
+                      <span className="text-sm font-medium">8%</span>
                     </div>
                   </div>
-                  <div className=\"flex items-center justify-between\">
-                    <span className=\"text-sm\">> 24 hours</span>
-                    <div className=\"flex items-center gap-2\">
-                      <div className=\"w-32 bg-gray-200 rounded-full h-2\">
-                        <div className=\"bg-red-600 h-2 rounded-full w-1/12\"></div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm">&gt; 24 hours</span>
+                    <div className="flex items-center gap-2">
+                      <div className="w-32 bg-gray-200 rounded-full h-2">
+                        <div className="bg-red-600 h-2 rounded-full w-1/12"></div>
                       </div>
-                      <span className=\"text-sm font-medium\">2%</span>
+                      <span className="text-sm font-medium">2%</span>
                     </div>
                   </div>
                 </div>
@@ -408,115 +425,115 @@ export default function SupportAnalytics() {
           </div>
         </TabsContent>
 
-        <TabsContent value=\"trends\">
-          <Card className=\"backdrop-blur-sm bg-white/60 border border-white/20\">
+        <TabsContent value="trends">
+          <Card className="backdrop-blur-sm bg-white/60 border border-white/20">
             <CardHeader>
               <CardTitle>Performance Trends</CardTitle>
               <CardDescription>Key metrics over time</CardDescription>
             </CardHeader>
             <CardContent>
-              <ResponsiveContainer width=\"100%\" height={400}>
-                <LineChart data={ticketVolume}>
-                  <CartesianGrid strokeDasharray=\"3 3\" />
-                  <XAxis 
-                    dataKey=\"date\" 
+              <SafeResponsiveContainer width="100%" height={400}>
+                <SafeLineChart data={ticketVolume}>
+                  <SafeCartesianGrid strokeDasharray="3 3" />
+                  <SafeXAxis 
+                    dataKey="date" 
                     tickFormatter={(value) => format(new Date(value), 'MMM dd')}
                   />
-                  <YAxis />
-                  <Tooltip 
+                  <SafeYAxis />
+                  <SafeTooltip 
                     labelFormatter={(value) => format(new Date(value), 'MMM dd, yyyy')}
                   />
-                  <Legend />
-                  <Line 
-                    type=\"monotone\" 
-                    dataKey=\"count\" 
-                    stroke=\"#3B82F6\" 
+                  <SafeLegend />
+                  <SafeLine 
+                    type="monotone" 
+                    dataKey="count" 
+                    stroke="#3B82F6" 
                     strokeWidth={2}
-                    name=\"Tickets Created\"
+                    name="Tickets Created"
                   />
-                </LineChart>
-              </ResponsiveContainer>
+                </SafeLineChart>
+              </SafeResponsiveContainer>
             </CardContent>
           </Card>
         </TabsContent>
 
-        <TabsContent value=\"agents\">
-          <Card className=\"backdrop-blur-sm bg-white/60 border border-white/20\">
+        <TabsContent value="agents">
+          <Card className="backdrop-blur-sm bg-white/60 border border-white/20">
             <CardHeader>
               <CardTitle>Agent Performance</CardTitle>
               <CardDescription>Individual agent metrics and workload</CardDescription>
             </CardHeader>
             <CardContent>
-              <ResponsiveContainer width=\"100%\" height={400}>
-                <BarChart data={agentPerformanceData}>
-                  <CartesianGrid strokeDasharray=\"3 3\" />
-                  <XAxis dataKey=\"name\" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Bar dataKey=\"tickets\" fill=\"#3B82F6\" name=\"Active Tickets\" />
-                  <Bar dataKey=\"resolved\" fill=\"#10B981\" name=\"Resolved Tickets\" />
-                </BarChart>
-              </ResponsiveContainer>
+              <SafeResponsiveContainer width="100%" height={400}>
+                <SafeBarChart data={agentPerformanceData}>
+                  <SafeCartesianGrid strokeDasharray="3 3" />
+                  <SafeXAxis dataKey="name" />
+                  <SafeYAxis />
+                  <SafeTooltip />
+                  <SafeLegend />
+                  <SafeBar dataKey="tickets" fill="#3B82F6" name="Active Tickets" />
+                  <SafeBar dataKey="resolved" fill="#10B981" name="Resolved Tickets" />
+                </SafeBarChart>
+              </SafeResponsiveContainer>
             </CardContent>
           </Card>
         </TabsContent>
 
-        <TabsContent value=\"distribution\">
-          <div className=\"grid grid-cols-1 lg:grid-cols-2 gap-6\">
-            <Card className=\"backdrop-blur-sm bg-white/60 border border-white/20\">
+        <TabsContent value="distribution">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <Card className="backdrop-blur-sm bg-white/60 border border-white/20">
               <CardHeader>
                 <CardTitle>Tickets by Status</CardTitle>
                 <CardDescription>Current ticket status distribution</CardDescription>
               </CardHeader>
               <CardContent>
-                <ResponsiveContainer width=\"100%\" height={300}>
-                  <PieChart>
-                    <Pie
+                <SafeResponsiveContainer width="100%" height={300}>
+                  <SafePieChart>
+                    <SafePie
                       data={statusChartData}
-                      cx=\"50%\"
-                      cy=\"50%\"
+                      cx="50%"
+                      cy="50%"
                       labelLine={false}
                       label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
                       outerRadius={80}
-                      fill=\"#8884d8\"
-                      dataKey=\"value\"
+                      fill="#8884d8"
+                      dataKey="value"
                     >
                       {statusChartData.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={entry.color} />
+                        <SafeCell key={`cell-${index}`} fill={entry.color} />
                       ))}
-                    </Pie>
-                    <Tooltip />
-                  </PieChart>
-                </ResponsiveContainer>
+                    </SafePie>
+                    <SafeTooltip />
+                  </SafePieChart>
+                </SafeResponsiveContainer>
               </CardContent>
             </Card>
 
-            <Card className=\"backdrop-blur-sm bg-white/60 border border-white/20\">
+            <Card className="backdrop-blur-sm bg-white/60 border border-white/20">
               <CardHeader>
                 <CardTitle>Tickets by Priority</CardTitle>
                 <CardDescription>Priority level distribution</CardDescription>
               </CardHeader>
               <CardContent>
-                <ResponsiveContainer width=\"100%\" height={300}>
-                  <PieChart>
-                    <Pie
+                <SafeResponsiveContainer width="100%" height={300}>
+                  <SafePieChart>
+                    <SafePie
                       data={priorityChartData}
-                      cx=\"50%\"
-                      cy=\"50%\"
+                      cx="50%"
+                      cy="50%"
                       labelLine={false}
                       label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
                       outerRadius={80}
-                      fill=\"#8884d8\"
-                      dataKey=\"value\"
+                      fill="#8884d8"
+                      dataKey="value"
                     >
                       {priorityChartData.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={entry.color} />
+                        <SafeCell key={`cell-${index}`} fill={entry.color} />
                       ))}
-                    </Pie>
-                    <Tooltip />
-                  </PieChart>
-                </ResponsiveContainer>
+                    </SafePie>
+                    <SafeTooltip />
+                  </SafePieChart>
+                </SafeResponsiveContainer>
               </CardContent>
             </Card>
           </div>
@@ -524,67 +541,67 @@ export default function SupportAnalytics() {
       </Tabs>
 
       {/* Detailed Metrics */}
-      <div className=\"grid grid-cols-1 lg:grid-cols-3 gap-6\">
-        <Card className=\"backdrop-blur-sm bg-white/60 border border-white/20\">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <Card className="backdrop-blur-sm bg-white/60 border border-white/20">
           <CardHeader>
             <CardTitle>Escalation Metrics</CardTitle>
           </CardHeader>
-          <CardContent className=\"space-y-4\">
-            <div className=\"flex justify-between items-center\">
-              <span className=\"text-sm text-muted-foreground\">Escalation Rate</span>
-              <span className=\"font-semibold\">{analytics?.escalationRate?.toFixed(1) || 0}%</span>
+          <CardContent className="space-y-4">
+            <div className="flex justify-between items-center">
+              <span className="text-sm text-muted-foreground">Escalation Rate</span>
+              <span className="font-semibold">{analytics?.escalationRate?.toFixed(1) || 0}%</span>
             </div>
-            <div className=\"flex justify-between items-center\">
-              <span className=\"text-sm text-muted-foreground\">Escalated Tickets</span>
-              <span className=\"font-semibold\">{analytics?.escalatedTickets || 0}</span>
+            <div className="flex justify-between items-center">
+              <span className="text-sm text-muted-foreground">Escalated Tickets</span>
+              <span className="font-semibold">{analytics?.escalatedTickets || 0}</span>
             </div>
-            <div className=\"flex justify-between items-center\">
-              <span className=\"text-sm text-muted-foreground\">Avg Escalation Time</span>
-              <span className=\"font-semibold\">{analytics?.avgResolutionTime || 0}m</span>
+            <div className="flex justify-between items-center">
+              <span className="text-sm text-muted-foreground">Avg Escalation Time</span>
+              <span className="font-semibold">{analytics?.avgResolutionTime || 0}m</span>
             </div>
           </CardContent>
         </Card>
 
-        <Card className=\"backdrop-blur-sm bg-white/60 border border-white/20\">
+        <Card className="backdrop-blur-sm bg-white/60 border border-white/20">
           <CardHeader>
             <CardTitle>Resolution Metrics</CardTitle>
           </CardHeader>
-          <CardContent className=\"space-y-4\">
-            <div className=\"flex justify-between items-center\">
-              <span className=\"text-sm text-muted-foreground\">First Contact Resolution</span>
-              <span className=\"font-semibold\">85%</span>
+          <CardContent className="space-y-4">
+            <div className="flex justify-between items-center">
+              <span className="text-sm text-muted-foreground">First Contact Resolution</span>
+              <span className="font-semibold">85%</span>
             </div>
-            <div className=\"flex justify-between items-center\">
-              <span className=\"text-sm text-muted-foreground\">Reopened Tickets</span>
-              <span className=\"font-semibold\">3.2%</span>
+            <div className="flex justify-between items-center">
+              <span className="text-sm text-muted-foreground">Reopened Tickets</span>
+              <span className="font-semibold">3.2%</span>
             </div>
-            <div className=\"flex justify-between items-center\">
-              <span className=\"text-sm text-muted-foreground\">Transfer Rate</span>
-              <span className=\"font-semibold\">8.5%</span>
+            <div className="flex justify-between items-center">
+              <span className="text-sm text-muted-foreground">Transfer Rate</span>
+              <span className="font-semibold">8.5%</span>
             </div>
           </CardContent>
         </Card>
 
-        <Card className=\"backdrop-blur-sm bg-white/60 border border-white/20\">
+        <Card className="backdrop-blur-sm bg-white/60 border border-white/20">
           <CardHeader>
             <CardTitle>Channel Performance</CardTitle>
           </CardHeader>
-          <CardContent className=\"space-y-4\">
-            <div className=\"flex justify-between items-center\">
-              <span className=\"text-sm text-muted-foreground\">Email</span>
-              <Badge variant=\"outline\">45%</Badge>
+          <CardContent className="space-y-4">
+            <div className="flex justify-between items-center">
+              <span className="text-sm text-muted-foreground">Email</span>
+              <Badge variant="outline">45%</Badge>
             </div>
-            <div className=\"flex justify-between items-center\">
-              <span className=\"text-sm text-muted-foreground\">Web Form</span>
-              <Badge variant=\"outline\">30%</Badge>
+            <div className="flex justify-between items-center">
+              <span className="text-sm text-muted-foreground">Web Form</span>
+              <Badge variant="outline">30%</Badge>
             </div>
-            <div className=\"flex justify-between items-center\">
-              <span className=\"text-sm text-muted-foreground\">Phone</span>
-              <Badge variant=\"outline\">20%</Badge>
+            <div className="flex justify-between items-center">
+              <span className="text-sm text-muted-foreground">Phone</span>
+              <Badge variant="outline">20%</Badge>
             </div>
-            <div className=\"flex justify-between items-center\">
-              <span className=\"text-sm text-muted-foreground\">Chat</span>
-              <Badge variant=\"outline\">5%</Badge>
+            <div className="flex justify-between items-center">
+              <span className="text-sm text-muted-foreground">Chat</span>
+              <Badge variant="outline">5%</Badge>
             </div>
           </CardContent>
         </Card>

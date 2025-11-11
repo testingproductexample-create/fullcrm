@@ -306,7 +306,7 @@ export default function EmployeeDashboard() {
           <p className="text-gray-600 mt-1">Comprehensive workforce management and analytics</p>
         </div>
         <Link
-          href="/employees/new"
+          href={`/employees/new`}
           className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
         >
           <UserPlus className="h-4 w-4 mr-2" />
@@ -338,7 +338,7 @@ export default function EmployeeDashboard() {
         <div className="bg-white/80 backdrop-blur-sm rounded-lg p-6 border border-gray-200 shadow-sm">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-lg font-semibold text-gray-900">Recent Hires</h2>
-            <Link href="/employees/directory" className="text-sm text-blue-600 hover:text-blue-700">
+            <Link href={`/employees/directory`} className="text-sm text-blue-600 hover:text-blue-700">
               View all
             </Link>
           </div>
@@ -355,7 +355,7 @@ export default function EmployeeDashboard() {
                   ) : (
                     <div className="h-8 w-8 rounded-full bg-gray-300 flex items-center justify-center">
                       <span className="text-sm font-medium text-gray-700">
-                        {employee.first_name[0]}{employee.last_name[0]}
+                        {employee?.first_name?.[0]}{employee?.last_name?.[0]}
                       </span>
                     </div>
                   )}
@@ -403,7 +403,7 @@ export default function EmployeeDashboard() {
         <div className="bg-white/80 backdrop-blur-sm rounded-lg p-6 border border-gray-200 shadow-sm">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-lg font-semibold text-gray-900">Upcoming Reviews</h2>
-            <Link href="/employees/reviews" className="text-sm text-blue-600 hover:text-blue-700">
+            <Link href={`/employees/reviews`} className="text-sm text-blue-600 hover:text-blue-700">
               View all
             </Link>
           </div>
@@ -435,7 +435,7 @@ export default function EmployeeDashboard() {
         <h2 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <Link
-            href="/employees/new"
+            href={`/employees/new`}
             className="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
           >
             <UserPlus className="h-6 w-6 text-blue-600 mr-3" />
@@ -446,7 +446,7 @@ export default function EmployeeDashboard() {
           </Link>
           
           <Link
-            href="/employees/reviews"
+            href={`/employees/reviews`}
             className="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
           >
             <Award className="h-6 w-6 text-green-600 mr-3" />
@@ -457,7 +457,7 @@ export default function EmployeeDashboard() {
           </Link>
           
           <Link
-            href="/employees/training"
+            href={`/employees/training`}
             className="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
           >
             <BookOpen className="h-6 w-6 text-purple-600 mr-3" />
@@ -468,7 +468,7 @@ export default function EmployeeDashboard() {
           </Link>
           
           <Link
-            href="/employees/skills"
+            href={`/employees/skills`}
             className="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
           >
             <CheckCircle className="h-6 w-6 text-orange-600 mr-3" />

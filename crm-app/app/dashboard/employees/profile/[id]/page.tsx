@@ -88,7 +88,7 @@ export default function EmployeeProfile() {
       setEmployee(data);
     } catch (error) {
       console.error('Error loading employee:', error);
-      router.push('/dashboard/employees/directory');
+      router.push('/dashboard/employees/directory' as any);
     } finally {
       setLoading(false);
     }

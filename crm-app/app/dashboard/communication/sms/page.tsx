@@ -120,13 +120,13 @@ export default function SMSManagement() {
         .eq('channel_type', 'SMS');
 
       // Process analytics data
-      const totalSent = analyticsData?.reduce((sum, item) => sum + (item.messages_sent || 0), 0) || 0;
-      const totalDelivered = analyticsData?.reduce((sum, item) => sum + (item.messages_delivered || 0), 0) || 0;
-      const totalFailed = analyticsData?.reduce((sum, item) => sum + (item.messages_failed || 0), 0) || 0;
+      const totalSent = analyticsData?.reduce((sum: number, item: AnalyticsData) => sum + (item.messages_sent || 0), 0) || 0;
+      const totalDelivered = analyticsData?.reduce((sum: number, item: AnalyticsData) => sum + (item.messages_delivered || 0), 0) || 0;
+      const totalFailed = analyticsData?.reduce((sum: number, item: AnalyticsData) => sum + (item.messages_failed || 0), 0) || 0;
       const deliveryRate = totalSent > 0 ? (totalDelivered / totalSent) * 100 : 0;
 
       // Calculate cost from message metadata
-      const totalCost = messagesData?.reduce((sum, msg) => {
+      const totalCost = messagesData?.reduce((sum: number, msg: any) => {
         const cost = msg.metadata?.cost || 0.25; // Default cost per SMS
         return sum + cost;
       }, 0) || 0;

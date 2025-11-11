@@ -74,7 +74,7 @@ export default function BranchesPage() {
           <h1 className="text-3xl font-bold text-white mb-2">Multi-Location Management</h1>
           <p className="text-gray-400">Manage all branch locations from a centralized dashboard</p>
         </div>
-        <Link href="/branches/new">
+        <Link href={`/branches/new`}>
           <Button className="bg-indigo-600 hover:bg-indigo-700 text-white">
             <PlusIcon className="h-5 w-5 mr-2" />
             Add New Branch
@@ -140,17 +140,17 @@ export default function BranchesPage() {
 
       {/* Quick Actions */}
       <div className="flex gap-4">
-        <Link href="/branches/transfers">
+        <Link href={`/branches/transfers`}>
           <Button variant="outline" className="border-white/10 text-white hover:bg-white/5">
             View Transfers
           </Button>
         </Link>
-        <Link href="/branches/inventory">
+        <Link href={`/branches/inventory`}>
           <Button variant="outline" className="border-white/10 text-white hover:bg-white/5">
             Cross-Location Inventory
           </Button>
         </Link>
-        <Link href="/branches/analytics">
+        <Link href={`/branches/analytics`}>
           <Button variant="outline" className="border-white/10 text-white hover:bg-white/5">
             Performance Analytics
           </Button>
@@ -251,7 +251,7 @@ export default function BranchesPage() {
                   View Details
                 </Button>
               </Link>
-              <Link href={`/branches/${branch.id}/settings`}>
+              <Link href={`${`/branches/${branch.id}/settings`}`}>
                 <Button variant="outline" className="border-white/10 text-white hover:bg-white/5">
                   <Cog6ToothIcon className="h-4 w-4" />
                 </Button>
@@ -272,7 +272,7 @@ export default function BranchesPage() {
                 : `No branches with status: ${selectedFilter}`
               }
             </p>
-            <Link href="/branches/new">
+            <Link href={`/branches/new`}>
               <Button className="bg-indigo-600 hover:bg-indigo-700 text-white">
                 <PlusIcon className="h-5 w-5 mr-2" />
                 Add First Branch

@@ -688,7 +688,7 @@ export const formatDateForChart = (dateString: string, granularity: string): str
 };
 
 export const exportToCSV = (data: any[], filename: string): void => {
-  if (data.length === 0) return;
+  if (!data || data.length === 0) return;
   
   const headers = Object.keys(data[0]);
   const csvContent = [

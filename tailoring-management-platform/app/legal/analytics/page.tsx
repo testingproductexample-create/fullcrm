@@ -9,8 +9,8 @@ import { Progress } from '@/components/ui/progress';
 import {
   ChartBarIcon,
   DocumentTextIcon,
-  TrendingUpIcon,
-  TrendingDownIcon,
+  ArrowTrendingUpIcon,
+  ArrowTrendingDownIcon,
   CalendarIcon,
   ClockIcon,
   ShieldCheckIcon,
@@ -136,7 +136,7 @@ export default function LegalAnalytics() {
                 <p className="text-xs text-gray-500">Active vs Total</p>
               </div>
               <div className="p-3 bg-green-100 rounded-full">
-                <TrendingUpIcon className="h-6 w-6 text-green-600" />
+                <ArrowTrendingUpIcon className="h-6 w-6 text-green-600" />
               </div>
             </div>
           </CardContent>

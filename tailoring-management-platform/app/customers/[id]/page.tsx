@@ -125,7 +125,7 @@ export default function CustomerProfilePage() {
     },
     onSuccess: () => {
       toast.success('Customer deleted successfully');
-      router.push('/customers');
+      router.push("/customers" as any as any);
     },
     onError: () => {
       toast.error('Failed to delete customer');
@@ -144,7 +144,7 @@ export default function CustomerProfilePage() {
     return (
       <div className="text-center py-8">
         <p className="text-red-600">Error loading customer</p>
-        <Button variant="outline" onClick={() => router.back()}>
+        <Button variant="outline" onClick={() => router.back() as any}>
           Go Back
         </Button>
       </div>
@@ -185,7 +185,7 @@ export default function CustomerProfilePage() {
           <Button
             variant="outline"
             size="sm"
-            onClick={() => router.back()}
+            onClick={() => router.back() as any}
             className="flex items-center gap-2"
           >
             <ArrowLeftIcon className="h-4 w-4" />
@@ -197,7 +197,7 @@ export default function CustomerProfilePage() {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <Link href={`/customers/${customerId}/edit`}>
+          <Link href={`${`/customers/${customerId}/edit`}`}>
             <Button variant="outline" className="flex items-center gap-2">
               <PencilIcon className="h-4 w-4" />
               Edit
@@ -599,7 +599,7 @@ export default function CustomerProfilePage() {
           <Card className="glass">
             <CardHeader className="flex flex-row items-center justify-between">
               <CardTitle>Communications History</CardTitle>
-              <Link href={`/customers/${customerId}/communications/new`}>
+              <Link href={`/customers/${customerId}/communications/new}`}>
                 <Button className="flex items-center gap-2">
                   <PlusIcon className="h-4 w-4" />
                   Log Communication

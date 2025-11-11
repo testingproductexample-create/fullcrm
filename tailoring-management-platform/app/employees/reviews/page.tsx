@@ -363,7 +363,7 @@ export default function PerformanceReviewsPage() {
                         <div className="flex items-center space-x-4 mb-4 md:mb-0">
                           <div className="h-12 w-12 rounded-full bg-gray-300 flex items-center justify-center">
                             <span className="text-sm font-medium text-gray-700">
-                              {review.employee.first_name[0]}{review.employee.last_name[0]}
+                              {review.employee?.first_name?.[0]}{review.employee?.last_name?.[0]}
                             </span>
                           </div>
                           <div>
@@ -409,7 +409,7 @@ export default function PerformanceReviewsPage() {
                               <Eye className="h-4 w-4" />
                             </Link>
                             <Link
-                              href={`/employees/reviews/${review.id}/edit`}
+                              href={`/employees/reviews/${review.id/edit}`}
                               className="p-2 text-green-600 hover:text-green-700"
                             >
                               <Edit className="h-4 w-4" />

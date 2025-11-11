@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { CalendarIcon, TrendingUpIcon, SunIcon } from '@heroicons/react/24/outline'
+import { CalendarIcon, ArrowTrendingUpIcon, SunIcon } from '@heroicons/react/24/outline'
 
 const SeasonalTrends: React.FC = () => {
   return (
@@ -39,7 +39,7 @@ const SeasonalTrends: React.FC = () => {
               <p className="text-3xl font-bold text-gray-900 dark:text-white">Q3</p>
               <p className="text-sm text-blue-600">85% capacity</p>
             </div>
-            <TrendingUpIcon className="w-8 h-8 text-blue-500" />
+            <ArrowTrendingUpIcon className="w-8 h-8 text-blue-500" />
           </div>
         </div>
 

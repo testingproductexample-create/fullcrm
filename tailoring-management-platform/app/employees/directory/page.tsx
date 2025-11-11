@@ -219,7 +219,7 @@ export default function EmployeeDirectory() {
             Export
           </button>
           <Link
-            href="/employees/new"
+            href={`/employees/new`}
             className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
           >
             <Users className="h-4 w-4 mr-2" />
@@ -390,7 +390,7 @@ export default function EmployeeDirectory() {
                         ) : (
                           <div className="h-10 w-10 rounded-full bg-gray-300 flex items-center justify-center">
                             <span className="text-sm font-medium text-gray-700">
-                              {employee.first_name[0]}{employee.last_name[0]}
+                              {employee?.first_name?.[0]}{employee?.last_name?.[0]}
                             </span>
                           </div>
                         )}
@@ -452,7 +452,7 @@ export default function EmployeeDirectory() {
                         <Eye className="h-4 w-4" />
                       </Link>
                       <Link
-                        href={`/employees/${employee.id}/edit`}
+                        href={`/employees/${employee.id/edit}`}
                         className="text-green-600 hover:text-green-900"
                       >
                         <Edit className="h-4 w-4" />
@@ -477,7 +477,7 @@ export default function EmployeeDirectory() {
             {(!filters.search && !filters.department && !filters.employment_status && !filters.employment_type) && (
               <div className="mt-6">
                 <Link
-                  href="/employees/new"
+                  href={`/employees/new`}
                   className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                 >
                   <Users className="h-4 w-4 mr-2" />

@@ -60,7 +60,7 @@ export default function CustomerDetailPage() {
 
       if (customerError) throw customerError;
       if (!customerData) {
-        router.push('/dashboard/customers');
+        router.push('/dashboard/customers' as any);
         return;
       }
       setCustomer(customerData);

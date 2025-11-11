@@ -21,6 +21,28 @@ import {
   PolarRadiusAxis,
   Radar
 } from 'recharts';
+
+// Type-safe Recharts component aliases to fix JSX component issues
+const SafeBarChart = BarChart as React.ComponentType<any>;
+const SafeBar = Bar as React.ComponentType<any>;
+const SafeXAxis = XAxis as React.ComponentType<any>;
+const SafeYAxis = YAxis as React.ComponentType<any>;
+const SafeCartesianGrid = CartesianGrid as React.ComponentType<any>;
+const SafeTooltip = Tooltip as React.ComponentType<any>;
+const SafeLegend = Legend as React.ComponentType<any>;
+const SafeLineChart = LineChart as React.ComponentType<any>;
+const SafeLine = Line as React.ComponentType<any>;
+const SafePieChart = PieChart as React.ComponentType<any>;
+const SafePie = Pie as React.ComponentType<any>;
+const SafeCell = Cell as React.ComponentType<any>;
+const SafeAreaChart = AreaChart as React.ComponentType<any>;
+const SafeArea = Area as React.ComponentType<any>;
+const SafeResponsiveContainer = ResponsiveContainer as React.ComponentType<any>;
+const SafeRadarChart = RadarChart as React.ComponentType<any>;
+const SafePolarGrid = PolarGrid as React.ComponentType<any>;
+const SafePolarAngleAxis = PolarAngleAxis as React.ComponentType<any>;
+const SafePolarRadiusAxis = PolarRadiusAxis as React.ComponentType<any>;
+const SafeRadar = Radar as React.ComponentType<any>;
 import { 
   TrendingUp, 
   TrendingDown, 
@@ -318,12 +340,12 @@ const SalaryReportsAnalytics: React.FC = () => {
                 style={glassStyle}
               >
                 <h3 className="text-xl font-semibold text-white mb-4">Monthly Payroll Trend</h3>
-                <ResponsiveContainer width="100%" height={300}>
-                  <LineChart data={monthlyData}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                    <XAxis dataKey="month" stroke="rgba(255,255,255,0.7)" />
-                    <YAxis stroke="rgba(255,255,255,0.7)" />
-                    <Tooltip 
+                <SafeResponsiveContainer width="100%" height={300}>
+                  <SafeLineChart data={monthlyData}>
+                    <SafeCartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+                    <SafeXAxis dataKey="month" stroke="rgba(255,255,255,0.7)" />
+                    <SafeYAxis stroke="rgba(255,255,255,0.7)" />
+                    <SafeTooltip 
                       contentStyle={{ 
                         backgroundColor: 'rgba(0,0,0,0.8)', 
                         border: 'none', 
@@ -331,15 +353,15 @@ const SalaryReportsAnalytics: React.FC = () => {
                         color: 'white'
                       }} 
                     />
-                    <Line 
+                    <SafeLine 
                       type="monotone" 
                       dataKey="totalPayroll" 
                       stroke="#3B82F6" 
                       strokeWidth={3}
                       dot={{ fill: '#3B82F6', strokeWidth: 2, r: 4 }}
                     />
-                  </LineChart>
-                </ResponsiveContainer>
+                  </SafeLineChart>
+                </SafeResponsiveContainer>
               </div>
 
               {/* Department Distribution */}
@@ -348,9 +370,9 @@ const SalaryReportsAnalytics: React.FC = () => {
                 style={glassStyle}
               >
                 <h3 className="text-xl font-semibold text-white mb-4">Department Distribution</h3>
-                <ResponsiveContainer width="100%" height={300}>
-                  <PieChart>
-                    <Pie
+                <SafeResponsiveContainer width="100%" height={300}>
+                  <SafePieChart>
+                    <SafePie
                       data={departmentData}
                       cx="50%"
                       cy="50%"
@@ -360,10 +382,10 @@ const SalaryReportsAnalytics: React.FC = () => {
                       label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
                     >
                       {departmentData.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                        <SafeCell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                       ))}
-                    </Pie>
-                    <Tooltip 
+                    </SafePie>
+                    <SafeTooltip 
                       contentStyle={{ 
                         backgroundColor: 'rgba(0,0,0,0.8)', 
                         border: 'none', 
@@ -371,8 +393,8 @@ const SalaryReportsAnalytics: React.FC = () => {
                         color: 'white'
                       }} 
                     />
-                  </PieChart>
-                </ResponsiveContainer>
+                  </SafePieChart>
+                </SafeResponsiveContainer>
               </div>
             </div>
 

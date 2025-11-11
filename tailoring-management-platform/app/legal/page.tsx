@@ -97,19 +97,19 @@ export default function LegalContractManagement() {
           <p className="text-gray-600 mt-2">Comprehensive legal documentation and contract lifecycle management</p>
         </div>
         <div className="flex flex-col sm:flex-row gap-3">
-          <Link href="/legal/contracts/new">
+          <Link href={`/legal/contracts/new`}>
             <Button className="bg-blue-600 hover:bg-blue-700 w-full sm:w-auto">
               <PlusIcon className="h-4 w-4 mr-2" />
               New Contract
             </Button>
           </Link>
-          <Link href="/legal/templates">
+          <Link href={`/legal/templates`}>
             <Button variant="outline" className="w-full sm:w-auto">
               <DocumentTextIcon className="h-4 w-4 mr-2" />
               Templates
             </Button>
           </Link>
-          <Link href="/legal/signatures">
+          <Link href={`/legal/signatures`}>
             <Button variant="outline" className="w-full sm:w-auto">
               <PencilSquareIcon className="h-4 w-4 mr-2" />
               Signatures
@@ -128,7 +128,7 @@ export default function LegalContractManagement() {
           <div className="mt-2 text-sm text-red-700">
             <p>{complianceAlerts.length} contract{complianceAlerts.length > 1 ? 's' : ''} need immediate attention for compliance issues</p>
           </div>
-          <Link href="/legal/compliance" className="mt-2 inline-flex text-sm text-red-600 hover:text-red-800">
+          <Link href={`/legal/compliance`} className="mt-2 inline-flex text-sm text-red-600 hover:text-red-800">
             Review Compliance Issues →
           </Link>
         </div>
@@ -315,31 +315,31 @@ export default function LegalContractManagement() {
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 gap-3">
-                  <Link href="/legal/contracts/new">
+                  <Link href={`/legal/contracts/new`}>
                     <Button variant="outline" className="w-full justify-start">
                       <DocumentTextIcon className="h-4 w-4 mr-2" />
                       Create New Contract
                     </Button>
                   </Link>
-                  <Link href="/legal/templates">
+                  <Link href={`/legal/templates`}>
                     <Button variant="outline" className="w-full justify-start">
                       <DocumentTextIcon className="h-4 w-4 mr-2" />
                       Manage Templates
                     </Button>
                   </Link>
-                  <Link href="/legal/signatures">
+                  <Link href={`/legal/signatures`}>
                     <Button variant="outline" className="w-full justify-start">
                       <PencilSquareIcon className="h-4 w-4 mr-2" />
                       Digital Signatures
                     </Button>
                   </Link>
-                  <Link href="/legal/compliance">
+                  <Link href={`/legal/compliance`}>
                     <Button variant="outline" className="w-full justify-start">
                       <ShieldCheckIcon className="h-4 w-4 mr-2" />
                       Compliance Check
                     </Button>
                   </Link>
-                  <Link href="/legal/analytics">
+                  <Link href={`/legal/analytics`}>
                     <Button variant="outline" className="w-full justify-start">
                       <ArrowTrendingUpIcon className="h-4 w-4 mr-2" />
                       View Analytics
@@ -360,7 +360,7 @@ export default function LegalContractManagement() {
                   <ClockIcon className="h-5 w-5 mr-2" />
                   Recent Contracts
                 </div>
-                <Link href="/legal/contracts">
+                <Link href={`/legal/contracts`}>
                   <Button variant="outline" size="sm">
                     View All
                   </Button>

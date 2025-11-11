@@ -53,14 +53,14 @@ export default function WorkflowAnalyticsPage() {
   }
 
   const avgBottleneckScore = analytics.length > 0
-    ? (analytics.reduce((sum, a) => sum + (parseFloat(a.bottleneck_score?.toString() || '0')), 0) / analytics.length).toFixed(2)
+    ? (analytics.reduce((sum: number, a: WorkflowAnalytics) => sum + (parseFloat(a.bottleneck_score?.toString() || '0')), 0) / analytics.length).toFixed(2)
     : 0;
 
   const avgEfficiency = analytics.length > 0
-    ? (analytics.reduce((sum, a) => sum + (parseFloat(a.efficiency_rating?.toString() || '0')), 0) / analytics.length).toFixed(2)
+    ? (analytics.reduce((sum: number, a: WorkflowAnalytics) => sum + (parseFloat(a.efficiency_rating?.toString() || '0')), 0) / analytics.length).toFixed(2)
     : 0;
 
-  const bottlenecks = analytics.filter(a => parseFloat(a.bottleneck_score?.toString() || '0') > 50);
+  const bottlenecks = analytics.filter((a: WorkflowAnalytics) => parseFloat(a.bottleneck_score?.toString() || '0') > 50);
   const activeAutomation = automationRules.filter(r => r.is_active).length;
 
   return (

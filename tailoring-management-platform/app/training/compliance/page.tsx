@@ -108,7 +108,7 @@ export default function CompliancePage() {
             <ShieldCheckIcon className="h-5 w-5 mr-2" />
             {complianceRate}% Compliant
           </div>
-          <Link href="/training/courses?tab=uae">
+          <Link href={`/training/courses?tab=uae`}>
             <Button className="bg-blue-600 hover:bg-blue-700">
               <GlobeAltIcon className="h-4 w-4 mr-2" />
               UAE Training Courses

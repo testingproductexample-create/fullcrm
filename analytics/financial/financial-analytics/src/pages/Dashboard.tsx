@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { 
-  TrendingUpIcon, 
-  TrendingDownIcon, 
+  ArrowTrendingUpIcon, 
+  ArrowTrendingDownIcon, 
   CurrencyDollarIcon,
   ChartBarIcon,
   ArrowsRightLeftIcon,
@@ -24,6 +24,37 @@ import {
 } from 'recharts'
 import { useFinancial } from '../contexts/FinancialContext'
 import { formatCurrency, formatPercentage, generateColors } from '../lib/utils'
+// Type-safe Recharts component aliases to fix JSX component issues
+// This fixes "cannot be used as JSX component" errors in Recharts v2
+const SafeLineChart = LineChart as React.ComponentType<any>;
+const SafeAreaChart = AreaChart as React.ComponentType<any>;
+const SafeBarChart = BarChart as React.ComponentType<any>;
+const SafePieChart = PieChart as React.ComponentType<any>;
+const SafeRadarChart = RadarChart as React.ComponentType<any>;
+const SafeComposedChart = ComposedChart as React.ComponentType<any>;
+const SafeScatterChart = ScatterChart as React.ComponentType<any>;
+const SafeResponsiveContainer = ResponsiveContainer as React.ComponentType<any>;
+const SafeLine = Line as React.ComponentType<any>;
+const SafeArea = Area as React.ComponentType<any>;
+const SafeBar = Bar as React.ComponentType<any>;
+const SafePie = Pie as React.ComponentType<any>;
+const SafeCell = Cell as React.ComponentType<any>;
+const SafeXAxis = XAxis as React.ComponentType<any>;
+const SafeYAxis = YAxis as React.ComponentType<any>;
+const SafeCartesianGrid = CartesianGrid as React.ComponentType<any>;
+const SafeTooltip = Tooltip as React.ComponentType<any>;
+const SafeLegend = Legend as React.ComponentType<any>;
+const SafeRadar = Radar as React.ComponentType<any>;
+const SafePolarGrid = PolarGrid as React.ComponentType<any>;
+const SafePolarAngleAxis = PolarAngleAxis as React.ComponentType<any>;
+const SafePolarRadiusAxis = PolarRadiusAxis as React.ComponentType<any>;
+const SafeBrush = Brush as React.ComponentType<any>;
+const SafeReferenceLine = ReferenceLine as React.ComponentType<any>;
+const SafeReferenceDot = ReferenceDot as React.ComponentType<any>;
+const SafeFunnelChart = FunnelChart as React.ComponentType<any>;
+const SafeFunnel = Funnel as React.ComponentType<any>;
+const SafeTreemap = Treemap as React.ComponentType<any>;
+const SafeSankey = Sankey as React.ComponentType<any>;
 
 interface DashboardCard {
   title: string
@@ -80,7 +111,7 @@ const Dashboard: React.FC = () => {
       value: 'AED 1,250,000',
       change: '+13.64%',
       changeType: 'positive',
-      icon: TrendingUpIcon,
+      icon: ArrowTrendingUpIcon,
       color: 'text-green-600'
     },
     {
@@ -120,7 +151,7 @@ const Dashboard: React.FC = () => {
       value: '68.0%',
       change: '-2.1%',
       changeType: 'positive',
-      icon: TrendingDownIcon,
+      icon: ArrowTrendingDownIcon,
       color: 'text-red-600'
     }
   ]
@@ -198,9 +229,9 @@ const Dashboard: React.FC = () => {
               <div className="mt-3">
                 <div className="flex items-center text-sm">
                   {card.changeType === 'positive' ? (
-                    <TrendingUpIcon className="flex-shrink-0 h-4 w-4 text-green-500" />
+                    <ArrowTrendingUpIcon className="flex-shrink-0 h-4 w-4 text-green-500" />
                   ) : card.changeType === 'negative' ? (
-                    <TrendingDownIcon className="flex-shrink-0 h-4 w-4 text-red-500" />
+                    <ArrowTrendingDownIcon className="flex-shrink-0 h-4 w-4 text-red-500" />
                   ) : null}
                   <span
                     className={`ml-1 ${
@@ -228,37 +259,37 @@ const Dashboard: React.FC = () => {
             Revenue vs Costs
           </h3>
           <div className="h-80">
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={revenueData}>
-                <CartesianGrid strokeDasharray="3 3" className="opacity-30" />
-                <XAxis 
+            <SafeResponsiveContainer width="100%" height="100%">
+              <SafeLineChart data={revenueData}>
+                <SafeCartesianGrid strokeDasharray="3 3" className="opacity-30" />
+                <SafeXAxis 
                   dataKey="month" 
                   className="text-gray-600 dark:text-gray-400"
                 />
-                <YAxis 
+                <SafeYAxis 
                   className="text-gray-600 dark:text-gray-400"
                   tickFormatter={(value) => `AED ${(value / 1000).toFixed(0)}K`}
                 />
-                <Tooltip
+                <SafeTooltip
                   formatter={(value: number) => [formatCurrency(value), '']}
                   labelClassName="text-gray-900 dark:text-white"
                 />
-                <Line
+                <SafeLine
                   type="monotone"
                   dataKey="revenue"
                   stroke="#10B981"
                   strokeWidth={2}
                   dot={{ fill: '#10B981', strokeWidth: 2, r: 4 }}
                 />
-                <Line
+                <SafeLine
                   type="monotone"
                   dataKey="costs"
                   stroke="#EF4444"
                   strokeWidth={2}
                   dot={{ fill: '#EF4444', strokeWidth: 2, r: 4 }}
                 />
-              </LineChart>
-            </ResponsiveContainer>
+              </SafeLineChart>
+            </SafeResponsiveContainer>
           </div>
         </div>
 
@@ -268,25 +299,25 @@ const Dashboard: React.FC = () => {
             Cash Flow Analysis
           </h3>
           <div className="h-80">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={cashFlowData}>
-                <CartesianGrid strokeDasharray="3 3" className="opacity-30" />
-                <XAxis 
+            <SafeResponsiveContainer width="100%" height="100%">
+              <SafeBarChart data={cashFlowData}>
+                <SafeCartesianGrid strokeDasharray="3 3" className="opacity-30" />
+                <SafeXAxis 
                   dataKey="month" 
                   className="text-gray-600 dark:text-gray-400"
                 />
-                <YAxis 
+                <SafeYAxis 
                   className="text-gray-600 dark:text-gray-400"
                   tickFormatter={(value) => `AED ${(value / 1000).toFixed(0)}K`}
                 />
-                <Tooltip
+                <SafeTooltip
                   formatter={(value: number) => [formatCurrency(value), '']}
                   labelClassName="text-gray-900 dark:text-white"
                 />
-                <Bar dataKey="operating" fill="#3B82F6" name="Operating" />
-                <Bar dataKey="net" fill="#10B981" name="Net" />
-              </BarChart>
-            </ResponsiveContainer>
+                <SafeBar dataKey="operating" fill="#3B82F6" name="Operating" />
+                <SafeBar dataKey="net" fill="#10B981" name="Net" />
+              </SafeBarChart>
+            </SafeResponsiveContainer>
           </div>
         </div>
       </div>
@@ -299,9 +330,9 @@ const Dashboard: React.FC = () => {
             Profit Margin Breakdown
           </h3>
           <div className="h-64">
-            <ResponsiveContainer width="100%" height="100%">
-              <PieChart>
-                <Pie
+            <SafeResponsiveContainer width="100%" height="100%">
+              <SafePieChart>
+                <SafePie
                   data={profitMarginData}
                   cx="50%"
                   cy="50%"
@@ -311,15 +342,15 @@ const Dashboard: React.FC = () => {
                   dataKey="value"
                 >
                   {profitMarginData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.color} />
+                    <SafeCell key={`cell-${index}`} fill={entry.color} />
                   ))}
-                </Pie>
-                <Tooltip
+                </SafePie>
+                <SafeTooltip
                   formatter={(value: number) => [`${value.toFixed(1)}%`, 'Margin']}
                   labelClassName="text-gray-900 dark:text-white"
                 />
-              </PieChart>
-            </ResponsiveContainer>
+              </SafePieChart>
+            </SafeResponsiveContainer>
           </div>
           <div className="mt-4 space-y-2">
             {profitMarginData.map((item, index) => (
@@ -417,7 +448,7 @@ const Dashboard: React.FC = () => {
             </button>
             <button className="w-full text-left p-3 border border-gray-200 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
               <div className="flex items-center">
-                <TrendingUpIcon className="h-5 w-5 text-blue-600 mr-3" />
+                <ArrowTrendingUpIcon className="h-5 w-5 text-blue-600 mr-3" />
                 <span className="text-sm font-medium text-gray-900 dark:text-white">
                   Budget Analysis
                 </span>

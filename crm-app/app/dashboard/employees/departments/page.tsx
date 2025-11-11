@@ -343,7 +343,7 @@ export default function DepartmentManagement() {
                       <div className="flex items-center gap-2 mt-1">
                         <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
                           <span className="text-tiny font-medium text-primary-600">
-                            {department.manager.first_name[0]}{department.manager.last_name[0]}
+                            {department.manager?.first_name?.[0]}{department.manager?.last_name?.[0]}
                           </span>
                         </div>
                         <div>

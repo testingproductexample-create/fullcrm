@@ -201,7 +201,7 @@ export default function SkillsManagementPage() {
   const totalSkills = skills?.length || 0;
   const totalCertifications = certifications?.length || 0;
   const activeEmployees = [...new Set(skills?.map(s => s.employee_id))].length;
-  const averageProficiency = (analytics?.reduce((sum, skill) => sum + skill.average_proficiency, 0) || 0) / (analytics?.length || 1);
+  const averageProficiency = (analytics?.reduce((sum: number, skill: any) => sum + skill.average_proficiency, 0) || 0) / (analytics?.length || 1);
 
   const statsCards = [
     {
@@ -393,7 +393,7 @@ export default function SkillsManagementPage() {
                         <div className="flex items-center space-x-2 mb-1">
                           <div className="h-8 w-8 rounded-full bg-gray-300 flex items-center justify-center">
                             <span className="text-xs font-medium text-gray-700">
-                              {skill.employee.first_name[0]}{skill.employee.last_name[0]}
+                              {skill.employee?.first_name?.[0]}{skill.employee?.last_name?.[0]}
                             </span>
                           </div>
                           <div>
@@ -490,7 +490,7 @@ export default function SkillsManagementPage() {
                         <div className="flex items-center space-x-2 mb-2">
                           <div className="h-8 w-8 rounded-full bg-gray-300 flex items-center justify-center">
                             <span className="text-xs font-medium text-gray-700">
-                              {cert.employee.first_name[0]}{cert.employee.last_name[0]}
+                              {cert.employee?.first_name?.[0]}{cert.employee?.last_name?.[0]}
                             </span>
                           </div>
                           <div>

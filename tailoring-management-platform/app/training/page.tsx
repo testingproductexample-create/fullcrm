@@ -6,7 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { CalendarIcon, ClockIcon, BookOpenIcon, CertificateIcon, TrendingUpIcon, AlertCircleIcon, PlayCircleIcon, CheckCircleIcon } from '@heroicons/react/24/outline';
+import { CalendarIcon, ClockIcon, BookOpenIcon, CertificateIcon, ArrowTrendingUpIcon, AlertCircleIcon, PlayCircleIcon, CheckCircleIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { 
   useEmployeeTrainings, 
@@ -56,15 +56,15 @@ export default function TrainingPortal() {
           <p className="text-gray-600 mt-2">Your personal learning journey and skill development hub</p>
         </div>
         <div className="flex space-x-3">
-          <Link href="/training/courses">
+          <Link href={`/training/courses`}>
             <Button className="bg-blue-600 hover:bg-blue-700">
               <BookOpenIcon className="h-4 w-4 mr-2" />
               Browse Courses
             </Button>
           </Link>
-          <Link href="/training/skills">
+          <Link href={`/training/skills`}>
             <Button variant="outline">
-              <TrendingUpIcon className="h-4 w-4 mr-2" />
+              <ArrowTrendingUpIcon className="h-4 w-4 mr-2" />
               Assess Skills
             </Button>
           </Link>
@@ -86,7 +86,7 @@ export default function TrainingPortal() {
               <p>{pendingCompliance.length} compliance requirement{pendingCompliance.length > 1 ? 's' : ''} pending</p>
             )}
           </div>
-          <Link href="/training/compliance" className="mt-2 inline-flex text-sm text-orange-600 hover:text-orange-800">
+          <Link href={`/training/compliance`} className="mt-2 inline-flex text-sm text-orange-600 hover:text-orange-800">
             View Details →
           </Link>
         </div>
@@ -144,7 +144,7 @@ export default function TrainingPortal() {
                 <p className="text-3xl font-bold text-orange-600">{employeeSkills.length}</p>
               </div>
               <div className="p-3 bg-orange-100 rounded-full">
-                <TrendingUpIcon className="h-6 w-6 text-orange-600" />
+                <ArrowTrendingUpIcon className="h-6 w-6 text-orange-600" />
               </div>
             </div>
           </CardContent>
@@ -411,7 +411,7 @@ export default function TrainingPortal() {
                 ))}
                 {employeeSkills.length === 0 && (
                   <div className="text-center py-8">
-                    <TrendingUpIcon className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                    <ArrowTrendingUpIcon className="h-12 w-12 text-gray-400 mx-auto mb-4" />
                     <p className="text-gray-500">No skills recorded yet</p>
                     <p className="text-sm text-gray-400 mt-1">Complete a skills assessment to get started</p>
                   </div>

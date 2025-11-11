@@ -147,7 +147,7 @@ export default function IntegrationAnalytics() {
     avgResponseTime:
       analytics && analytics.length > 0
         ? Math.round(
-            analytics.reduce((sum, a) => sum + a.avg_response_time_ms, 0) / analytics.length
+            analytics.reduce((sum: number, a: any) => sum + a.avg_response_time_ms, 0) / analytics.length
           )
         : 0,
   };

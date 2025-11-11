@@ -134,13 +134,13 @@ export default function OrdersPage() {
           <p className="text-gray-600">Manage orders and track production workflow</p>
         </div>
         <div className="flex items-center gap-2">
-          <Link href="/workflow">
+          <Link href={`/workflow`}>
             <Button variant="outline" className="flex items-center gap-2">
               <ChartBarIcon className="h-4 w-4" />
               Workflow Board
             </Button>
           </Link>
-          <Link href="/orders/new">
+          <Link href={`/orders/new`}>
             <Button className="flex items-center gap-2">
               <PlusIcon className="h-4 w-4" />
               New Order
@@ -369,7 +369,7 @@ export default function OrdersPage() {
                 Get started by creating your first order.
               </p>
               <div className="mt-6">
-                <Link href="/orders/new">
+                <Link href={`/orders/new`}>
                   <Button>
                     <PlusIcon className="h-4 w-4 mr-2" />
                     Create Order

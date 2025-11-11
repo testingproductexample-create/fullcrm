@@ -112,13 +112,13 @@ export default function CustomersPage() {
           <p className="text-gray-600">Manage your customer relationships and profiles</p>
         </div>
         <div className="flex items-center gap-2">
-          <Link href="/customers/analytics">
+          <Link href={`/customers/analytics`}>
             <Button variant="outline" className="flex items-center gap-2">
               <ChartBarIcon className="h-4 w-4" />
               Analytics
             </Button>
           </Link>
-          <Link href="/customers/new">
+          <Link href={`/customers/new`}>
             <Button className="flex items-center gap-2">
               <PlusIcon className="h-4 w-4" />
               Add Customer
@@ -268,7 +268,7 @@ export default function CustomersPage() {
                 Get started by adding your first customer.
               </p>
               <div className="mt-6">
-                <Link href="/customers/new">
+                <Link href={`/customers/new`}>
                   <Button>
                     <PlusIcon className="h-4 w-4 mr-2" />
                     Add Customer

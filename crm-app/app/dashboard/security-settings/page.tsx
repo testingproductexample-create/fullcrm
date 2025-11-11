@@ -36,7 +36,7 @@ export default function SecuritySettingsPage() {
 
   useEffect(() => {
     if (!user) {
-      router.push('/auth/login');
+      router.push('/auth/login' as any);
     }
   }, [user, router]);
 

@@ -311,7 +311,7 @@ export default function WorkflowPage() {
           <p className="text-gray-600">Track and manage order progress through workflow stages</p>
         </div>
         <div className="flex items-center gap-2">
-          <Link href="/orders">
+          <Link href={`/orders`}>
             <Button variant="outline" className="flex items-center gap-2">
               <ArrowRightIcon className="h-4 w-4 rotate-180" />
               Back to Orders

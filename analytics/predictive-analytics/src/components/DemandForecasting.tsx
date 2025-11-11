@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import {
   ChartBarIcon,
   CalendarIcon,
-  TrendingUpIcon,
+  ArrowTrendingUpIcon,
   ExclamationTriangleIcon,
   ArrowPathIcon
 } from '@heroicons/react/24/outline'
@@ -118,7 +118,7 @@ const DemandForecasting: React.FC = () => {
               <p className="text-3xl font-bold text-gray-900 dark:text-white">87%</p>
               <p className="text-sm text-blue-600 dark:text-blue-400">High accuracy</p>
             </div>
-            <TrendingUpIcon className="w-8 h-8 text-green-500" />
+            <ArrowTrendingUpIcon className="w-8 h-8 text-green-500" />
           </div>
         </motion.div>
 
@@ -266,7 +266,7 @@ const DemandForecasting: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-4">
             <div className="flex items-start space-x-3">
-              <TrendingUpIcon className="w-5 h-5 text-green-500 mt-1" />
+              <ArrowTrendingUpIcon className="w-5 h-5 text-green-500 mt-1" />
               <div>
                 <h4 className="font-medium text-gray-900 dark:text-white">Demand Surge Expected</h4>
                 <p className="text-sm text-gray-600 dark:text-gray-400">

@@ -143,7 +143,7 @@ export default function AlertManagementPage() {
   };
 
   const toggleSelectAll = () => {
-    if (selectedAlerts.length === filteredAlerts?.length) {
+    if (selectedAlerts.length === (filteredAlerts?.length || 0)) {
       setSelectedAlerts([]);
     } else {
       setSelectedAlerts(filteredAlerts?.map(alert => alert.id) || []);
@@ -218,19 +218,18 @@ export default function AlertManagementPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              {alerts?.filter(a => a.acknowledged_at).length > 0
-                ? Math.round(
-                    alerts
-                      .filter(a => a.acknowledged_at)
-                      .reduce((sum, a) => {
-                        const triggered = new Date(a.triggered_at).getTime();
-                        const acknowledged = new Date(a.acknowledged_at!).getTime();
-                        return sum + (acknowledged - triggered);
-                      }, 0) / 
-                    (alerts.filter(a => a.acknowledged_at).length * 1000 * 60)
-                  )
-                : 0
-              } min
+              {(() => {
+                const acknowledgedAlerts = alerts?.filter(a => a.acknowledged_at) || [];
+                const totalResponseTime = acknowledgedAlerts.reduce((sum, a) => {
+                  const triggered = new Date(a.triggered_at).getTime();
+                  const acknowledged = new Date(a.acknowledged_at!).getTime();
+                  return sum + (acknowledged - triggered);
+                }, 0);
+                
+                return acknowledgedAlerts.length > 0
+                  ? Math.round(totalResponseTime / (acknowledgedAlerts.length * 1000 * 60))
+                  : 0;
+              })()} min
             </div>
             <p className="text-xs text-muted-foreground">average response</p>
           </CardContent>
@@ -342,7 +341,7 @@ export default function AlertManagementPage() {
                 <div className="flex items-center space-x-2">
                   <input
                     type="checkbox"
-                    checked={selectedAlerts.length === filteredAlerts?.length && filteredAlerts.length > 0}
+                    checked={selectedAlerts.length === (filteredAlerts?.length || 0) && (filteredAlerts?.length || 0) > 0}
                     onChange={toggleSelectAll}
                     className="rounded"
                   />

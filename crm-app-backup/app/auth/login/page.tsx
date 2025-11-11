@@ -15,7 +15,7 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (user) {
-      router.push('/dashboard');
+      router.push('/dashboard' as any);
     }
   }, [user, router]);
 
@@ -30,7 +30,7 @@ export default function LoginPage() {
       if (signInError) {
         setError(signInError.message);
       } else {
-        router.push('/dashboard');
+        router.push('/dashboard' as any);
       }
     } catch (err) {
       setError('An unexpected error occurred');

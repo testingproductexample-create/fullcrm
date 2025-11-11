@@ -114,7 +114,7 @@ export default function TransfersPage() {
           <h1 className="text-3xl font-bold text-white mb-2">Inter-Branch Transfers</h1>
           <p className="text-gray-400">Manage inventory transfers between branch locations</p>
         </div>
-        <Link href="/branches/transfers/new">
+        <Link href={`/branches/transfers/new`}>
           <Button className="bg-indigo-600 hover:bg-indigo-700 text-white">
             <PlusIcon className="h-5 w-5 mr-2" />
             New Transfer
@@ -300,7 +300,7 @@ export default function TransfersPage() {
                       Mark Received
                     </Button>
                   )}
-                  <Link href={`/branches/transfers/${transfer.id}`}>
+                  <Link href={`${`/branches/transfers/${transfer.id}`}`}>
                     <Button variant="outline" className="border-white/10 text-white hover:bg-white/5 text-sm">
                       View Details
                     </Button>
@@ -333,7 +333,7 @@ export default function TransfersPage() {
                   ? 'Create your first inter-branch transfer to move inventory between locations'
                   : 'No transfers match your current filters'}
               </p>
-              <Link href="/branches/transfers/new">
+              <Link href={`/branches/transfers/new`}>
                 <Button className="bg-indigo-600 hover:bg-indigo-700 text-white">
                   <PlusIcon className="h-5 w-5 mr-2" />
                   Create Transfer

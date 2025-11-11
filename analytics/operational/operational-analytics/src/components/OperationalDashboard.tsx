@@ -50,8 +50,26 @@ import {
   Legend, 
   ResponsiveContainer,
   PieChart as RechartsPieChart,
+  Pie,
   Cell
 } from 'recharts';
+
+// Type-safe Recharts component aliases to fix JSX component issues
+const SafeLineChart = LineChart as React.ComponentType<any>;
+const SafeLine = Line as React.ComponentType<any>;
+const SafeAreaChart = AreaChart as React.ComponentType<any>;
+const SafeArea = Area as React.ComponentType<any>;
+const SafeBarChart = BarChart as React.ComponentType<any>;
+const SafeBar = Bar as React.ComponentType<any>;
+const SafeXAxis = XAxis as React.ComponentType<any>;
+const SafeYAxis = YAxis as React.ComponentType<any>;
+const SafeCartesianGrid = CartesianGrid as React.ComponentType<any>;
+const SafeTooltip = Tooltip as React.ComponentType<any>;
+const SafeLegend = Legend as React.ComponentType<any>;
+const SafeResponsiveContainer = ResponsiveContainer as React.ComponentType<any>;
+const SafePieChart = RechartsPieChart as React.ComponentType<any>;
+const SafePie = Pie as React.ComponentType<any>;
+const SafeCell = Cell as React.ComponentType<any>;
 import { analyticsService } from '../services/analytics';
 import { DashboardSummary, KPIMetric, FilterOptions, DateRange } from '../types/analytics';
 
@@ -350,36 +368,36 @@ const OperationalDashboard: React.FC = () => {
                 <CardDescription>Monthly performance metrics overview</CardDescription>
               </CardHeader>
               <CardContent>
-                <ResponsiveContainer width="100%" height={300}>
-                  <LineChart data={mockPerformanceData}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="month" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Line 
+                <SafeResponsiveContainer width="100%" height={300}>
+                  <SafeLineChart data={mockPerformanceData}>
+                    <SafeCartesianGrid strokeDasharray="3 3" />
+                    <SafeXAxis dataKey="month" />
+                    <SafeYAxis />
+                    <SafeTooltip />
+                    <SafeLegend />
+                    <SafeLine 
                       type="monotone" 
                       dataKey="performance" 
                       stroke={COLORS.primary} 
                       strokeWidth={2}
                       name="Overall Performance"
                     />
-                    <Line 
+                    <SafeLine 
                       type="monotone" 
                       dataKey="productivity" 
                       stroke={COLORS.secondary} 
                       strokeWidth={2}
                       name="Productivity"
                     />
-                    <Line 
+                    <SafeLine 
                       type="monotone" 
                       dataKey="quality" 
                       stroke={COLORS.accent} 
                       strokeWidth={2}
                       name="Quality Score"
                     />
-                  </LineChart>
-                </ResponsiveContainer>
+                  </SafeLineChart>
+                </SafeResponsiveContainer>
               </CardContent>
             </Card>
 
@@ -390,15 +408,15 @@ const OperationalDashboard: React.FC = () => {
                 <CardDescription>Performance by department</CardDescription>
               </CardHeader>
               <CardContent>
-                <ResponsiveContainer width="100%" height={300}>
-                  <BarChart data={mockDepartmentData}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip />
-                    <Bar dataKey="performance" fill={COLORS.primary} name="Performance Score" />
-                  </BarChart>
-                </ResponsiveContainer>
+                <SafeResponsiveContainer width="100%" height={300}>
+                  <SafeBarChart data={mockDepartmentData}>
+                    <SafeCartesianGrid strokeDasharray="3 3" />
+                    <SafeXAxis dataKey="name" />
+                    <SafeYAxis />
+                    <SafeTooltip />
+                    <SafeBar dataKey="performance" fill={COLORS.primary} name="Performance Score" />
+                  </SafeBarChart>
+                </SafeResponsiveContainer>
               </CardContent>
             </Card>
           </div>
@@ -476,21 +494,21 @@ const OperationalDashboard: React.FC = () => {
                 <CardDescription>Time tracking and productivity analysis</CardDescription>
               </CardHeader>
               <CardContent>
-                <ResponsiveContainer width="100%" height={300}>
-                  <AreaChart data={mockPerformanceData}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="month" />
-                    <YAxis />
-                    <Tooltip />
-                    <Area 
+                <SafeResponsiveContainer width="100%" height={300}>
+                  <SafeAreaChart data={mockPerformanceData}>
+                    <SafeCartesianGrid strokeDasharray="3 3" />
+                    <SafeXAxis dataKey="month" />
+                    <SafeYAxis />
+                    <SafeTooltip />
+                    <SafeArea 
                       type="monotone" 
                       dataKey="productivity" 
                       stroke={COLORS.primary} 
                       fill={COLORS.primary}
                       fillOpacity={0.3}
                     />
-                  </AreaChart>
-                </ResponsiveContainer>
+                  </SafeAreaChart>
+                </SafeResponsiveContainer>
               </CardContent>
             </Card>
 

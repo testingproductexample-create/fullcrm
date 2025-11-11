@@ -102,7 +102,7 @@ export default function NewEmployeePage() {
       return data;
     },
     onSuccess: (employee) => {
-      router.push(`/employees/${employee.id}`);
+      router.push("/employees/${employee.id}" as any as any);
     },
     onError: (error) => {
       console.error('Error creating employee:', error);
@@ -208,7 +208,7 @@ export default function NewEmployeePage() {
       <div className="flex justify-between items-center">
         <div className="flex items-center space-x-4">
           <Link
-            href="/employees/directory"
+            href={`/employees/directory`}
             className="p-2 border border-gray-300 rounded-md hover:bg-gray-50"
           >
             <ArrowLeft className="h-4 w-4" />

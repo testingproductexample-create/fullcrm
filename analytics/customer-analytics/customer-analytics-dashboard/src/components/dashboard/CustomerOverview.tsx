@@ -16,6 +16,23 @@ import {
   Area,
   AreaChart
 } from 'recharts';
+
+// Type-safe Recharts component aliases to fix JSX component issues
+const SafePieChart = PieChart as React.ComponentType<any>;
+const SafePie = Pie as React.ComponentType<any>;
+const SafeCell = Cell as React.ComponentType<any>;
+const SafeResponsiveContainer = ResponsiveContainer as React.ComponentType<any>;
+const SafeBarChart = BarChart as React.ComponentType<any>;
+const SafeBar = Bar as React.ComponentType<any>;
+const SafeXAxis = XAxis as React.ComponentType<any>;
+const SafeYAxis = YAxis as React.ComponentType<any>;
+const SafeCartesianGrid = CartesianGrid as React.ComponentType<any>;
+const SafeTooltip = Tooltip as React.ComponentType<any>;
+const SafeLegend = Legend as React.ComponentType<any>;
+const SafeLineChart = LineChart as React.ComponentType<any>;
+const SafeLine = Line as React.ComponentType<any>;
+const SafeArea = Area as React.ComponentType<any>;
+const SafeAreaChart = AreaChart as React.ComponentType<any>;
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
@@ -123,9 +140,9 @@ export const CustomerOverview: React.FC = () => {
             <CardDescription>Current status breakdown of all customers</CardDescription>
           </CardHeader>
           <CardContent>
-            <ResponsiveContainer width="100%" height={300}>
-              <PieChart>
-                <Pie
+            <SafeResponsiveContainer width="100%" height={300}>
+              <SafePieChart>
+                <SafePie
                   data={customerData.customerStatus}
                   cx="50%"
                   cy="50%"
@@ -136,12 +153,12 @@ export const CustomerOverview: React.FC = () => {
                   dataKey="value"
                 >
                   {customerData.customerStatus.map((entry: any, index: number) => (
-                    <Cell key={`cell-${index}`} fill={entry.color} />
+                    <SafeCell key={`cell-${index}`} fill={entry.color} />
                   ))}
-                </Pie>
-                <Tooltip />
-              </PieChart>
-            </ResponsiveContainer>
+                </SafePie>
+                <SafeTooltip />
+              </SafePieChart>
+            </SafeResponsiveContainer>
           </CardContent>
         </Card>
 
@@ -151,9 +168,9 @@ export const CustomerOverview: React.FC = () => {
             <CardDescription>Breakdown by customer tier</CardDescription>
           </CardHeader>
           <CardContent>
-            <ResponsiveContainer width="100%" height={300}>
-              <PieChart>
-                <Pie
+            <SafeResponsiveContainer width="100%" height={300}>
+              <SafePieChart>
+                <SafePie
                   data={customerData.customerType}
                   cx="50%"
                   cy="50%"
@@ -164,12 +181,12 @@ export const CustomerOverview: React.FC = () => {
                   dataKey="value"
                 >
                   {customerData.customerType.map((entry: any, index: number) => (
-                    <Cell key={`cell-${index}`} fill={entry.color} />
+                    <SafeCell key={`cell-${index}`} fill={entry.color} />
                   ))}
-                </Pie>
-                <Tooltip />
-              </PieChart>
-            </ResponsiveContainer>
+                </SafePie>
+                <SafeTooltip />
+              </SafePieChart>
+            </SafeResponsiveContainer>
           </CardContent>
         </Card>
       </div>
@@ -181,15 +198,15 @@ export const CustomerOverview: React.FC = () => {
           <CardDescription>Monthly revenue and customer acquisition trends</CardDescription>
         </CardHeader>
         <CardContent>
-          <ResponsiveContainer width="100%" height={400}>
-            <AreaChart data={customerData.revenueByMonth}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="month" />
-              <YAxis yAxisId="left" />
-              <YAxis yAxisId="right" orientation="right" />
-              <Tooltip content={<CustomTooltip />} />
-              <Legend />
-              <Area 
+          <SafeResponsiveContainer width="100%" height={400}>
+            <SafeAreaChart data={customerData.revenueByMonth}>
+              <SafeCartesianGrid strokeDasharray="3 3" />
+              <SafeXAxis dataKey="month" />
+              <SafeYAxis yAxisId="left" />
+              <SafeYAxis yAxisId="right" orientation="right" />
+              <SafeTooltip content={<CustomTooltip />} />
+              <SafeLegend />
+              <SafeArea 
                 yAxisId="left"
                 type="monotone" 
                 dataKey="revenue" 
@@ -198,7 +215,7 @@ export const CustomerOverview: React.FC = () => {
                 fillOpacity={0.3}
                 name="Revenue ($)"
               />
-              <Line 
+              <SafeLine 
                 yAxisId="right"
                 type="monotone" 
                 dataKey="customers" 
@@ -206,8 +223,8 @@ export const CustomerOverview: React.FC = () => {
                 strokeWidth={2}
                 name="New Customers"
               />
-            </AreaChart>
-          </ResponsiveContainer>
+            </SafeAreaChart>
+          </SafeResponsiveContainer>
         </CardContent>
       </Card>
 
@@ -219,15 +236,15 @@ export const CustomerOverview: React.FC = () => {
             <CardDescription>Where customers are coming from</CardDescription>
           </CardHeader>
           <CardContent>
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={customerData.acquisitionSource}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Bar dataKey="value" fill="#3B82F6" />
-              </BarChart>
-            </ResponsiveContainer>
+            <SafeResponsiveContainer width="100%" height={300}>
+              <SafeBarChart data={customerData.acquisitionSource}>
+                <SafeCartesianGrid strokeDasharray="3 3" />
+                <SafeXAxis dataKey="name" />
+                <SafeYAxis />
+                <SafeTooltip />
+                <SafeBar dataKey="value" fill="#3B82F6" />
+              </SafeBarChart>
+            </SafeResponsiveContainer>
           </CardContent>
         </Card>
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { CubeIcon, ExclamationTriangleIcon, TrendingDownIcon } from '@heroicons/react/24/outline'
+import { CubeIcon, ExclamationTriangleIcon, ArrowTrendingDownIcon } from '@heroicons/react/24/outline'
 
 const InventoryOptimization: React.FC = () => {
   return (
@@ -50,7 +50,7 @@ const InventoryOptimization: React.FC = () => {
               <p className="text-3xl font-bold text-gray-900 dark:text-white">22%</p>
               <p className="text-sm text-blue-600">This quarter</p>
             </div>
-            <TrendingDownIcon className="w-8 h-8 text-blue-500" />
+            <ArrowTrendingDownIcon className="w-8 h-8 text-blue-500" />
           </div>
         </div>
       </div>

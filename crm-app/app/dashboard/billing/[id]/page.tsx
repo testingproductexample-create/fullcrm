@@ -223,7 +223,7 @@ export default function InvoiceDetailsPage() {
         .eq('id', invoiceId);
 
       if (error) throw error;
-      router.push('/dashboard/billing/invoices');
+      router.push('/dashboard/billing/invoices' as any);
     } catch (err) {
       console.error('Error deleting invoice:', err);
       setError('Failed to delete invoice');

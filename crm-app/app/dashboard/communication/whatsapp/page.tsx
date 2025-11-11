@@ -132,15 +132,15 @@ export default function WhatsAppManagement() {
         .eq('is_active', true);
 
       // Process analytics data
-      const totalSent = analyticsData?.reduce((sum, item) => sum + (item.messages_sent || 0), 0) || 0;
-      const totalDelivered = analyticsData?.reduce((sum, item) => sum + (item.messages_delivered || 0), 0) || 0;
-      const totalRead = analyticsData?.reduce((sum, item) => sum + (item.messages_read || 0), 0) || 0;
-      const totalFailed = analyticsData?.reduce((sum, item) => sum + (item.messages_failed || 0), 0) || 0;
+      const totalSent = analyticsData?.reduce((sum: number, item: AnalyticsData) => sum + (item.messages_sent || 0), 0) || 0;
+      const totalDelivered = analyticsData?.reduce((sum: number, item: AnalyticsData) => sum + (item.messages_delivered || 0), 0) || 0;
+      const totalRead = analyticsData?.reduce((sum: number, item: AnalyticsData) => sum + (item.messages_read || 0), 0) || 0;
+      const totalFailed = analyticsData?.reduce((sum: number, item: AnalyticsData) => sum + (item.messages_failed || 0), 0) || 0;
 
       const deliveryRate = totalSent > 0 ? (totalDelivered / totalSent) * 100 : 0;
       const readRate = totalDelivered > 0 ? (totalRead / totalDelivered) * 100 : 0;
-      const responseRate = analyticsData?.reduce((sum, item) => sum + (item.response_rate || 0), 0) / (analyticsData?.length || 1);
-      const avgResponseTime = analyticsData?.reduce((sum, item) => sum + (item.average_response_time || 0), 0) / (analyticsData?.length || 1);
+      const responseRate = analyticsData?.reduce((sum: number, item: AnalyticsData) => sum + (item.response_rate || 0), 0) / (analyticsData?.length || 1);
+      const avgResponseTime = analyticsData?.reduce((sum: number, item: AnalyticsData) => sum + (item.average_response_time || 0), 0) / (analyticsData?.length || 1);
 
       setStats({
         totalSent,

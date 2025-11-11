@@ -178,7 +178,7 @@ export default function InvoicesPage() {
             <DocumentArrowDownIcon className="h-4 w-4" />
             Export
           </Button>
-          <Link href="/invoices/new">
+          <Link href={`/invoices/new`}>
             <Button className="flex items-center gap-2">
               <PlusIcon className="h-4 w-4" />
               Create Invoice
@@ -433,7 +433,7 @@ export default function InvoicesPage() {
                 Get started by creating your first invoice.
               </p>
               <div className="mt-6">
-                <Link href="/invoices/new">
+                <Link href={`/invoices/new`}>
                   <Button>
                     <PlusIcon className="h-4 w-4 mr-2" />
                     Create Invoice

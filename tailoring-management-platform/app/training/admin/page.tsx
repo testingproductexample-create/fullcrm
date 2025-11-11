@@ -93,13 +93,13 @@ export default function TrainingAdminDashboard() {
           <p className="text-gray-600 mt-2">Manage training programs, track progress, and ensure compliance</p>
         </div>
         <div className="flex space-x-3">
-          <Link href="/training/courses/new">
+          <Link href={`/training/courses/new`}>
             <Button className="bg-blue-600 hover:bg-blue-700">
               <PlusIcon className="h-4 w-4 mr-2" />
               Create Program
             </Button>
           </Link>
-          <Link href="/training/analytics">
+          <Link href={`/training/analytics`}>
             <Button variant="outline">
               <ChartBarIcon className="h-4 w-4 mr-2" />
               Analytics
@@ -123,7 +123,7 @@ export default function TrainingAdminDashboard() {
               <p>{complianceItems.filter(c => c.status === 'overdue').length} compliance requirement{complianceItems.filter(c => c.status === 'overdue').length > 1 ? 's are' : ' is'} overdue</p>
             )}
           </div>
-          <Link href="/training/compliance" className="mt-2 inline-flex text-sm text-red-600 hover:text-red-800">
+          <Link href={`/training/compliance`} className="mt-2 inline-flex text-sm text-red-600 hover:text-red-800">
             Review All Issues →
           </Link>
         </div>
@@ -404,7 +404,7 @@ export default function TrainingAdminDashboard() {
                             View
                           </Button>
                         </Link>
-                        <Link href={`/training/courses/${program.id}/edit`}>
+                        <Link href={`/training/courses/${program.id/edit}`}>
                           <Button size="sm" variant="outline">
                             <PencilIcon className="h-4 w-4 mr-1" />
                             Edit

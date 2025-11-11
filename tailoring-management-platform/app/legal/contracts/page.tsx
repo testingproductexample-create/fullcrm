@@ -127,13 +127,13 @@ export default function ContractManagement() {
           <p className="text-gray-600 mt-2">Manage all contracts, agreements, and legal documents</p>
         </div>
         <div className="flex flex-col sm:flex-row gap-3">
-          <Link href="/legal/contracts/new">
+          <Link href={`/legal/contracts/new`}>
             <Button className="bg-blue-600 hover:bg-blue-700 w-full sm:w-auto">
               <PlusIcon className="h-4 w-4 mr-2" />
               New Contract
             </Button>
           </Link>
-          <Link href="/legal/templates">
+          <Link href={`/legal/templates`}>
             <Button variant="outline" className="w-full sm:w-auto">
               <DocumentTextIcon className="h-4 w-4 mr-2" />
               Templates
@@ -221,7 +221,7 @@ export default function ContractManagement() {
                 <DocumentTextIcon className="h-16 w-16 mx-auto text-gray-400 mb-4" />
                 <h3 className="text-lg font-medium text-gray-900 mb-2">No contracts found</h3>
                 <p className="text-gray-600 mb-6">Create your first contract or adjust your filters</p>
-                <Link href="/legal/contracts/new">
+                <Link href={`/legal/contracts/new`}>
                   <Button className="bg-blue-600 hover:bg-blue-700">
                     <PlusIcon className="h-4 w-4 mr-2" />
                     Create Contract
@@ -329,7 +329,7 @@ export default function ContractManagement() {
                           View
                         </Button>
                       </Link>
-                      <Link href={`/legal/contracts/${contract.id}/edit`} className="flex-1">
+                      <Link href={`/legal/contracts/${contract.id/edit}`} className="flex-1">
                         <Button variant="outline" size="sm" className="w-full">
                           <PencilIcon className="h-4 w-4 mr-2" />
                           Edit

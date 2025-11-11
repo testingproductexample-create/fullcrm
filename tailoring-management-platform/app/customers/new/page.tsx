@@ -92,7 +92,7 @@ export default function NewCustomerPage() {
     onSuccess: (customer) => {
       toast.success('Customer created successfully');
       queryClient.invalidateQueries({ queryKey: ['customers'] });
-      router.push(`/customers/${customer.id}`);
+      router.push("/customers/${customer.id}" as any as any);
     },
     onError: (error) => {
       console.error('Error creating customer:', error);
@@ -140,7 +140,7 @@ export default function NewCustomerPage() {
           <Button
             variant="outline"
             size="sm"
-            onClick={() => router.back()}
+            onClick={() => router.back() as any}
             className="flex items-center gap-2"
           >
             <ArrowLeftIcon className="h-4 w-4" />
@@ -445,7 +445,7 @@ export default function NewCustomerPage() {
           <Button
             type="button"
             variant="outline"
-            onClick={() => router.back()}
+            onClick={() => router.back() as any}
             disabled={isSubmitting}
           >
             Cancel

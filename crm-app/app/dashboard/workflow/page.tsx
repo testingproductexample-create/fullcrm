@@ -167,7 +167,7 @@ export default function WorkflowDashboardPage() {
       const statusMap = new Map(workflowStatusData?.map(s => [s.order_id, s]) || []);
 
       // Create analytics lookup
-      const analyticsMap = new Map(analyticsData?.map(a => [a.status, a]) || []);
+      const analyticsMap = new Map(analyticsData?.map((a: any) => [a.status, a]) || []);
 
       // Group orders by workflow stage
       const stageGroups = stages.map(stage => {

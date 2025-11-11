@@ -275,7 +275,7 @@ export default function UploadDocumentPage() {
         
         // Redirect after 2 seconds
         setTimeout(() => {
-          router.push('/dashboard/documents');
+          router.push('/dashboard/documents' as any);
         }, 2000);
       }
 
@@ -309,7 +309,7 @@ export default function UploadDocumentPage() {
               <p className="text-gray-600 mt-1">Upload documents securely with metadata and categorization</p>
             </div>
             <button
-              onClick={() => router.push('/dashboard/documents')}
+              onClick={() => router.push('/dashboard/documents' as any)}
               className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-all"
             >
               Cancel

@@ -337,7 +337,7 @@ export default function QualityInspectionsPage() {
                 Refresh
               </button>
               <Link
-                href="/inventory/quality/new"
+                href={`/inventory/quality/new`}
                 className="px-4 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium shadow-lg hover:shadow-xl transition-all duration-200 hover:from-blue-700 hover:to-indigo-700"
               >
                 <Plus className="h-4 w-4 inline mr-2" />
@@ -685,7 +685,7 @@ export default function QualityInspectionsPage() {
                             <Eye className="h-4 w-4" />
                           </Link>
                           <Link
-                            href={`/inventory/quality/${inspection.id}/edit`}
+                            href={`/inventory/quality/${inspection.id/edit}`}
                             className="p-2 text-slate-600 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors"
                           >
                             <Edit className="h-4 w-4" />
@@ -706,7 +706,7 @@ export default function QualityInspectionsPage() {
                   <p className="text-lg font-medium">No quality inspections found</p>
                   <p className="text-sm">Schedule your first quality inspection to get started.</p>
                   <Link
-                    href="/inventory/quality/new"
+                    href={`/inventory/quality/new`}
                     className="mt-4 inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                   >
                     <Plus className="h-4 w-4 mr-2" />

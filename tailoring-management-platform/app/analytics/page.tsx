@@ -260,7 +260,7 @@ export default function AnalyticsDashboard() {
             return (
               <Link
                 key={module.name}
-                href={module.href}
+                href={`${module.href}`}
                 className="group bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-6 border border-gray-200 hover:shadow-2xl hover:scale-105 transition-all duration-300"
               >
                 <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${module.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>

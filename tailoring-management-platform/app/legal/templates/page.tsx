@@ -301,19 +301,19 @@ export default function ContractTemplates() {
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <Link href="/legal/contracts/new?template=client">
+            <Link href={`/legal/contracts/new?template=client`}>
               <Button variant="outline" className="w-full h-16 flex flex-col items-center justify-center">
                 <UserGroupIcon className="h-5 w-5 mb-1" />
                 <span className="text-sm">Create Client Contract</span>
               </Button>
             </Link>
-            <Link href="/legal/contracts/new?template=employee">
+            <Link href={`/legal/contracts/new?template=employee`}>
               <Button variant="outline" className="w-full h-16 flex flex-col items-center justify-center">
                 <UserGroupIcon className="h-5 w-5 mb-1" />
                 <span className="text-sm">Create Employee Contract</span>
               </Button>
             </Link>
-            <Link href="/legal/contracts/new?template=supplier">
+            <Link href={`/legal/contracts/new?template=supplier`}>
               <Button variant="outline" className="w-full h-16 flex flex-col items-center justify-center">
                 <BanknotesIcon className="h-5 w-5 mb-1" />
                 <span className="text-sm">Create Supplier Agreement</span>

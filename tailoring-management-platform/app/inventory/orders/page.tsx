@@ -393,7 +393,7 @@ export default function PurchaseOrdersPage() {
                 Refresh
               </button>
               <Link
-                href="/inventory/orders/new"
+                href={`/inventory/orders/new`}
                 className="px-4 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium shadow-lg hover:shadow-xl transition-all duration-200 hover:from-blue-700 hover:to-indigo-700"
               >
                 <Plus className="h-4 w-4 inline mr-2" />
@@ -752,7 +752,7 @@ export default function PurchaseOrdersPage() {
                               <Eye className="h-4 w-4" />
                             </Link>
                             <Link
-                              href={`/inventory/orders/${order.id}/edit`}
+                              href={`/inventory/orders/${order.id/edit}`}
                               className="p-2 text-slate-600 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors"
                             >
                               <Edit className="h-4 w-4" />
@@ -774,7 +774,7 @@ export default function PurchaseOrdersPage() {
                   <p className="text-lg font-medium">No purchase orders found</p>
                   <p className="text-sm">Create your first purchase order to get started.</p>
                   <Link
-                    href="/inventory/orders/new"
+                    href={`/inventory/orders/new`}
                     className="mt-4 inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                   >
                     <Plus className="h-4 w-4 mr-2" />

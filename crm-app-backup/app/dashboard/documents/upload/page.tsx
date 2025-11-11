@@ -275,7 +275,7 @@ export default function UploadDocumentPage() {
         
         // Redirect after 2 seconds
         setTimeout(() => {
-          router.push('/dashboard/documents');
+          router.push('/dashboard/documents' as any);
         }, 2000);
       }
 

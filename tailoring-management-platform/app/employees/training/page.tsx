@@ -480,7 +480,7 @@ export default function TrainingProgramsPage() {
                         <div className="flex items-center space-x-4 mb-4 md:mb-0">
                           <div className="h-12 w-12 rounded-full bg-gray-300 flex items-center justify-center">
                             <span className="text-sm font-medium text-gray-700">
-                              {enrollment.employee.first_name[0]}{enrollment.employee.last_name[0]}
+                              {enrollment.employee?.first_name?.[0]}{enrollment.employee?.last_name?.[0]}
                             </span>
                           </div>
                           <div>

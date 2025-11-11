@@ -215,7 +215,7 @@ export default function NewOrderPage() {
     onSuccess: (order) => {
       toast.success('Order created successfully');
       queryClient.invalidateQueries({ queryKey: ['orders'] });
-      router.push(`/orders/${order.id}`);
+      router.push("/orders/${order.id}" as any as any);
     },
     onError: (error) => {
       console.error('Error creating order:', error);
@@ -264,7 +264,7 @@ export default function NewOrderPage() {
           <Button
             variant="outline"
             size="sm"
-            onClick={() => router.back()}
+            onClick={() => router.back() as any}
             className="flex items-center gap-2"
           >
             <ArrowLeftIcon className="h-4 w-4" />

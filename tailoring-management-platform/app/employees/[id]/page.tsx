@@ -116,7 +116,7 @@ export default function EmployeeProfilePage() {
           <p className="mt-1 text-sm text-gray-500">The employee you're looking for doesn't exist or you don't have access to view it.</p>
           <div className="mt-6">
             <Link
-              href="/employees/directory"
+              href={`/employees/directory`}
               className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
             >
               <ArrowLeft className="h-4 w-4 mr-2" />
@@ -154,7 +154,7 @@ export default function EmployeeProfilePage() {
       <div className="flex justify-between items-start">
         <div className="flex items-center space-x-4">
           <Link
-            href="/employees/directory"
+            href={`/employees/directory`}
             className="p-2 border border-gray-300 rounded-md hover:bg-gray-50"
           >
             <ArrowLeft className="h-4 w-4" />
@@ -166,7 +166,7 @@ export default function EmployeeProfilePage() {
         </div>
         <div className="flex space-x-3">
           <Link
-            href={`/employees/${employee.id}/edit`}
+            href={`/employees/${employee.id/edit}`}
             className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
           >
             <Edit className="h-4 w-4 mr-2" />
@@ -189,7 +189,7 @@ export default function EmployeeProfilePage() {
             ) : (
               <div className="h-32 w-32 rounded-lg bg-gray-300 flex items-center justify-center">
                 <span className="text-2xl font-bold text-gray-700">
-                  {employee.first_name[0]}{employee.last_name[0]}
+                  {employee?.first_name?.[0]}{employee?.last_name?.[0]}
                 </span>
               </div>
             )}

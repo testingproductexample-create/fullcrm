@@ -43,7 +43,7 @@ export default function LoyaltyProgramsPage() {
           <h1 className="text-3xl font-bold text-slate-900">Loyalty Programs</h1>
           <p className="text-slate-600 mt-1">Manage customer loyalty and rewards programs</p>
         </div>
-        <Link href="/loyalty/programs/new">
+        <Link href={`/loyalty/programs/new`}>
           <Button className="bg-blue-600 hover:bg-blue-700">
             <Plus className="h-4 w-4 mr-2" />
             New Program
@@ -236,7 +236,7 @@ export default function LoyaltyProgramsPage() {
               <Award className="h-16 w-16 text-slate-300 mx-auto mb-4" />
               <h3 className="text-lg font-medium text-slate-900 mb-2">No loyalty programs yet</h3>
               <p className="text-slate-600 mb-4">Create your first loyalty program to start rewarding customers</p>
-              <Link href="/loyalty/programs/new">
+              <Link href={`/loyalty/programs/new`}>
                 <Button className="bg-blue-600 hover:bg-blue-700">
                   <Plus className="h-4 w-4 mr-2" />
                   Create Program
@@ -249,7 +249,7 @@ export default function LoyaltyProgramsPage() {
 
       {/* Quick Actions */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Link href="/loyalty/members">
+        <Link href={`/loyalty/members`}>
           <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer border-2 border-transparent hover:border-blue-200">
             <div className="flex items-center space-x-4">
               <div className="bg-blue-100 p-3 rounded-full">
@@ -263,7 +263,7 @@ export default function LoyaltyProgramsPage() {
           </Card>
         </Link>
 
-        <Link href="/loyalty/rewards">
+        <Link href={`/loyalty/rewards`}>
           <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer border-2 border-transparent hover:border-purple-200">
             <div className="flex items-center space-x-4">
               <div className="bg-purple-100 p-3 rounded-full">
@@ -277,7 +277,7 @@ export default function LoyaltyProgramsPage() {
           </Card>
         </Link>
 
-        <Link href="/loyalty/campaigns">
+        <Link href={`/loyalty/campaigns`}>
           <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer border-2 border-transparent hover:border-green-200">
             <div className="flex items-center space-x-4">
               <div className="bg-green-100 p-3 rounded-full">
